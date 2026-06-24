@@ -1,0 +1,1872 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Horton Navigation S.A. — Maritime Operations & Ship Management</title>
+  <meta name="description" content="Horton Navigation S.A. is an international maritime corporation specializing in commercial and technical ship management, dry bulk, and general cargo transportation.">
+  
+  <!-- Premium Google Fonts: Cormorant Garamond (Serif) & Inter (Sans-serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script type="module" src="/src/main.js"></script>
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body class="bg-[#050505] text-[#FFFFFF] selection:bg-gold/30 selection:text-white antialiased overflow-x-hidden min-h-[100dvh]">
+
+  <!-- Header Navigation -->
+  <header class="w-full h-28 bg-bg-primary fixed top-0 left-0 z-50">
+    <nav class="max-w-[1440px] mx-auto px-8 lg:px-0 h-28 flex items-center justify-between" id="main-nav">
+      <!-- Logo Container -->
+      <a href="#" class="flex items-center gap-4 group" id="logo-link">
+        <img src="/Hornav_logo.png" alt="Horton Navigation S.A. Logo" class="h-20 w-auto transition-transform duration-300 group-hover:scale-[1.02]" id="logo-img">
+        <!-- Divider -->
+        <div class="h-10 w-[1px] bg-border-gold/30 hidden sm:block"></div>
+        <!-- Slogan -->
+        <span class="text-[9px] font-medium tracking-[0.25em] text-gold uppercase whitespace-nowrap hidden sm:inline-block">Maritime Expertise</span>
+      </a>
+      
+      <!-- Nav Links (Center) -->
+      <div class="hidden lg:flex items-center gap-10 text-xs font-semibold uppercase tracking-[0.25em] text-neutral-400" id="nav-links">
+        <a href="#" class="hover:text-gold text-gold transition-colors duration-200" id="link-home">Home</a>
+        <a href="#company" class="hover:text-gold transition-colors duration-200" id="link-company">Company</a>
+        <a href="#fleet" class="hover:text-gold transition-colors duration-200" id="link-fleet">Fleet</a>
+        <a href="#careers" class="hover:text-gold transition-colors duration-200" id="link-careers">Careers</a>
+        <a href="#contact" class="hover:text-gold transition-colors duration-200" id="link-contact">Contact</a>
+      </div>
+
+      <!-- Action Button (Right) & Hamburger -->
+      <div class="flex items-center gap-4" id="nav-actions">
+        <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] border border-gold hover:bg-gold hover:text-neutral-950 transition-colors duration-300 text-white hidden md:inline-flex" data-magnetic id="btn-get-in-touch">
+          Get In Touch &rarr;
+        </a>
+        
+        <!-- Hamburger Button (Mobile Only) -->
+        <button id="mobile-menu-btn" class="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 border border-border-gold/30 hover:border-gold/60 transition-colors duration-300 rounded focus:outline-none cursor-pointer z-50" aria-label="Toggle Navigation Menu">
+          <span class="w-6 h-[2px] bg-white transition-all duration-300 origin-center" id="hamburger-line-1"></span>
+          <span class="w-6 h-[2px] bg-white transition-all duration-300 origin-center" id="hamburger-line-2"></span>
+          <span class="w-6 h-[2px] bg-white transition-all duration-300 origin-center" id="hamburger-line-3"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- 2px Luxury Animated Border Line -->
+    <div class="absolute bottom-0 left-0 w-full h-[2px] luxury-border-line"></div>
+  </header>
+
+  <!-- Mobile Fullscreen Menu Overlay -->
+  <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#050505]/98 z-40 flex flex-col justify-center items-center opacity-0 pointer-events-none transition-all duration-500 backdrop-blur-md">
+    <!-- Menu Grid Pattern Background -->
+    <div class="absolute inset-0 bg-[radial-gradient(rgba(200,155,60,0.02)_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none z-0"></div>
+    
+    <!-- Menu Navigation Links -->
+    <div class="flex flex-col items-center gap-8 text-lg font-semibold uppercase tracking-[0.3em] text-neutral-400 relative z-10" id="mobile-menu-links">
+      <a href="#" class="hover:text-gold transition-colors duration-300" id="m-link-home">Home</a>
+      <a href="#company" class="hover:text-gold transition-colors duration-300" id="m-link-company">Company</a>
+      <a href="#fleet" class="hover:text-gold transition-colors duration-300" id="m-link-fleet">Fleet</a>
+      <a href="#careers" class="hover:text-gold transition-colors duration-300" id="m-link-careers">Careers</a>
+      <a href="#contact" class="hover:text-gold transition-colors duration-300" id="m-link-contact">Contact</a>
+    </div>
+  </div>
+
+  <!-- Main Content Wrapper -->
+  <main class="w-full" id="content-root">
+    
+    <!-- SECTION 01 — HERO (Fullscreen background video) -->
+    <section class="relative min-h-[100dvh] flex flex-col justify-between px-8 lg:px-16 pt-24 pb-12 lg:pt-36 lg:pb-16 border-b border-border-gold overflow-hidden" id="hero-sec">
+      
+      <!-- Fullscreen Background Video & Gradient Overlays (Desktop Only) -->
+      <div class="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden hidden lg:block" id="hero-bg-media">
+        <video class="w-full h-full object-cover opacity-75 will-change-transform" 
+               src="/1_screen.mp4" 
+               autoplay 
+               muted 
+               loop 
+               playsinline 
+               id="hero-video">
+        </video>
+        <!-- Horizontal gradient to fade left area into solid black for extreme typography readability -->
+        <div class="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505] via-[#050505]/85 via-[#050505]/40 to-transparent"></div>
+        <!-- Bottom gradient to merge seamlessly into subsequent sections -->
+        <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent"></div>
+      </div>
+
+      <!-- Fullscreen Background Video & Gradient Overlays (Mobile Only) -->
+      <div class="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden lg:hidden" id="hero-bg-media-mobile">
+        <video class="absolute left-0 w-full h-[120%] top-[-10%] object-cover object-center opacity-75 will-change-transform" 
+               src="/1_screen.mp4" 
+               autoplay 
+               muted 
+               loop 
+               playsinline 
+               id="hero-video-mobile">
+        </video>
+        <!-- Vertical gradient to fade bottom area into solid black for mobile readability -->
+        <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/75 to-transparent"></div>
+        <!-- Bottom gradient to merge seamlessly into subsequent sections -->
+        <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent"></div>
+      </div>
+
+      <!-- Content Grid (Constrained to master width) -->
+      <div class="max-w-[1440px] mx-auto w-full flex-grow flex items-center relative z-10" id="hero-content-container">
+        
+        <!-- Deep Typography Left Column -->
+        <div class="max-w-3xl text-left translate-y-[75px]" id="hero-text-col" data-reveal>
+          <span class="text-xs font-semibold tracking-[0.3em] text-gold uppercase mb-10 block" id="hero-badge">
+            Ship Management Company
+          </span>
+          
+          <h1 class="text-6xl sm:text-7xl lg:text-[5.5rem] font-medium tracking-[0.01em] text-white leading-[1.0] mb-10 uppercase" id="hero-title">
+            HORTON<br><span class="text-gold">NAVIGATION S.A.</span>
+          </h1>
+          
+          <h2 class="text-2xl sm:text-3xl lg:text-[2.25rem] font-light text-neutral-200 tracking-[0.02em] leading-[1.2] mb-12 font-sans" id="hero-subtitle">
+            Commercial & Technical Ship Management
+          </h2>
+          
+          <!-- Paragraph Container -->
+          <div class="flex flex-row items-center justify-between gap-6 lg:block mb-10 lg:mb-16" id="hero-desc-group">
+            <p class="text-sm sm:text-base lg:text-lg text-neutral-400 font-light leading-relaxed w-[60%] lg:w-auto lg:max-w-xl" id="hero-desc">
+              Efficient seaborne transportation of dry-bulk cargoes through professional commercial and technical vessel management across international maritime markets.
+            </p>
+          </div>
+
+          <!-- Buttons -->
+          <div class="flex flex-col sm:flex-row items-center gap-4" id="hero-buttons">
+            <a href="#fleet" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-gold hover:bg-gold-light text-neutral-950 font-semibold tracking-widest text-xs uppercase transition-colors" data-magnetic id="btn-explore-fleet">
+              Explore Fleet &rarr;
+            </a>
+            <a href="#company" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 border border-gold hover:bg-gold/10 text-white font-semibold tracking-widest text-xs uppercase transition-colors" data-magnetic id="btn-company-profile">
+              Company Profile &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom: Statistics Row & Scroll Indicator -->
+      <div class="max-w-[1440px] mx-auto w-full relative z-10 mt-28" id="hero-bottom-area">
+        
+        <!-- Stats Grid with vertical borders -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 py-8 border-t border-border-gold/50" id="hero-stats-grid" data-reveal>
+                 <!-- Stat 1: Established -->
+          <div class="flex flex-col gap-2 pl-4 border-l border-border-gold/60" id="stat-est">
+            <div class="flex items-center gap-3" id="stat-est-header">
+              <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18M3 18h18M3 9h18M4 9v9M10 9v9M14 9v9M20 9v9M12 3L3 9h18L12 3z" />
+              </svg>
+              <span class="text-xs font-bold tracking-[0.25em] text-gold uppercase">Established</span>
+            </div>
+            <span class="text-3xl font-light text-white tracking-[0.1em]"><span id="stat-est-val" data-target="2026">0</span></span>
+          </div>
+
+          <!-- Stat 2: Fleet Capacity -->
+          <div class="flex flex-col gap-2 pl-4 border-l border-border-gold/60" id="stat-capacity">
+            <div class="flex items-center gap-3" id="stat-capacity-header">
+              <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2 17l2-2h16l2 2v2H2v-2zM4 15l1-5h14l1 5M8 10V6h2v4M14 10V5h2v5" />
+              </svg>
+              <span class="text-xs font-bold tracking-[0.25em] text-gold uppercase">Fleet Capacity</span>
+            </div>
+            <span class="text-3xl font-light text-white tracking-[0.05em]"><span id="stat-capacity-min" data-target="6000">0</span>–<span id="stat-capacity-max" data-target="8000">0</span> <span class="text-sm text-neutral-400 font-sans">DWT</span></span>
+          </div>
+
+          <!-- Stat 3: Market Presence -->
+          <div class="flex flex-col gap-2 pl-4 border-l border-border-gold/60" id="stat-market">
+            <div class="flex items-center gap-3" id="stat-market-header">
+              <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" stroke-linecap="round" stroke-linejoin="round" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10M12 2a15.3 15.3 0 00-4 10 15.3 15.3 0 004 10M2 12h20" />
+              </svg>
+              <span class="text-xs font-bold tracking-[0.25em] text-gold uppercase">Market Presence</span>
+            </div>
+            <span class="text-sm font-light text-white tracking-[0.05em] leading-relaxed" id="stat-market-val">Black Sea • Mediterranean • Baltic</span>
+          </div>
+
+          <!-- Stat 4: Operations -->
+          <div class="flex flex-col gap-2 pl-4 border-l border-border-gold/60" id="stat-ops">
+            <div class="flex items-center gap-3" id="stat-ops-header">
+              <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                <circle cx="12" cy="12" r="3" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <span class="text-xs font-bold tracking-[0.25em] text-gold uppercase">Operations</span>
+            </div>
+            <span class="text-sm font-light text-white tracking-[0.05em] leading-relaxed" id="stat-ops-val">Commercial & Technical Management</span>
+          </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="flex flex-col items-center gap-2 mt-4 text-xs tracking-[0.3em] text-gold/60 uppercase" id="scroll-discover">
+          <span>Scroll to Discover</span>
+          <div class="scroll-mouse-indicator">
+            <div class="scroll-mouse-wheel"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 02 — MISSION / VISION / VALUES -->
+    <section id="company" class="relative min-h-[100dvh] flex flex-col justify-between px-8 lg:px-16 pt-20 pb-20 lg:pt-28 lg:pb-72 lg:pb-96 border-b border-border-gold overflow-hidden bg-[#0B0B0B]">
+      <!-- Background Video & Gradient Overlay -->
+      <div class="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden" id="mission-bg-media">
+        <video class="absolute left-0 w-full h-[120%] top-[-10%] object-cover opacity-60 will-change-transform" 
+               src="/2_screen.mp4" 
+               autoplay 
+               muted 
+               loop 
+               playsinline 
+               id="mission-video">
+        </video>
+        <!-- Horizontal gradient (left-to-right) for readability and blending -->
+        <div class="absolute inset-0 bg-gradient-to-r from-[#0B0B0B] via-[#0B0B0B] via-[#0B0B0B]/80 via-[#0B0B0B]/30 to-transparent z-10"></div>
+        <!-- Vertical gradients -->
+        <div class="absolute inset-0 bg-gradient-to-b from-[#050505] via-transparent to-[#050505] z-10"></div>
+      </div>
+
+      <!-- Main Layout Container -->
+      <div class="max-w-[1440px] mx-auto w-full relative z-10 my-auto flex flex-col gap-16" id="mission-container">
+        
+        <!-- Top Title & Narrative (Left-aligned) -->
+        <div class="max-w-2xl text-left" id="mission-header" data-reveal>
+          <div class="flex items-center gap-4 mb-4">
+            <div class="h-[1px] w-8 bg-gold"></div>
+            <span class="text-xs font-semibold tracking-[0.25em] text-gold uppercase block" id="mission-badge">
+              About Horton Navigation
+            </span>
+          </div>
+          
+          <h2 class="text-4xl sm:text-5xl lg:text-[4rem] font-medium tracking-[0.01em] text-white leading-[1.1] mb-8" id="mission-title">
+            Mission, Vision<br>& Corporate Values
+          </h2>
+          
+          <p class="text-sm sm:text-base lg:text-lg text-neutral-300 font-light leading-relaxed" id="mission-desc">
+            We are committed to safe, efficient and reliable seaborne transportation through professional ship management, built on integrity, expertise and long-term partnerships.
+          </p>
+        </div>
+
+        <!-- 4-Column Premium Cards Grid (Mission 1, Vision 1, Values 2) -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8" id="mission-grid" data-reveal>
+          
+          <!-- Card 1: Mission -->
+          <div class="relative border border-border-gold bg-bg-primary p-8 pt-16 flex flex-col justify-between rounded hover:border-gold/50 transition-colors duration-300 min-h-[460px] group lg:col-span-1" id="card-mission">
+            <!-- Round Gold Icon Badge -->
+            <div class="absolute top-[-32px] left-1/2 -translate-x-1/2 w-16 h-16 rounded-full border border-gold bg-[#0B0B0B] flex items-center justify-center shadow-lg shadow-gold/5 transition-transform duration-300 group-hover:scale-105" id="badge-mission">
+              <!-- Target SVG Icon -->
+              <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" />
+                <circle cx="12" cy="12" r="6" />
+                <circle cx="12" cy="12" r="2" />
+                <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+              </svg>
+            </div>
+            <div class="w-full">
+              <h3 class="text-xl font-medium text-gold tracking-[0.1em] mb-3 uppercase text-center font-serif" id="title-mission">Mission</h3>
+              <div class="h-[1px] w-12 bg-gold mx-auto mb-8"></div>
+              <p class="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed px-2 text-left" id="desc-mission">
+                Efficient seaborne transportation of dry-bulk, non-dangerous, non-inflammable, non-IMO cargoes through the commercial and technical operation of Bulk Carriers and General Cargo vessels – ensuring reliability, compliance, operational performance across international trades.
+              </p>
+            </div>
+            <!-- Ship Blueprint Image Overlay -->
+            <div class="relative w-full h-24 mt-6 overflow-hidden rounded group-hover:scale-[1.02] transition-transform duration-500" id="ship1-wrapper">
+              <img src="/ship1_screen3.png" alt="Bulk Carrier Blueprint" class="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity duration-500 ship-mask-1">
+            </div>
+          </div>
+
+          <!-- Card 2: Vision -->
+          <div class="relative border border-border-gold bg-bg-primary p-8 pt-16 flex flex-col justify-between rounded hover:border-gold/50 transition-colors duration-300 min-h-[460px] group lg:col-span-1" id="card-vision">
+            <!-- Round Gold Icon Badge -->
+            <div class="absolute top-[-32px] left-1/2 -translate-x-1/2 w-16 h-16 rounded-full border border-gold bg-[#0B0B0B] flex items-center justify-center shadow-lg shadow-gold/5 transition-transform duration-300 group-hover:scale-105" id="badge-vision">
+              <!-- Binoculars SVG Icon -->
+              <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                <path d="M5 7a3 3 0 013-3h1a3 3 0 013 3v10a3 3 0 01-3 3H8a3 3 0 01-3-3V7z M12 7a3 3 0 013-3h1a3 3 0 013 3v10a3 3 0 01-3 3h-1a3 3 0 01-3-3V7z M9 10h6" />
+              </svg>
+            </div>
+            <div class="w-full">
+              <h3 class="text-xl font-medium text-gold tracking-[0.1em] mb-3 uppercase text-center font-serif" id="title-vision">Vision</h3>
+              <div class="h-[1px] w-12 bg-gold mx-auto mb-8"></div>
+              <p class="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed px-2 text-left" id="desc-vision">
+                Long-term development through strategic fleet expansion and continuous growth of the Company's maritime operations. Future plans include the consideration of newbuilding projects, particularly in relation to new vessel framework, design, and construction development.
+              </p>
+            </div>
+            <!-- Ship Blueprint Image Overlay -->
+            <div class="relative w-full h-24 mt-6 overflow-hidden rounded group-hover:scale-[1.02] transition-transform duration-500" id="ship2-wrapper">
+              <img src="/ship2_screen3.png" alt="General Cargo Blueprint" class="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity duration-500 ship-mask-2">
+            </div>
+          </div>
+
+          <!-- Card 3: Values (Spans 2 columns on desktop) -->
+          <div class="relative border border-border-gold bg-bg-primary p-8 pt-16 rounded hover:border-gold/50 transition-colors duration-300 min-h-[460px] group lg:col-span-2" id="card-values">
+            <!-- Round Gold Icon Badge -->
+            <div class="absolute top-[-32px] left-1/2 -translate-x-1/2 w-16 h-16 rounded-full border border-gold bg-[#0B0B0B] flex items-center justify-center shadow-lg shadow-gold/5 transition-transform duration-300 group-hover:scale-105" id="badge-values">
+              <!-- Diamond SVG Icon -->
+              <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                <path d="M6 3h12l4 6-10 12L2 9z M2 9h20 M12 3v18 M6 3l6 6 M18 3l-6 6" />
+              </svg>
+            </div>
+            <div class="w-full flex flex-col items-center h-full pt-4" id="values-wrapper">
+              <div class="text-center mb-12">
+                <h3 class="text-xl font-medium text-gold tracking-[0.1em] mb-3 uppercase text-center font-serif" id="title-values">Values</h3>
+                <div class="h-[1px] w-12 bg-gold mx-auto"></div>
+              </div>
+              
+              <!-- 5-Column Horizontal Values Layout -->
+              <div class="grid grid-cols-1 sm:grid-cols-5 gap-4 text-center w-full" id="values-rows">
+                <!-- Value 1: Compliance -->
+                <div class="value-column flex flex-col items-center text-center gap-3 border-b border-border-gold/10 last:border-b-0 pb-6 sm:border-b-0 sm:border-r sm:border-border-gold/20 sm:pb-0 sm:px-4 lg:px-2 sm:first:pl-0 sm:last:pr-0 sm:last:border-r-0" id="row-compliance">
+                  <div class="value-icon-container">
+                    <div class="value-icon-glow"></div>
+                    <svg class="w-10 h-10 value-icon" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="block text-sm font-semibold text-gold tracking-wider mb-2" id="val-lbl-compliance">Compliance</span>
+                    <span class="block text-xs sm:text-sm text-neutral-400 font-light leading-relaxed" id="val-desc-compliance">Total transparency and strict compliance with regulations.</span>
+                  </div>
+                </div>
+
+                <!-- Value 2: Operational Excellence -->
+                <div class="value-column flex flex-col items-center text-center gap-3 border-b border-border-gold/10 last:border-b-0 pb-6 sm:border-b-0 sm:border-r sm:border-border-gold/20 sm:pb-0 sm:px-4 lg:px-2 sm:first:pl-0 sm:last:pr-0 sm:last:border-r-0" id="row-excellence">
+                  <div class="value-icon-container">
+                    <div class="value-icon-glow"></div>
+                    <svg class="w-10 h-10 value-icon" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="block text-sm font-semibold text-gold tracking-wider mb-2" id="val-lbl-excellence">Operations</span>
+                    <span class="block text-xs sm:text-sm text-neutral-400 font-light leading-relaxed" id="val-desc-excellence">Optimizing fleet performance for safe and efficient operations.</span>
+                  </div>
+                </div>
+
+                <!-- Value 3: Greek Maritime Standards -->
+                <div class="value-column flex flex-col items-center text-center gap-3 border-b border-border-gold/10 last:border-b-0 pb-6 sm:border-b-0 sm:border-r sm:border-border-gold/20 sm:pb-0 sm:px-4 lg:px-2 sm:first:pl-0 sm:last:pr-0 sm:last:border-r-0" id="row-standards">
+                  <div class="value-icon-container">
+                    <div class="value-icon-glow"></div>
+                    <svg class="w-10 h-10 value-icon" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V10M5 21V10M12 21V10M3 21h18M3 10h18M3 7l9-4 9 4M4 7h16" />
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="block text-sm font-semibold text-gold tracking-wider mb-2" id="val-lbl-standards">Standards</span>
+                    <span class="block text-xs sm:text-sm text-neutral-400 font-light leading-relaxed" id="val-desc-standards">Operating under the Greek maritime framework.</span>
+                  </div>
+                </div>
+
+                <!-- Value 4: Environmental Responsibility -->
+                <div class="value-column flex flex-col items-center text-center gap-3 border-b border-border-gold/10 last:border-b-0 pb-6 sm:border-b-0 sm:border-r sm:border-border-gold/20 sm:pb-0 sm:px-4 lg:px-2 sm:first:pl-0 sm:last:pr-0 sm:last:border-r-0" id="row-environment">
+                  <div class="value-icon-container">
+                    <div class="value-icon-glow"></div>
+                    <svg class="w-10 h-10 value-icon" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 6.343A8 8 0 006.343 17.657L3 21l3.343-3.343A8 8 0 0017.657 6.343z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6.343 17.657L17.657 6.343" />
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="block text-sm font-semibold text-gold tracking-wider mb-2" id="val-lbl-environment">Environment</span>
+                    <span class="block text-xs sm:text-sm text-neutral-400 font-light leading-relaxed" id="val-desc-environment">Reducing carbon footprint through efficient management.</span>
+                  </div>
+                </div>
+
+                <!-- Value 5: Reliability -->
+                <div class="value-column flex flex-col items-center text-center gap-3 border-b border-border-gold/10 last:border-b-0 pb-6 sm:border-b-0 sm:border-r sm:border-border-gold/20 sm:pb-0 sm:px-4 lg:px-2 sm:first:pl-0 sm:last:pr-0 sm:last:border-r-0" id="row-reliability">
+                  <div class="value-icon-container">
+                    <div class="value-icon-glow"></div>
+                    <svg class="w-10 h-10 value-icon" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                      <path d="M17 11h1a3 3 0 013 3v1a5 5 0 01-5 5H6a5 5 0 01-5-5v-1a3 3 0 013-3h1 M8 14h8 M12 11v3 M6 8a4 4 0 118 0 4 4 0 01-8 0z" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="block text-sm font-semibold text-gold tracking-wider mb-2" id="val-lbl-reliability">Reliability</span>
+                    <span class="block text-xs sm:text-sm text-neutral-400 font-light leading-relaxed" id="val-desc-reliability">Dependable execution in every commitment.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 03 — CARGO SPECIALIZATION -->
+    <section id="cargo" class="relative min-h-[100dvh] flex flex-col justify-center px-8 lg:px-16 pt-20 pb-24 lg:pt-28 lg:pb-44 lg:pb-60 border-b border-border-gold overflow-hidden bg-bg-primary">
+      
+
+
+      <!-- Layout Grid (Constrained to master width) -->
+      <div class="max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start relative z-10" id="cargo-container">
+        
+        <!-- Left Column: Titles, Description, Blueprint Video, and Bottom Metrics -->
+        <div class="lg:col-span-6 flex flex-col gap-4 text-left" id="cargo-left-col" data-reveal>
+          <span class="text-xs font-semibold tracking-[0.3em] text-gold uppercase block animate-fade-in" id="cargo-badge">
+            Specialization
+          </span>
+          
+          <h2 class="text-4xl sm:text-5xl lg:text-[4rem] font-medium tracking-[0.01em] text-white leading-[1.0] uppercase" id="cargo-title">
+            DRY BULK CARGO<br><span class="text-gold">TRANSPORTATION</span>
+          </h2>
+          
+          <p class="text-sm sm:text-base lg:text-lg text-neutral-300 font-light leading-relaxed max-w-xl" id="cargo-desc">
+            Commercial and technical management of Bulk Carriers and General Cargo vessels ranging from <span class="text-gold font-semibold">6,000–8,000 DWT</span>.
+          </p>
+          
+          <!-- Integrated Blueprint Video (Seamlessly blended, object-contain to prevent vertical cropping, no dark cover masks) -->
+          <div class="relative w-full aspect-video overflow-hidden rounded bg-transparent select-none pointer-events-none" id="blueprint-video-container">
+            <video class="w-full h-full object-contain opacity-95 rounded" 
+                   src="/3_screen.mp4" 
+                   autoplay 
+                   muted 
+                   loop 
+                   playsinline 
+                   id="blueprint-video">
+            </video>
+          </div>
+          
+          <!-- Horizontal Metrics Row aligned to content (No vertical separators) -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 border-t border-border-gold/30 pt-6 mt-1" id="cargo-metrics">
+            
+            <!-- Metric 1: Vessel Types -->
+            <div class="metric-item flex flex-col items-center text-center gap-2" id="cargo-metric-vessels">
+              <div class="value-icon-container shrink-0 w-12 h-12 flex items-center justify-center">
+                <div class="value-icon-glow"></div>
+                <svg class="w-10 h-10 text-gold value-icon" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2 17l1.5-3.5h17L22 17v3H2v-3zM4 13.5L5.5 8h13l1.5 5.5M8 8V5h3v3M13 8V4h3v4" />
+                </svg>
+              </div>
+              <div>
+                <span class="block text-xs font-bold tracking-wider text-gold uppercase mb-1" id="m-title-vessels">Vessel Types</span>
+                <span class="block text-xs sm:text-sm text-neutral-400 font-light leading-snug" id="m-desc-vessels">Bulk Carrier<br>General Cargo</span>
+              </div>
+            </div>
+
+            <!-- Metric 2: Fleet Range -->
+            <div class="metric-item flex flex-col items-center text-center gap-2" id="cargo-metric-capacity">
+              <div class="value-icon-container shrink-0 w-12 h-12 flex items-center justify-center">
+                <div class="value-icon-glow"></div>
+                <svg class="w-10 h-10 text-gold value-icon" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                  <circle cx="12" cy="5" r="2.5" />
+                  <path d="M12 7.5V20" stroke-linecap="round" />
+                  <path d="M7 10h10" stroke-linecap="round" />
+                  <path d="M5 14a7 7 0 0014 0" stroke-linecap="round" />
+                  <path d="M5 14l-1.5 1.5M19 14l1.5 1.5" stroke-linecap="round" />
+                </svg>
+              </div>
+              <div>
+                <span class="block text-xs font-bold tracking-wider text-gold uppercase mb-1" id="m-title-capacity">Fleet Range</span>
+                <span class="block text-xs sm:text-sm text-neutral-400 font-light leading-snug" id="m-desc-capacity">6,000–8,000<br>DWT</span>
+              </div>
+            </div>
+
+            <!-- Metric 3: Cargo Focus -->
+            <div class="metric-item flex flex-col items-center text-center gap-2" id="cargo-metric-focus">
+              <div class="value-icon-container shrink-0 w-12 h-12 flex items-center justify-center">
+                <div class="value-icon-glow"></div>
+                <svg class="w-10 h-10 text-gold value-icon" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                  <rect x="3" y="6" width="18" height="13" rx="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M16 6V4.5A1.5 1.5 0 0014.5 3h-5A1.5 1.5 0 008 4.5V6" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M3 11h18M10 11v2a2 2 0 004 0v-2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div>
+                <span class="block text-xs font-bold tracking-wider text-gold uppercase mb-1" id="m-title-focus">Cargo Focus</span>
+                <span class="block text-xs sm:text-sm text-neutral-400 font-light leading-snug" id="m-desc-focus">Dry Bulk<br>Non-IMO Cargoes</span>
+              </div>
+            </div>
+
+            <!-- Metric 4: Our Commitment -->
+            <div class="metric-item flex flex-col items-center text-center gap-2" id="cargo-metric-safety">
+              <div class="value-icon-container shrink-0 w-12 h-12 flex items-center justify-center">
+                <div class="value-icon-glow"></div>
+                <svg class="w-10 h-10 text-gold value-icon" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </div>
+              <div>
+                <span class="block text-xs font-bold tracking-wider text-gold uppercase mb-1" id="m-title-safety">Our Commitment</span>
+                <span class="block text-xs sm:text-sm text-neutral-400 font-light leading-snug" id="m-desc-safety">Safe. Compliant.<br>Reliable.</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        
+        <!-- Right Column: 3 Sloped Specialty Cards (Aligned vertically with left block top) -->
+        <div class="lg:col-span-6 flex flex-col gap-6 lg:gap-3" id="cargo-right-col" data-reveal>
+          <div class="flex items-center gap-4 mb-1">
+            <span class="text-xs font-semibold tracking-[0.25em] text-gold uppercase block whitespace-nowrap" id="specializations-title">
+              Our Cargo Specializations
+            </span>
+            <div class="h-[1px] w-full bg-border-gold/30" id="specializations-line"></div>
+          </div>
+          
+          <div class="flex flex-col gap-5" id="cargo-cards-list">
+            
+            <!-- Card 01 — Agribulk Cargo -->
+            <div class="sloped-card relative py-5 pl-14 sm:pl-24 lg:pl-20 pr-4 sm:pr-8 lg:pr-6 rounded group flex flex-col justify-center" id="c-card-agribulk">
+              <!-- SVG Background and Border Overlay -->
+              <svg class="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <polygon points="6,0.5 99.5,0.5 99.5,99.5 0.5,99.5" class="card-bg-polygon" />
+                <polygon points="6,0.5 99.5,0.5 99.5,99.5 0.5,99.5" fill="none" stroke="rgba(200, 155, 60, 0.2)" stroke-width="1" vector-effect="non-scaling-stroke" class="card-border-polygon" />
+              </svg>
+              <!-- Faint background number -->
+              <div class="absolute right-8 top-4 text-7xl sm:text-[6rem] font-bold text-white/5 font-serif select-none pointer-events-none leading-none z-0">01</div>
+              
+              <!-- Circular Badge overlapping border -->
+              <div class="cargo-badge-container absolute left-[-16px] sm:left-[-24px] top-1/2 -translate-y-1/2 w-14 h-14 sm:w-20 sm:h-20 shrink-0 z-20" id="c-badge-agribulk">
+                <div class="value-icon-glow"></div>
+                <!-- Detailed Wheat SVG Icon -->
+                <svg class="w-7 h-7 sm:w-10 sm:h-10 text-gold value-icon" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                  <path d="M5 19c4.5-1.5 9-4.5 12-9M7 14c-1.5-2.5.5-5 2-4.5 1 2-1 4-2 4.5zm4-3.5c-1.5-2.5.5-5 2-4.5 1 2-1 4-2 4.5zm4.5-4c-1.5-2.5.5-5 2-4.5 1 2-1 4-2 4.5zm-5 7.5c2.5-1.5 5 .5 4.5 2-2 1-4-1-4.5-2zm4-3.5c2.5-1.5 5 .5 4.5 2-2 1-4-1-4.5-2zm4-3.5c2.5-1.5 5 .5 4.5 2-2 1-4-1-4.5-2z" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              
+              <!-- Content Wrapper -->
+              <div class="w-full flex flex-col gap-3 relative z-10 text-left" id="card-content-agribulk">
+                <div>
+                  <h3 class="text-lg sm:text-xl font-medium tracking-widest text-gold font-serif uppercase" id="c-card-title-agribulk">Agribulk Cargo</h3>
+                  <div class="h-[1px] w-12 bg-gold/50 mt-1" id="c-card-line-agribulk"></div>
+                </div>
+                
+                <!-- 3-Column Cargo Items List -->
+                <div class="grid grid-cols-3 gap-x-4 sm:gap-x-8 gap-y-1 sm:gap-y-1.5" id="card-list-agribulk">
+                  <!-- Col 1 -->
+                  <ul class="flex flex-col gap-1 sm:gap-1.5 lg:gap-0.5">
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Wheat</li>
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Grain</li>
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Corn</li>
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Barley</li>
+                  </ul>
+                  <!-- Col 2 -->
+                  <ul class="flex flex-col gap-1 sm:gap-1.5 lg:gap-0.5">
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Oats</li>
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Rice</li>
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Soybeans</li>
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Sunflower</li>
+                  </ul>
+                  <!-- Col 3 -->
+                  <ul class="flex flex-col gap-1 sm:gap-1.5 lg:gap-0.5">
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Rapeseed</li>
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Soy Meal</li>
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Pellets</li>
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Distillers</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 02 — Solid Bulk Chemicals & Fertilizers -->
+            <div class="sloped-card relative py-5 pl-14 sm:pl-24 lg:pl-20 pr-4 sm:pr-8 lg:pr-6 rounded group flex flex-col justify-center" id="c-card-chemicals">
+              <!-- SVG Background and Border Overlay -->
+              <svg class="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <polygon points="6,0.5 99.5,0.5 99.5,99.5 0.5,99.5" class="card-bg-polygon" />
+                <polygon points="6,0.5 99.5,0.5 99.5,99.5 0.5,99.5" fill="none" stroke="rgba(200, 155, 60, 0.2)" stroke-width="1" vector-effect="non-scaling-stroke" class="card-border-polygon" />
+              </svg>
+              <!-- Faint background number -->
+              <div class="absolute right-8 top-4 text-7xl sm:text-[6rem] font-bold text-white/5 font-serif select-none pointer-events-none leading-none z-0">02</div>
+              
+              <!-- Circular Badge overlapping border -->
+              <div class="cargo-badge-container absolute left-[-16px] sm:left-[-24px] top-1/2 -translate-y-1/2 w-14 h-14 sm:w-20 sm:h-20 shrink-0 z-20" id="c-badge-chemicals">
+                <div class="value-icon-glow"></div>
+                <!-- Detailed Beaker SVG Icon -->
+                <svg class="w-7 h-7 sm:w-10 sm:h-10 text-gold value-icon" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                  <path d="M9 3h6M10 3v6.5L5.5 18c-.8 1.5.3 3.5 2 3.5h9c1.7 0 2.8-2 2-3.5L14 9.5V3" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M7.2 15h9.6" stroke-linecap="round" />
+                  <circle cx="10" cy="18" r="0.5" fill="currentColor" />
+                  <circle cx="13" cy="19" r="0.7" fill="currentColor" />
+                  <circle cx="12" cy="16" r="0.4" fill="currentColor" />
+                </svg>
+              </div>
+              
+              <!-- Content Wrapper -->
+              <div class="w-full flex flex-col gap-3 relative z-10 text-left" id="card-content-chemicals">
+                <div>
+                  <h3 class="text-lg sm:text-xl font-medium tracking-widest text-gold font-serif uppercase" id="c-card-title-chemicals">Solid Bulk Chemicals & Fertilizers</h3>
+                  <div class="h-[1px] w-12 bg-gold/50 mt-1" id="c-card-line-chemicals"></div>
+                </div>
+                
+                <!-- 3-Column Cargo Items List -->
+                <div class="grid grid-cols-3 gap-x-4 sm:gap-x-8 gap-y-1 sm:gap-y-1.5" id="card-list-chemicals">
+                  <!-- Col 1 -->
+                  <ul class="flex flex-col gap-1 sm:gap-1.5 lg:gap-0.5">
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Urea</li>
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Compound NPK</li>
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Amm. Sulphate</li>
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Phosphates</li>
+                  </ul>
+                  <!-- Col 2 -->
+                  <ul class="flex flex-col gap-1 sm:gap-1.5 lg:gap-0.5">
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Potash</li>
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Sulfur</li>
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Silica Sand</li>
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Cement</li>
+                  </ul>
+                  <!-- Col 3 -->
+                  <ul class="flex flex-col gap-1 sm:gap-1.5 lg:gap-0.5">
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Gypsum</li>
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Salt</li>
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Clay</li>
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Limestone</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 03 — Metallic & Mineral Cargoes -->
+            <div class="sloped-card relative py-5 pl-14 sm:pl-24 lg:pl-20 pr-4 sm:pr-8 lg:pr-6 rounded group flex flex-col justify-center" id="c-card-minerals">
+              <!-- SVG Background and Border Overlay -->
+              <svg class="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <polygon points="6,0.5 99.5,0.5 99.5,99.5 0.5,99.5" class="card-bg-polygon" />
+                <polygon points="6,0.5 99.5,0.5 99.5,99.5 0.5,99.5" fill="none" stroke="rgba(200, 155, 60, 0.2)" stroke-width="1" vector-effect="non-scaling-stroke" class="card-border-polygon" />
+              </svg>
+              <!-- Faint background number -->
+              <div class="absolute right-8 top-4 text-7xl sm:text-[6rem] font-bold text-white/5 font-serif select-none pointer-events-none leading-none z-0">03</div>
+              
+              <!-- Circular Badge overlapping border -->
+              <div class="cargo-badge-container absolute left-[-16px] sm:left-[-24px] top-1/2 -translate-y-1/2 w-14 h-14 sm:w-20 sm:h-20 shrink-0 z-20" id="c-badge-minerals">
+                <div class="value-icon-glow"></div>
+                <!-- Detailed Crystal SVG Icon -->
+                <svg class="w-7 h-7 sm:w-10 sm:h-10 text-gold value-icon" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                  <path d="M6 3h12l4 6-10 12L2 9z" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M2 9h20M6 3l3 6 3-6 3 6 3-6M9 9l3 12 3-12" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              
+              <!-- Content Wrapper -->
+              <div class="w-full flex flex-col gap-3 relative z-10 text-left" id="card-content-minerals">
+                <div>
+                  <h3 class="text-lg sm:text-xl font-medium tracking-widest text-gold font-serif uppercase" id="c-card-title-minerals">Metallic & Mineral Cargoes</h3>
+                  <div class="h-[1px] w-12 bg-gold/50 mt-1" id="c-card-line-minerals"></div>
+                </div>
+                
+                <!-- 3-Column Cargo Items List -->
+                <div class="grid grid-cols-3 gap-x-4 sm:gap-x-8 gap-y-1 sm:gap-y-1.5" id="card-list-minerals">
+                  <!-- Col 1 -->
+                  <ul class="flex flex-col gap-1 sm:gap-1.5 lg:gap-0.5">
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Iron Ore</li>
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Steel Coils</li>
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Scrap Metal</li>
+                  </ul>
+                  <!-- Col 2 -->
+                  <ul class="flex flex-col gap-1 sm:gap-1.5 lg:gap-0.5">
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Pig Iron</li>
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Bauxite</li>
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Manganese</li>
+                  </ul>
+                  <!-- Col 3 -->
+                  <ul class="flex flex-col gap-1 sm:gap-1.5 lg:gap-0.5" id="min-col-3">
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Copper Conc</li>
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Zinc Conc</li>
+                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Nickel Ore</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="markets" class="relative min-h-[100dvh] flex flex-col justify-center px-8 lg:px-16 pt-20 pb-20 lg:pt-28 lg:pb-20 lg:pb-32 border-b border-neutral-200 overflow-hidden bg-white">
+      
+      <!-- Deep dark/gold radial vignette over the white background -->
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0)_50%,rgba(0,0,0,0.03)_100%)] pointer-events-none z-0"></div>
+
+      <!-- 4-sided gradient vignette framing overlay -->
+      <div class="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-neutral-950/10 to-transparent pointer-events-none z-0"></div>
+      <div class="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-neutral-950/10 to-transparent pointer-events-none z-0"></div>
+      <div class="absolute left-0 top-0 bottom-0 w-28 bg-gradient-to-r from-neutral-950/10 to-transparent pointer-events-none z-0"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-28 bg-gradient-to-l from-neutral-950/10 to-transparent pointer-events-none z-0"></div>
+
+      <!-- Animated background waves canvas -->
+      <canvas id="markets-waves" class="absolute inset-0 pointer-events-none z-0 opacity-60"></canvas>
+
+      <!-- Centered Layout Container (Constrained to master width) -->
+      <div class="max-w-[1440px] mx-auto w-full flex flex-col items-center relative z-10" id="markets-container">
+        <!-- Upper Content: Title and Descriptions Centered -->
+        <div class="max-w-4xl w-full flex flex-col items-center text-center gap-4 mb-10" data-reveal id="markets-text-block">
+          <div class="flex flex-col items-center gap-2.5" id="markets-kicker-group">
+            <div class="flex items-center gap-3">
+              <div class="h-[1px] w-8" style="background-color: rgba(140, 102, 21, 0.4);"></div>
+              <span class="text-xs font-bold tracking-[0.3em] uppercase" style="color: #8C6615;" id="markets-kicker">Global Shipping Network</span>
+              <div class="h-[1px] w-8" style="background-color: rgba(140, 102, 21, 0.4);"></div>
+            </div>
+            <!-- Stylish gold diamond icon accent -->
+            <svg class="w-3.5 h-3.5 text-gold/60" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2L2 12l10 10 10-10L12 2z" />
+            </svg>
+          </div>
+          
+          <h2 class="text-5xl sm:text-7xl lg:text-[6.5rem] font-medium tracking-[0.01em] text-neutral-950 leading-[1.0] uppercase font-serif mt-4" id="markets-title">
+            Markets & Operations
+          </h2>
+          
+          <p class="text-base sm:text-lg lg:text-[18px] text-neutral-900 font-semibold leading-relaxed max-w-2xl mt-4 lg:mt-2" id="markets-lead">
+            Operating across key maritime trade routes and regional shipping markets.
+          </p>
+          
+          <p class="text-sm sm:text-base lg:text-[14px] text-neutral-600 font-normal leading-relaxed max-w-3xl mt-2 lg:mt-1" id="markets-desc">
+            Our operations span strategic regions with strong commercial connections, supported by professional vessel management and an experienced team committed to safe and efficient performance.
+          </p>
+        </div>
+
+        <!-- Bottom Grid: 4 Metric Cards (No Map) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-[1440px] mx-auto mt-8 relative z-10" data-reveal id="markets-cards-grid">
+          
+          <!-- Card 1: Markets -->
+          <div class="group markets-card bg-neutral-50/90 border border-neutral-200/80 rounded-md p-6 sm:p-8 flex flex-col gap-4.5 text-left relative overflow-hidden" id="m-card-markets">
+            <div class="absolute top-0 left-0 w-0 h-[3px] bg-gold transition-all duration-500 group-hover:w-full"></div>
+            <div class="w-14 h-14 rounded-full border border-gold/30 bg-gold/5 flex items-center justify-center text-gold transition-all duration-300 group-hover:scale-105 group-hover:border-gold group-hover:bg-gold/10" id="m-icon-markets">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10m-4-20a15.3 15.3 0 00-4 10 15.3 15.3 0 004 10M2 12h20" stroke-linecap="round" />
+              </svg>
+            </div>
+            <div>
+              <span class="block text-xs font-bold tracking-[0.25em] uppercase mb-1.5" style="color: #8C6615;" id="m-cat-markets">Markets</span>
+              <h3 class="text-xl lg:text-[19px] font-semibold text-neutral-900 font-serif" id="m-val-markets">5 Strategic Regions</h3>
+            </div>
+            <div class="h-[1px] w-12 bg-gold/20 transition-all duration-300 group-hover:w-20 group-hover:bg-gold/45"></div>
+            <p class="text-xs lg:text-[13px] text-neutral-600 font-light leading-relaxed" id="m-desc-markets">
+              Black Sea, Mediterranean, Baltic Sea, Continental Europe, Scandinavia.
+            </p>
+          </div>
+
+          <!-- Card 2: Vessel Management -->
+          <div class="group markets-card bg-neutral-50/90 border border-neutral-200/80 rounded-md p-6 sm:p-8 flex flex-col gap-4.5 text-left relative overflow-hidden" id="m-card-vessels">
+            <div class="absolute top-0 left-0 w-0 h-[3px] bg-gold transition-all duration-500 group-hover:w-full"></div>
+            <div class="w-14 h-14 rounded-full border border-gold/30 bg-gold/5 flex items-center justify-center text-gold transition-all duration-300 group-hover:scale-105 group-hover:border-gold group-hover:bg-gold/10" id="m-icon-vessels">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2 17l1.5-3.5h17L22 17v3H2v-3zM4 13.5L5.5 8h13l1.5 5.5M8 8V5h3v3M13 8V4h3v4" />
+              </svg>
+            </div>
+            <div>
+              <span class="block text-xs font-bold tracking-[0.25em] uppercase mb-1.5" style="color: #8C6615;" id="m-cat-vessels">Vessel Management</span>
+              <h3 class="text-xl lg:text-[19px] font-semibold text-neutral-900 font-serif" id="m-val-vessels">Commercial & Technical</h3>
+            </div>
+            <div class="h-[1px] w-12 bg-gold/20 transition-all duration-300 group-hover:w-20 group-hover:bg-gold/45"></div>
+            <p class="text-xs lg:text-[13px] text-neutral-600 font-light leading-relaxed" id="m-desc-vessels">
+              Full commercial and technical management ensuring safety, efficiency and reliability.
+            </p>
+          </div>
+
+          <!-- Card 3: Cargo Types -->
+          <div class="group markets-card bg-neutral-50/90 border border-neutral-200/80 rounded-md p-6 sm:p-8 flex flex-col gap-4.5 text-left relative overflow-hidden" id="m-card-cargo">
+            <div class="absolute top-0 left-0 w-0 h-[3px] bg-gold transition-all duration-500 group-hover:w-full"></div>
+            <div class="w-14 h-14 rounded-full border border-gold/30 bg-gold/5 flex items-center justify-center text-gold transition-all duration-300 group-hover:scale-105 group-hover:border-gold group-hover:bg-gold/10" id="m-icon-cargo">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                <rect x="4" y="4" width="16" height="16" rx="1" stroke-linecap="round" />
+                <path d="M4 9h16M9 4v16M15 4v16" stroke-linecap="round" />
+              </svg>
+            </div>
+            <div>
+              <span class="block text-xs font-bold tracking-[0.25em] uppercase mb-1.5" style="color: #8C6615;" id="m-cat-cargo">Cargo Types</span>
+              <h3 class="text-xl lg:text-[19px] font-semibold text-neutral-900 font-serif" id="m-val-cargo">Dry Bulk & General</h3>
+            </div>
+            <div class="h-[1px] w-12 bg-gold/20 transition-all duration-300 group-hover:w-20 group-hover:bg-gold/45"></div>
+            <p class="text-xs lg:text-[13px] text-neutral-600 font-light leading-relaxed" id="m-desc-cargo">
+              Specialized in dry bulk, non-dangerous, non-inflammable, non-IMO cargoes.
+            </p>
+          </div>
+
+          <!-- Card 4: Compliance -->
+          <div class="group markets-card bg-neutral-50/90 border border-neutral-200/80 rounded-md p-6 sm:p-8 flex flex-col gap-4.5 text-left relative overflow-hidden" id="m-card-compliance">
+            <div class="absolute top-0 left-0 w-0 h-[3px] bg-gold transition-all duration-500 group-hover:w-full"></div>
+            <div class="w-14 h-14 rounded-full border border-gold/30 bg-gold/5 flex items-center justify-center text-gold transition-all duration-300 group-hover:scale-105 group-hover:border-gold group-hover:bg-gold/10" id="m-icon-compliance">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                <path d="M9 12l2 2 4-4M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div>
+              <span class="block text-xs font-bold tracking-[0.25em] uppercase mb-1.5" style="color: #8C6615;" id="m-cat-compliance">Compliance</span>
+              <h3 class="text-xl lg:text-[19px] font-semibold text-neutral-900 font-serif" id="m-val-compliance">International Standards</h3>
+            </div>
+            <div class="h-[1px] w-12 bg-gold/20 transition-all duration-300 group-hover:w-20 group-hover:bg-gold/45"></div>
+            <p class="text-xs lg:text-[13px] text-neutral-600 font-light leading-relaxed" id="m-desc-compliance">
+              Operations aligned with global maritime regulations and industry best practices.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Centered bottom slogan and lines -->
+        <div class="w-full max-w-[1440px] mx-auto mt-16 flex items-center gap-6 relative z-10" data-reveal id="markets-footer">
+          <div class="h-[1px] flex-1" style="background-color: rgba(140, 102, 21, 0.3);" id="m-foot-line-left"></div>
+          <span class="text-xs font-bold tracking-[0.3em] uppercase whitespace-nowrap" style="color: #8C6615;" id="markets-foot-text">Global Reach. Reliable Operations.</span>
+          <div class="h-[1px] flex-1" style="background-color: rgba(140, 102, 21, 0.3);" id="m-foot-line-right"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 05 — FLEET -->
+    <section id="fleet" class="relative min-h-[100dvh] flex flex-col justify-center px-8 lg:px-16 pt-20 pb-24 lg:pt-28 lg:pb-44 lg:pb-60 border-b border-border-gold overflow-hidden bg-bg-primary">
+      
+      <!-- Decorative diagonal lines with pulsing dots -->
+      <!-- Top-left diagonal line -->
+      <svg class="absolute top-0 left-0 w-48 h-48 pointer-events-none select-none z-0" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <line x1="0" y1="0" x2="100" y2="100" stroke="rgba(200, 155, 60, 0.25)" stroke-width="0.5" />
+        <circle cx="100" cy="100" r="1.5" fill="#E6C36A" class="animate-pulse" />
+      </svg>
+
+      <!-- Bottom-right diagonal line -->
+      <svg class="absolute bottom-0 right-0 w-48 h-48 pointer-events-none select-none z-0" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <line x1="100" y1="100" x2="0" y2="0" stroke="rgba(200, 155, 60, 0.25)" stroke-width="0.5" />
+      </svg>
+
+      <!-- Background Video Banner Container -->
+      <div class="relative w-full max-w-[1440px] mx-auto min-h-[520px] rounded-lg overflow-hidden flex flex-col justify-between p-8 sm:p-12 select-none relative z-10 border border-neutral-800/80 mb-10" data-reveal id="fleet-banner-container">
+        <!-- Background Video Element -->
+        <video class="absolute inset-0 w-full h-full object-cover opacity-75 z-0" 
+               src="/Hornav_banner_screen 5.mp4" 
+               autoplay 
+               muted 
+               loop 
+               playsinline 
+               id="fleet-banner-video">
+        </video>
+        
+        <!-- Left Dark Gradient Overlay for text readability -->
+        <div class="absolute inset-0 z-10 pointer-events-none banner-left-gradient" id="fleet-banner-gradient"></div>
+        
+        <!-- Upper Content: Kicker, Title, Description -->
+        <div class="relative z-20 max-w-2xl flex flex-col gap-4 text-left" id="fleet-banner-text">
+          <div class="flex flex-col gap-1.5" id="fleet-kicker-group">
+            <span class="text-xs font-bold tracking-[0.3em] text-gold uppercase" id="fleet-kicker">Our Fleet</span>
+            <div class="h-[1px] w-12 bg-gold/50" id="fleet-kicker-line"></div>
+          </div>
+          
+          <h2 class="text-4xl sm:text-5xl lg:text-[4rem] font-medium tracking-[0.01em] text-white leading-[1.1] uppercase font-serif" id="fleet-title">
+            Built for Performance.<br><span class="text-gold">Managed with Expertise.</span>
+          </h2>
+          
+          <p class="text-sm sm:text-base text-neutral-300 font-light leading-relaxed max-w-md" id="fleet-desc">
+            Our modern fleet of Bulk Carriers and General Cargo vessels is operated under the highest safety, efficiency and environmental standards.
+          </p>
+        </div>
+        
+        <!-- Lower Content: 6 Metric Items Row -->
+        <div class="relative z-20 w-full border-t border-border-gold/30 pt-4 mt-12 lg:mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 lg:divide-x lg:divide-border-gold/20" id="fleet-metrics">
+          
+          <!-- Metric 1: Total Vessels -->
+          <div class="flex items-center gap-3 text-left pl-0" id="f-metric-vessels">
+            <div class="w-10 h-10 flex items-center justify-center text-gold shrink-0">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2 17l1.5-3.5h17L22 17v3H2v-3zM4 13.5L5.5 8h13l1.5 5.5M8 8V5h3v3M13 8V4h3v4" />
+              </svg>
+            </div>
+            <div>
+              <span class="block text-[10px] sm:text-[11px] font-bold tracking-wider text-gold uppercase" id="m-f-t-vessels">Total Vessels</span>
+              <span class="block text-xl sm:text-2xl font-medium text-white font-serif" id="m-f-v-vessels">2</span>
+            </div>
+          </div>
+
+          <!-- Metric 2: Total Capacity -->
+          <div class="flex items-center gap-3 text-left lg:pl-6" id="f-metric-capacity">
+            <div class="w-10 h-10 flex items-center justify-center text-gold shrink-0">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                <path d="M3 6h18M12 6v14m-7 0a3 3 0 106 0m4 0a3 3 0 106 0" stroke-linecap="round" />
+              </svg>
+            </div>
+            <div>
+              <span class="block text-[10px] sm:text-[11px] font-bold tracking-wider text-gold uppercase" id="m-f-t-capacity">Total Capacity</span>
+              <span class="block text-xl sm:text-2xl font-medium text-white font-serif" id="m-f-v-capacity">6,000–8,000 <span class="text-xs uppercase">DWT</span></span>
+            </div>
+          </div>
+
+          <!-- Metric 3: Vessel Types -->
+          <div class="flex items-center gap-3 text-left lg:pl-6" id="f-metric-types">
+            <div class="w-10 h-10 flex items-center justify-center text-gold shrink-0">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                <rect x="4" y="4" width="16" height="16" rx="1" stroke-linecap="round" />
+                <path d="M4 9h16M9 4v16M15 4v16" stroke-linecap="round" />
+              </svg>
+            </div>
+            <div>
+              <span class="block text-[10px] sm:text-[11px] font-bold tracking-wider text-gold uppercase" id="m-f-t-types">Vessel Types</span>
+              <span class="block text-xs font-medium text-white font-serif leading-tight" id="m-f-v-types">Bulk Carriers<br>General Cargo</span>
+            </div>
+          </div>
+
+          <!-- Metric 4: Flag -->
+          <div class="flex items-center gap-3 text-left lg:pl-6" id="f-metric-flag">
+            <div class="w-10 h-10 flex items-center justify-center text-gold shrink-0">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                <path d="M4 15c4.5-1.5 9-4.5 12-9M4 22V4m0 4c5-1 8 2 12 1V5c-4 1-7-2-12-1" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div>
+              <span class="block text-[10px] sm:text-[11px] font-bold tracking-wider text-gold uppercase" id="m-f-t-flag">Flag</span>
+              <span class="block text-xl sm:text-2xl font-medium text-white font-serif" id="m-f-v-flag">Greek</span>
+            </div>
+          </div>
+
+          <!-- Metric 5: Crew Welfare -->
+          <div class="flex items-center gap-3 text-left lg:pl-6" id="f-metric-welfare">
+            <div class="w-10 h-10 flex items-center justify-center text-gold shrink-0">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2m16-10a4 4 0 11-8 0 4 4 0 018 0zm4 10v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div>
+              <span class="block text-[10px] sm:text-[11px] font-bold tracking-wider text-gold uppercase" id="m-f-t-welfare">Crew Welfare</span>
+              <span class="block text-xl sm:text-2xl font-medium text-white font-serif" id="m-f-v-welfare">Our Priority</span>
+            </div>
+          </div>
+
+          <!-- Metric 6: Safety First -->
+          <div class="flex items-center gap-3 text-left lg:pl-6" id="f-metric-safety">
+            <div class="w-10 h-10 flex items-center justify-center text-gold shrink-0">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                <path d="M9 12l2 2 4-4M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div>
+              <span class="block text-[10px] sm:text-[11px] font-bold tracking-wider text-gold uppercase" id="m-f-t-safety">Safety First</span>
+              <span class="block text-xl sm:text-2xl font-medium text-white font-serif" id="m-f-v-safety">Always</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Fleet Overview header -->
+      <div class="max-w-[1440px] mx-auto w-full flex flex-col gap-1.5 text-left mb-8 relative z-10" data-reveal id="fleet-overview-header">
+        <span class="text-xs font-bold tracking-[0.25em] text-gold uppercase" id="fleet-overview-kicker">Fleet Overview</span>
+        <div class="h-[1px] w-12 bg-gold/50" id="fleet-overview-line"></div>
+      </div>
+
+      <!-- Fleet Cards Grid -->
+      <div class="max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-6 relative z-10 mb-16" id="fleet-cards-grid">
+        
+        <!-- Card 1: Bulk Carrier -->
+        <div class="bg-[#0B0B0B]/70 border border-neutral-800/80 hover:border-gold/30 rounded p-6 flex flex-col gap-6 transition-all duration-500 hover:-translate-y-1 group" data-reveal id="f-card-agribulk">
+          <!-- Image Container (100% width, top aligned) -->
+          <div class="w-full h-64 overflow-hidden rounded relative" id="f-card-img-container-1">
+            <img src="/ship1_screen5.png" alt="Horton Navigation S.A. Bulk Carrier at port" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" id="f-card-img-1">
+          </div>
+          <!-- Specs Container (bottom aligned) -->
+          <div class="flex-1 flex flex-col justify-between text-left" id="f-card-specs-1">
+            <div>
+              <div class="flex justify-between items-baseline mb-2">
+                <h3 class="text-2xl font-serif font-medium text-white" id="f-card-title-1">Bulk Carrier</h3>
+                <span class="text-xl font-serif text-gold/40 select-none">01</span>
+              </div>
+              <div class="h-[1px] w-12 bg-gold/30 mb-4"></div>
+              
+              <!-- Specifications Sheet -->
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-5 font-sans text-xs border-t border-white/10 pt-5 mt-4" id="f-card-table-1">
+                <div class="flex flex-col">
+                  <span class="text-[9px] uppercase tracking-widest text-gold/60 mb-1">DWT</span>
+                  <span class="text-white font-medium text-sm">6,000–8,000</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-[9px] uppercase tracking-widest text-gold/60 mb-1">Flag</span>
+                  <span class="text-white font-medium text-sm">Greek</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-[9px] uppercase tracking-widest text-gold/60 mb-1">Year Built</span>
+                  <span class="text-white font-medium text-sm">2020+</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-[9px] uppercase tracking-widest text-gold/60 mb-1">Cargo Type</span>
+                  <span class="text-white font-medium text-sm">Dry Bulk</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-[9px] uppercase tracking-widest text-gold/60 mb-1">Holds / Hatches</span>
+                  <span class="text-white font-medium text-sm">3 / 3</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-[9px] uppercase tracking-widest text-gold/60 mb-1">Gear</span>
+                  <span class="text-white font-medium text-sm">Crane Equipped</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Button -->
+            <a href="#contact" class="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-gold hover:text-white transition-colors duration-200 mt-6" id="f-card-btn-1">
+              View Details <span class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 2: General Cargo Vessel -->
+        <div class="bg-[#0B0B0B]/70 border border-neutral-800/80 hover:border-gold/30 rounded p-6 flex flex-col gap-6 transition-all duration-500 hover:-translate-y-1 group" data-reveal id="f-card-general">
+          <!-- Image Container (100% width, top aligned) -->
+          <div class="w-full h-64 overflow-hidden rounded relative" id="f-card-img-container-2">
+            <img src="/ship2_screen5.png" alt="Horton Navigation S.A. General Cargo Vessel at port" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" id="f-card-img-2">
+          </div>
+          <!-- Specs Container (bottom aligned) -->
+          <div class="flex-1 flex flex-col justify-between text-left" id="f-card-specs-2">
+            <div>
+              <div class="flex justify-between items-baseline mb-2">
+                <h3 class="text-2xl font-serif font-medium text-white" id="f-card-title-2">General Cargo Vessel</h3>
+                <span class="text-xl font-serif text-gold/40 select-none">02</span>
+              </div>
+              <div class="h-[1px] w-12 bg-gold/30 mb-4"></div>
+              
+              <!-- Specifications Sheet -->
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-5 font-sans text-xs border-t border-white/10 pt-5 mt-4" id="f-card-table-2">
+                <div class="flex flex-col">
+                  <span class="text-[9px] uppercase tracking-widest text-gold/60 mb-1">DWT</span>
+                  <span class="text-white font-medium text-sm">6,000–8,000</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-[9px] uppercase tracking-widest text-gold/60 mb-1">Flag</span>
+                  <span class="text-white font-medium text-sm">Greek</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-[9px] uppercase tracking-widest text-gold/60 mb-1">Year Built</span>
+                  <span class="text-white font-medium text-sm">2020+</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-[9px] uppercase tracking-widest text-gold/60 mb-1">Cargo Type</span>
+                  <span class="text-white font-medium text-sm">General Cargo</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-[9px] uppercase tracking-widest text-gold/60 mb-1">Holds / Hatches</span>
+                  <span class="text-white font-medium text-sm">2 / 2</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-[9px] uppercase tracking-widest text-gold/60 mb-1">Gear</span>
+                  <span class="text-white font-medium text-sm">Crane Equipped</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Button -->
+            <a href="#contact" class="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-gold hover:text-white transition-colors duration-200 mt-6" id="f-card-btn-2">
+              View Details <span class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Fleet Expansion Strategy Footer -->
+      <div class="max-w-[1440px] mx-auto w-full border border-neutral-800 bg-[#0B0B0B]/80 rounded p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10 text-left" data-reveal id="fleet-strategy-footer">
+        
+        <div class="flex items-center gap-4 shrink-0" id="f-strat-title-group">
+          <div class="w-12 h-12 flex items-center justify-center text-gold bg-black/40 border border-neutral-800 rounded-full" id="f-strat-icon">
+            <!-- Detailed Compass SVG Icon -->
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M16.2 7.8l-2 5.4-5.4 2 2-5.4 5.4-2z" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 2v2m0 16v2M2 12h2m16 0h2" stroke-linecap="round" />
+            </svg>
+          </div>
+          <span class="text-[10px] font-bold tracking-[0.25em] text-gold uppercase block" id="f-strat-title">Fleet Expansion<br>Strategy</span>
+        </div>
+        
+        <p class="flex-1 text-xs text-neutral-400 font-light leading-relaxed md:max-w-2xl" id="f-strat-desc">
+          We are actively pursuing newbuilding projects and strategic acquisitions to expand our fleet capacity and enhance our service capabilities.
+        </p>
+        
+        <a href="#contact" class="px-6 py-3 border border-gold text-xs font-semibold tracking-wider text-white uppercase hover:bg-gold hover:text-neutral-950 transition-all duration-300 shrink-0 select-none" data-magnetic id="f-strat-btn">
+          Learn More &rarr;
+        </a>
+        
+      </div>
+
+    </section>
+
+    <!-- SECTION 06 — MEMBERSHIPS & COMPLIANCE -->
+    <section id="compliance" class="relative min-h-[100dvh] flex flex-col justify-center px-8 lg:px-16 pt-20 pb-24 lg:pt-32 lg:pb-56 lg:pb-72 border-b border-border-gold overflow-hidden bg-bg-secondary">
+      
+      <!-- Subtle Golden Dot Grid Pattern -->
+      <div class="absolute inset-0 bg-[radial-gradient(rgba(200,155,60,0.035)_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none z-0"></div>
+
+      <!-- Interactive Gold Dust Canvas Particles -->
+      <canvas id="compliance-particles" class="absolute inset-0 pointer-events-none z-0 opacity-50"></canvas>
+
+      <!-- Decorative diagonal lines with pulsing dots -->
+      <!-- Top-left diagonal line -->
+      <svg class="absolute top-0 left-0 w-48 h-48 pointer-events-none select-none z-0" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <line x1="0" y1="0" x2="100" y2="100" stroke="rgba(200, 155, 60, 0.25)" stroke-width="0.5" />
+        <circle cx="100" cy="100" r="1.5" fill="#E6C36A" class="animate-pulse" />
+      </svg>
+
+      <!-- Bottom-right diagonal line -->
+      <svg class="absolute bottom-0 right-0 w-48 h-48 pointer-events-none select-none z-0" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <line x1="100" y1="100" x2="0" y2="0" stroke="rgba(200, 155, 60, 0.25)" stroke-width="0.5" />
+      </svg>
+
+      <!-- Background Video in Compliance Section -->
+      <div class="absolute select-none pointer-events-none z-0 block overflow-hidden inset-0 w-full h-full lg:inset-auto lg:top-28 lg:w-[72%] lg:right-[-6%] lg:aspect-video lg:h-auto" id="compliance-video-container">
+        <video class="w-full h-full object-cover lg:object-contain lg:rounded will-change-transform opacity-35 lg:opacity-55" 
+               src="/4_screen.mp4" 
+               autoplay 
+               muted 
+               loop 
+               playsinline 
+               id="compliance-bg-video">
+        </video>
+        <!-- Dark dimming overlay for mobile only -->
+        <div class="absolute inset-0 bg-[#0B0B0B]/70 lg:hidden pointer-events-none z-10"></div>
+        <!-- Soft Gradient Overlay to blend video edges into Section 06 background (var(--color-bg-secondary)) (desktop only) -->
+        <div class="absolute inset-0 pointer-events-none z-10 hidden lg:block" style="background: linear-gradient(to bottom, transparent 90%, var(--color-bg-secondary) 100%), radial-gradient(ellipse at center, transparent 90%, var(--color-bg-secondary) 100%);" id="compliance-vignette"></div>
+        <!-- Vertical gradient to fade top/bottom for mobile readability and seamless blending -->
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-transparent to-[#0B0B0B] lg:hidden z-10 pointer-events-none"></div>
+      </div>
+
+
+
+      <!-- Upper Content: Header Text Block -->
+      <div class="w-full max-w-[1440px] mx-auto text-left relative z-10 mb-16 lg:mb-24" data-reveal id="compliance-header-block">
+        <div class="flex flex-col gap-1.5" id="compliance-kicker-group">
+          <span class="text-xs font-bold tracking-[0.3em] text-gold uppercase" id="compliance-kicker">International Maritime Network</span>
+          <div class="h-[1px] w-12 bg-gold/50" id="compliance-kicker-line"></div>
+        </div>
+        
+        <h2 class="text-4xl sm:text-5xl lg:text-[4.5rem] font-medium tracking-[0.01em] text-white leading-[1.1] uppercase font-serif mt-4 max-w-3xl" id="compliance-title">
+          Industry Memberships<br><span class="text-gold">& Compliance Standards</span>
+        </h2>
+        
+        <p class="text-sm sm:text-base lg:text-[13px] text-neutral-300 font-light leading-relaxed max-w-2xl mt-4 lg:mt-2" id="compliance-desc">
+          Operating in accordance with internationally recognized maritime practices, regulatory frameworks and industry standards.
+        </p>
+      </div>
+
+      <!-- Middle Content: 7 Membership Logos Grid (Responsive CSS Grid layout) -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-8 gap-6 w-full max-w-[1440px] mx-auto relative z-10" id="compliance-memberships-grid">
+        
+        <!-- Card 1: BIMCO -->
+        <div class="relative overflow-hidden bg-bg-primary/50 border border-neutral-800/80 hover:border-gold/50 hover:shadow-[0_0_22px_rgba(200,155,60,0.12)] hover:-translate-y-1 rounded-lg p-6 flex flex-col items-center justify-between text-center transition-all duration-500 group col-span-1 sm:col-span-2 lg:col-span-2 h-44" data-reveal id="c-member-bimco">
+          <!-- Hover Spotlight effect -->
+          <div class="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 overflow-hidden rounded-lg z-0">
+            <div class="absolute w-56 h-56 -ml-28 -mt-28 bg-[radial-gradient(circle,rgba(200,155,60,0.08)_0%,transparent_70%)] pointer-events-none will-change-transform" style="transform: translate3d(var(--card-x, 0px), var(--card-y, 0px), 0)"></div>
+          </div>
+          <!-- Shimmer bottom line -->
+          <div class="absolute bottom-0 left-0 w-full h-[1px] bg-neutral-800 transition-colors duration-500 group-hover:bg-transparent z-10"></div>
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 group-hover:w-full h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent transition-all duration-500 ease-out z-20"></div>
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-[2px] bg-gold-light blur-[1.5px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"></div>
+
+          <!-- Logo -->
+          <div class="h-16 flex items-center justify-center shrink-0 relative z-10 transition-transform duration-300 group-hover:scale-105" id="logo-container-bimco">
+            <svg class="h-8 w-auto text-white group-hover:text-gold transition-colors duration-300" viewBox="0 0 110 32">
+              <text x="55" y="25" font-family="'Inter', 'Satoshi', sans-serif" font-weight="900" font-size="24" letter-spacing="1.5" text-anchor="middle" fill="currentColor">BIMCO</text>
+            </svg>
+          </div>
+          <p class="text-xs text-neutral-400 font-sans tracking-wider leading-snug group-hover:text-white transition-colors duration-300 relative z-10" id="desc-bimco">
+            Baltic and International Maritime Council
+          </p>
+        </div>
+
+        <!-- Card 2: INTERCARGO -->
+        <div class="relative overflow-hidden bg-bg-primary/50 border border-neutral-800/80 hover:border-gold/50 hover:shadow-[0_0_22px_rgba(200,155,60,0.12)] hover:-translate-y-1 rounded-lg p-6 flex flex-col items-center justify-between text-center transition-all duration-500 group col-span-1 sm:col-span-2 lg:col-span-2 h-44" data-reveal id="c-member-intercargo">
+          <!-- Hover Spotlight effect -->
+          <div class="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 overflow-hidden rounded-lg z-0">
+            <div class="absolute w-56 h-56 -ml-28 -mt-28 bg-[radial-gradient(circle,rgba(200,155,60,0.08)_0%,transparent_70%)] pointer-events-none will-change-transform" style="transform: translate3d(var(--card-x, 0px), var(--card-y, 0px), 0)"></div>
+          </div>
+          <!-- Shimmer bottom line -->
+          <div class="absolute bottom-0 left-0 w-full h-[1px] bg-neutral-800 transition-colors duration-500 group-hover:bg-transparent z-10"></div>
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 group-hover:w-full h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent transition-all duration-500 ease-out z-20"></div>
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-[2px] bg-gold-light blur-[1.5px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"></div>
+
+          <!-- Logo -->
+          <div class="h-16 flex items-center justify-center gap-3 shrink-0 relative z-10 transition-transform duration-300 group-hover:scale-105" id="logo-container-intercargo">
+            <svg class="w-9 h-9 text-white group-hover:text-gold transition-colors duration-300" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="18" cy="18" r="14" />
+              <ellipse cx="18" cy="18" rx="10" ry="14" class="origin-center group-hover:animate-globe-spin" />
+              <ellipse cx="18" cy="18" rx="5" ry="14" class="origin-center group-hover:animate-globe-spin-fast" />
+              <line x1="4" y1="18" x2="32" y2="18" />
+              <line x1="5.5" y1="11" x2="30.5" y2="11" />
+              <line x1="5.5" y1="25" x2="30.5" y2="25" />
+            </svg>
+            <span class="text-lg font-extrabold font-sans tracking-wide text-white group-hover:text-gold transition-colors duration-300">INTERCARGO</span>
+          </div>
+          <p class="text-xs text-neutral-400 font-sans tracking-wider leading-snug group-hover:text-white transition-colors duration-300 relative z-10" id="desc-intercargo">
+            International Association of Dry Cargo Shipowners
+          </p>
+        </div>
+
+        <!-- Card 3: ICS -->
+        <div class="relative overflow-hidden bg-bg-primary/50 border border-neutral-800/80 hover:border-gold/50 hover:shadow-[0_0_22px_rgba(200,155,60,0.12)] hover:-translate-y-1 rounded-lg p-6 flex flex-col items-center justify-between text-center transition-all duration-500 group col-span-1 sm:col-span-2 lg:col-span-2 h-44" data-reveal id="c-member-ics">
+          <!-- Hover Spotlight effect -->
+          <div class="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 overflow-hidden rounded-lg z-0">
+            <div class="absolute w-56 h-56 -ml-28 -mt-28 bg-[radial-gradient(circle,rgba(200,155,60,0.08)_0%,transparent_70%)] pointer-events-none will-change-transform" style="transform: translate3d(var(--card-x, 0px), var(--card-y, 0px), 0)"></div>
+          </div>
+          <!-- Shimmer bottom line -->
+          <div class="absolute bottom-0 left-0 w-full h-[1px] bg-neutral-800 transition-colors duration-500 group-hover:bg-transparent z-10"></div>
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 group-hover:w-full h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent transition-all duration-500 ease-out z-20"></div>
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-[2px] bg-gold-light blur-[1.5px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"></div>
+
+          <!-- Logo -->
+          <div class="h-16 flex items-center justify-center gap-3 shrink-0 relative z-10 transition-transform duration-300 group-hover:scale-105" id="logo-container-ics">
+            <svg class="w-9 h-9 text-white group-hover:text-gold transition-colors duration-300" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <g class="origin-center group-hover:animate-ship-float">
+                <path d="M 5 21 L 9 26 H 27 L 31 21 Z" fill="currentColor" fill-opacity="0.1" />
+                <path d="M 23 21 V 14 H 27 V 21 Z" />
+                <path d="M 24 14 H 26 V 11 H 25 Z" fill="currentColor" />
+                <rect x="9" y="16" width="4" height="5" />
+                <rect x="13" y="13" width="5" height="8" />
+                <rect x="18" y="15" width="5" height="6" />
+                <rect x="13" y="9" width="4" height="4" />
+              </g>
+              <!-- Wave remains static -->
+              <path d="M 2 26 C 8 24, 10 28, 18 26 C 26 24, 28 28, 34 26" />
+              <path d="M 4 29 C 10 28, 12 31, 18 29 C 24 28, 26 31, 32 29" opacity="0.5" />
+            </svg>
+            <div class="text-left flex flex-col leading-none">
+              <span class="text-[9px] font-bold text-neutral-400 group-hover:text-white transition-colors duration-300 uppercase tracking-widest">International</span>
+              <span class="text-[12px] font-extrabold text-white group-hover:text-gold transition-colors duration-300 uppercase tracking-wider">Chamber of Shipping</span>
+            </div>
+          </div>
+          <p class="text-xs text-neutral-400 font-sans tracking-wider leading-snug group-hover:text-white transition-colors duration-300 relative z-10" id="desc-ics">
+            Shaping the Future of Shipping
+          </p>
+        </div>
+
+        <!-- Card 4: INTERTANKO -->
+        <div class="relative overflow-hidden bg-bg-primary/50 border border-neutral-800/80 hover:border-gold/50 hover:shadow-[0_0_22px_rgba(200,155,60,0.12)] hover:-translate-y-1 rounded-lg p-6 flex flex-col items-center justify-between text-center transition-all duration-500 group col-span-1 sm:col-span-2 lg:col-span-2 h-44" data-reveal id="c-member-intertanko">
+          <!-- Hover Spotlight effect -->
+          <div class="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 overflow-hidden rounded-lg z-0">
+            <div class="absolute w-56 h-56 -ml-28 -mt-28 bg-[radial-gradient(circle,rgba(200,155,60,0.08)_0%,transparent_70%)] pointer-events-none will-change-transform" style="transform: translate3d(var(--card-x, 0px), var(--card-y, 0px), 0)"></div>
+          </div>
+          <!-- Shimmer bottom line -->
+          <div class="absolute bottom-0 left-0 w-full h-[1px] bg-neutral-800 transition-colors duration-500 group-hover:bg-transparent z-10"></div>
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 group-hover:w-full h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent transition-all duration-500 ease-out z-20"></div>
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-[2px] bg-gold-light blur-[1.5px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"></div>
+
+          <!-- Logo -->
+          <div class="h-16 flex items-center justify-center gap-3 shrink-0 relative z-10 transition-transform duration-300 group-hover:scale-105" id="logo-container-intertanko">
+            <svg class="w-9 h-9 text-white group-hover:text-gold transition-colors duration-300" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="18" cy="18" r="14" />
+              <path d="M 4 18 H 32" opacity="0.3" />
+              <path d="M 18 4 V 32" opacity="0.3" />
+              <path d="M 6 12 C 12 15, 24 15, 30 12" opacity="0.2" />
+              <path d="M 6 24 C 12 21, 24 21, 30 24" opacity="0.2" />
+              <path d="M 12 6 C 15 12, 15 24, 12 30" opacity="0.2" />
+              <path d="M 24 6 C 21 12, 21 24, 24 30" opacity="0.2" />
+              <!-- Tanker floats slightly -->
+              <path d="M 9 20 H 27 L 26 17 H 24 V 14 H 22 V 17 H 20 V 18 H 9 Z" fill="currentColor" stroke="none" class="origin-center group-hover:animate-ship-float" />
+            </svg>
+            <span class="text-lg font-extrabold font-sans tracking-wide text-white group-hover:text-gold transition-colors duration-300">INTERTANKO</span>
+          </div>
+          <p class="text-xs text-neutral-400 font-sans tracking-wider leading-snug group-hover:text-white transition-colors duration-300 relative z-10" id="desc-intertanko">
+            International Association of Independent Tanker Owners
+          </p>
+        </div>
+
+        <!-- Card 5: INTERFERRY -->
+        <div class="relative overflow-hidden bg-bg-primary/50 border border-neutral-800/80 hover:border-gold/50 hover:shadow-[0_0_22px_rgba(200,155,60,0.12)] hover:-translate-y-1 rounded-lg p-6 flex flex-col items-center justify-between text-center transition-all duration-500 group col-span-1 sm:col-span-2 lg:col-span-2 lg:col-start-2 h-44" data-reveal id="c-member-interferry">
+          <!-- Hover Spotlight effect -->
+          <div class="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 overflow-hidden rounded-lg z-0">
+            <div class="absolute w-56 h-56 -ml-28 -mt-28 bg-[radial-gradient(circle,rgba(200,155,60,0.08)_0%,transparent_70%)] pointer-events-none will-change-transform" style="transform: translate3d(var(--card-x, 0px), var(--card-y, 0px), 0)"></div>
+          </div>
+          <!-- Shimmer bottom line -->
+          <div class="absolute bottom-0 left-0 w-full h-[1px] bg-neutral-800 transition-colors duration-500 group-hover:bg-transparent z-10"></div>
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 group-hover:w-full h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent transition-all duration-500 ease-out z-20"></div>
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-[2px] bg-gold-light blur-[1.5px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"></div>
+
+          <!-- Logo -->
+          <div class="h-16 flex items-center justify-center gap-3 shrink-0 relative z-10 transition-transform duration-300 group-hover:scale-105" id="logo-container-interferry">
+            <svg class="w-10 h-6 text-white" viewBox="0 0 36 20" fill="none" stroke-width="2" stroke-linecap="round">
+              <path d="M 2 8 C 8 4, 10 12, 18 8 C 26 4, 28 12, 34 8" stroke="#00A3E0" class="group-hover:stroke-gold transition-colors duration-300 group-hover:animate-wave-flow" />
+              <path d="M 2 14 C 8 10, 10 18, 18 14 C 26 10, 28 18, 34 14" stroke="currentColor" class="group-hover:stroke-gold transition-colors duration-300 group-hover:animate-wave-flow-slow" opacity="0.8" />
+            </svg>
+            <span class="text-lg font-extrabold font-sans tracking-wide italic text-white group-hover:text-gold transition-colors duration-300">INTER<span class="text-[#00A3E0] group-hover:text-white transition-colors duration-300">FERRY</span></span>
+          </div>
+          <p class="text-xs text-neutral-400 font-sans tracking-wider leading-snug group-hover:text-white transition-colors duration-300 relative z-10" id="desc-interferry">
+            The International Ferry Industry Association
+          </p>
+        </div>
+
+        <!-- Card 6: CLIA -->
+        <div class="relative overflow-hidden bg-bg-primary/50 border border-neutral-800/80 hover:border-gold/50 hover:shadow-[0_0_22px_rgba(200,155,60,0.12)] hover:-translate-y-1 rounded-lg p-6 flex flex-col items-center justify-between text-center transition-all duration-500 group col-span-1 sm:col-span-2 lg:col-span-2 h-44" data-reveal id="c-member-clia">
+          <!-- Hover Spotlight effect -->
+          <div class="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 overflow-hidden rounded-lg z-0">
+            <div class="absolute w-56 h-56 -ml-28 -mt-28 bg-[radial-gradient(circle,rgba(200,155,60,0.08)_0%,transparent_70%)] pointer-events-none will-change-transform" style="transform: translate3d(var(--card-x, 0px), var(--card-y, 0px), 0)"></div>
+          </div>
+          <!-- Shimmer bottom line -->
+          <div class="absolute bottom-0 left-0 w-full h-[1px] bg-neutral-800 transition-colors duration-500 group-hover:bg-transparent z-10"></div>
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 group-hover:w-full h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent transition-all duration-500 ease-out z-20"></div>
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-[2px] bg-gold-light blur-[1.5px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"></div>
+
+          <!-- Logo -->
+          <div class="h-16 flex items-center justify-center gap-3 shrink-0 relative z-10 transition-transform duration-300 group-hover:scale-105" id="logo-container-clia">
+            <svg class="w-9 h-9 text-white group-hover:text-gold transition-colors duration-300" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <g class="origin-center group-hover:animate-ship-float">
+                <path d="M 16 16 H 25 L 29 12 H 18 Z" fill="currentColor" fill-opacity="0.1" />
+                <path d="M 12 19 H 22 L 25 16 H 14 Z" fill="currentColor" fill-opacity="0.1" />
+                <path d="M 21 12 L 23 9 H 25 L 24 12 Z" fill="currentColor" />
+              </g>
+              <path d="M 4 24 C 14 24, 20 18, 32 10" stroke-width="2" class="group-hover:animate-wave-flow" />
+              <path d="M 6 27 C 14 27, 18 22, 28 15" opacity="0.6" />
+              <path d="M 8 30 C 14 30, 16 26, 24 20" opacity="0.3" />
+            </svg>
+            <div class="text-left flex flex-col leading-none">
+              <span class="text-xl font-bold font-sans tracking-tighter text-white group-hover:text-gold transition-colors duration-300">CLIA</span>
+              <span class="text-[7px] font-bold text-neutral-500 group-hover:text-white/70 tracking-widest uppercase transition-colors duration-300">Cruise Lines</span>
+            </div>
+          </div>
+          <p class="text-xs text-neutral-400 font-sans tracking-wider leading-snug group-hover:text-white transition-colors duration-300 relative z-10" id="desc-clia">
+            Cruise Lines International Association
+          </p>
+        </div>
+
+        <!-- Card 7: World Shipping Council -->
+        <div class="relative overflow-hidden bg-bg-primary/50 border border-neutral-800/80 hover:border-gold/50 hover:shadow-[0_0_22px_rgba(200,155,60,0.12)] hover:-translate-y-1 rounded-lg p-6 flex flex-col items-center justify-between text-center transition-all duration-500 group col-span-1 sm:col-span-2 sm:col-start-2 lg:col-span-2 lg:col-start-auto h-44" data-reveal id="c-member-wsc">
+          <!-- Hover Spotlight effect -->
+          <div class="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 overflow-hidden rounded-lg z-0">
+            <div class="absolute w-56 h-56 -ml-28 -mt-28 bg-[radial-gradient(circle,rgba(200,155,60,0.08)_0%,transparent_70%)] pointer-events-none will-change-transform" style="transform: translate3d(var(--card-x, 0px), var(--card-y, 0px), 0)"></div>
+          </div>
+          <!-- Shimmer bottom line -->
+          <div class="absolute bottom-0 left-0 w-full h-[1px] bg-neutral-800 transition-colors duration-500 group-hover:bg-transparent z-10"></div>
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 group-hover:w-full h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent transition-all duration-500 ease-out z-20"></div>
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-[2px] bg-gold-light blur-[1.5px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"></div>
+
+          <!-- Logo -->
+          <div class="h-16 flex items-center justify-center gap-3 shrink-0 relative z-10 transition-transform duration-300 group-hover:scale-105" id="logo-container-wsc">
+            <svg class="w-9 h-9 text-white group-hover:text-gold transition-colors duration-300" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="18" cy="18" r="14" />
+              <path d="M 4 18 C 10 14, 12 22, 18 18 C 24 14, 26 22, 32 18 C 32 25.7, 25.7 32, 18 32 C 10.3 32, 4 25.7, 4 18 Z" fill="currentColor" stroke="none" class="group-hover:fill-gold transition-colors duration-300 origin-center group-hover:animate-wsc-pulse" />
+            </svg>
+            <div class="text-left flex flex-col leading-none">
+              <span class="text-xs font-bold text-white group-hover:text-gold transition-colors duration-300 uppercase tracking-widest">World</span>
+              <span class="text-xs font-bold text-white group-hover:text-gold transition-colors duration-300 uppercase tracking-wider">Shipping Council</span>
+            </div>
+          </div>
+          <p class="text-xs text-neutral-400 font-sans tracking-wider leading-snug group-hover:text-white transition-colors duration-300 relative z-10" id="desc-wsc">
+            Global Shipping Trade Association
+          </p>
+        </div>
+
+      </div>
+
+
+      <!-- Bottom Content: 4 Compliance Columns -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 w-full max-w-[1440px] mx-auto mt-6 lg:mt-8 pt-6 border-t border-border-gold/20 relative z-10" data-reveal id="compliance-bottom-grid">
+        
+        <!-- Column 1: Regulatory Compliance -->
+        <div class="flex gap-4 items-start text-left" id="col-regulatory">
+          <div class="w-12 h-12 lg:w-10 lg:h-10 flex items-center justify-center text-gold bg-black/40 border border-neutral-800 rounded-full shrink-0" id="b-icon-regulatory">
+            <svg class="w-7 h-7 lg:w-5.5 lg:h-5.5" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+              <path d="M9 12l2 2 4-4M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div>
+            <span class="block text-xs font-bold tracking-[0.25em] text-gold uppercase mb-1" id="lbl-regulatory">Regulatory Compliance</span>
+            <p class="text-xs text-neutral-400 font-light leading-relaxed" id="desc-regulatory">
+              Committed to global maritime regulations and sanctions frameworks.
+            </p>
+          </div>
+        </div>
+
+        <!-- Column 2: Environmental Responsibility -->
+        <div class="flex gap-4 items-start text-left" id="col-environmental">
+          <div class="w-12 h-12 lg:w-10 lg:h-10 flex items-center justify-center text-gold bg-black/40 border border-neutral-800 rounded-full shrink-0" id="b-icon-environmental">
+            <svg class="w-7 h-7 lg:w-5.5 lg:h-5.5" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 22C2 22 6 18 12 17C18 16 22 11 22 4C15 4 10 8 9 14C8 20 2 22 2 22Z" />
+              <path d="M9 14L2 22" />
+              <path d="M12 17C12 17 15 14 18 13" />
+              <path d="M10 15C10 15 12 12 15 11" />
+            </svg>
+          </div>
+          <div>
+            <span class="block text-xs font-bold tracking-[0.25em] text-gold uppercase mb-1" id="lbl-environmental">Environmental Responsibility</span>
+            <p class="text-xs text-neutral-400 font-light leading-relaxed" id="desc-environmental">
+              Adherence to MARPOL, ballast water treatment and vessel efficiency standards.
+            </p>
+          </div>
+        </div>
+
+        <!-- Column 3: Due Diligence -->
+        <div class="flex gap-4 items-start text-left" id="col-diligence">
+          <div class="w-12 h-12 lg:w-10 lg:h-10 flex items-center justify-center text-gold bg-black/40 border border-neutral-800 rounded-full shrink-0" id="b-icon-diligence">
+            <svg class="w-7 h-7 lg:w-5.5 lg:h-5.5" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              <path d="M9 12h6M9 16h6M9 8h2" />
+            </svg>
+          </div>
+          <div>
+            <span class="block text-xs font-bold tracking-[0.25em] text-gold uppercase mb-1" id="lbl-diligence">Due Diligence</span>
+            <p class="text-xs text-neutral-400 font-light leading-relaxed" id="desc-diligence">
+              Structured vessel and cargo assessment procedures.
+            </p>
+          </div>
+        </div>
+
+        <!-- Column 4: Industry Cooperation -->
+        <div class="flex gap-4 items-start text-left" id="col-cooperation">
+          <div class="w-12 h-12 lg:w-10 lg:h-10 flex items-center justify-center text-gold bg-black/40 border border-neutral-800 rounded-full shrink-0" id="b-icon-cooperation">
+            <svg class="w-7 h-7 lg:w-5.5 lg:h-5.5" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="7" r="3" />
+              <circle cx="6" cy="16" r="3" />
+              <circle cx="18" cy="16" r="3" />
+              <line x1="10" y1="9.5" x2="8" y2="13.5" />
+              <line x1="14" y1="9.5" x2="16" y2="13.5" />
+              <line x1="9" y1="16" x2="15" y2="16" />
+            </svg>
+          </div>
+          <div>
+            <span class="block text-xs font-bold tracking-[0.25em] text-gold uppercase mb-1" id="lbl-cooperation">Industry Cooperation</span>
+            <p class="text-xs text-neutral-400 font-light leading-relaxed" id="desc-cooperation">
+              Alignment with international maritime organizations and best practices.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom decorative gold wave curve -->
+      <svg class="absolute bottom-0 left-0 w-full h-24 pointer-events-none select-none z-0" viewBox="0 0 1440 100" preserveAspectRatio="none">
+        <path d="M 0 80 Q 360 40, 720 70 T 1440 50" fill="none" stroke="url(#gold-grad)" stroke-width="1.5" opacity="0.3" />
+        <path d="M 0 90 Q 400 60, 800 80 T 1440 70" fill="none" stroke="url(#gold-grad)" stroke-width="1" opacity="0.15" />
+        <defs>
+          <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#050505" />
+            <stop offset="50%" stop-color="#C89B3C" />
+            <stop offset="100%" stop-color="#050505" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+    </section>
+
+    <!-- SECTION 07 — CAREERS -->
+    <section id="careers" class="relative min-h-[100dvh] flex flex-col justify-center px-8 lg:px-16 pt-20 pb-24 lg:pt-28 lg:pb-44 lg:pb-60 border-b border-neutral-200 overflow-hidden bg-white">
+      
+      <!-- Deep dark/gold radial vignette over the white background -->
+      <div class="absolute inset-0 pointer-events-none z-0" style="background-image: radial-gradient(circle at center, rgba(255,255,255,0) 50%, rgba(0,0,0,0.03) 100%);"></div>
+
+      <!-- 4-sided gradient vignette framing overlay -->
+      <div class="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-neutral-950/10 to-transparent pointer-events-none z-0"></div>
+      <div class="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-neutral-950/10 to-transparent pointer-events-none z-0"></div>
+      <div class="absolute left-0 top-0 bottom-0 w-28 bg-gradient-to-r from-neutral-950/10 to-transparent pointer-events-none z-0"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-28 bg-gradient-to-l from-neutral-950/10 to-transparent pointer-events-none z-0"></div>
+
+      <!-- Faint Gold Wave lines on left and right -->
+      <svg class="absolute left-0 top-1/2 -translate-y-1/2 w-64 h-96 pointer-events-none select-none z-0 opacity-20" viewBox="0 0 200 400" fill="none">
+        <path d="M-50,0 Q100,100 -50,200 T-50,400" stroke="#8C6615" stroke-width="0.6" />
+        <path d="M-30,0 Q120,100 -30,200 T-30,400" stroke="#8C6615" stroke-width="0.3" opacity="0.6" />
+      </svg>
+      <svg class="absolute right-0 top-1/2 -translate-y-1/2 w-64 h-96 pointer-events-none select-none z-0 opacity-20" viewBox="0 0 200 400" fill="none">
+        <path d="M250,0 Q50,100 250,200 T250,400" stroke="#8C6615" stroke-width="0.6" />
+        <path d="M230,0 Q70,100 230,200 T230,400" stroke="#8C6615" stroke-width="0.3" opacity="0.6" />
+      </svg>
+
+      <div class="max-w-[1440px] mx-auto w-full relative z-10">
+        
+        <!-- Section Header -->
+        <div class="text-center mb-16" data-reveal id="careers-header-block">
+          <span class="text-xs font-bold tracking-[0.3em] uppercase" style="color: #8C6615;" id="careers-kicker">Careers</span>
+          <h2 class="text-4xl sm:text-5xl lg:text-[3.5rem] font-medium tracking-[0.01em] text-neutral-950 leading-[1.1] uppercase mt-3" id="careers-title">
+            Build Your <span class="font-serif italic" style="color: #8C6615;">Maritime Career</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-neutral-600 font-light leading-relaxed max-w-xl mx-auto mt-4" id="careers-desc">
+            Horton Navigation is continuously seeking qualified maritime professionals both ashore and onboard.
+          </p>
+        </div>
+
+        <!-- Cards Container (Shore-Based & Onboard) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8" id="careers-cards-grid">
+          
+          <!-- Card 1: Shore-Based -->
+          <div class="relative overflow-hidden bg-neutral-50/90 border border-neutral-200/80 rounded-lg p-8 flex flex-col items-center transition-all duration-500 group" data-reveal id="card-shore">
+            <!-- Skyscraper SVG Icon -->
+            <svg class="w-16 h-16 mb-4 transition-transform duration-500 group-hover:scale-105" style="color: #8C6615;" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 56V8a2 2 0 0 1 2-2h20a2 2 0 0 1 2 2v48" />
+              <path d="M36 56V24a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v32" />
+              <path d="M18 12h4M18 18h4M18 24h4M18 30h4M18 36h4M18 42h4M18 48h4" />
+              <path d="M26 12h4M26 18h4M26 24h4M26 30h4M26 36h4M26 42h4M26 48h4" />
+              <path d="M42 28h4M42 34h4M42 40h4M42 46h4" />
+              <path d="M4 56h56" />
+            </svg>
+            
+            <h3 class="text-2xl font-serif text-neutral-900 tracking-wide" id="title-shore">Shore-Based</h3>
+            <span class="text-[11px] sm:text-xs font-bold tracking-[0.2em] uppercase mt-1.5" style="color: #8C6615;" id="kicker-shore">Join Our Shore Team</span>
+
+            <!-- Shining gold horizontal divider line -->
+            <div class="relative w-full h-[1px] my-6">
+              <div class="absolute inset-0 opacity-40" style="background-image: linear-gradient(to right, transparent, #8C6615, transparent);"></div>
+              <div class="absolute left-1/2 -translate-x-1/2 -top-0.5 w-8 h-[2px] bg-gold blur-[0.5px]"></div>
+            </div>
+
+            <!-- Upload Slots -->
+            <div class="w-full flex flex-col gap-3" id="slots-shore">
+              
+              <!-- Slot 1: CV Submission -->
+              <label class="careers-slot flex items-center gap-4 p-4 rounded-lg bg-white border border-neutral-200/80 cursor-pointer transition-all duration-300 relative overflow-hidden" id="label-cv-shore">
+                <input type="file" id="cv-shore" class="sr-only" accept=".pdf,.doc,.docx">
+                <div class="slot-icon-circle w-9 h-9 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300" style="border-color: rgba(140, 102, 21, 0.3); color: #8C6615;" id="circle-cv-shore">
+                  <svg class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                </div>
+                <div class="flex-1 min-w-0 text-left">
+                  <span class="slot-title block text-xs font-semibold text-neutral-800 tracking-wider uppercase transition-colors duration-300" id="lbl-cv-shore">CV Submission</span>
+                  <span class="block text-xs text-neutral-600 mt-0.5 truncate" id="desc-cv-shore">Upload your CV and professional profile.</span>
+                </div>
+              </label>
+
+              <!-- Slot 2: Cover Letter -->
+              <label class="careers-slot flex items-center gap-4 p-4 rounded-lg bg-white border border-neutral-200/80 cursor-pointer transition-all duration-300 relative overflow-hidden" id="label-cl-shore">
+                <input type="file" id="cl-shore" class="sr-only" accept=".pdf,.doc,.docx">
+                <div class="slot-icon-circle w-9 h-9 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300" style="border-color: rgba(140, 102, 21, 0.3); color: #8C6615;" id="circle-cl-shore">
+                  <svg class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                  </svg>
+                </div>
+                <div class="flex-1 min-w-0 text-left">
+                  <span class="slot-title block text-xs font-semibold text-neutral-800 tracking-wider uppercase transition-colors duration-300" id="lbl-cl-shore">Cover Letter</span>
+                  <span class="block text-xs text-neutral-600 mt-0.5 truncate" id="desc-cl-shore">Attach your cover letter.</span>
+                </div>
+              </label>
+
+              <!-- Slot 3: Additional Documents -->
+              <label class="careers-slot flex items-center gap-4 p-4 rounded-lg bg-white border border-neutral-200/80 cursor-pointer transition-all duration-300 relative overflow-hidden" id="label-docs-shore">
+                <input type="file" id="docs-shore" class="sr-only" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+                <div class="slot-icon-circle w-9 h-9 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300" style="border-color: rgba(140, 102, 21, 0.3); color: #8C6615;" id="circle-docs-shore">
+                  <svg class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                  </svg>
+                </div>
+                <div class="flex-1 min-w-0 text-left">
+                  <span class="slot-title block text-xs font-semibold text-neutral-800 tracking-wider uppercase transition-colors duration-300" id="lbl-docs-shore">Additional Documents</span>
+                  <span class="block text-xs text-neutral-600 mt-0.5 truncate" id="desc-docs-shore">Provide any relevant credentials or documents.</span>
+                </div>
+              </label>
+
+            </div>
+          </div>
+
+          <!-- Card 2: Onboard -->
+          <div class="relative overflow-hidden bg-neutral-50/90 border border-neutral-200/80 rounded-lg p-8 flex flex-col items-center transition-all duration-500 group" data-reveal id="card-onboard">
+            <!-- Captain Cap SVG Icon -->
+            <svg class="w-16 h-16 mb-4 transition-transform duration-500 group-hover:scale-105" style="color: #8C6615;" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 30c0-12 10-18 24-18s24 6 24 18c0 3-2 6-6 6H14c-4 0-6-3-6-6z" />
+              <path d="M12 36c4 6 12 10 20 10s16-4 20-10" />
+              <path d="M14 36c3 4 10 7 18 7s15-3 18-7" opacity="0.4" />
+              <circle cx="32" cy="22" r="5" stroke-width="1" />
+              <path d="M32 19v6M29 23h6 M30 25c1 1.5 3 1.5 4 0" />
+              <path d="M8.5 31.5h47" />
+            </svg>
+            
+            <h3 class="text-2xl font-serif text-neutral-900 tracking-wide" id="title-onboard">Onboard</h3>
+            <span class="text-[11px] sm:text-xs font-bold tracking-[0.2em] uppercase mt-1.5" style="color: #8C6615;" id="kicker-onboard">Join Our Crew</span>
+
+            <!-- Shining gold horizontal divider line -->
+            <div class="relative w-full h-[1px] my-6">
+              <div class="absolute inset-0 opacity-40" style="background-image: linear-gradient(to right, transparent, #8C6615, transparent);"></div>
+              <div class="absolute left-1/2 -translate-x-1/2 -top-0.5 w-8 h-[2px] bg-gold blur-[0.5px]"></div>
+            </div>
+
+            <!-- Upload Slots -->
+            <div class="w-full flex flex-col gap-3" id="slots-onboard">
+              
+              <!-- Slot 1: CV Submission -->
+              <label class="careers-slot flex items-center gap-4 p-4 rounded-lg bg-white border border-neutral-200/80 cursor-pointer transition-all duration-300 relative overflow-hidden" id="label-cv-onboard">
+                <input type="file" id="cv-onboard" class="sr-only" accept=".pdf,.doc,.docx">
+                <div class="slot-icon-circle w-9 h-9 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300" style="border-color: rgba(140, 102, 21, 0.3); color: #8C6615;" id="circle-cv-onboard">
+                  <svg class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                </div>
+                <div class="flex-1 min-w-0 text-left">
+                  <span class="slot-title block text-xs font-semibold text-neutral-800 tracking-wider uppercase transition-colors duration-300" id="lbl-cv-onboard">CV Submission</span>
+                  <span class="block text-xs text-neutral-600 mt-0.5 truncate" id="desc-cv-onboard">Upload your CV and professional profile.</span>
+                </div>
+              </label>
+
+              <!-- Slot 2: Cover Letter -->
+              <label class="careers-slot flex items-center gap-4 p-4 rounded-lg bg-white border border-neutral-200/80 cursor-pointer transition-all duration-300 relative overflow-hidden" id="label-cl-onboard">
+                <input type="file" id="cl-onboard" class="sr-only" accept=".pdf,.doc,.docx">
+                <div class="slot-icon-circle w-9 h-9 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300" style="border-color: rgba(140, 102, 21, 0.3); color: #8C6615;" id="circle-cl-onboard">
+                  <svg class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                  </svg>
+                </div>
+                <div class="flex-1 min-w-0 text-left">
+                  <span class="slot-title block text-xs font-semibold text-neutral-800 tracking-wider uppercase transition-colors duration-300" id="lbl-cl-onboard">Cover Letter</span>
+                  <span class="block text-xs text-neutral-600 mt-0.5 truncate" id="desc-cl-onboard">Attach your cover letter.</span>
+                </div>
+              </label>
+
+              <!-- Slot 3: Additional Documents -->
+              <label class="careers-slot flex items-center gap-4 p-4 rounded-lg bg-white border border-neutral-200/80 cursor-pointer transition-all duration-300 relative overflow-hidden" id="label-docs-onboard">
+                <input type="file" id="docs-onboard" class="sr-only" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+                <div class="slot-icon-circle w-9 h-9 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300" style="border-color: rgba(140, 102, 21, 0.3); color: #8C6615;" id="circle-docs-onboard">
+                  <svg class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                  </svg>
+                </div>
+                <div class="flex-1 min-w-0 text-left">
+                  <span class="slot-title block text-xs font-semibold text-neutral-800 tracking-wider uppercase transition-colors duration-300" id="lbl-docs-onboard">Additional Documents</span>
+                  <span class="block text-xs text-neutral-600 mt-0.5 truncate" id="desc-docs-onboard">Provide any relevant credentials or documents.</span>
+                </div>
+              </label>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Full-Width Bottom Submission Banner -->
+        <div class="max-w-[1440px] mx-auto w-full border border-neutral-200/80 bg-neutral-50/90 rounded p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10 text-left transition-all duration-500" data-reveal id="careers-submit-banner">
+          
+          <div class="flex items-center gap-4 shrink-0" id="careers-submit-title-group">
+            <div class="w-12 h-12 flex items-center justify-center bg-white border border-neutral-200 rounded-full" style="color: #8C6615;" id="careers-submit-icon">
+              <!-- Team Silhouette SVG -->
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 00-3-3.87" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M16 3.13a4 4 0 010 7.75" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div class="flex flex-col text-left" id="careers-submit-headers">
+              <h4 class="text-xl font-serif font-medium text-neutral-900" id="careers-submit-main-title">Submit Your Application</h4>
+              <p class="text-neutral-600 font-sans text-xs sm:text-sm font-light mt-0.5" id="careers-submit-subtitle">Take the next step in your maritime career with Horton Navigation.</p>
+            </div>
+          </div>
+          
+          <button class="careers-submit-btn shrink-0 select-none cursor-pointer flex items-center gap-2" data-magnetic id="careers-btn-apply">
+            Apply Now <span class="transition-transform duration-200" id="careers-btn-arrow">&rarr;</span>
+          </button>
+          
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 08 — CONTACT & FOOTER -->
+    <section id="contact" class="relative min-h-[100dvh] flex flex-col justify-between px-8 lg:px-16 pt-20 pb-6 lg:pb-12 lg:pt-28 overflow-hidden bg-bg-primary">
+      
+      <!-- Fullscreen Background Video & Gradient Overlays -->
+      <div class="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden" id="contact-bg-media">
+        <video class="absolute left-0 w-full h-[120%] top-[-10%] object-cover opacity-35 will-change-transform" 
+               src="/4_screen.mp4" 
+               autoplay 
+               muted 
+               loop 
+               playsinline 
+               id="contact-video">
+        </video>
+        <!-- Dark overlays to ensure perfect legibility of contact info and form -->
+        <div class="absolute inset-0 bg-bg-primary/85 z-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-bg-primary via-bg-primary/50 to-bg-primary z-10"></div>
+      </div>
+
+      <!-- Faint dot grid texture background -->
+      <div class="absolute inset-0 bg-[radial-gradient(rgba(200,155,60,0.02)_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none z-0"></div>
+
+      <!-- Interactive Ocean Currents Canvas Particles -->
+      <canvas id="contact-currents" class="absolute inset-0 pointer-events-none z-0 opacity-40"></canvas>
+
+      <!-- Faint decorative gold waves sweeping in from sides -->
+      <svg class="absolute right-0 bottom-0 w-80 h-96 pointer-events-none select-none z-0 opacity-20" viewBox="0 0 200 400" fill="none">
+        <path d="M200,400 C100,300 150,200 50,100 C0,50 100,0 200,0" stroke="#C89B3C" stroke-width="0.5" stroke-dasharray="2,4" />
+        <path d="M200,400 C120,320 170,220 70,120 C20,70 120,0 200,0" stroke="#C89B3C" stroke-width="0.3" opacity="0.6" />
+        <!-- Pulsing gold dots on curves -->
+        <circle cx="95" cy="150" r="1.5" fill="#E6C36A" class="animate-pulse" />
+        <circle cx="135" cy="270" r="1" fill="#E6C36A" />
+      </svg>
+
+      <div class="max-w-[1440px] mx-auto w-full relative z-10 flex-1 flex flex-col justify-center">
+        
+        <!-- Grid: Contact Info & Details (Left) + Form (Right) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center w-full text-left" id="contact-split-grid">
+          
+          <!-- Left Column: Contact details (5 Columns) -->
+          <div class="lg:col-span-5 flex flex-col" data-reveal id="contact-info-column">
+            
+            <span class="text-xs font-bold tracking-[0.25em] text-gold uppercase block text-left" id="contact-kicker">Get In Touch</span>
+            
+            <h2 class="text-4xl sm:text-5xl lg:text-[3.25rem] font-medium tracking-[0.01em] text-white uppercase font-serif mt-4 leading-[1.15]" id="contact-title">
+              Let's Discuss Your<br><span class="text-gold font-serif italic">Maritime Requirements</span>
+            </h2>
+            
+            <p class="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed mt-5 max-w-md text-left" id="contact-desc">
+              Our team is ready to support your business with reliable solutions and professional service.
+            </p>
+
+            <!-- Text Details -->
+            <div class="flex flex-col gap-6 mt-10 font-sans text-xs" id="contact-details-list">
+              
+              <!-- Email -->
+              <div class="flex gap-4 items-center" id="item-mail">
+                <div class="w-9 h-9 rounded-full border border-gold/30 flex items-center justify-center text-gold shrink-0 bg-black/40" id="icon-mail">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <div class="text-left">
+                  <span class="block text-[8px] font-bold tracking-widest text-gold uppercase leading-none">Email</span>
+                  <a href="mailto:snp@hornav.com" class="block text-neutral-200 mt-1 hover:text-gold transition-colors duration-200 font-light text-xs">snp@hornav.com</a>
+                </div>
+              </div>
+
+              <!-- Website -->
+              <div class="flex gap-4 items-center" id="item-web">
+                <div class="w-9 h-9 rounded-full border border-gold/30 flex items-center justify-center text-gold shrink-0 bg-black/40" id="icon-web">
+                  <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+                  </svg>
+                </div>
+                <div class="text-left">
+                  <span class="block text-[8px] font-bold tracking-widest text-gold uppercase leading-none">Website</span>
+                  <a href="https://www.hornav.com" target="_blank" class="block text-neutral-200 mt-1 hover:text-gold transition-colors duration-200 font-light text-xs">hornav.com</a>
+                </div>
+              </div>
+
+              <!-- Phone -->
+              <div class="flex gap-4 items-center" id="item-phone">
+                <div class="w-9 h-9 rounded-full border border-gold/30 flex items-center justify-center text-gold shrink-0 bg-black/40" id="icon-phone">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 013.82 2H7a2 2 0 012 1.72 12.06 12.06 0 00.57 2.22 2 2 0 01-.45 2.11L7.82 9.18a16 16 0 006 6l1.58-1.58a2 2 0 012.11-.45 12.06 12.06 0 002.22.57 2 2 0 011.72 2z" />
+                  </svg>
+                </div>
+                <div class="text-left">
+                  <span class="block text-[8px] font-bold tracking-widest text-gold uppercase leading-none">Phone</span>
+                  <span class="block text-neutral-200 mt-1 font-light text-xs">+XXX XXX XXX XXXX</span>
+                </div>
+              </div>
+
+              <!-- Address -->
+              <div class="flex gap-4 items-center" id="item-addr">
+                <div class="w-9 h-9 rounded-full border border-gold/30 flex items-center justify-center text-gold shrink-0 bg-black/40" id="icon-addr">
+                  <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                </div>
+                <div class="text-left">
+                  <span class="block text-[8px] font-bold tracking-widest text-gold uppercase leading-none">Address</span>
+                  <span class="block text-neutral-200 mt-1 font-light text-xs">Address will be provided upon availability</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Right Column: Premium Form Card (7 Columns) -->
+          <div class="lg:col-span-7" data-reveal id="contact-form-column">
+            <div class="bg-[#0B0B0B]/70 border border-neutral-800/80 rounded-lg p-8 sm:p-10 w-full relative z-10 text-left" id="contact-form-card">
+              
+              <!-- Shimmer top line -->
+              <div class="absolute top-0 left-0 w-full h-[1px] bg-neutral-800 transition-colors duration-500 z-10"></div>
+              <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent z-20"></div>
+              <div class="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-[2px] bg-gold-light blur-[1px] z-20"></div>
+
+              <!-- Shimmer bottom line -->
+              <div class="absolute bottom-0 left-0 w-full h-[1px] bg-neutral-800 transition-colors duration-500 z-10"></div>
+              <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent z-20"></div>
+              <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-[2px] bg-gold-light blur-[1px] z-20"></div>
+
+              <form class="flex flex-col gap-6" id="contact-inquiry-form" autocomplete="off">
+                
+                <!-- Full Name Field -->
+                <div class="flex flex-col gap-2">
+                  <label for="input-name" class="text-[11px] sm:text-xs font-bold text-neutral-400 tracking-widest uppercase">Full Name</label>
+                  <div class="relative flex items-center">
+                    <div class="absolute left-4 text-gold/60">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                      </svg>
+                    </div>
+                    <input type="text" id="input-name" placeholder="Enter your full name" required class="w-full bg-black/45 border border-neutral-800/80 focus:border-gold rounded pl-11 pr-4 py-3 text-xs text-white placeholder-neutral-500 focus:outline-none transition-colors duration-300">
+                  </div>
+                </div>
+
+                <!-- Company Field -->
+                <div class="flex flex-col gap-2">
+                  <label for="input-company" class="text-[11px] sm:text-xs font-bold text-neutral-400 tracking-widest uppercase">Company</label>
+                  <div class="relative flex items-center">
+                    <div class="absolute left-4 text-gold/60">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z" />
+                      </svg>
+                    </div>
+                    <input type="text" id="input-company" placeholder="Enter your company name" required class="w-full bg-black/45 border border-neutral-800/80 focus:border-gold rounded pl-11 pr-4 py-3 text-xs text-white placeholder-neutral-500 focus:outline-none transition-colors duration-300">
+                  </div>
+                </div>
+
+                <!-- Email Field -->
+                <div class="flex flex-col gap-2">
+                  <label for="input-email" class="text-[11px] sm:text-xs font-bold text-neutral-400 tracking-widest uppercase">Email</label>
+                  <div class="relative flex items-center">
+                    <div class="absolute left-4 text-gold/60">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </div>
+                    <input type="email" id="input-email" placeholder="Enter your email address" required class="w-full bg-black/45 border border-neutral-800/80 focus:border-gold rounded pl-11 pr-4 py-3 text-xs text-white placeholder-neutral-500 focus:outline-none transition-colors duration-300">
+                  </div>
+                </div>
+
+                <!-- Message Field -->
+                <div class="flex flex-col gap-2">
+                  <label for="input-message" class="text-[11px] sm:text-xs font-bold text-neutral-400 tracking-widest uppercase">Message</label>
+                  <div class="relative flex items-start">
+                    <div class="absolute left-4 top-3 text-gold/60">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+                      </svg>
+                    </div>
+                    <textarea id="input-message" placeholder="Write your message here..." required rows="4" class="w-full bg-black/45 border border-neutral-800/80 focus:border-gold rounded pl-11 pr-4 py-3 text-xs text-white placeholder-neutral-500 focus:outline-none transition-colors duration-300 resize-none"></textarea>
+                  </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="w-full py-4 rounded bg-gradient-to-r from-gold-light via-gold to-gold-light text-xs font-bold text-neutral-950 uppercase hover:brightness-110 active:scale-[0.985] transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 select-none" data-magnetic id="contact-btn-submit">
+                  Send Inquiry <span class="transition-transform duration-200" id="contact-btn-arrow">&rarr;</span>
+                </button>
+
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- FOOTER -->
+      <footer class="max-w-[1440px] mx-auto w-full mt-12 pt-8 lg:mt-24 lg:pt-12 border-t border-white/5 relative z-10 flex flex-col md:flex-row items-center justify-between gap-6" id="footer-main">
+        
+        <!-- Left Footer Brand -->
+        <div class="flex flex-col sm:flex-row items-center gap-4 shrink-0 text-center sm:text-left" id="footer-brand-side">
+          <div class="flex items-center gap-2.5 justify-center sm:justify-start" id="footer-logo-img-text">
+            <img src="/Hornav_logo.png" alt="Horton Navigation S.A. Emblem" class="h-9 w-auto">
+            <div class="flex flex-col text-left leading-none">
+              <span class="text-xs font-extrabold tracking-[0.1em] text-white uppercase font-sans">Horton</span>
+              <span class="text-[8px] tracking-[0.15em] text-gold uppercase mt-0.5">Navigation S.A.</span>
+            </div>
+          </div>
+          <div class="h-5 w-[1px] bg-neutral-800 hidden sm:block"></div>
+          <span class="text-[11px] sm:text-xs text-neutral-500 font-sans tracking-wide text-center sm:text-left">&copy; 2026 Horton Navigation S.A. All rights reserved.</span>
+        </div>
+        
+        <!-- Right Footer Links -->
+        <div class="flex flex-wrap justify-center gap-x-6 gap-y-3 text-xs font-sans font-bold tracking-widest text-neutral-400" id="footer-links-side">
+          <a href="#" class="hover:text-gold transition-colors duration-200" id="footer-link-home">HOME</a>
+          <a href="#company" class="hover:text-gold transition-colors duration-200" id="footer-link-company">COMPANY</a>
+          <a href="#fleet" class="hover:text-gold transition-colors duration-200" id="footer-link-fleet">FLEET</a>
+          <a href="#careers" class="hover:text-gold transition-colors duration-200" id="footer-link-careers">CAREERS</a>
+          <a href="#contact" class="hover:text-gold transition-colors duration-200" id="footer-link-contact">CONTACT</a>
+        </div>
+
+      </footer>
+
+    </section>
+
+
+  </main>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "hornav-site",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lhci": "lhci collect && lhci assert"
+  },
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^6.0.0",
+    "@tailwindcss/postcss": "^4.0.0",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^4.0.0",
+    "terser": "^5.31.1",
+    "vite": "^5.3.1"
+  }
+}
