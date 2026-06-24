@@ -3,8 +3,8 @@
 @theme {
   --color-gold: oklch(71.6% 0.149 84.1);
   --color-gold-light: oklch(81.2% 0.138 88.5);
-  --color-bg-primary: oklch(14.5% 0 0);
-  --color-bg-secondary: oklch(13.18% 0.0075 301.63);
+  --color-bg-primary: #121212;
+  --color-bg-secondary: #1A1A1A;
   --color-border-gold: oklch(71.6% 0.149 84.1 / 25%);
   
   --font-serif: "Cormorant Garamond", serif;
