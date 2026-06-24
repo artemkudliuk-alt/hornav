@@ -110,7 +110,7 @@
 
   <!-- Header Navigation -->
   <header class="w-full h-28 bg-bg-primary fixed top-0 left-0 z-50">
-    <nav class="max-w-[1440px] mx-auto px-8 lg:px-0 h-28 flex items-center justify-between" id="main-nav">
+    <nav class="max-w-[1440px] mx-auto px-8 lg:px-16 h-28 flex items-center justify-between" id="main-nav">
       <!-- Logo Container -->
       <a href="#" class="flex items-center gap-4 group" id="logo-link">
         <img src="/Hornav_logo.png" alt="Horton Navigation S.A. Logo" class="h-20 w-auto transition-transform duration-300 group-hover:scale-[1.02]" id="logo-img">
@@ -166,24 +166,43 @@
   <main class="w-full" id="content-root">
     
     <!-- SECTION 01 — HERO (Fullscreen background video) -->
-    <section class="relative min-h-[100dvh] flex flex-col justify-between px-8 lg:px-16 pt-24 pb-12 lg:pt-36 lg:pb-16 border-b border-border-gold overflow-hidden" id="hero-sec">
+    <section class="relative min-h-[100dvh] flex flex-col justify-between px-8 lg:px-16 pt-24 pb-12 lg:pt-36 lg:pb-16 border-b border-border-gold overflow-hidden bg-[#050505]" id="hero-sec">
       
       <!-- Fullscreen Background Video & Gradient Overlays (Desktop Only) -->
-      <div class="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden hidden lg:block" id="hero-bg-media">
-        <!-- New dynamic video placeholder. Video removed in favor of the footer showcase. -->
-        <!-- Horizontal gradient to fade left area into solid black for extreme typography readability -->
-        <div class="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505] via-[#050505]/85 via-[#050505]/40 to-transparent"></div>
-        <!-- Bottom gradient to merge seamlessly into subsequent sections -->
-        <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent"></div>
+      <div class="absolute inset-y-0 left-0 right-0 z-0 select-none pointer-events-none overflow-hidden hidden lg:block" id="hero-bg-media">
+        <video class="absolute top-0 h-full opacity-60 will-change-transform" 
+               style="width: 177.78vh; left: calc(65% - 88.89vh); object-fit: fill;"
+               src="/Banner_screen.mp4" 
+               autoplay 
+               muted 
+               loop 
+               playsinline 
+               id="hero-video">
+        </video>
+        <!-- 1. Solid black background behind text covering left of video -->
+        <div class="absolute inset-y-0 left-0 bg-[#050505] z-10" 
+             style="right: calc(100% - (65% - 88.89vh));">
+        </div>
+        <!-- 2. Precise gradient transition starting at the exact video left edge -->
+        <div class="absolute inset-y-0 z-10" 
+             style="left: calc(65% - 88.89vh); width: 80vh; background: linear-gradient(to right, #050505 0%, rgba(5, 5, 5, 0.98) 8%, rgba(5, 5, 5, 0.88) 25%, rgba(5, 5, 5, 0.55) 45%, rgba(5, 5, 5, 0.2) 70%, rgba(5, 5, 5, 0.05) 88%, transparent 100%);">
+        </div>
       </div>
 
       <!-- Fullscreen Background Video & Gradient Overlays (Mobile Only) -->
       <div class="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden lg:hidden" id="hero-bg-media-mobile">
-        <!-- New dynamic video placeholder. Video removed in favor of the footer showcase. -->
+        <video class="absolute inset-0 w-full h-full object-cover opacity-30" 
+               src="/Banner_screen.mp4" 
+               autoplay 
+               muted 
+               loop 
+               playsinline 
+               id="hero-video-mobile">
+        </video>
         <!-- Vertical gradient to fade bottom area into solid black for mobile readability -->
-        <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/75 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/75 to-transparent z-10"></div>
         <!-- Bottom gradient to merge seamlessly into subsequent sections -->
-        <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent z-10"></div>
       </div>
 
       <!-- Content Grid (Constrained to master width) -->
@@ -287,8 +306,8 @@
     <!-- SECTION 02 — MISSION / VISION / VALUES -->
     <section id="company" class="relative min-h-[100dvh] flex flex-col justify-between px-8 lg:px-16 pt-20 pb-20 lg:pt-28 lg:pb-72 lg:pb-96 border-b border-border-gold overflow-hidden bg-[#0B0B0B]">
       <!-- Background Video & Gradient Overlay -->
-      <div class="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden" id="mission-bg-media">
-        <video class="absolute left-0 w-full h-[120%] top-[-10%] object-cover opacity-60 will-change-transform" 
+      <div class="absolute select-none pointer-events-none z-0 block overflow-hidden inset-0 w-full h-full lg:top-24 lg:right-[5%] lg:bottom-auto lg:left-auto lg:w-[65%] lg:aspect-video lg:h-auto" id="mission-bg-media">
+        <video class="w-full h-full object-cover lg:object-contain lg:rounded will-change-transform opacity-40 lg:opacity-60" 
                src="/2_screen.mp4" 
                autoplay 
                muted 
@@ -296,10 +315,18 @@
                playsinline 
                id="mission-video">
         </video>
-        <!-- Horizontal gradient (left-to-right) for readability and blending -->
-        <div class="absolute inset-0 bg-gradient-to-r from-[#0B0B0B] via-[#0B0B0B] via-[#0B0B0B]/80 via-[#0B0B0B]/30 to-transparent z-10"></div>
-        <!-- Vertical gradients -->
-        <div class="absolute inset-0 bg-gradient-to-b from-[#050505] via-transparent to-[#050505] z-10"></div>
+        <!-- Dark dimming overlay for mobile only -->
+        <div class="absolute inset-0 bg-[#0B0B0B]/70 lg:hidden pointer-events-none z-10"></div>
+        <!-- Left edge smooth fade (desktop only) -->
+        <div class="absolute inset-y-0 left-0 w-[53%] bg-gradient-to-r from-[#0B0B0B] via-[#0B0B0B]/70 to-transparent z-10 hidden lg:block"></div>
+        <!-- Right edge smooth fade (desktop only) -->
+        <div class="absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-[#0B0B0B] to-transparent z-10 hidden lg:block"></div>
+        <!-- Top edge smooth fade (desktop only) -->
+        <div class="absolute inset-x-0 top-0 h-[8%] bg-gradient-to-b from-[#0B0B0B] to-transparent z-10 hidden lg:block"></div>
+        <!-- Bottom edge smooth fade (desktop only) -->
+        <div class="absolute inset-x-0 bottom-0 h-1/6 bg-gradient-to-t from-[#0B0B0B] to-transparent z-10 hidden lg:block"></div>
+        <!-- Vertical gradient to fade top/bottom for mobile readability and seamless blending -->
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-transparent to-[#0B0B0B] lg:hidden z-10 pointer-events-none"></div>
       </div>
 
       <!-- Main Layout Container -->
@@ -1174,7 +1201,7 @@
       </svg>
 
       <!-- Background Video in Compliance Section -->
-      <div class="absolute select-none pointer-events-none z-0 block overflow-hidden inset-0 w-full h-full lg:inset-auto lg:top-28 lg:w-[72%] lg:right-[-6%] lg:aspect-video lg:h-auto" id="compliance-video-container">
+      <div class="absolute select-none pointer-events-none z-0 block overflow-hidden inset-0 w-full h-full lg:top-28 lg:right-[-6%] lg:bottom-auto lg:left-auto lg:w-[72%] lg:aspect-video lg:h-auto" id="compliance-video-container">
         <video class="w-full h-full object-cover lg:object-contain lg:rounded will-change-transform opacity-35 lg:opacity-55" 
                src="/4_screen.mp4" 
                autoplay 
@@ -1190,7 +1217,7 @@
         <!-- Right edge smooth fade (desktop only) -->
         <div class="absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-bg-secondary to-transparent z-10 hidden lg:block"></div>
         <!-- Top edge smooth fade (desktop only) -->
-        <div class="absolute inset-x-0 top-0 h-1/6 bg-gradient-to-b from-bg-secondary to-transparent z-10 hidden lg:block"></div>
+        <div class="absolute inset-x-0 top-0 h-[8%] bg-gradient-to-b from-bg-secondary to-transparent z-10 hidden lg:block"></div>
         <!-- Bottom edge smooth fade (desktop only) -->
         <div class="absolute inset-x-0 bottom-0 h-1/6 bg-gradient-to-t from-bg-secondary to-transparent z-10 hidden lg:block"></div>
         <!-- Vertical gradient to fade top/bottom for mobile readability and seamless blending -->
@@ -1219,7 +1246,7 @@
       <div class="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-8 gap-6 w-full max-w-[1440px] mx-auto relative z-10" id="compliance-memberships-grid">
         
         <!-- Card 1: BIMCO -->
-        <div class="relative overflow-hidden bg-bg-primary/50 border border-neutral-800/80 hover:border-gold/50 hover:shadow-[0_0_22px_rgba(200,155,60,0.12)] hover:-translate-y-1 rounded-lg p-6 flex flex-col items-center justify-between text-center transition-all duration-500 group col-span-1 sm:col-span-2 lg:col-span-2 min-h-[11rem]" data-reveal id="c-member-bimco">
+        <div class="relative overflow-hidden bg-bg-primary/50 border border-neutral-800/80 hover:border-gold/50 hover:shadow-[0_0_22px_rgba(200,155,60,0.12)] hover:-translate-y-1 rounded-lg p-8 flex flex-col items-center justify-center gap-5 text-center transition-all duration-500 group col-span-1 sm:col-span-2 lg:col-span-2 min-h-[13rem]" data-reveal id="c-member-bimco">
           <!-- Hover Spotlight effect -->
           <div class="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 overflow-hidden rounded-lg z-0">
             <div class="absolute w-56 h-56 -ml-28 -mt-28 bg-[radial-gradient(circle,rgba(200,155,60,0.08)_0%,transparent_70%)] pointer-events-none will-change-transform" style="transform: translate3d(var(--card-x, 0px), var(--card-y, 0px), 0)"></div>
@@ -1241,7 +1268,7 @@
         </div>
 
         <!-- Card 2: INTERCARGO -->
-        <div class="relative overflow-hidden bg-bg-primary/50 border border-neutral-800/80 hover:border-gold/50 hover:shadow-[0_0_22px_rgba(200,155,60,0.12)] hover:-translate-y-1 rounded-lg p-6 flex flex-col items-center justify-between text-center transition-all duration-500 group col-span-1 sm:col-span-2 lg:col-span-2 min-h-[11rem]" data-reveal id="c-member-intercargo">
+        <div class="relative overflow-hidden bg-bg-primary/50 border border-neutral-800/80 hover:border-gold/50 hover:shadow-[0_0_22px_rgba(200,155,60,0.12)] hover:-translate-y-1 rounded-lg p-8 flex flex-col items-center justify-center gap-5 text-center transition-all duration-500 group col-span-1 sm:col-span-2 lg:col-span-2 min-h-[13rem]" data-reveal id="c-member-intercargo">
           <!-- Hover Spotlight effect -->
           <div class="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 overflow-hidden rounded-lg z-0">
             <div class="absolute w-56 h-56 -ml-28 -mt-28 bg-[radial-gradient(circle,rgba(200,155,60,0.08)_0%,transparent_70%)] pointer-events-none will-change-transform" style="transform: translate3d(var(--card-x, 0px), var(--card-y, 0px), 0)"></div>
@@ -1269,7 +1296,7 @@
         </div>
 
         <!-- Card 3: ICS -->
-        <div class="relative overflow-hidden bg-bg-primary/50 border border-neutral-800/80 hover:border-gold/50 hover:shadow-[0_0_22px_rgba(200,155,60,0.12)] hover:-translate-y-1 rounded-lg p-6 flex flex-col items-center justify-between text-center transition-all duration-500 group col-span-1 sm:col-span-2 lg:col-span-2 min-h-[11rem]" data-reveal id="c-member-ics">
+        <div class="relative overflow-hidden bg-bg-primary/50 border border-neutral-800/80 hover:border-gold/50 hover:shadow-[0_0_22px_rgba(200,155,60,0.12)] hover:-translate-y-1 rounded-lg p-8 flex flex-col items-center justify-center gap-5 text-center transition-all duration-500 group col-span-1 sm:col-span-2 lg:col-span-2 min-h-[13rem]" data-reveal id="c-member-ics">
           <!-- Hover Spotlight effect -->
           <div class="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 overflow-hidden rounded-lg z-0">
             <div class="absolute w-56 h-56 -ml-28 -mt-28 bg-[radial-gradient(circle,rgba(200,155,60,0.08)_0%,transparent_70%)] pointer-events-none will-change-transform" style="transform: translate3d(var(--card-x, 0px), var(--card-y, 0px), 0)"></div>
@@ -1306,7 +1333,7 @@
         </div>
 
         <!-- Card 4: INTERTANKO -->
-        <div class="relative overflow-hidden bg-bg-primary/50 border border-neutral-800/80 hover:border-gold/50 hover:shadow-[0_0_22px_rgba(200,155,60,0.12)] hover:-translate-y-1 rounded-lg p-6 flex flex-col items-center justify-between text-center transition-all duration-500 group col-span-1 sm:col-span-2 lg:col-span-2 min-h-[11rem]" data-reveal id="c-member-intertanko">
+        <div class="relative overflow-hidden bg-bg-primary/50 border border-neutral-800/80 hover:border-gold/50 hover:shadow-[0_0_22px_rgba(200,155,60,0.12)] hover:-translate-y-1 rounded-lg p-8 flex flex-col items-center justify-center gap-5 text-center transition-all duration-500 group col-span-1 sm:col-span-2 lg:col-span-2 min-h-[13rem]" data-reveal id="c-member-intertanko">
           <!-- Hover Spotlight effect -->
           <div class="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 overflow-hidden rounded-lg z-0">
             <div class="absolute w-56 h-56 -ml-28 -mt-28 bg-[radial-gradient(circle,rgba(200,155,60,0.08)_0%,transparent_70%)] pointer-events-none will-change-transform" style="transform: translate3d(var(--card-x, 0px), var(--card-y, 0px), 0)"></div>
@@ -1337,7 +1364,7 @@
         </div>
 
         <!-- Card 5: INTERFERRY -->
-        <div class="relative overflow-hidden bg-bg-primary/50 border border-neutral-800/80 hover:border-gold/50 hover:shadow-[0_0_22px_rgba(200,155,60,0.12)] hover:-translate-y-1 rounded-lg p-6 flex flex-col items-center justify-between text-center transition-all duration-500 group col-span-1 sm:col-span-2 lg:col-span-2 lg:col-start-2 min-h-[11rem]" data-reveal id="c-member-interferry">
+        <div class="relative overflow-hidden bg-bg-primary/50 border border-neutral-800/80 hover:border-gold/50 hover:shadow-[0_0_22px_rgba(200,155,60,0.12)] hover:-translate-y-1 rounded-lg p-8 flex flex-col items-center justify-center gap-5 text-center transition-all duration-500 group col-span-1 sm:col-span-2 lg:col-span-2 lg:col-start-2 min-h-[13rem]" data-reveal id="c-member-interferry">
           <!-- Hover Spotlight effect -->
           <div class="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 overflow-hidden rounded-lg z-0">
             <div class="absolute w-56 h-56 -ml-28 -mt-28 bg-[radial-gradient(circle,rgba(200,155,60,0.08)_0%,transparent_70%)] pointer-events-none will-change-transform" style="transform: translate3d(var(--card-x, 0px), var(--card-y, 0px), 0)"></div>
@@ -1361,7 +1388,7 @@
         </div>
 
         <!-- Card 6: CLIA -->
-        <div class="relative overflow-hidden bg-bg-primary/50 border border-neutral-800/80 hover:border-gold/50 hover:shadow-[0_0_22px_rgba(200,155,60,0.12)] hover:-translate-y-1 rounded-lg p-6 flex flex-col items-center justify-between text-center transition-all duration-500 group col-span-1 sm:col-span-2 lg:col-span-2 min-h-[11rem]" data-reveal id="c-member-clia">
+        <div class="relative overflow-hidden bg-bg-primary/50 border border-neutral-800/80 hover:border-gold/50 hover:shadow-[0_0_22px_rgba(200,155,60,0.12)] hover:-translate-y-1 rounded-lg p-8 flex flex-col items-center justify-center gap-5 text-center transition-all duration-500 group col-span-1 sm:col-span-2 lg:col-span-2 min-h-[13rem]" data-reveal id="c-member-clia">
           <!-- Hover Spotlight effect -->
           <div class="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 overflow-hidden rounded-lg z-0">
             <div class="absolute w-56 h-56 -ml-28 -mt-28 bg-[radial-gradient(circle,rgba(200,155,60,0.08)_0%,transparent_70%)] pointer-events-none will-change-transform" style="transform: translate3d(var(--card-x, 0px), var(--card-y, 0px), 0)"></div>
@@ -1394,7 +1421,7 @@
         </div>
 
         <!-- Card 7: World Shipping Council -->
-        <div class="relative overflow-hidden bg-bg-primary/50 border border-neutral-800/80 hover:border-gold/50 hover:shadow-[0_0_22px_rgba(200,155,60,0.12)] hover:-translate-y-1 rounded-lg p-6 flex flex-col items-center justify-between text-center transition-all duration-500 group col-span-1 sm:col-span-2 sm:col-start-2 lg:col-span-2 lg:col-start-auto min-h-[11rem]" data-reveal id="c-member-wsc">
+        <div class="relative overflow-hidden bg-bg-primary/50 border border-neutral-800/80 hover:border-gold/50 hover:shadow-[0_0_22px_rgba(200,155,60,0.12)] hover:-translate-y-1 rounded-lg p-8 flex flex-col items-center justify-center gap-5 text-center transition-all duration-500 group col-span-1 sm:col-span-2 sm:col-start-2 lg:col-span-2 lg:col-start-auto min-h-[13rem]" data-reveal id="c-member-wsc">
           <!-- Hover Spotlight effect -->
           <div class="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 overflow-hidden rounded-lg z-0">
             <div class="absolute w-56 h-56 -ml-28 -mt-28 bg-[radial-gradient(circle,rgba(200,155,60,0.08)_0%,transparent_70%)] pointer-events-none will-change-transform" style="transform: translate3d(var(--card-x, 0px), var(--card-y, 0px), 0)"></div>
@@ -1424,7 +1451,7 @@
 
 
       <!-- Bottom Content: 4 Compliance Columns -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 w-full max-w-[1440px] mx-auto mt-6 lg:mt-8 pt-6 border-t border-border-gold/20 relative z-10" data-reveal id="compliance-bottom-grid">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 w-full max-w-[1440px] mx-auto mt-16 lg:mt-24 pt-8 border-t border-border-gold/20 relative z-10" data-reveal id="compliance-bottom-grid">
         
         <!-- Column 1: Regulatory Compliance -->
         <div class="flex gap-4 items-start text-left" id="col-regulatory">
@@ -1942,7 +1969,7 @@
         </div>
 
         <!-- Foreground Content (Left info layout) -->
-        <div class="relative z-20 w-full flex flex-col md:flex-row items-stretch justify-between gap-12 px-6 sm:px-10" id="footer-grid-content">
+        <div class="relative z-20 w-full flex flex-col md:flex-row items-stretch justify-between gap-12 px-8 sm:px-12 lg:px-16" id="footer-grid-content">
           
           <!-- Left: Big Brand Info & Contacts (Инфа слева) -->
           <div class="flex flex-col gap-6 max-w-xl text-left" id="footer-info-left">
@@ -1971,24 +1998,12 @@
             </div>
           </div>
 
-          <!-- Right: Page Links -->
-          <div class="flex flex-col gap-4 text-left justify-end shrink-0 md:text-right" id="footer-links-right">
-            <span class="text-[9px] font-bold text-gold uppercase tracking-widest leading-none block md:hidden">Sitemap</span>
-            <div class="flex flex-row md:flex-col gap-x-6 gap-y-3 flex-wrap text-xs font-sans font-bold tracking-widest text-neutral-400" id="footer-sitemap-links">
-              <a href="#" class="hover:text-gold transition-colors duration-200" id="footer-link-home">HOME</a>
-              <a href="#company" class="hover:text-gold transition-colors duration-200" id="footer-link-company">COMPANY</a>
-              <a href="#fleet" class="hover:text-gold transition-colors duration-200" id="footer-link-fleet">FLEET</a>
-              <a href="#careers" class="hover:text-gold transition-colors duration-200" id="footer-link-careers">CAREERS</a>
-              <a href="#contact" class="hover:text-gold transition-colors duration-200" id="footer-link-contact">CONTACT</a>
-            </div>
-          </div>
 
         </div>
 
         <!-- Bottom Copyright Row -->
-        <div class="relative z-20 w-full border-t border-white/5 pt-6 mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 px-6 sm:px-10 text-xs text-neutral-500 font-sans tracking-wide" id="footer-copyright-row">
+        <div class="relative z-20 w-full border-t border-white/5 pt-6 mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 px-8 sm:px-12 lg:px-16 text-xs text-neutral-500 font-sans tracking-wide" id="footer-copyright-row">
           <span>&copy; 2026 Horton Navigation S.A. All rights reserved.</span>
-          <span class="text-[10px] text-neutral-600 font-mono">Precision Shipping — Vessel Management</span>
         </div>
 
       </footer>
