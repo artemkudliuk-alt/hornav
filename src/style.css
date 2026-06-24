@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-gold: oklch(71.6% 0.149 84.1);
-  --color-gold-light: oklch(81.2% 0.138 88.5);
+  --color-gold: oklch(71.43% 0.123 82.9);
+  --color-gold-light: oklch(82.93% 0.115 88.3);
   --color-gold-dark: oklch(53.25% 0.116 84.1);
   --color-bg-primary: #121212;
   --color-bg-secondary: #1A1A1A;
-  --color-border-gold: oklch(71.6% 0.149 84.1 / 25%);
+  --color-border-gold: oklch(71.43% 0.123 82.9 / 25%);
   
   --font-serif: "Cormorant Garamond", serif;
   --font-sans: "Satoshi", sans-serif;
@@ -53,7 +53,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .text-stroke-gold {
-  -webkit-text-stroke: 1px oklch(71.6% 0.149 84.1 / 15%);
+  -webkit-text-stroke: 1px oklch(71.43% 0.123 82.9 / 15%);
   color: transparent;
 }
 
