@@ -3,12 +3,13 @@
 @theme {
   --color-gold: oklch(71.6% 0.149 84.1);
   --color-gold-light: oklch(81.2% 0.138 88.5);
-  --color-bg-primary: oklch(14.5% 0 0);
-  --color-bg-secondary: oklch(13.18% 0.0075 301.63);
+  --color-gold-dark: oklch(53.25% 0.116 84.1);
+  --color-bg-primary: #121212;
+  --color-bg-secondary: #1A1A1A;
   --color-border-gold: oklch(71.6% 0.149 84.1 / 25%);
   
   --font-serif: "Cormorant Garamond", serif;
-  --font-sans: "Inter", sans-serif;
+  --font-sans: "Satoshi", sans-serif;
 }
 
 html {
@@ -448,19 +449,19 @@ textarea:-webkit-autofill:focus {
 }
 
 .careers-slot:hover .slot-icon-circle {
-  border-color: #8C6615 !important;
-  background-color: rgba(200, 155, 60, 0.08) !important;
+  border-color: var(--color-gold-dark) !important;
+  background-color: rgba(145, 112, 44, 0.08) !important;
 }
 
 .careers-slot:hover .slot-title {
-  color: #8C6615 !important;
+  color: var(--color-gold-dark) !important;
 }
 
 /* Keyboard focus state via hidden input */
 .careers-slot:focus-within {
-  outline: 2px solid #8C6615 !important;
+  outline: 2px solid var(--color-gold-dark) !important;
   outline-offset: 2px;
-  border-color: #8C6615 !important;
+  border-color: var(--color-gold-dark) !important;
 }
 
 /* Sheen/Shimmer/Glint ("блик") effect on Hover */
@@ -494,7 +495,7 @@ textarea:-webkit-autofill:focus {
 .careers-submit-btn {
   background-color: #050505;
   color: #FFFFFF;
-  border: 1px solid #8C6615;
+  border: 1px solid var(--color-gold);
   padding: 0.75rem 1.5rem;
   font-size: 0.75rem;
   font-weight: 600;
@@ -510,10 +511,10 @@ textarea:-webkit-autofill:focus {
 }
 
 .careers-submit-btn:hover {
-  background-color: #8C6615;
-  border-color: #8C6615;
+  background-color: var(--color-gold);
+  border-color: var(--color-gold);
   color: #FFFFFF;
-  box-shadow: 0 4px 15px rgba(140, 102, 21, 0.25);
+  box-shadow: 0 4px 15px rgba(200, 155, 60, 0.25);
   transform: translateY(-1px);
 }
 
@@ -523,7 +524,7 @@ textarea:-webkit-autofill:focus {
 
 /* Focus, Disabled, Loading, Success, and Error states for submit button */
 .careers-submit-btn:focus-visible {
-  outline: 2px solid #8C6615 !important;
+  outline: 2px solid var(--color-gold) !important;
   outline-offset: 2px;
 }
 
