@@ -1929,32 +1929,66 @@
 
       </div>
 
-      <!-- FOOTER -->
-      <footer class="max-w-[1440px] mx-auto w-full mt-12 pt-8 lg:mt-24 lg:pt-12 border-t border-white/5 relative z-10 flex flex-col md:flex-row items-center justify-between gap-6" id="footer-main">
+      <!-- FOOTER CONTAINER -->
+      <div class="max-w-[1440px] mx-auto w-full mt-16 pt-10 border-t border-white/5 relative z-10 flex flex-col gap-10" id="footer-container">
         
-        <!-- Left Footer Brand -->
-        <div class="flex flex-col sm:flex-row items-center gap-4 shrink-0 text-center sm:text-left" id="footer-brand-side">
-          <div class="flex items-center gap-2.5 justify-center sm:justify-start" id="footer-logo-img-text">
-            <img src="/Hornav_logo.png" alt="Horton Navigation S.A. Emblem" class="h-9 w-auto">
-            <div class="flex flex-col text-left leading-none">
-              <span class="text-sm font-extrabold tracking-[0.1em] text-white uppercase font-sans">Horton</span>
-              <span class="text-[10px] tracking-[0.15em] text-gold uppercase mt-0.5">Navigation S.A.</span>
+        <!-- Cinematic Video Showcase Card inside Footer -->
+        <div class="relative w-full overflow-hidden rounded border border-white/5 bg-[#0B0B0B]/40 p-6 sm:p-8 flex flex-col lg:flex-row items-center justify-between gap-8 backdrop-blur-md" id="footer-video-card">
+          <!-- Background gradient overlay -->
+          <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent pointer-events-none z-0"></div>
+          
+          <div class="flex flex-col gap-3 relative z-10 max-w-xl text-left" id="footer-video-text">
+            <span class="text-xs font-bold tracking-[0.25em] text-gold uppercase" id="footer-video-kicker">Vessel Showcase</span>
+            <h3 class="text-2xl sm:text-3xl font-medium tracking-wide text-white uppercase" id="footer-video-title">Horton Navigation Fleet</h3>
+            <p class="text-sm text-neutral-400 font-light leading-relaxed" id="footer-video-desc">
+              Watch our dry bulk and general cargo carriers operating across international shipping routes, delivering reliable cargo solutions under standard maritime frameworks.
+            </p>
+          </div>
+
+          <!-- Adapt /1_screen.mp4 in a beautifully framed video player -->
+          <div class="w-full lg:w-[480px] aspect-video rounded overflow-hidden relative border border-white/10 shrink-0 bg-neutral-900 group shadow-[0_0_30px_rgba(200,155,60,0.05)]" id="footer-player-container">
+            <video class="w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-700 will-change-transform" 
+                   src="/1_screen.mp4" 
+                   autoplay 
+                   muted 
+                   loop 
+                   playsinline 
+                   id="footer-video">
+            </video>
+            <!-- Sleek framing overlays -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
+            <!-- Technical label overlay -->
+            <div class="absolute bottom-3 left-3 px-2 py-1 bg-black/70 border border-gold/30 rounded text-[9px] font-mono tracking-widest text-gold uppercase" id="footer-video-specs">
+              Vessel Profile — Active Fleet
             </div>
           </div>
-          <div class="h-5 w-[1px] bg-neutral-800 hidden sm:block"></div>
-          <span class="text-xs text-neutral-500 font-sans tracking-wide text-center sm:text-left">&copy; 2026 Horton Navigation S.A. All rights reserved.</span>
-        </div>
-        
-        <!-- Right Footer Links -->
-        <div class="flex flex-wrap justify-center gap-x-6 gap-y-3 text-xs font-sans font-bold tracking-widest text-neutral-400" id="footer-links-side">
-          <a href="#" class="hover:text-gold transition-colors duration-200" id="footer-link-home">HOME</a>
-          <a href="#company" class="hover:text-gold transition-colors duration-200" id="footer-link-company">COMPANY</a>
-          <a href="#fleet" class="hover:text-gold transition-colors duration-200" id="footer-link-fleet">FLEET</a>
-          <a href="#careers" class="hover:text-gold transition-colors duration-200" id="footer-link-careers">CAREERS</a>
-          <a href="#contact" class="hover:text-gold transition-colors duration-200" id="footer-link-contact">CONTACT</a>
         </div>
 
-      </footer>
+        <!-- Bottom Copyright Row -->
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-6" id="footer-main">
+          <!-- Left Footer Brand -->
+          <div class="flex flex-col sm:flex-row items-center gap-4 shrink-0 text-center sm:text-left" id="footer-brand-side">
+            <div class="flex items-center gap-2.5 justify-center sm:justify-start" id="footer-logo-img-text">
+              <img src="/Hornav_logo.png" alt="Horton Navigation S.A. Emblem" class="h-9 w-auto">
+              <div class="flex flex-col text-left leading-none">
+                <span class="text-sm font-extrabold tracking-[0.1em] text-white uppercase font-sans">Horton</span>
+                <span class="text-[10px] tracking-[0.15em] text-gold uppercase mt-0.5">Navigation S.A.</span>
+              </div>
+            </div>
+            <div class="h-5 w-[1px] bg-neutral-800 hidden sm:block"></div>
+            <span class="text-xs text-neutral-500 font-sans tracking-wide text-center sm:text-left">&copy; 2026 Horton Navigation S.A. All rights reserved.</span>
+          </div>
+          
+          <!-- Right Footer Links -->
+          <div class="flex flex-wrap justify-center gap-x-6 gap-y-3 text-xs font-sans font-bold tracking-widest text-neutral-400" id="footer-links-side">
+            <a href="#" class="hover:text-gold transition-colors duration-200" id="footer-link-home">HOME</a>
+            <a href="#company" class="hover:text-gold transition-colors duration-200" id="footer-link-company">COMPANY</a>
+            <a href="#fleet" class="hover:text-gold transition-colors duration-200" id="footer-link-fleet">FLEET</a>
+            <a href="#careers" class="hover:text-gold transition-colors duration-200" id="footer-link-careers">CAREERS</a>
+            <a href="#contact" class="hover:text-gold transition-colors duration-200" id="footer-link-contact">CONTACT</a>
+          </div>
+        </div>
+      </div>
 
     </section>
 
