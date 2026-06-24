@@ -14,10 +14,10 @@
   <script type="module" src="/src/main.js"></script>
   <link rel="stylesheet" href="/src/style.css">
 </head>
-<body class="bg-bg-primary text-[#FFFFFF] selection:bg-gold/30 selection:text-white antialiased overflow-x-hidden min-h-[100dvh]">
+<body class="bg-[#050505] text-[#FFFFFF] selection:bg-gold/30 selection:text-white antialiased overflow-x-hidden min-h-[100dvh]">
 
   <!-- Premium Editorial Preloader -->
-  <div id="preloader" style="position: fixed; inset: 0; z-index: 9999; background: #121212; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s ease; will-change: transform, opacity;">
+  <div id="preloader" style="position: fixed; inset: 0; z-index: 9999; background: #050505; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s ease; will-change: transform, opacity;">
     <div style="display: flex; flex-direction: column; align-items: center; gap: 2rem; max-width: 280px; width: 100%; text-align: center;">
       <!-- Logo Emblem -->
       <div id="preloader-logo" style="width: 80px; height: 80px; opacity: 0; transform: scale(0.9) translate3d(0, 10px, 0); transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);">
@@ -147,7 +147,7 @@
   </header>
 
   <!-- Mobile Fullscreen Menu Overlay -->
-  <div id="mobile-menu-overlay" class="fixed inset-0 bg-bg-primary/98 z-40 flex flex-col justify-center items-center opacity-0 pointer-events-none transition-all duration-500 backdrop-blur-md">
+  <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#050505]/98 z-40 flex flex-col justify-center items-center opacity-0 pointer-events-none transition-all duration-500 backdrop-blur-md">
     <!-- Menu Grid Pattern Background -->
     <div class="absolute inset-0 bg-[radial-gradient(rgba(200,155,60,0.02)_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none z-0"></div>
     
@@ -298,7 +298,7 @@
     </section>
 
     <!-- SECTION 02 — MISSION / VISION / VALUES -->
-    <section id="company" class="relative min-h-[100dvh] flex flex-col justify-between px-8 lg:px-16 pt-20 pb-20 lg:pt-28 lg:pb-72 lg:pb-96 border-b border-border-gold overflow-hidden bg-bg-secondary">
+    <section id="company" class="relative min-h-[100dvh] flex flex-col justify-between px-8 lg:px-16 pt-20 pb-20 lg:pt-28 lg:pb-72 lg:pb-96 border-b border-border-gold overflow-hidden bg-[#0B0B0B]">
       <!-- Background Video & Gradient Overlay -->
       <div class="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden" id="mission-bg-media">
         <video class="absolute left-0 w-full h-[120%] top-[-10%] object-cover opacity-60 will-change-transform" 
@@ -342,7 +342,7 @@
           <!-- Card 1: Mission -->
           <div class="relative border border-border-gold bg-bg-primary p-8 pt-16 flex flex-col justify-between rounded hover:border-gold/50 transition-colors duration-300 min-h-[460px] group lg:col-span-1" id="card-mission">
             <!-- Round Gold Icon Badge -->
-            <div class="absolute top-[-32px] left-1/2 -translate-x-1/2 w-16 h-16 rounded-full border border-gold bg-bg-secondary flex items-center justify-center shadow-lg shadow-gold/5 transition-transform duration-300 group-hover:scale-105" id="badge-mission">
+            <div class="absolute top-[-32px] left-1/2 -translate-x-1/2 w-16 h-16 rounded-full border border-gold bg-[#0B0B0B] flex items-center justify-center shadow-lg shadow-gold/5 transition-transform duration-300 group-hover:scale-105" id="badge-mission">
               <!-- Target SVG Icon -->
               <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="10" />
@@ -367,7 +367,7 @@
           <!-- Card 2: Vision -->
           <div class="relative border border-border-gold bg-bg-primary p-8 pt-16 flex flex-col justify-between rounded hover:border-gold/50 transition-colors duration-300 min-h-[460px] group lg:col-span-1" id="card-vision">
             <!-- Round Gold Icon Badge -->
-            <div class="absolute top-[-32px] left-1/2 -translate-x-1/2 w-16 h-16 rounded-full border border-gold bg-bg-secondary flex items-center justify-center shadow-lg shadow-gold/5 transition-transform duration-300 group-hover:scale-105" id="badge-vision">
+            <div class="absolute top-[-32px] left-1/2 -translate-x-1/2 w-16 h-16 rounded-full border border-gold bg-[#0B0B0B] flex items-center justify-center shadow-lg shadow-gold/5 transition-transform duration-300 group-hover:scale-105" id="badge-vision">
               <!-- Binoculars SVG Icon -->
               <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
                 <path d="M5 7a3 3 0 013-3h1a3 3 0 013 3v10a3 3 0 01-3 3H8a3 3 0 01-3-3V7z M12 7a3 3 0 013-3h1a3 3 0 013 3v10a3 3 0 01-3 3h-1a3 3 0 01-3-3V7z M9 10h6" />
@@ -389,7 +389,7 @@
           <!-- Card 3: Values (Spans 2 columns on desktop) -->
           <div class="relative border border-border-gold bg-bg-primary p-8 pt-16 rounded hover:border-gold/50 transition-colors duration-300 min-h-[460px] group lg:col-span-2" id="card-values">
             <!-- Round Gold Icon Badge -->
-            <div class="absolute top-[-32px] left-1/2 -translate-x-1/2 w-16 h-16 rounded-full border border-gold bg-bg-secondary flex items-center justify-center shadow-lg shadow-gold/5 transition-transform duration-300 group-hover:scale-105" id="badge-values">
+            <div class="absolute top-[-32px] left-1/2 -translate-x-1/2 w-16 h-16 rounded-full border border-gold bg-[#0B0B0B] flex items-center justify-center shadow-lg shadow-gold/5 transition-transform duration-300 group-hover:scale-105" id="badge-values">
               <!-- Diamond SVG Icon -->
               <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
                 <path d="M6 3h12l4 6-10 12L2 9z M2 9h20 M12 3v18 M6 3l6 6 M18 3l-6 6" />
@@ -762,16 +762,16 @@
       </div>
     </section>
 
-    <section id="markets" class="relative min-h-[100dvh] flex flex-col justify-center px-8 lg:px-16 pt-20 pb-20 lg:pt-28 lg:pb-20 lg:pb-32 border-b border-border-gold overflow-hidden bg-bg-secondary">
+    <section id="markets" class="relative min-h-[100dvh] flex flex-col justify-center px-8 lg:px-16 pt-20 pb-20 lg:pt-28 lg:pb-20 lg:pb-32 border-b border-neutral-200 overflow-hidden bg-white">
       
-      <!-- Deep dark/gold radial vignette over the charcoal background -->
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_50%,rgba(0,0,0,0.5)_100%)] pointer-events-none z-0"></div>
+      <!-- Deep dark/gold radial vignette over the white background -->
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0)_50%,rgba(0,0,0,0.03)_100%)] pointer-events-none z-0"></div>
 
       <!-- 4-sided gradient vignette framing overlay -->
-      <div class="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-bg-primary to-transparent pointer-events-none z-0"></div>
-      <div class="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-bg-primary to-transparent pointer-events-none z-0"></div>
-      <div class="absolute left-0 top-0 bottom-0 w-28 bg-gradient-to-r from-bg-primary to-transparent pointer-events-none z-0"></div>
-      <div class="absolute right-0 top-0 bottom-0 w-28 bg-gradient-to-l from-bg-primary to-transparent pointer-events-none z-0"></div>
+      <div class="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-neutral-950/10 to-transparent pointer-events-none z-0"></div>
+      <div class="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-neutral-950/10 to-transparent pointer-events-none z-0"></div>
+      <div class="absolute left-0 top-0 bottom-0 w-28 bg-gradient-to-r from-neutral-950/10 to-transparent pointer-events-none z-0"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-28 bg-gradient-to-l from-neutral-950/10 to-transparent pointer-events-none z-0"></div>
 
       <!-- Animated background waves canvas -->
       <canvas id="markets-waves" class="absolute inset-0 pointer-events-none z-0 opacity-60"></canvas>
@@ -782,9 +782,9 @@
         <div class="max-w-4xl w-full flex flex-col items-center text-center gap-4 mb-10" data-reveal id="markets-text-block">
           <div class="flex flex-col items-center gap-2.5" id="markets-kicker-group">
             <div class="flex items-center gap-3">
-              <div class="h-[1px] w-8" style="background-color: rgba(200, 155, 60, 0.4);"></div>
-              <span class="text-xs font-bold tracking-[0.3em] uppercase" style="color: #E6C36A;" id="markets-kicker">Global Shipping Network</span>
-              <div class="h-[1px] w-8" style="background-color: rgba(200, 155, 60, 0.4);"></div>
+              <div class="h-[1px] w-8" style="background-color: rgba(140, 102, 21, 0.4);"></div>
+              <span class="text-xs font-bold tracking-[0.3em] uppercase" style="color: #8C6615;" id="markets-kicker">Global Shipping Network</span>
+              <div class="h-[1px] w-8" style="background-color: rgba(140, 102, 21, 0.4);"></div>
             </div>
             <!-- Stylish gold diamond icon accent -->
             <svg class="w-3.5 h-3.5 text-gold/60" fill="currentColor" viewBox="0 0 24 24">
@@ -792,15 +792,15 @@
             </svg>
           </div>
           
-          <h2 class="text-5xl sm:text-7xl lg:text-[6.5rem] font-medium tracking-[0.01em] text-white leading-[1.0] uppercase font-serif mt-4" id="markets-title">
+          <h2 class="text-5xl sm:text-7xl lg:text-[6.5rem] font-medium tracking-[0.01em] text-neutral-950 leading-[1.0] uppercase font-serif mt-4" id="markets-title">
             Markets & Operations
           </h2>
           
-          <p class="text-base sm:text-lg lg:text-[18px] text-neutral-200 font-semibold leading-relaxed max-w-2xl mt-4 lg:mt-2" id="markets-lead">
+          <p class="text-base sm:text-lg lg:text-[18px] text-neutral-900 font-semibold leading-relaxed max-w-2xl mt-4 lg:mt-2" id="markets-lead">
             Operating across key maritime trade routes and regional shipping markets.
           </p>
           
-          <p class="text-sm sm:text-base lg:text-[14px] text-neutral-400 font-normal leading-relaxed max-w-3xl mt-2 lg:mt-1" id="markets-desc">
+          <p class="text-sm sm:text-base lg:text-[14px] text-neutral-600 font-normal leading-relaxed max-w-3xl mt-2 lg:mt-1" id="markets-desc">
             Our operations span strategic regions with strong commercial connections, supported by professional vessel management and an experienced team committed to safe and efficient performance.
           </p>
         </div>
@@ -809,7 +809,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-[1440px] mx-auto mt-8 relative z-10" data-reveal id="markets-cards-grid">
           
           <!-- Card 1: Markets -->
-          <div class="group markets-card bg-[#222222]/90 border border-neutral-800/80 rounded-md p-6 sm:p-8 flex flex-col gap-4.5 text-left relative overflow-hidden" id="m-card-markets">
+          <div class="group markets-card bg-neutral-50/90 border border-neutral-200/80 rounded-md p-6 sm:p-8 flex flex-col gap-4.5 text-left relative overflow-hidden" id="m-card-markets">
             <div class="absolute top-0 left-0 w-0 h-[3px] bg-gold transition-all duration-500 group-hover:w-full"></div>
             <div class="w-14 h-14 rounded-full border border-gold/30 bg-gold/5 flex items-center justify-center text-gold transition-all duration-300 group-hover:scale-105 group-hover:border-gold group-hover:bg-gold/10" id="m-icon-markets">
               <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
@@ -818,17 +818,17 @@
               </svg>
             </div>
             <div>
-              <span class="block text-xs font-bold tracking-[0.25em] uppercase mb-1.5" style="color: #E6C36A;" id="m-cat-markets">Markets</span>
-              <h3 class="text-xl lg:text-[19px] font-semibold text-white font-serif" id="m-val-markets">5 Strategic Regions</h3>
+              <span class="block text-xs font-bold tracking-[0.25em] uppercase mb-1.5" style="color: #8C6615;" id="m-cat-markets">Markets</span>
+              <h3 class="text-xl lg:text-[19px] font-semibold text-neutral-900 font-serif" id="m-val-markets">5 Strategic Regions</h3>
             </div>
             <div class="h-[1px] w-12 bg-gold/20 transition-all duration-300 group-hover:w-20 group-hover:bg-gold/45"></div>
-            <p class="text-xs lg:text-[13px] text-neutral-400 font-light leading-relaxed" id="m-desc-markets">
+            <p class="text-xs lg:text-[13px] text-neutral-600 font-light leading-relaxed" id="m-desc-markets">
               Black Sea, Mediterranean, Baltic Sea, Continental Europe, Scandinavia.
             </p>
           </div>
 
           <!-- Card 2: Vessel Management -->
-          <div class="group markets-card bg-[#222222]/90 border border-neutral-800/80 rounded-md p-6 sm:p-8 flex flex-col gap-4.5 text-left relative overflow-hidden" id="m-card-vessels">
+          <div class="group markets-card bg-neutral-50/90 border border-neutral-200/80 rounded-md p-6 sm:p-8 flex flex-col gap-4.5 text-left relative overflow-hidden" id="m-card-vessels">
             <div class="absolute top-0 left-0 w-0 h-[3px] bg-gold transition-all duration-500 group-hover:w-full"></div>
             <div class="w-14 h-14 rounded-full border border-gold/30 bg-gold/5 flex items-center justify-center text-gold transition-all duration-300 group-hover:scale-105 group-hover:border-gold group-hover:bg-gold/10" id="m-icon-vessels">
               <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
@@ -836,17 +836,17 @@
               </svg>
             </div>
             <div>
-              <span class="block text-xs font-bold tracking-[0.25em] uppercase mb-1.5" style="color: #E6C36A;" id="m-cat-vessels">Vessel Management</span>
-              <h3 class="text-xl lg:text-[19px] font-semibold text-white font-serif" id="m-val-vessels">Commercial & Technical</h3>
+              <span class="block text-xs font-bold tracking-[0.25em] uppercase mb-1.5" style="color: #8C6615;" id="m-cat-vessels">Vessel Management</span>
+              <h3 class="text-xl lg:text-[19px] font-semibold text-neutral-900 font-serif" id="m-val-vessels">Commercial & Technical</h3>
             </div>
             <div class="h-[1px] w-12 bg-gold/20 transition-all duration-300 group-hover:w-20 group-hover:bg-gold/45"></div>
-            <p class="text-xs lg:text-[13px] text-neutral-400 font-light leading-relaxed" id="m-desc-vessels">
+            <p class="text-xs lg:text-[13px] text-neutral-600 font-light leading-relaxed" id="m-desc-vessels">
               Full commercial and technical management ensuring safety, efficiency and reliability.
             </p>
           </div>
 
           <!-- Card 3: Cargo Types -->
-          <div class="group markets-card bg-[#222222]/90 border border-neutral-800/80 rounded-md p-6 sm:p-8 flex flex-col gap-4.5 text-left relative overflow-hidden" id="m-card-cargo">
+          <div class="group markets-card bg-neutral-50/90 border border-neutral-200/80 rounded-md p-6 sm:p-8 flex flex-col gap-4.5 text-left relative overflow-hidden" id="m-card-cargo">
             <div class="absolute top-0 left-0 w-0 h-[3px] bg-gold transition-all duration-500 group-hover:w-full"></div>
             <div class="w-14 h-14 rounded-full border border-gold/30 bg-gold/5 flex items-center justify-center text-gold transition-all duration-300 group-hover:scale-105 group-hover:border-gold group-hover:bg-gold/10" id="m-icon-cargo">
               <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
@@ -855,17 +855,17 @@
               </svg>
             </div>
             <div>
-              <span class="block text-xs font-bold tracking-[0.25em] uppercase mb-1.5" style="color: #E6C36A;" id="m-cat-cargo">Cargo Types</span>
-              <h3 class="text-xl lg:text-[19px] font-semibold text-white font-serif" id="m-val-cargo">Dry Bulk & General</h3>
+              <span class="block text-xs font-bold tracking-[0.25em] uppercase mb-1.5" style="color: #8C6615;" id="m-cat-cargo">Cargo Types</span>
+              <h3 class="text-xl lg:text-[19px] font-semibold text-neutral-900 font-serif" id="m-val-cargo">Dry Bulk & General</h3>
             </div>
             <div class="h-[1px] w-12 bg-gold/20 transition-all duration-300 group-hover:w-20 group-hover:bg-gold/45"></div>
-            <p class="text-xs lg:text-[13px] text-neutral-400 font-light leading-relaxed" id="m-desc-cargo">
+            <p class="text-xs lg:text-[13px] text-neutral-600 font-light leading-relaxed" id="m-desc-cargo">
               Specialized in dry bulk, non-dangerous, non-inflammable, non-IMO cargoes.
             </p>
           </div>
 
           <!-- Card 4: Compliance -->
-          <div class="group markets-card bg-[#222222]/90 border border-neutral-800/80 rounded-md p-6 sm:p-8 flex flex-col gap-4.5 text-left relative overflow-hidden" id="m-card-compliance">
+          <div class="group markets-card bg-neutral-50/90 border border-neutral-200/80 rounded-md p-6 sm:p-8 flex flex-col gap-4.5 text-left relative overflow-hidden" id="m-card-compliance">
             <div class="absolute top-0 left-0 w-0 h-[3px] bg-gold transition-all duration-500 group-hover:w-full"></div>
             <div class="w-14 h-14 rounded-full border border-gold/30 bg-gold/5 flex items-center justify-center text-gold transition-all duration-300 group-hover:scale-105 group-hover:border-gold group-hover:bg-gold/10" id="m-icon-compliance">
               <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
@@ -873,11 +873,11 @@
               </svg>
             </div>
             <div>
-              <span class="block text-xs font-bold tracking-[0.25em] uppercase mb-1.5" style="color: #E6C36A;" id="m-cat-compliance">Compliance</span>
-              <h3 class="text-xl lg:text-[19px] font-semibold text-white font-serif" id="m-val-compliance">International Standards</h3>
+              <span class="block text-xs font-bold tracking-[0.25em] uppercase mb-1.5" style="color: #8C6615;" id="m-cat-compliance">Compliance</span>
+              <h3 class="text-xl lg:text-[19px] font-semibold text-neutral-900 font-serif" id="m-val-compliance">International Standards</h3>
             </div>
             <div class="h-[1px] w-12 bg-gold/20 transition-all duration-300 group-hover:w-20 group-hover:bg-gold/45"></div>
-            <p class="text-xs lg:text-[13px] text-neutral-400 font-light leading-relaxed" id="m-desc-compliance">
+            <p class="text-xs lg:text-[13px] text-neutral-600 font-light leading-relaxed" id="m-desc-compliance">
               Operations aligned with global maritime regulations and industry best practices.
             </p>
           </div>
@@ -886,9 +886,9 @@
 
         <!-- Centered bottom slogan and lines -->
         <div class="w-full max-w-[1440px] mx-auto mt-16 flex items-center gap-6 relative z-10" data-reveal id="markets-footer">
-          <div class="h-[1px] flex-1" style="background-color: rgba(200, 155, 60, 0.3);" id="m-foot-line-left"></div>
-          <span class="text-xs font-bold tracking-[0.3em] uppercase whitespace-nowrap" style="color: #E6C36A;" id="markets-foot-text">Global Reach. Reliable Operations.</span>
-          <div class="h-[1px] flex-1" style="background-color: rgba(200, 155, 60, 0.3);" id="m-foot-line-right"></div>
+          <div class="h-[1px] flex-1" style="background-color: rgba(140, 102, 21, 0.3);" id="m-foot-line-left"></div>
+          <span class="text-xs font-bold tracking-[0.3em] uppercase whitespace-nowrap" style="color: #8C6615;" id="markets-foot-text">Global Reach. Reliable Operations.</span>
+          <div class="h-[1px] flex-1" style="background-color: rgba(140, 102, 21, 0.3);" id="m-foot-line-right"></div>
         </div>
 
       </div>
@@ -1035,7 +1035,7 @@
       <div class="max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-6 relative z-10 mb-16" id="fleet-cards-grid">
         
         <!-- Card 1: Bulk Carrier -->
-        <div class="bg-bg-secondary/70 border border-neutral-800/80 hover:border-gold/30 rounded p-6 flex flex-col gap-6 transition-all duration-500 hover:-translate-y-1 group" data-reveal id="f-card-agribulk">
+        <div class="bg-[#0B0B0B]/70 border border-neutral-800/80 hover:border-gold/30 rounded p-6 flex flex-col gap-6 transition-all duration-500 hover:-translate-y-1 group" data-reveal id="f-card-agribulk">
           <!-- Image Container (100% width, top aligned) -->
           <div class="w-full h-64 overflow-hidden rounded relative" id="f-card-img-container-1">
             <img src="/ship1_screen5.png" alt="Horton Navigation S.A. Bulk Carrier at port" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" id="f-card-img-1">
@@ -1086,7 +1086,7 @@
         </div>
 
         <!-- Card 2: General Cargo Vessel -->
-        <div class="bg-bg-secondary/70 border border-neutral-800/80 hover:border-gold/30 rounded p-6 flex flex-col gap-6 transition-all duration-500 hover:-translate-y-1 group" data-reveal id="f-card-general">
+        <div class="bg-[#0B0B0B]/70 border border-neutral-800/80 hover:border-gold/30 rounded p-6 flex flex-col gap-6 transition-all duration-500 hover:-translate-y-1 group" data-reveal id="f-card-general">
           <!-- Image Container (100% width, top aligned) -->
           <div class="w-full h-64 overflow-hidden rounded relative" id="f-card-img-container-2">
             <img src="/ship2_screen5.png" alt="Horton Navigation S.A. General Cargo Vessel at port" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" id="f-card-img-2">
@@ -1139,7 +1139,7 @@
       </div>
 
       <!-- Fleet Expansion Strategy Footer -->
-      <div class="max-w-[1440px] mx-auto w-full border border-neutral-800 bg-bg-secondary/80 rounded p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10 text-left" data-reveal id="fleet-strategy-footer">
+      <div class="max-w-[1440px] mx-auto w-full border border-neutral-800 bg-[#0B0B0B]/80 rounded p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10 text-left" data-reveal id="fleet-strategy-footer">
         
         <div class="flex items-center gap-4 shrink-0" id="f-strat-title-group">
           <div class="w-12 h-12 flex items-center justify-center text-gold bg-black/40 border border-neutral-800 rounded-full" id="f-strat-icon">
@@ -1197,11 +1197,11 @@
                id="compliance-bg-video">
         </video>
         <!-- Dark dimming overlay for mobile only -->
-        <div class="absolute inset-0 bg-bg-secondary/70 lg:hidden pointer-events-none z-10"></div>
+        <div class="absolute inset-0 bg-[#0B0B0B]/70 lg:hidden pointer-events-none z-10"></div>
         <!-- Soft Gradient Overlay to blend video edges into Section 06 background (var(--color-bg-secondary)) (desktop only) -->
         <div class="absolute inset-0 pointer-events-none z-10 hidden lg:block" style="background: linear-gradient(to bottom, transparent 90%, var(--color-bg-secondary) 100%), radial-gradient(ellipse at center, transparent 90%, var(--color-bg-secondary) 100%);" id="compliance-vignette"></div>
         <!-- Vertical gradient to fade top/bottom for mobile readability and seamless blending -->
-        <div class="absolute inset-0 bg-gradient-to-t from-bg-secondary via-transparent to-bg-secondary lg:hidden z-10 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-transparent to-[#0B0B0B] lg:hidden z-10 pointer-events-none"></div>
       </div>
 
 
@@ -1520,19 +1520,16 @@
     </section>
 
     <!-- SECTION 07 — CAREERS -->
-    <section id="careers" class="relative min-h-[100dvh] flex flex-col justify-center px-8 lg:px-16 pt-20 pb-24 lg:pt-28 lg:pb-44 lg:pb-60 border-b border-border-gold overflow-hidden bg-bg-secondary">
+    <section id="careers" class="relative min-h-[100dvh] flex flex-col justify-center px-8 lg:px-16 pt-20 pb-24 lg:pt-28 lg:pb-44 lg:pb-60 border-b border-neutral-200 overflow-hidden bg-white">
       
-      <!-- Deep dark/gold radial vignette over the charcoal background -->
-      <div class="absolute inset-0 pointer-events-none z-0" style="background-image: radial-gradient(circle at center, rgba(0,0,0,0) 50%, rgba(0,0,0,0.4) 100%);"></div>
-
-      <!-- Faint Gold Dot Grid Texture -->
-      <div class="absolute inset-0 bg-[radial-gradient(rgba(200,155,60,0.04)_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none z-0"></div>
+      <!-- Deep dark/gold radial vignette over the white background -->
+      <div class="absolute inset-0 pointer-events-none z-0" style="background-image: radial-gradient(circle at center, rgba(255,255,255,0) 50%, rgba(0,0,0,0.03) 100%);"></div>
 
       <!-- 4-sided gradient vignette framing overlay -->
-      <div class="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-neutral-950/30 to-transparent pointer-events-none z-0"></div>
-      <div class="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-neutral-950/30 to-transparent pointer-events-none z-0"></div>
-      <div class="absolute left-0 top-0 bottom-0 w-28 bg-gradient-to-r from-neutral-950/30 to-transparent pointer-events-none z-0"></div>
-      <div class="absolute right-0 top-0 bottom-0 w-28 bg-gradient-to-l from-neutral-950/30 to-transparent pointer-events-none z-0"></div>
+      <div class="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-neutral-950/10 to-transparent pointer-events-none z-0"></div>
+      <div class="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-neutral-950/10 to-transparent pointer-events-none z-0"></div>
+      <div class="absolute left-0 top-0 bottom-0 w-28 bg-gradient-to-r from-neutral-950/10 to-transparent pointer-events-none z-0"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-28 bg-gradient-to-l from-neutral-950/10 to-transparent pointer-events-none z-0"></div>
 
       <!-- Faint Gold Wave lines on left and right -->
       <svg class="absolute left-0 top-1/2 -translate-y-1/2 w-64 h-96 pointer-events-none select-none z-0 opacity-20" viewBox="0 0 200 400" fill="none">
@@ -1549,10 +1546,10 @@
         <!-- Section Header -->
         <div class="text-center mb-16" data-reveal id="careers-header-block">
           <span class="text-xs font-bold tracking-[0.3em] uppercase" style="color: #8C6615;" id="careers-kicker">Careers</span>
-          <h2 class="text-4xl sm:text-5xl lg:text-[3.5rem] font-medium tracking-[0.01em] text-white leading-[1.1] uppercase mt-3" id="careers-title">
+          <h2 class="text-4xl sm:text-5xl lg:text-[3.5rem] font-medium tracking-[0.01em] text-neutral-950 leading-[1.1] uppercase mt-3" id="careers-title">
             Build Your <span class="font-serif italic" style="color: #8C6615;">Maritime Career</span>
           </h2>
-          <p class="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed max-w-xl mx-auto mt-4" id="careers-desc">
+          <p class="text-xs sm:text-sm text-neutral-600 font-light leading-relaxed max-w-xl mx-auto mt-4" id="careers-desc">
             Horton Navigation is continuously seeking qualified maritime professionals both ashore and onboard.
           </p>
         </div>
@@ -1561,7 +1558,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8" id="careers-cards-grid">
           
           <!-- Card 1: Shore-Based -->
-          <div class="relative overflow-hidden bg-[#222222]/90 border border-neutral-800/80 rounded-lg p-8 flex flex-col items-center transition-all duration-500 group" data-reveal id="card-shore">
+          <div class="relative overflow-hidden bg-neutral-50/90 border border-neutral-200/80 rounded-lg p-8 flex flex-col items-center transition-all duration-500 group" data-reveal id="card-shore">
             <!-- Skyscraper SVG Icon -->
             <svg class="w-16 h-16 mb-4 transition-transform duration-500 group-hover:scale-105" style="color: #8C6615;" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 56V8a2 2 0 0 1 2-2h20a2 2 0 0 1 2 2v48" />
@@ -1572,7 +1569,7 @@
               <path d="M4 56h56" />
             </svg>
             
-            <h3 class="text-2xl font-serif text-white tracking-wide" id="title-shore">Shore-Based</h3>
+            <h3 class="text-2xl font-serif text-neutral-900 tracking-wide" id="title-shore">Shore-Based</h3>
             <span class="text-[11px] sm:text-xs font-bold tracking-[0.2em] uppercase mt-1.5" style="color: #8C6615;" id="kicker-shore">Join Our Shore Team</span>
 
             <!-- Shining gold horizontal divider line -->
@@ -1585,7 +1582,7 @@
             <div class="w-full flex flex-col gap-3" id="slots-shore">
               
               <!-- Slot 1: CV Submission -->
-              <label class="careers-slot flex items-center gap-4 p-4 rounded-lg bg-[#1A1A1A] border border-neutral-800/80 cursor-pointer transition-all duration-300 relative overflow-hidden" id="label-cv-shore">
+              <label class="careers-slot flex items-center gap-4 p-4 rounded-lg bg-white border border-neutral-200/80 cursor-pointer transition-all duration-300 relative overflow-hidden" id="label-cv-shore">
                 <input type="file" id="cv-shore" class="sr-only" accept=".pdf,.doc,.docx">
                 <div class="slot-icon-circle w-9 h-9 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300" style="border-color: rgba(140, 102, 21, 0.3); color: #8C6615;" id="circle-cv-shore">
                   <svg class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -1594,13 +1591,13 @@
                   </svg>
                 </div>
                 <div class="flex-1 min-w-0 text-left">
-                  <span class="slot-title block text-xs font-semibold text-neutral-200 tracking-wider uppercase transition-colors duration-300" id="lbl-cv-shore">CV Submission</span>
-                  <span class="block text-xs text-neutral-400 mt-0.5 truncate" id="desc-cv-shore">Upload your CV and professional profile.</span>
+                  <span class="slot-title block text-xs font-semibold text-neutral-800 tracking-wider uppercase transition-colors duration-300" id="lbl-cv-shore">CV Submission</span>
+                  <span class="block text-xs text-neutral-600 mt-0.5 truncate" id="desc-cv-shore">Upload your CV and professional profile.</span>
                 </div>
               </label>
 
               <!-- Slot 2: Cover Letter -->
-              <label class="careers-slot flex items-center gap-4 p-4 rounded-lg bg-[#1A1A1A] border border-neutral-800/80 cursor-pointer transition-all duration-300 relative overflow-hidden" id="label-cl-shore">
+              <label class="careers-slot flex items-center gap-4 p-4 rounded-lg bg-white border border-neutral-200/80 cursor-pointer transition-all duration-300 relative overflow-hidden" id="label-cl-shore">
                 <input type="file" id="cl-shore" class="sr-only" accept=".pdf,.doc,.docx">
                 <div class="slot-icon-circle w-9 h-9 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300" style="border-color: rgba(140, 102, 21, 0.3); color: #8C6615;" id="circle-cl-shore">
                   <svg class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -1611,13 +1608,13 @@
                   </svg>
                 </div>
                 <div class="flex-1 min-w-0 text-left">
-                  <span class="slot-title block text-xs font-semibold text-neutral-200 tracking-wider uppercase transition-colors duration-300" id="lbl-cl-shore">Cover Letter</span>
-                  <span class="block text-xs text-neutral-400 mt-0.5 truncate" id="desc-cl-shore">Attach your cover letter.</span>
+                  <span class="slot-title block text-xs font-semibold text-neutral-800 tracking-wider uppercase transition-colors duration-300" id="lbl-cl-shore">Cover Letter</span>
+                  <span class="block text-xs text-neutral-600 mt-0.5 truncate" id="desc-cl-shore">Attach your cover letter.</span>
                 </div>
               </label>
 
               <!-- Slot 3: Additional Documents -->
-              <label class="careers-slot flex items-center gap-4 p-4 rounded-lg bg-[#1A1A1A] border border-neutral-800/80 cursor-pointer transition-all duration-300 relative overflow-hidden" id="label-docs-shore">
+              <label class="careers-slot flex items-center gap-4 p-4 rounded-lg bg-white border border-neutral-200/80 cursor-pointer transition-all duration-300 relative overflow-hidden" id="label-docs-shore">
                 <input type="file" id="docs-shore" class="sr-only" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
                 <div class="slot-icon-circle w-9 h-9 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300" style="border-color: rgba(140, 102, 21, 0.3); color: #8C6615;" id="circle-docs-shore">
                   <svg class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -1625,8 +1622,8 @@
                   </svg>
                 </div>
                 <div class="flex-1 min-w-0 text-left">
-                  <span class="slot-title block text-xs font-semibold text-neutral-200 tracking-wider uppercase transition-colors duration-300" id="lbl-docs-shore">Additional Documents</span>
-                  <span class="block text-xs text-neutral-400 mt-0.5 truncate" id="desc-docs-shore">Provide any relevant credentials or documents.</span>
+                  <span class="slot-title block text-xs font-semibold text-neutral-800 tracking-wider uppercase transition-colors duration-300" id="lbl-docs-shore">Additional Documents</span>
+                  <span class="block text-xs text-neutral-600 mt-0.5 truncate" id="desc-docs-shore">Provide any relevant credentials or documents.</span>
                 </div>
               </label>
 
@@ -1634,7 +1631,7 @@
           </div>
 
           <!-- Card 2: Onboard -->
-          <div class="relative overflow-hidden bg-[#222222]/90 border border-neutral-800/80 rounded-lg p-8 flex flex-col items-center transition-all duration-500 group" data-reveal id="card-onboard">
+          <div class="relative overflow-hidden bg-neutral-50/90 border border-neutral-200/80 rounded-lg p-8 flex flex-col items-center transition-all duration-500 group" data-reveal id="card-onboard">
             <!-- Captain Cap SVG Icon -->
             <svg class="w-16 h-16 mb-4 transition-transform duration-500 group-hover:scale-105" style="color: #8C6615;" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M8 30c0-12 10-18 24-18s24 6 24 18c0 3-2 6-6 6H14c-4 0-6-3-6-6z" />
@@ -1645,7 +1642,7 @@
               <path d="M8.5 31.5h47" />
             </svg>
             
-            <h3 class="text-2xl font-serif text-white tracking-wide" id="title-onboard">Onboard</h3>
+            <h3 class="text-2xl font-serif text-neutral-900 tracking-wide" id="title-onboard">Onboard</h3>
             <span class="text-[11px] sm:text-xs font-bold tracking-[0.2em] uppercase mt-1.5" style="color: #8C6615;" id="kicker-onboard">Join Our Crew</span>
 
             <!-- Shining gold horizontal divider line -->
@@ -1658,7 +1655,7 @@
             <div class="w-full flex flex-col gap-3" id="slots-onboard">
               
               <!-- Slot 1: CV Submission -->
-              <label class="careers-slot flex items-center gap-4 p-4 rounded-lg bg-[#1A1A1A] border border-neutral-800/80 cursor-pointer transition-all duration-300 relative overflow-hidden" id="label-cv-onboard">
+              <label class="careers-slot flex items-center gap-4 p-4 rounded-lg bg-white border border-neutral-200/80 cursor-pointer transition-all duration-300 relative overflow-hidden" id="label-cv-onboard">
                 <input type="file" id="cv-onboard" class="sr-only" accept=".pdf,.doc,.docx">
                 <div class="slot-icon-circle w-9 h-9 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300" style="border-color: rgba(140, 102, 21, 0.3); color: #8C6615;" id="circle-cv-onboard">
                   <svg class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -1667,13 +1664,13 @@
                   </svg>
                 </div>
                 <div class="flex-1 min-w-0 text-left">
-                  <span class="slot-title block text-xs font-semibold text-neutral-200 tracking-wider uppercase transition-colors duration-300" id="lbl-cv-onboard">CV Submission</span>
-                  <span class="block text-xs text-neutral-400 mt-0.5 truncate" id="desc-cv-onboard">Upload your CV and professional profile.</span>
+                  <span class="slot-title block text-xs font-semibold text-neutral-800 tracking-wider uppercase transition-colors duration-300" id="lbl-cv-onboard">CV Submission</span>
+                  <span class="block text-xs text-neutral-600 mt-0.5 truncate" id="desc-cv-onboard">Upload your CV and professional profile.</span>
                 </div>
               </label>
 
               <!-- Slot 2: Cover Letter -->
-              <label class="careers-slot flex items-center gap-4 p-4 rounded-lg bg-[#1A1A1A] border border-neutral-800/80 cursor-pointer transition-all duration-300 relative overflow-hidden" id="label-cl-onboard">
+              <label class="careers-slot flex items-center gap-4 p-4 rounded-lg bg-white border border-neutral-200/80 cursor-pointer transition-all duration-300 relative overflow-hidden" id="label-cl-onboard">
                 <input type="file" id="cl-onboard" class="sr-only" accept=".pdf,.doc,.docx">
                 <div class="slot-icon-circle w-9 h-9 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300" style="border-color: rgba(140, 102, 21, 0.3); color: #8C6615;" id="circle-cl-onboard">
                   <svg class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -1684,13 +1681,13 @@
                   </svg>
                 </div>
                 <div class="flex-1 min-w-0 text-left">
-                  <span class="slot-title block text-xs font-semibold text-neutral-200 tracking-wider uppercase transition-colors duration-300" id="lbl-cl-onboard">Cover Letter</span>
-                  <span class="block text-xs text-neutral-400 mt-0.5 truncate" id="desc-cl-onboard">Attach your cover letter.</span>
+                  <span class="slot-title block text-xs font-semibold text-neutral-800 tracking-wider uppercase transition-colors duration-300" id="lbl-cl-onboard">Cover Letter</span>
+                  <span class="block text-xs text-neutral-600 mt-0.5 truncate" id="desc-cl-onboard">Attach your cover letter.</span>
                 </div>
               </label>
 
               <!-- Slot 3: Additional Documents -->
-              <label class="careers-slot flex items-center gap-4 p-4 rounded-lg bg-[#1A1A1A] border border-neutral-800/80 cursor-pointer transition-all duration-300 relative overflow-hidden" id="label-docs-onboard">
+              <label class="careers-slot flex items-center gap-4 p-4 rounded-lg bg-white border border-neutral-200/80 cursor-pointer transition-all duration-300 relative overflow-hidden" id="label-docs-onboard">
                 <input type="file" id="docs-onboard" class="sr-only" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
                 <div class="slot-icon-circle w-9 h-9 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300" style="border-color: rgba(140, 102, 21, 0.3); color: #8C6615;" id="circle-docs-onboard">
                   <svg class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -1698,8 +1695,8 @@
                   </svg>
                 </div>
                 <div class="flex-1 min-w-0 text-left">
-                  <span class="slot-title block text-xs font-semibold text-neutral-200 tracking-wider uppercase transition-colors duration-300" id="lbl-docs-onboard">Additional Documents</span>
-                  <span class="block text-xs text-neutral-400 mt-0.5 truncate" id="desc-docs-onboard">Provide any relevant credentials or documents.</span>
+                  <span class="slot-title block text-xs font-semibold text-neutral-800 tracking-wider uppercase transition-colors duration-300" id="lbl-docs-onboard">Additional Documents</span>
+                  <span class="block text-xs text-neutral-600 mt-0.5 truncate" id="desc-docs-onboard">Provide any relevant credentials or documents.</span>
                 </div>
               </label>
 
@@ -1709,10 +1706,10 @@
         </div>
 
         <!-- Full-Width Bottom Submission Banner -->
-        <div class="max-w-[1440px] mx-auto w-full border border-neutral-800/80 bg-[#222222]/90 rounded p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10 text-left transition-all duration-500" data-reveal id="careers-submit-banner">
+        <div class="max-w-[1440px] mx-auto w-full border border-neutral-200/80 bg-neutral-50/90 rounded p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10 text-left transition-all duration-500" data-reveal id="careers-submit-banner">
           
           <div class="flex items-center gap-4 shrink-0" id="careers-submit-title-group">
-            <div class="w-12 h-12 flex items-center justify-center bg-[#1A1A1A] border border-neutral-800 rounded-full" style="color: #8C6615;" id="careers-submit-icon">
+            <div class="w-12 h-12 flex items-center justify-center bg-white border border-neutral-200 rounded-full" style="color: #8C6615;" id="careers-submit-icon">
               <!-- Team Silhouette SVG -->
               <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
                 <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke-linecap="round" stroke-linejoin="round" />
@@ -1722,8 +1719,8 @@
               </svg>
             </div>
             <div class="flex flex-col text-left" id="careers-submit-headers">
-              <h4 class="text-xl font-serif font-medium text-white" id="careers-submit-main-title">Submit Your Application</h4>
-              <p class="text-neutral-400 font-sans text-xs sm:text-sm font-light mt-0.5" id="careers-submit-subtitle">Take the next step in your maritime career with Horton Navigation.</p>
+              <h4 class="text-xl font-serif font-medium text-neutral-900" id="careers-submit-main-title">Submit Your Application</h4>
+              <p class="text-neutral-600 font-sans text-xs sm:text-sm font-light mt-0.5" id="careers-submit-subtitle">Take the next step in your maritime career with Horton Navigation.</p>
             </div>
           </div>
           
@@ -1850,7 +1847,7 @@
 
           <!-- Right Column: Premium Form Card (7 Columns) -->
           <div class="lg:col-span-7" data-reveal id="contact-form-column">
-            <div class="bg-bg-secondary/70 border border-neutral-800/80 rounded-lg p-8 sm:p-10 w-full relative z-10 text-left" id="contact-form-card">
+            <div class="bg-[#0B0B0B]/70 border border-neutral-800/80 rounded-lg p-8 sm:p-10 w-full relative z-10 text-left" id="contact-form-card">
               
               <!-- Shimmer top line -->
               <div class="absolute top-0 left-0 w-full h-[1px] bg-neutral-800 transition-colors duration-500 z-10"></div>

@@ -612,9 +612,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const waves = [
       { yRatio: 0.25, speed: 0.003, amplitude: 45, frequency: 0.0035, phase: 0, color: 'rgba(140, 102, 21, 0.06)' },
-      { yRatio: 0.45, speed: 0.0018, amplitude: 65, frequency: 0.002, phase: Math.PI / 3, color: 'rgba(140, 102, 21, 0.05)' },
+      { yRatio: 0.45, speed: 0.0018, amplitude: 65, frequency: 0.002, phase: Math.PI / 3, color: 'rgba(0, 0, 0, 0.02)' },
       { yRatio: 0.65, speed: 0.0024, amplitude: 50, frequency: 0.004, phase: Math.PI * 2 / 3, color: 'rgba(140, 102, 21, 0.04)' },
-      { yRatio: 0.85, speed: 0.0012, amplitude: 35, frequency: 0.003, phase: Math.PI, color: 'rgba(140, 102, 21, 0.03)' }
+      { yRatio: 0.85, speed: 0.0012, amplitude: 35, frequency: 0.003, phase: Math.PI, color: 'rgba(0, 0, 0, 0.015)' }
     ];
     
     let time = 0;
