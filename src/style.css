@@ -4,8 +4,8 @@
   --color-gold: oklch(71.43% 0.123 82.9);
   --color-gold-light: oklch(82.93% 0.115 88.3);
   --color-gold-dark: oklch(53.25% 0.116 84.1);
-  --color-bg-primary: #121212;
-  --color-bg-secondary: #1A1A1A;
+  --color-bg-primary: #2b2b2b;
+  --color-bg-secondary: #232323;
   --color-border-gold: oklch(71.43% 0.123 82.9 / 25%);
   
   --font-serif: "Clash Display", sans-serif;
@@ -95,7 +95,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Luxury Brushed Metal Animated Border Line */
 .luxury-border-line {
-  background: linear-gradient(90deg, #C89B3C 0%, #050505 25%, #E6C36A 50%, #050505 75%, #C89B3C 100%);
+  background: linear-gradient(90deg, #C89B3C 0%, #2b2b2b 25%, #E6C36A 50%, #2b2b2b 75%, #C89B3C 100%);
   background-size: 300% 100%;
   animation: shimmer-border 25s linear infinite;
 }
@@ -109,22 +109,9 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Ship Blueprint Images Masking for smooth edge integration */
-.ship-mask-1 {
-  mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
-  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
-}
 
-.ship-mask-2 {
-  mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 55%, rgba(0, 0, 0, 0) 100%);
-  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 55%, rgba(0, 0, 0, 0) 100%);
-}
 
-/* Seamless blend for Section 03 Ship Blueprint Video */
-#blueprint-video-container {
-  mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 80%);
-  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 80%);
-}
+
 
 /* Luxury Soft Glow and Hover Effect on Icons */
 .value-column, .metric-item {
@@ -192,19 +179,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .card-bg-polygon {
-  fill: rgba(11, 11, 11, 0.35);
+  fill: rgba(52, 52, 50, 0.35);
   transition: fill 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .sloped-card:hover .card-bg-polygon {
-  fill: rgba(11, 11, 11, 0.65);
+  fill: rgba(52, 52, 50, 0.65);
 }
 
 /* Cargo Card Badge Circle Container */
 .cargo-badge-container {
   border-radius: 9999px;
   border: 1px solid rgba(200, 155, 60, 0.25);
-  background-color: rgba(5, 5, 5, 0.95);
+  background-color: rgba(62, 62, 62, 0.95);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -240,14 +227,14 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Cinematic Video Banner Gradient Overlays */
 .banner-left-gradient {
-  background: linear-gradient(to right, #050505 0%, rgba(5, 5, 5, 0.95) 25%, rgba(5, 5, 5, 0.4) 60%, transparent 100%);
+  background: linear-gradient(to right, #2b2b2b 0%, rgba(43, 43, 43, 0.95) 25%, rgba(43, 43, 43, 0.4) 60%, transparent 100%);
 }
 
 .banner-left-gradient::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, #050505 0%, transparent 18%);
+  background: linear-gradient(to top, #2b2b2b 0%, transparent 18%);
   pointer-events: none;
 }
 
@@ -365,7 +352,7 @@ textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,
 textarea:-webkit-autofill:focus {
   -webkit-text-fill-color: #FFFFFF !important;
-  -webkit-box-shadow: 0 0 0px 1000px #050505 inset !important;
+  -webkit-box-shadow: 0 0 0px 1000px #2b2b2b inset !important;
   transition: background-color 5000s ease-in-out 0s;
 }
 
@@ -518,7 +505,7 @@ textarea:-webkit-autofill:focus {
 
 /* Careers submit button */
 .careers-submit-btn {
-  background-color: #050505;
+  background-color: #2b2b2b;
   color: #FFFFFF;
   border: 1px solid var(--color-gold);
   padding: 0.75rem 1.5rem;
@@ -621,15 +608,11 @@ textarea:-webkit-autofill:focus {
 
 /* Seamless blend for Section 06 Compliance Video Map */
 @media (min-width: 1024px) {
-  #compliance-video-container,
   #compliance-bg-video,
-  #mission-bg-media,
   #mission-video {
     mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 85%);
     -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 85%);
   }
-
-
 }
 #compliance-video-container {
   will-change: transform, opacity;
@@ -728,23 +711,24 @@ textarea:-webkit-autofill:focus {
 
   /* Mobile hero content container */
   .mobile-hero-content-wrap {
-    padding-top: calc(78px + 42dvh) !important;
+    padding-top: calc(128px + 42dvh) !important;
   }
 
-  /* Mobile hero badge (SHIP MANAGEMENT COMPANY) */
-  .mobile-hero-badge {
+  /* Mobile-only hero badge centered vertically in the gap */
+  #hero-badge-mobile {
     position: absolute !important;
-    top: calc(-47px - 42dvh) !important;
+    top: 151px !important;
     left: 50% !important;
-    transform: translateX(-50%) !important;
-    margin-bottom: 0 !important;
+    transform: translate3d(-50%, -50%, 0) !important;
+    z-index: 30 !important;
+    pointer-events: none !important;
     white-space: nowrap !important;
   }
 
-  /* Mobile hero title (HORTON NAVIGATION S.A.) */
-  .mobile-hero-title {
+  /* Mobile-only hero title centered vertically in the video container */
+  #hero-title-mobile {
     position: absolute !important;
-    top: calc(-1 * 42dvh) !important;
+    top: 190px !important;
     left: 0 !important;
     right: 0 !important;
     height: 42dvh !important;
@@ -752,8 +736,8 @@ textarea:-webkit-autofill:focus {
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
-    margin-bottom: 0 !important;
     pointer-events: none !important;
+    z-index: 30 !important;
   }
 }
 
@@ -765,3 +749,35 @@ textarea:-webkit-autofill:focus {
 
 
 
+
+
+/* Premium hardware-accelerated animated gradient flow */
+.premium-gradient-flow {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: var(--color-bg-primary) !important;
+}
+
+.premium-gradient-flow::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 45% 45%, #343434 0%, #2b2b2b 55%, #1d1d1d 100%) !important;
+  z-index: -1;
+  pointer-events: none;
+  animation: premium-shimmer 40s linear infinite;
+  will-change: transform;
+}
+
+@keyframes premium-shimmer {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

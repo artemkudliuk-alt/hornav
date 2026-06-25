@@ -15,7 +15,7 @@
   <script type="module" src="/src/main.js"></script>
   <link rel="stylesheet" href="/src/style.css">
 </head>
-<body class="bg-[#050505] text-[#FFFFFF] selection:bg-gold/30 selection:text-white antialiased overflow-x-hidden min-h-[100dvh]">
+<body class="bg-[#2b2b2b] text-[#FFFFFF] selection:bg-gold/30 selection:text-white antialiased overflow-x-hidden min-h-[100dvh]">
 
   <!-- Premium Editorial Preloader -->
   <style>
@@ -32,7 +32,7 @@
     }
   </style>
 
-  <div id="preloader" style="position: fixed; inset: 0; z-index: 9999; background: #050505; display: flex; align-items: center; justify-content: center; transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.6s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, opacity;">
+  <div id="preloader" style="position: fixed; inset: 0; z-index: 9999; background: #2b2b2b; display: flex; align-items: center; justify-content: center; transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.6s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, opacity;">
     
     <!-- Technical Corner Captions (Space Mono) -->
     <!-- Top Left -->
@@ -298,7 +298,7 @@
   </header>
 
   <!-- Mobile Fullscreen Menu Overlay -->
-  <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#050505]/98 z-40 flex flex-col justify-center items-center opacity-0 pointer-events-none transition-all duration-500 backdrop-blur-md">
+  <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#2b2b2b]/98 z-40 flex flex-col justify-center items-center opacity-0 pointer-events-none transition-all duration-500 backdrop-blur-md">
     <!-- Menu Grid Pattern Background -->
     <div class="absolute inset-0 bg-[radial-gradient(rgba(200,155,60,0.02)_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none z-0"></div>
     
@@ -316,7 +316,7 @@
   <main class="w-full" id="content-root" style="opacity: 0; transform: scale(0.97) translate3d(0, 0, 0); transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1), transform 1.8s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, opacity;">
     
     <!-- SECTION 01 — HERO (Fullscreen background video) -->
-    <section class="relative min-h-[100dvh] flex flex-col justify-between px-8 lg:px-16 pt-24 pb-12 lg:pt-36 lg:pb-16 border-b border-border-gold overflow-hidden bg-[#050505]" id="hero-sec">
+    <section class="relative min-h-[100dvh] flex flex-col justify-between px-8 lg:px-16 pt-24 pb-12 lg:pt-36 lg:pb-16 border-b border-border-gold overflow-hidden bg-[#2b2b2b] premium-gradient-flow" id="hero-sec">
       
       <!-- Fullscreen Background Video & Gradient Overlays (Desktop Only) -->
       <div class="absolute inset-y-0 left-0 right-0 z-0 select-none pointer-events-none overflow-hidden hidden lg:block" id="hero-bg-media">
@@ -330,12 +330,12 @@
                id="hero-video">
         </video>
         <!-- 1. Solid black background behind text covering left of video -->
-        <div class="absolute inset-y-0 left-0 bg-[#050505] z-10" 
+        <div class="absolute inset-y-0 left-0 bg-[#2b2b2b] z-10" 
              style="right: calc(100% - (65% - 88.89vh));">
         </div>
         <!-- 2. Precise gradient transition starting at the exact video left edge -->
         <div class="absolute inset-y-0 z-10" 
-             style="left: calc(65% - 88.89vh); width: 80vh; background: linear-gradient(to right, #050505 0%, rgba(5, 5, 5, 0.98) 8%, rgba(5, 5, 5, 0.88) 25%, rgba(5, 5, 5, 0.55) 45%, rgba(5, 5, 5, 0.2) 70%, rgba(5, 5, 5, 0.05) 88%, transparent 100%);">
+             style="left: calc(65% - 88.89vh); width: 80vh; background: linear-gradient(to right, #2b2b2b 0%, rgba(43, 43, 43, 0.98) 8%, rgba(43, 43, 43, 0.88) 25%, rgba(43, 43, 43, 0.55) 45%, rgba(43, 43, 43, 0.2) 70%, rgba(43, 43, 43, 0.05) 88%, transparent 100%);">
         </div>
       </div>
 
@@ -350,12 +350,24 @@
                playsinline 
                id="hero-video-mobile">
         </video>
-        <!-- Radial fade overlay for side edges -->
-        <div class="absolute inset-0 z-10" style="background: radial-gradient(circle at center, rgba(5,5,5,0) 25%, rgba(5,5,5,0.4) 65%, #050505 100%);"></div>
-        <!-- Strong bottom gradient to fade the video seamlessly into black -->
-        <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#050505] via-[#050505]/70 to-transparent z-10"></div>
-        <!-- Top fade to merge with header -->
-        <div class="absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-[#050505] to-transparent z-10"></div>
+        <!-- Gold line at the top of the video -->
+        <div class="absolute top-0 left-0 right-0 h-[1px] bg-gold/35 z-20" id="hero-video-top-gold-line"></div>
+        <!-- Gold line at the bottom of the video -->
+        <div class="absolute bottom-0 left-0 right-0 h-[1px] bg-gold/35 z-20" id="hero-video-bottom-gold-line"></div>
+      </div>
+
+      <!-- Mobile-only badge, centered in the gap -->
+      <div class="lg:hidden" id="hero-badge-mobile">
+        <span class="text-xs font-semibold tracking-[0.3em] text-gold uppercase whitespace-nowrap">
+          Ship Management Company
+        </span>
+      </div>
+
+      <!-- Mobile-only title, centered inside the video -->
+      <div class="lg:hidden" id="hero-title-mobile">
+        <h1 class="text-[2.3rem] min-[375px]:text-[2.8rem] sm:text-7xl font-medium tracking-[0.01em] text-white leading-[1.0] uppercase text-center">
+          HORTON<br><span class="text-gold whitespace-nowrap">NAVIGATION S.A.</span>
+        </h1>
       </div>
 
       <!-- Content Grid (Constrained to master width) -->
@@ -363,11 +375,11 @@
         
         <!-- Deep Typography Left Column -->
         <div class="max-w-[90%] lg:max-w-3xl text-center lg:text-left flex flex-col items-center lg:items-start translate-y-0 lg:translate-y-[75px] mx-auto lg:mx-0 relative w-full" id="hero-text-col" data-reveal>
-          <span class="text-xs font-semibold tracking-[0.3em] text-gold uppercase mb-10 block mobile-hero-badge" id="hero-badge">
+          <span class="text-xs font-semibold tracking-[0.3em] text-gold uppercase mb-10 hidden lg:block mobile-hero-badge" id="hero-badge">
             Ship Management Company
           </span>
           
-          <h1 class="text-[2.3rem] min-[375px]:text-[2.8rem] sm:text-7xl lg:text-[5.5rem] font-medium tracking-[0.01em] text-white leading-[1.0] mb-10 uppercase text-center lg:text-left mobile-hero-title" id="hero-title">
+          <h1 class="text-[2.3rem] min-[375px]:text-[2.8rem] sm:text-7xl lg:text-[5.5rem] font-medium tracking-[0.01em] text-white leading-[1.0] mb-10 uppercase text-center lg:text-left hidden lg:block mobile-hero-title" id="hero-title">
             HORTON<br><span class="text-gold whitespace-nowrap">NAVIGATION S.A.</span>
           </h1>
           
@@ -456,11 +468,11 @@
       </div>
     </section>
 
-    <!-- SECTION 02 — MISSION / VISION / VALUES -->
-    <section id="company" class="relative min-h-[100dvh] flex flex-col justify-between px-8 lg:px-16 pt-20 pb-20 lg:pt-28 lg:pb-72 lg:pb-96 border-b border-border-gold overflow-hidden bg-[#0B0B0B]">
+    <!-- SECTION 02 — COMPANY (Narrative & Mission/Vision/Values) -->
+    <section id="company" class="relative min-h-[100dvh] flex flex-col justify-between px-8 lg:px-16 pt-20 pb-20 lg:pt-28 lg:pb-72 lg:pb-96 border-b border-border-gold overflow-hidden bg-[#2b2b2b] premium-gradient-flow">
       <!-- Background Video & Gradient Overlay -->
-      <div class="absolute select-none pointer-events-none z-0 block overflow-hidden inset-0 w-full h-full lg:top-24 lg:right-[5%] lg:bottom-auto lg:left-auto lg:w-[65%] lg:aspect-video lg:h-auto" id="mission-bg-media">
-        <video class="w-full h-full object-cover lg:object-contain lg:rounded will-change-transform opacity-40 lg:opacity-60" 
+      <div class="absolute select-none pointer-events-none z-0 block overflow-hidden inset-0 w-full h-full" id="mission-bg-media">
+        <video class="w-full h-full object-cover opacity-30 will-change-transform mix-blend-screen" style="mix-blend-mode: screen;" 
                src="/2_screen.mp4" 
                autoplay 
                muted 
@@ -468,18 +480,9 @@
                playsinline 
                id="mission-video">
         </video>
-        <!-- Dark dimming overlay for mobile only -->
-        <div class="absolute inset-0 bg-[#0B0B0B]/70 lg:hidden pointer-events-none z-10"></div>
-        <!-- Left edge smooth fade (desktop only) -->
-        <div class="absolute inset-y-0 left-0 w-[53%] bg-gradient-to-r from-[#0B0B0B] via-[#0B0B0B]/70 to-transparent z-10 hidden lg:block"></div>
-        <!-- Right edge smooth fade (desktop only) -->
-        <div class="absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-[#0B0B0B] to-transparent z-10 hidden lg:block"></div>
-        <!-- Top edge smooth fade (desktop only) -->
-        <div class="absolute inset-x-0 top-0 h-[8%] bg-gradient-to-b from-[#0B0B0B] to-transparent z-10 hidden lg:block"></div>
-        <!-- Bottom edge smooth fade (desktop only) -->
-        <div class="absolute inset-x-0 bottom-0 h-1/6 bg-gradient-to-t from-[#0B0B0B] to-transparent z-10 hidden lg:block"></div>
-        <!-- Vertical gradient to fade top/bottom for mobile readability and seamless blending -->
-        <div class="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-transparent to-[#0B0B0B] lg:hidden z-10 pointer-events-none"></div>
+        <!-- Gradient overlays to blend edges with adjacent sections -->
+        <div class="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#2b2b2b] to-transparent z-10"></div>
+        <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#2b2b2b] to-transparent z-10"></div>
       </div>
 
       <!-- Main Layout Container -->
@@ -509,7 +512,7 @@
           <!-- Card 1: Mission -->
           <div class="relative border border-border-gold bg-bg-primary p-8 pt-16 flex flex-col justify-between rounded hover:border-gold/50 transition-colors duration-300 min-h-[460px] group lg:col-span-1" id="card-mission">
             <!-- Round Gold Icon Badge -->
-            <div class="absolute top-[-32px] left-1/2 -translate-x-1/2 w-16 h-16 rounded-full border border-gold bg-[#0B0B0B] flex items-center justify-center shadow-lg shadow-gold/5 transition-transform duration-300 group-hover:scale-105" id="badge-mission">
+            <div class="absolute top-[-32px] left-1/2 -translate-x-1/2 w-16 h-16 rounded-full border border-gold bg-[#2b2b2b] flex items-center justify-center shadow-lg shadow-gold/5 transition-transform duration-300 group-hover:scale-105" id="badge-mission">
               <!-- Target SVG Icon -->
               <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="10" />
@@ -526,15 +529,15 @@
               </p>
             </div>
             <!-- Ship Blueprint Image Overlay -->
-            <div class="relative w-full h-24 mt-6 overflow-hidden rounded group-hover:scale-[1.02] transition-transform duration-500" id="ship1-wrapper">
-              <img src="/ship1_screen3.png" alt="Bulk Carrier Blueprint" class="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity duration-500 ship-mask-1">
+            <div class="relative w-full h-24 mt-6 overflow-hidden rounded border border-gold/25 bg-[#232323]/40 shadow-sm shadow-gold/5 transition-transform duration-500 group-hover:scale-[1.02]" id="ship1-wrapper">
+              <img src="/ship1_screen3.png" alt="Bulk Carrier Blueprint" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500">
             </div>
           </div>
 
           <!-- Card 2: Vision -->
           <div class="relative border border-border-gold bg-bg-primary p-8 pt-16 flex flex-col justify-between rounded hover:border-gold/50 transition-colors duration-300 min-h-[460px] group lg:col-span-1" id="card-vision">
             <!-- Round Gold Icon Badge -->
-            <div class="absolute top-[-32px] left-1/2 -translate-x-1/2 w-16 h-16 rounded-full border border-gold bg-[#0B0B0B] flex items-center justify-center shadow-lg shadow-gold/5 transition-transform duration-300 group-hover:scale-105" id="badge-vision">
+            <div class="absolute top-[-32px] left-1/2 -translate-x-1/2 w-16 h-16 rounded-full border border-gold bg-[#2b2b2b] flex items-center justify-center shadow-lg shadow-gold/5 transition-transform duration-300 group-hover:scale-105" id="badge-vision">
               <!-- Binoculars SVG Icon -->
               <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
                 <path d="M5 7a3 3 0 013-3h1a3 3 0 013 3v10a3 3 0 01-3 3H8a3 3 0 01-3-3V7z M12 7a3 3 0 013-3h1a3 3 0 013 3v10a3 3 0 01-3 3h-1a3 3 0 01-3-3V7z M9 10h6" />
@@ -548,15 +551,15 @@
               </p>
             </div>
             <!-- Ship Blueprint Image Overlay -->
-            <div class="relative w-full h-24 mt-6 overflow-hidden rounded group-hover:scale-[1.02] transition-transform duration-500" id="ship2-wrapper">
-              <img src="/ship2_screen3.png" alt="General Cargo Blueprint" class="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity duration-500 ship-mask-2">
+            <div class="relative w-full h-24 mt-6 overflow-hidden rounded border border-gold/25 bg-[#232323]/40 shadow-sm shadow-gold/5 transition-transform duration-500 group-hover:scale-[1.02]" id="ship2-wrapper">
+              <img src="/ship2_screen3.png" alt="General Cargo Blueprint" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500">
             </div>
           </div>
 
           <!-- Card 3: Values (Spans 2 columns on desktop) -->
           <div class="relative border border-border-gold bg-bg-primary p-8 pt-16 rounded hover:border-gold/50 transition-colors duration-300 min-h-[460px] group lg:col-span-2" id="card-values">
             <!-- Round Gold Icon Badge -->
-            <div class="absolute top-[-32px] left-1/2 -translate-x-1/2 w-16 h-16 rounded-full border border-gold bg-[#0B0B0B] flex items-center justify-center shadow-lg shadow-gold/5 transition-transform duration-300 group-hover:scale-105" id="badge-values">
+            <div class="absolute top-[-32px] left-1/2 -translate-x-1/2 w-16 h-16 rounded-full border border-gold bg-[#2b2b2b] flex items-center justify-center shadow-lg shadow-gold/5 transition-transform duration-300 group-hover:scale-105" id="badge-values">
               <!-- Diamond SVG Icon -->
               <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
                 <path d="M6 3h12l4 6-10 12L2 9z M2 9h20 M12 3v18 M6 3l6 6 M18 3l-6 6" />
@@ -649,7 +652,7 @@
     </section>
 
     <!-- SECTION 03 — CARGO SPECIALIZATION -->
-    <section id="cargo" class="relative min-h-[100dvh] flex flex-col justify-center px-8 lg:px-16 pt-20 pb-24 lg:pt-28 lg:pb-44 lg:pb-60 border-b border-border-gold overflow-hidden bg-bg-primary">
+    <section id="cargo" class="relative min-h-[100dvh] flex flex-col justify-center px-8 lg:px-16 pt-20 pb-24 lg:pt-28 lg:pb-44 lg:pb-60 border-b border-border-gold overflow-hidden bg-bg-primary premium-gradient-flow">
       
 
 
@@ -670,9 +673,9 @@
             Commercial and technical management of Bulk Carriers and General Cargo vessels ranging from <span class="text-gold font-semibold">6,000–8,000 DWT</span>.
           </p>
           
-          <!-- Integrated Blueprint Video (Seamlessly blended, object-contain to prevent vertical cropping, no dark cover masks) -->
-          <div class="relative w-full aspect-video overflow-hidden rounded bg-transparent select-none pointer-events-none" id="blueprint-video-container">
-            <video class="w-full h-full object-contain opacity-95 rounded" 
+          <!-- Integrated Blueprint Video (Seamlessly blended inside a premium gold frame, rounded-lg, subtle glow) -->
+          <div class="relative w-full aspect-video rounded-lg bg-[#2b2b2b]/40 border border-gold/30 overflow-hidden select-none pointer-events-none shadow-lg shadow-gold/5" id="blueprint-video-container">
+            <video class="w-full h-full object-cover opacity-95 mix-blend-screen" style="mix-blend-mode: screen;" 
                    src="/3_screen.mp4" 
                    autoplay 
                    muted 
@@ -1062,7 +1065,7 @@
     </section>
 
     <!-- SECTION 05 — FLEET -->
-    <section id="fleet" class="relative min-h-[100dvh] flex flex-col justify-center px-8 lg:px-16 pt-20 pb-24 lg:pt-28 lg:pb-44 lg:pb-60 border-b border-border-gold overflow-hidden bg-bg-primary">
+    <section id="fleet" class="relative min-h-[100dvh] flex flex-col justify-center px-8 lg:px-16 pt-20 pb-24 lg:pt-28 lg:pb-44 lg:pb-60 border-b border-border-gold overflow-hidden bg-bg-primary premium-gradient-flow">
       
       <!-- Decorative diagonal lines with pulsing dots -->
       <!-- Top-left diagonal line -->
@@ -1202,7 +1205,7 @@
       <div class="max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-6 relative z-10 mb-16" id="fleet-cards-grid">
         
         <!-- Card 1: Bulk Carrier -->
-        <div class="bg-[#0B0B0B]/70 border border-neutral-800/80 hover:border-gold/30 rounded p-6 flex flex-col gap-6 transition-all duration-500 hover:-translate-y-1 group" data-reveal id="f-card-agribulk">
+        <div class="bg-bg-secondary/70 border border-neutral-800/80 hover:border-gold/30 rounded p-6 flex flex-col gap-6 transition-all duration-500 hover:-translate-y-1 group" data-reveal id="f-card-agribulk">
           <!-- Image Container (100% width, top aligned) -->
           <div class="w-full h-64 overflow-hidden rounded relative" id="f-card-img-container-1">
             <img src="/ship1_screen5.png" alt="Horton Navigation S.A. Bulk Carrier at port" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" id="f-card-img-1">
@@ -1253,7 +1256,7 @@
         </div>
 
         <!-- Card 2: General Cargo Vessel -->
-        <div class="bg-[#0B0B0B]/70 border border-neutral-800/80 hover:border-gold/30 rounded p-6 flex flex-col gap-6 transition-all duration-500 hover:-translate-y-1 group" data-reveal id="f-card-general">
+        <div class="bg-bg-secondary/70 border border-neutral-800/80 hover:border-gold/30 rounded p-6 flex flex-col gap-6 transition-all duration-500 hover:-translate-y-1 group" data-reveal id="f-card-general">
           <!-- Image Container (100% width, top aligned) -->
           <div class="w-full h-64 overflow-hidden rounded relative" id="f-card-img-container-2">
             <img src="/ship2_screen5.png" alt="Horton Navigation S.A. General Cargo Vessel at port" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" id="f-card-img-2">
@@ -1306,7 +1309,7 @@
       </div>
 
       <!-- Fleet Expansion Strategy Footer -->
-      <div class="max-w-[1440px] mx-auto w-full border border-neutral-800 bg-[#0B0B0B]/80 rounded p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10 text-left" data-reveal id="fleet-strategy-footer">
+      <div class="max-w-[1440px] mx-auto w-full border border-neutral-800 bg-[#2b2b2b]/80 rounded p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10 text-left" data-reveal id="fleet-strategy-footer">
         
         <div class="flex items-center gap-4 shrink-0" id="f-strat-title-group">
           <div class="w-12 h-12 flex items-center justify-center text-gold bg-black/40 border border-neutral-800 rounded-full" id="f-strat-icon">
@@ -1333,7 +1336,7 @@
     </section>
 
     <!-- SECTION 06 — MEMBERSHIPS & COMPLIANCE -->
-    <section id="compliance" class="relative min-h-[100dvh] flex flex-col justify-center px-8 lg:px-16 pt-20 pb-24 lg:pt-32 lg:pb-56 lg:pb-72 border-b border-border-gold overflow-hidden bg-bg-secondary">
+    <section id="compliance" class="relative min-h-[100dvh] flex flex-col justify-center px-8 lg:px-16 pt-20 pb-24 lg:pt-32 lg:pb-56 lg:pb-72 border-b border-border-gold overflow-hidden bg-bg-primary premium-gradient-flow">
       
       <!-- Subtle Golden Dot Grid Pattern -->
       <div class="absolute inset-0 bg-[radial-gradient(rgba(200,155,60,0.035)_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none z-0"></div>
@@ -1354,8 +1357,8 @@
       </svg>
 
       <!-- Background Video in Compliance Section -->
-      <div class="absolute select-none pointer-events-none z-0 block overflow-hidden inset-0 w-full h-full lg:top-28 lg:right-[-6%] lg:bottom-auto lg:left-auto lg:w-[72%] lg:aspect-video lg:h-auto" id="compliance-video-container">
-        <video class="w-full h-full object-cover lg:object-contain lg:rounded will-change-transform opacity-35 lg:opacity-55" 
+      <div class="absolute select-none pointer-events-none z-0 block overflow-hidden inset-0 w-full h-full" id="compliance-video-container">
+        <video class="w-full h-full object-cover opacity-30 will-change-transform mix-blend-screen" style="mix-blend-mode: screen;" 
                src="/4_screen.mp4" 
                autoplay 
                muted 
@@ -1363,18 +1366,9 @@
                playsinline 
                id="compliance-bg-video">
         </video>
-        <!-- Dark dimming overlay for mobile only -->
-        <div class="absolute inset-0 bg-[#0B0B0B]/70 lg:hidden pointer-events-none z-10"></div>
-        <!-- Left edge smooth fade (desktop only) -->
-        <div class="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-bg-secondary via-bg-secondary/70 to-transparent z-10 hidden lg:block"></div>
-        <!-- Right edge smooth fade (desktop only) -->
-        <div class="absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-bg-secondary to-transparent z-10 hidden lg:block"></div>
-        <!-- Top edge smooth fade (desktop only) -->
-        <div class="absolute inset-x-0 top-0 h-[8%] bg-gradient-to-b from-bg-secondary to-transparent z-10 hidden lg:block"></div>
-        <!-- Bottom edge smooth fade (desktop only) -->
-        <div class="absolute inset-x-0 bottom-0 h-1/6 bg-gradient-to-t from-bg-secondary to-transparent z-10 hidden lg:block"></div>
-        <!-- Vertical gradient to fade top/bottom for mobile readability and seamless blending -->
-        <div class="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-transparent to-[#0B0B0B] lg:hidden z-10 pointer-events-none"></div>
+        <!-- Gradient overlays to blend edges with adjacent sections -->
+        <div class="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#2b2b2b] to-transparent z-10"></div>
+        <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#2b2b2b] to-transparent z-10"></div>
       </div>
 
 
@@ -1683,9 +1677,9 @@
         <path d="M 0 90 Q 400 60, 800 80 T 1440 70" fill="none" stroke="url(#gold-grad)" stroke-width="1" opacity="0.15" />
         <defs>
           <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#050505" />
+            <stop offset="0%" stop-color="#2b2b2b" />
             <stop offset="50%" stop-color="#C89B3C" />
-            <stop offset="100%" stop-color="#050505" />
+            <stop offset="100%" stop-color="#2b2b2b" />
           </linearGradient>
         </defs>
       </svg>
@@ -1907,11 +1901,11 @@
     </section>
 
     <!-- SECTION 08 — CONTACT & FOOTER -->
-    <section id="contact" class="relative min-h-[100dvh] flex flex-col justify-between px-8 lg:px-16 pt-20 pb-6 lg:pb-12 lg:pt-28 overflow-hidden bg-bg-primary">
+    <section id="contact" class="relative min-h-[100dvh] flex flex-col justify-between px-8 lg:px-16 pt-20 pb-6 lg:pb-12 lg:pt-28 overflow-hidden bg-bg-primary premium-gradient-flow">
       
       <!-- Fullscreen Background Video & Gradient Overlays -->
       <div class="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden" id="contact-bg-media">
-        <video class="absolute left-0 w-full h-[120%] top-[-10%] object-cover opacity-35 will-change-transform" 
+        <video class="absolute left-0 w-full h-[120%] top-[-10%] object-cover opacity-35 will-change-transform mix-blend-screen" style="mix-blend-mode: screen;" 
                src="/4_screen.mp4" 
                autoplay 
                muted 
@@ -2020,7 +2014,7 @@
 
           <!-- Right Column: Premium Form Card (7 Columns) -->
           <div class="lg:col-span-7" data-reveal id="contact-form-column">
-            <div class="bg-[#0B0B0B]/70 border border-neutral-800/80 rounded-lg p-8 sm:p-10 w-full relative z-10 text-left" id="contact-form-card">
+            <div class="bg-bg-secondary/70 border border-neutral-800/80 rounded-lg p-8 sm:p-10 w-full relative z-10 text-left" id="contact-form-card">
               
               <!-- Shimmer top line -->
               <div class="absolute top-0 left-0 w-full h-[1px] bg-neutral-800 transition-colors duration-500 z-10"></div>
