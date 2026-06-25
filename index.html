@@ -18,36 +18,106 @@
 <body class="bg-[#050505] text-[#FFFFFF] selection:bg-gold/30 selection:text-white antialiased overflow-x-hidden min-h-[100dvh]">
 
   <!-- Premium Editorial Preloader -->
-  <div id="preloader" style="position: fixed; inset: 0; z-index: 9999; background: #050505; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s ease; will-change: transform, opacity;">
-    <div style="display: flex; flex-direction: column; align-items: center; gap: 2rem; max-width: 280px; width: 100%; text-align: center;">
-      <!-- Logo Emblem -->
-      <div id="preloader-logo" style="width: 80px; height: 80px; opacity: 0; transform: scale(0.9) translate3d(0, 10px, 0); transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);">
-        <img src="/Hornav_logo.png" alt="Horton Navigation" style="width: 100%; height: auto;">
-      </div>
-      <!-- Brand Text -->
-      <div id="preloader-text" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; opacity: 0; transform: translate3d(0, 10px, 0); transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;">
-        <span style="font-family: 'Clash Display', sans-serif; font-size: 1.85rem; font-weight: 600; color: #FFFFFF; letter-spacing: 0.1em; text-transform: uppercase;">HORTON</span>
-        <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.75rem; font-weight: 700; color: oklch(71.43% 0.123 82.9); letter-spacing: 0.35em; text-transform: uppercase; margin-top: 0.25rem;">NAVIGATION S.A.</span>
-      </div>
-      <!-- Progress Bar & Percentage -->
-      <div style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; margin-top: 1rem; opacity: 0; transform: translate3d(0, 10px, 0); transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s;" id="preloader-progress-group">
-        <span id="preloader-percent" style="font-family: 'Space Mono', monospace; font-size: 1.25rem; font-weight: 700; color: oklch(71.43% 0.123 82.9); letter-spacing: 0.05em;">0%</span>
-        <div style="width: 100%; height: 1px; background: rgba(255, 255, 255, 0.08); position: relative; overflow: hidden; border-radius: 999px;">
-          <div id="preloader-bar" style="position: absolute; top: 0; left: 0; height: 100%; width: 0%; background: oklch(71.43% 0.123 82.9); transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);"></div>
+  <style>
+    @keyframes radar-sweep {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes pulse-soft {
+      0%, 100% { opacity: 0.35; }
+      50% { opacity: 0.75; }
+    }
+    .preloader-pulse {
+      animation: pulse-soft 2s infinite ease-in-out;
+    }
+  </style>
+
+  <div id="preloader" style="position: fixed; inset: 0; z-index: 9999; background: #050505; display: flex; align-items: center; justify-content: center; transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.6s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, opacity;">
+    
+    <!-- Technical Corner Captions (Space Mono) -->
+    <!-- Top Left -->
+    <div class="preloader-pulse" style="position: absolute; top: 2.5rem; left: 2.5rem; font-family: 'Space Mono', monospace; font-size: 0.65rem; color: rgba(200, 155, 60, 0.4); letter-spacing: 0.15em; line-height: 1.6; text-transform: uppercase;">
+      SYS // HORTON.NAV.V3.1<br>
+      LOC // ATHENS - PIRAEUS
+    </div>
+    
+    <!-- Top Right -->
+    <div style="position: absolute; top: 2.5rem; right: 2.5rem; font-family: 'Space Mono', monospace; font-size: 0.65rem; color: rgba(200, 155, 60, 0.4); letter-spacing: 0.15em; line-height: 1.6; text-align: right; text-transform: uppercase;">
+      NET // STREAM CONNECTED<br>
+      REF // 37.9838° N, 23.7275° E
+    </div>
+
+    <!-- Bottom Left -->
+    <div style="position: absolute; bottom: 2.5rem; left: 2.5rem; font-family: 'Space Mono', monospace; font-size: 0.65rem; color: rgba(200, 155, 60, 0.4); letter-spacing: 0.15em; line-height: 1.6; text-transform: uppercase;">
+      TELEMETRY // DUAL-BAND<br>
+      FEED // VESSEL_FEED_ACTIVE
+    </div>
+
+    <!-- Bottom Right (Dynamic Status Stream) -->
+    <div style="position: absolute; bottom: 2.5rem; right: 2.5rem; font-family: 'Space Mono', monospace; font-size: 0.65rem; color: rgba(200, 155, 60, 0.6); letter-spacing: 0.15em; line-height: 1.6; text-align: right; text-transform: uppercase;" id="preloader-sys-status">
+      STATUS // INITIALIZING<br>
+      VALUE // 000%
+    </div>
+
+    <!-- Center Radar & Logo Emblem -->
+    <div style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 3rem; transform: translate3d(0, 0, 0);">
+      
+      <!-- Compass/Radar Circle -->
+      <div style="position: relative; width: 180px; height: 180px; display: flex; align-items: center; justify-content: center;">
+        
+        <!-- Radar Sweep Line -->
+        <div style="position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(from 0deg, rgba(200, 155, 60, 0.08) 0deg, transparent 120deg, transparent 360deg); animation: radar-sweep 6s linear infinite; pointer-events: none;"></div>
+        
+        <!-- SVG Compass/Radar Rings -->
+        <svg width="180" height="180" viewBox="0 0 180 180" style="position: absolute; transform: rotate(-90deg);">
+          <circle cx="90" cy="90" r="80" fill="none" stroke="rgba(255, 255, 255, 0.02)" stroke-width="1" />
+          <circle cx="90" cy="90" r="76" fill="none" stroke="rgba(200, 155, 60, 0.04)" stroke-width="1.5" />
+          <circle cx="90" cy="90" r="68" fill="none" stroke="rgba(200, 155, 60, 0.08)" stroke-width="1" stroke-dasharray="2 6" />
+          <circle cx="90" cy="90" r="60" fill="none" stroke="rgba(255, 255, 255, 0.015)" stroke-width="1" />
+          
+          <!-- Golden Progress Ring -->
+          <circle id="preloader-progress-ring" cx="90" cy="90" r="76" fill="none" 
+                  stroke="oklch(71.43% 0.123 82.9)" stroke-width="1.5" 
+                  stroke-dasharray="477.52" stroke-dashoffset="477.52" 
+                  stroke-linecap="round"
+                  style="transition: stroke-dashoffset 0.5s cubic-bezier(0.16, 1, 0.3, 1); will-change: stroke-dashoffset;" />
+        </svg>
+
+        <!-- Logo Emblem -->
+        <div id="preloader-logo" style="position: relative; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; opacity: 0; transform: scale(0.9) translate3d(0, 0, 0); transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);">
+          <img src="/Hornav_logo.png" alt="Horton Navigation" style="width: 100%; height: auto; filter: drop-shadow(0 0 12px rgba(200, 155, 60, 0.1));">
         </div>
+
+        <!-- Compass cardinal labels -->
+        <span style="position: absolute; top: 2px; left: 50%; transform: translateX(-50%); font-family: 'Space Mono', monospace; font-size: 8px; color: rgba(200, 155, 60, 0.6); font-weight: 700; letter-spacing: 0;">N</span>
+        <span style="position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font-family: 'Space Mono', monospace; font-size: 8px; color: rgba(200, 155, 60, 0.4); font-weight: 700; letter-spacing: 0;">E</span>
+        <span style="position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); font-family: 'Space Mono', monospace; font-size: 8px; color: rgba(200, 155, 60, 0.4); font-weight: 700; letter-spacing: 0;">S</span>
+        <span style="position: absolute; left: 4px; top: 50%; transform: translateY(-50%); font-family: 'Space Mono', monospace; font-size: 8px; color: rgba(200, 155, 60, 0.4); font-weight: 700; letter-spacing: 0;">W</span>
+      </div>
+
+      <!-- Typography Brand block -->
+      <div id="preloader-text" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; opacity: 0; transform: translate3d(0, 15px, 0); transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.15s; text-align: center;">
+        <span style="font-family: 'Clash Display', sans-serif; font-size: 1.75rem; font-weight: 500; color: #FFFFFF; letter-spacing: 0.2em; text-transform: uppercase;">HORTON</span>
+        <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.7rem; font-weight: 700; color: oklch(71.43% 0.123 82.9); letter-spacing: 0.4em; text-transform: uppercase; margin-top: 0.15rem;">NAVIGATION S.A.</span>
       </div>
     </div>
   </div>
+
   <script>
     (function() {
       const preloader = document.getElementById('preloader');
       const preloaderLogo = document.getElementById('preloader-logo');
       const preloaderText = document.getElementById('preloader-text');
-      const preloaderProgressGroup = document.getElementById('preloader-progress-group');
-      const preloaderPercent = document.getElementById('preloader-percent');
-      const preloaderBar = document.getElementById('preloader-bar');
+      const preloaderProgressRing = document.getElementById('preloader-progress-ring');
+      const preloaderSysStatus = document.getElementById('preloader-sys-status');
+      
+      const circumference = 477.52; // 2 * Math.PI * 76
 
-      if (preloader && preloaderPercent && preloaderBar) {
+      if (preloader && preloaderProgressRing) {
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
         document.body.style.overflow = 'hidden';
 
         requestAnimationFrame(() => {
@@ -59,43 +129,90 @@
             preloaderText.style.opacity = '1';
             preloaderText.style.transform = 'translate3d(0, 0, 0)';
           }
-          if (preloaderProgressGroup) {
-            preloaderProgressGroup.style.opacity = '1';
-            preloaderProgressGroup.style.transform = 'translate3d(0, 0, 0)';
-          }
         });
 
         let progress = 0;
         let loadComplete = false;
 
+        const getStatusText = (prog) => {
+          if (prog < 25) return 'INITIALIZING';
+          if (prog < 50) return 'FETCHING TELEMETRY';
+          if (prog < 75) return 'SYNCING SATELLITE';
+          if (prog < 100) return 'FEED ACTIVE';
+          return 'SYSTEMS READY';
+        };
+
         const updateProgress = () => {
-          if (loadComplete) {
-            progress = 100;
+          let increment = 0;
+          if (progress < 30) {
+            increment = Math.random() * 8 + 4;
+          } else if (progress < 75) {
+            increment = Math.random() * 4 + 2;
+          } else if (progress < 90) {
+            increment = Math.random() * 1.5 + 0.5;
           } else {
-            if (progress < 40) {
-              progress += Math.random() * 8 + 2;
-            } else if (progress < 70) {
-              progress += Math.random() * 4 + 1;
-            } else if (progress < 90) {
-              progress += Math.random() * 1.5 + 0.2;
+            if (loadComplete) {
+              increment = Math.random() * 5 + 3;
+            } else {
+              increment = Math.random() * 0.4 + 0.1;
             }
           }
 
-          progress = Math.min(progress, 100);
-          preloaderBar.style.width = progress + '%';
-          preloaderPercent.textContent = Math.floor(progress) + '%';
+          progress = Math.min(progress + increment, 100);
+          
+          // Update SVG progress ring
+          const offset = circumference - (progress / 100) * circumference;
+          preloaderProgressRing.style.strokeDashoffset = offset;
+          
+          // Update tech status text
+          if (preloaderSysStatus) {
+            const formattedPercent = Math.floor(progress).toString().padStart(3, '0') + '%';
+            preloaderSysStatus.innerHTML = `STATUS // ${getStatusText(progress)}<br>VALUE // ${formattedPercent}`;
+          }
 
           if (progress < 100) {
-            setTimeout(updateProgress, Math.random() * 80 + 50);
+            setTimeout(updateProgress, Math.random() * 30 + 20);
           } else {
             setTimeout(() => {
-              preloader.style.transform = 'translate3d(0, -100%, 0)';
+              // Preloader Exit: Scale up and fade out
+              preloader.style.transform = 'scale(1.05) translate3d(0, 0, 0)';
+              preloader.style.opacity = '0';
+              preloader.style.pointerEvents = 'none';
+              
+              // Trigger page content entrance
+              document.body.classList.add('page-loaded');
+              window.scrollTo(0, 0);
+              
+              const contentRoot = document.getElementById('content-root');
+              const headerEl = document.querySelector('header');
+              
+              if (contentRoot) {
+                contentRoot.style.opacity = '1';
+                contentRoot.style.transform = 'scale(1) translate3d(0, 0, 0)';
+                contentRoot.addEventListener('transitionend', () => {
+                  contentRoot.style.transform = '';
+                  contentRoot.style.willChange = '';
+                }, { once: true });
+              }
+              
+              if (headerEl) {
+                headerEl.style.opacity = '1';
+                headerEl.style.transform = 'scale(1) translate3d(0, 0, 0)';
+                headerEl.addEventListener('transitionend', () => {
+                  headerEl.style.transform = '';
+                  headerEl.style.willChange = '';
+                }, { once: true });
+              }
+
+              // Dispatch loaded event to main.js to run scroll reveals
+              window.dispatchEvent(new CustomEvent('site-loaded'));
+
               document.body.style.overflow = '';
               
               preloader.addEventListener('transitionend', () => {
                 preloader.remove();
               }, { once: true });
-            }, 300);
+            }, 400);
           }
         };
 
@@ -109,7 +226,7 @@
   </script>
 
   <!-- Header Navigation -->
-  <header class="w-full h-28 bg-bg-primary fixed top-0 left-0 z-50">
+  <header class="w-full h-28 bg-bg-primary fixed top-0 left-0 z-50" style="opacity: 0; transform: scale(0.97) translate3d(0, 0, 0); transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1), transform 1.8s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, opacity;">
     <nav class="max-w-[1440px] mx-auto px-8 lg:px-16 h-28 flex items-center justify-between" id="main-nav">
       <!-- Logo Container -->
       <a href="#" class="flex items-center gap-4 group" id="logo-link">
@@ -163,7 +280,7 @@
   </div>
 
   <!-- Main Content Wrapper -->
-  <main class="w-full" id="content-root">
+  <main class="w-full" id="content-root" style="opacity: 0; transform: scale(0.97) translate3d(0, 0, 0); transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1), transform 1.8s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, opacity;">
     
     <!-- SECTION 01 — HERO (Fullscreen background video) -->
     <section class="relative min-h-[100dvh] flex flex-col justify-between px-8 lg:px-16 pt-24 pb-12 lg:pt-36 lg:pb-16 border-b border-border-gold overflow-hidden bg-[#050505]" id="hero-sec">

@@ -25,9 +25,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, observerOptions);
 
-  document.querySelectorAll('[data-reveal]').forEach(el => {
-    revealObserver.observe(el);
-  });
+  const initReveal = () => {
+    document.querySelectorAll('[data-reveal]').forEach(el => {
+      revealObserver.observe(el);
+    });
+  };
+
+  if (document.body.classList.contains('page-loaded') || !document.getElementById('preloader')) {
+    initReveal();
+  } else {
+    window.addEventListener('site-loaded', initReveal, { once: true });
+  }
+
 
   // 2. Magnetic Hover Effect
   document.querySelectorAll('[data-magnetic]').forEach(element => {
