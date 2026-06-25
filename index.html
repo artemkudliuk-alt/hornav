@@ -133,12 +133,42 @@
 
         let progress = 0;
         let loadComplete = false;
+        let videoReady = false;
+
+        // Detect active video element (desktop vs mobile breakpoint)
+        const isDesktop = window.innerWidth >= 1024;
+        const targetVideo = isDesktop 
+          ? document.getElementById('hero-video') 
+          : document.getElementById('hero-video-mobile');
+
+        // Check if video is already buffered/ready to play
+        if (targetVideo) {
+          if (targetVideo.readyState >= 3) {
+            videoReady = true;
+          } else {
+            const onVideoReady = () => {
+              videoReady = true;
+              targetVideo.removeEventListener('canplay', onVideoReady);
+              targetVideo.removeEventListener('loadeddata', onVideoReady);
+            };
+            targetVideo.addEventListener('canplay', onVideoReady);
+            targetVideo.addEventListener('loadeddata', onVideoReady);
+          }
+        } else {
+          videoReady = true;
+        }
+
+        // Fail-safe fallback: Force videoReady = true after 4.5 seconds
+        setTimeout(() => {
+          videoReady = true;
+        }, 4500);
 
         const getStatusText = (prog) => {
           if (prog < 25) return 'INITIALIZING';
           if (prog < 50) return 'FETCHING TELEMETRY';
           if (prog < 75) return 'SYNCING SATELLITE';
-          if (prog < 100) return 'FEED ACTIVE';
+          if (prog < 95) return 'FEED ACTIVE';
+          if (prog < 100) return (loadComplete && videoReady) ? 'BUFFER READY' : 'BUFFERING STREAM';
           return 'SYSTEMS READY';
         };
 
@@ -150,11 +180,14 @@
             increment = Math.random() * 4 + 2;
           } else if (progress < 90) {
             increment = Math.random() * 1.5 + 0.5;
+          } else if (progress < 95) {
+            increment = Math.random() * 0.8 + 0.4;
           } else {
-            if (loadComplete) {
-              increment = Math.random() * 5 + 3;
+            if (loadComplete && videoReady) {
+              increment = Math.random() * 2 + 1;
             } else {
-              increment = Math.random() * 0.4 + 0.1;
+              // Exceedingly slow crawl to wait for buffer without complete freeze
+              increment = progress < 98 ? 0.05 : 0.001;
             }
           }
 
