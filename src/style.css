@@ -716,6 +716,45 @@ textarea:-webkit-autofill:focus {
   #hero-video-mobile {
     object-position: 82% center !important;
   }
+
+  /* Mobile background video container */
+  .mobile-hero-video-wrap {
+    position: absolute !important;
+    top: 190px !important;
+    height: 42dvh !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+
+  /* Mobile hero content container */
+  .mobile-hero-content-wrap {
+    padding-top: calc(78px + 42dvh) !important;
+  }
+
+  /* Mobile hero badge (SHIP MANAGEMENT COMPANY) */
+  .mobile-hero-badge {
+    position: absolute !important;
+    top: calc(-47px - 42dvh) !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    margin-bottom: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  /* Mobile hero title (HORTON NAVIGATION S.A.) */
+  .mobile-hero-title {
+    position: absolute !important;
+    top: calc(-1 * 42dvh) !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 42dvh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 0 !important;
+    pointer-events: none !important;
+  }
 }
 
 

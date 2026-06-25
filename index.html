@@ -340,8 +340,9 @@
       </div>
 
       <!-- Fullscreen Background Video & Gradient Overlays (Mobile Only) -->
-      <div class="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden lg:hidden" id="hero-bg-media-mobile">
-        <video class="absolute inset-0 w-full h-full object-cover opacity-30" 
+      <div class="absolute inset-x-0 top-32 h-[35dvh] z-0 select-none pointer-events-none overflow-hidden lg:hidden mobile-hero-video-wrap" id="hero-bg-media-mobile">
+        <video class="absolute inset-0 w-full h-full object-cover" 
+               style="opacity: 0.65; object-position: 80% center;"
                src="/Banner_screen.mp4" 
                autoplay 
                muted 
@@ -349,38 +350,40 @@
                playsinline 
                id="hero-video-mobile">
         </video>
-        <!-- Vertical gradient to fade bottom area into solid black for mobile readability -->
-        <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/75 to-transparent z-10"></div>
-        <!-- Bottom gradient to merge seamlessly into subsequent sections -->
-        <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent z-10"></div>
+        <!-- Radial fade overlay for side edges -->
+        <div class="absolute inset-0 z-10" style="background: radial-gradient(circle at center, rgba(5,5,5,0) 25%, rgba(5,5,5,0.4) 65%, #050505 100%);"></div>
+        <!-- Strong bottom gradient to fade the video seamlessly into black -->
+        <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#050505] via-[#050505]/70 to-transparent z-10"></div>
+        <!-- Top fade to merge with header -->
+        <div class="absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-[#050505] to-transparent z-10"></div>
       </div>
 
       <!-- Content Grid (Constrained to master width) -->
-      <div class="max-w-[1440px] mx-auto w-full flex-grow flex items-center relative z-10" id="hero-content-container">
+      <div class="max-w-[1440px] mx-auto w-full flex-grow flex items-start pt-[25dvh] lg:items-center lg:pt-0 relative z-10 mobile-hero-content-wrap" id="hero-content-container">
         
         <!-- Deep Typography Left Column -->
-        <div class="max-w-3xl text-left translate-y-[75px]" id="hero-text-col" data-reveal>
-          <span class="text-xs font-semibold tracking-[0.3em] text-gold uppercase mb-10 block" id="hero-badge">
+        <div class="max-w-[90%] lg:max-w-3xl text-center lg:text-left flex flex-col items-center lg:items-start translate-y-0 lg:translate-y-[75px] mx-auto lg:mx-0 relative w-full" id="hero-text-col" data-reveal>
+          <span class="text-xs font-semibold tracking-[0.3em] text-gold uppercase mb-10 block mobile-hero-badge" id="hero-badge">
             Ship Management Company
           </span>
           
-          <h1 class="text-6xl sm:text-7xl lg:text-[5.5rem] font-medium tracking-[0.01em] text-white leading-[1.0] mb-10 uppercase" id="hero-title">
-            HORTON<br><span class="text-gold">NAVIGATION S.A.</span>
+          <h1 class="text-[2.3rem] min-[375px]:text-[2.8rem] sm:text-7xl lg:text-[5.5rem] font-medium tracking-[0.01em] text-white leading-[1.0] mb-10 uppercase text-center lg:text-left mobile-hero-title" id="hero-title">
+            HORTON<br><span class="text-gold whitespace-nowrap">NAVIGATION S.A.</span>
           </h1>
           
-          <h2 class="text-2xl sm:text-3xl lg:text-[2.25rem] font-light text-neutral-200 tracking-[0.02em] leading-[1.2] mb-12 font-sans" id="hero-subtitle">
+          <h2 class="text-[1.3rem] sm:text-3xl lg:text-[2.25rem] font-light text-neutral-200 tracking-[0.02em] leading-[1.2] mb-12 font-sans text-center lg:text-left" id="hero-subtitle">
             Commercial & Technical Ship Management
           </h2>
           
           <!-- Paragraph Container -->
           <div class="flex flex-row items-center justify-between gap-6 lg:block mb-10 lg:mb-16" id="hero-desc-group">
-            <p class="text-sm sm:text-base lg:text-lg text-neutral-400 font-light leading-relaxed w-[60%] lg:w-auto lg:max-w-xl" id="hero-desc">
+            <p class="text-sm sm:text-base lg:text-lg text-neutral-400 font-light leading-relaxed text-center lg:text-left w-full lg:max-w-xl" id="hero-desc">
               Efficient seaborne transportation of dry-bulk cargoes through professional commercial and technical vessel management across international maritime markets.
             </p>
           </div>
 
           <!-- Buttons -->
-          <div class="flex flex-col sm:flex-row items-center gap-4" id="hero-buttons">
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 w-full" id="hero-buttons">
             <a href="#fleet" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-gold hover:bg-gold-light text-neutral-950 font-semibold tracking-widest text-xs uppercase transition-colors" data-magnetic id="btn-explore-fleet">
               Explore Fleet &rarr;
             </a>

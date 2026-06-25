@@ -29,6 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[data-reveal]').forEach(el => {
       revealObserver.observe(el);
     });
+    
+    // Immediately reveal hero typography to ensure it is visible above the fold on load
+    const heroTextCol = document.getElementById('hero-text-col');
+    if (heroTextCol) {
+      heroTextCol.classList.add('reveal-visible');
+    }
   };
 
   if (document.body.classList.contains('page-loaded') || !document.getElementById('preloader')) {
