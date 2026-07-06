@@ -510,7 +510,7 @@ document.addEventListener('DOMContentLoaded', () => {
               </div>
               <h3 class="text-2xl font-serif text-gold mb-3">Inquiry Sent</h3>
               <p class="text-xs text-neutral-300 font-light max-w-sm leading-relaxed">
-                Thank you for contacting Horton Navigation S.A. Your inquiry has been routed to our Piraeus office, and a representative will follow up with you within 24 business hours.
+                Thank you for contacting Danamira Shipping Ltd. Your inquiry has been routed to our Piraeus office, and a representative will follow up with you within 24 business hours.
               </p>
             </div>
           `;
