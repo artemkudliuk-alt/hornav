@@ -1104,6 +1104,16 @@ textarea:-webkit-autofill:focus {
   transform: translateY(0) !important;
 }
 
+/* Compliance & Membership Logo Hover Gold Glow */
+.compliance-logo-img {
+  filter: brightness(0) invert(1) !important;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.group:hover .compliance-logo-img {
+  filter: brightness(0) saturate(100%) invert(70%) sepia(45%) saturate(850%) hue-rotate(5deg) brightness(98%) contrast(92%) drop-shadow(0 0 10px rgba(200, 155, 60, 0.7)) !important;
+}
+
 
 
 
