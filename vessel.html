@@ -186,45 +186,73 @@
           </div>
         </div>
 
-        <!-- CARD 3: 4 KEY METRICS (ICONS UNDER PHOTOS) -->
+        <!-- CARD 3: 4 KEY METRICS (PRECISION TELEMETRY STRIP) -->
         <div class="bg-[#17171a] border border-white/[0.08] p-4 sm:p-5 shadow-2xl">
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
-            <div class="vessel-kpi-box">
-              <div class="vessel-kpi-circle">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M2 17l2 3h16l2-3M4 14l3-8h10l3 8M12 4v8M9 9h6" /></svg>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            
+            <!-- Metric 1: Deadweight -->
+            <div class="vessel-kpi-box group">
+              <div class="vessel-kpi-top">
+                <span class="vessel-kpi-label">Deadweight</span>
+                <div class="vessel-kpi-icon">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+                    <circle cx="12" cy="5" r="3"/>
+                    <line x1="12" y1="8" x2="12" y2="21"/>
+                    <path d="M5 12H19"/>
+                    <path d="M5 12a7 7 0 0 0 14 0"/>
+                  </svg>
+                </div>
               </div>
-              <div class="flex flex-col min-w-0">
-                <span class="text-[11px] uppercase tracking-wider text-neutral-400 font-sans font-medium">Deadweight</span>
-                <span id="spec-dwt" class="text-sm sm:text-base font-bold text-white mt-1 leading-tight font-sans tracking-tight">6,408 MT</span>
-              </div>
+              <span id="spec-dwt" class="vessel-kpi-val">6,408 MT</span>
             </div>
-            <div class="vessel-kpi-box">
-              <div class="vessel-kpi-circle">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
+
+            <!-- Metric 2: Grain Capacity -->
+            <div class="vessel-kpi-box group">
+              <div class="vessel-kpi-top">
+                <span class="vessel-kpi-label">Grain Capacity</span>
+                <div class="vessel-kpi-icon">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+                    <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
+                    <path d="m3.3 7 8.7 5 8.7-5"/>
+                    <path d="M12 12v10"/>
+                  </svg>
+                </div>
               </div>
-              <div class="flex flex-col min-w-0">
-                <span class="text-[11px] uppercase tracking-wider text-neutral-400 font-sans font-medium">Grain Capacity</span>
-                <span id="spec-grain" class="text-sm sm:text-base font-bold text-white mt-1 leading-tight font-sans tracking-tight">315,000 cu.ft</span>
-              </div>
+              <span id="spec-grain" class="vessel-kpi-val">315,000 cu.ft</span>
             </div>
-            <div class="vessel-kpi-box">
-              <div class="vessel-kpi-circle">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 20h16M7 20V5l8 4v11M15 9l4 2v4a2 2 0 11-4 0" /></svg>
+
+            <!-- Metric 3: Deck Gear -->
+            <div class="vessel-kpi-box group">
+              <div class="vessel-kpi-top">
+                <span class="vessel-kpi-label">Deck Gear</span>
+                <div class="vessel-kpi-icon">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+                    <line x1="3" y1="21" x2="21" y2="21"/>
+                    <line x1="6" y1="21" x2="6" y2="8"/>
+                    <polygon points="6 8 20 4 20 7 6 11"/>
+                    <line x1="18" y1="7" x2="18" y2="15"/>
+                    <circle cx="18" cy="17" r="2"/>
+                  </svg>
+                </div>
               </div>
-              <div class="flex flex-col min-w-0">
-                <span class="text-[11px] uppercase tracking-wider text-neutral-400 font-sans font-medium">Deck Gear</span>
-                <span id="spec-cranes" class="text-sm sm:text-base font-bold text-white mt-1 leading-tight font-sans tracking-tight">2 x 30 MT</span>
-              </div>
+              <span id="spec-cranes" class="vessel-kpi-val">2 x 30 MT Cranes</span>
             </div>
-            <div class="vessel-kpi-box">
-              <div class="vessel-kpi-circle">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 18h18M3 14h18M3 10h18M3 6h18M12 3v18" /></svg>
+
+            <!-- Metric 4: Summer Draft -->
+            <div class="vessel-kpi-box group">
+              <div class="vessel-kpi-top">
+                <span class="vessel-kpi-label">Summer Draft</span>
+                <div class="vessel-kpi-icon">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="6"/>
+                    <line x1="2" y1="12" x2="22" y2="12"/>
+                    <line x1="12" y1="3" x2="12" y2="21"/>
+                  </svg>
+                </div>
               </div>
-              <div class="flex flex-col min-w-0">
-                <span class="text-[11px] uppercase tracking-wider text-neutral-400 font-sans font-medium">Summer Draft</span>
-                <span id="spec-draft" class="text-sm sm:text-base font-bold text-white mt-1 leading-tight font-sans tracking-tight">6.85 m</span>
-              </div>
+              <span id="spec-draft" class="vessel-kpi-val">6.85 m</span>
             </div>
+
           </div>
         </div>
 

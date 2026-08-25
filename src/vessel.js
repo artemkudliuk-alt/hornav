@@ -208,24 +208,66 @@ vesselLayoutStyles.textContent = `
   }
   .vessel-kpi-box {
     display: flex !important;
-    align-items: center !important;
-    gap: 0.875rem !important;
-    padding: 0.875rem 1rem !important;
-    background-color: #111113 !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    padding: 1rem 1.125rem !important;
+    background-color: #141416 !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     border-radius: 0 !important;
     box-sizing: border-box !important;
+    transition: all 0.25s ease !important;
+    position: relative !important;
   }
-  .vessel-kpi-circle {
-    display: grid !important;
-    place-items: center !important;
-    width: 44px !important;
-    height: 44px !important;
-    border-radius: 0 !important;
-    background-color: rgba(200, 155, 60, 0.1) !important;
-    border: 1px solid rgba(200, 155, 60, 0.35) !important;
-    flex-shrink: 0 !important;
+  .vessel-kpi-box:hover {
+    border-color: rgba(200, 155, 60, 0.4) !important;
+    background-color: #17171a !important;
+  }
+  .vessel-kpi-top {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+  }
+  .vessel-kpi-label {
+    font-family: var(--font-sans), "Plus Jakarta Sans", sans-serif !important;
+    font-size: 0.6875rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.12em !important;
+    color: #a3a3a3 !important;
+    transition: color 0.2s ease !important;
+  }
+  .vessel-kpi-box:hover .vessel-kpi-label {
     color: #c89b3c !important;
+  }
+  .vessel-kpi-icon {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: rgba(200, 155, 60, 0.8) !important;
+    transition: transform 0.2s ease, color 0.2s ease !important;
+  }
+  .vessel-kpi-box:hover .vessel-kpi-icon {
+    color: #e6c36a !important;
+    transform: scale(1.08) !important;
+  }
+  .vessel-kpi-val {
+    font-family: var(--font-sans), "Plus Jakarta Sans", sans-serif !important;
+    font-size: 0.9375rem !important;
+    font-weight: 500 !important;
+    color: #ffffff !important;
+    margin-top: 0.5rem !important;
+    line-height: 1.25 !important;
+    letter-spacing: -0.01em !important;
+    font-variant-numeric: tabular-nums !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+  @media (min-width: 640px) {
+    .vessel-kpi-val {
+      font-size: 1.0625rem !important;
+    }
   }
   .vessel-main-content {
     margin-top: 4.5rem !important;
