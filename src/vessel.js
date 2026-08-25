@@ -524,12 +524,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       <!-- Row 1: INFORMATION + HOLDS/BALLAST/LOADS -->
       <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
         
-        <!-- CARD 1: ① INFORMATION -->
+        <!-- CARD 1: INFORMATION -->
         <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl flex flex-col justify-between">
           <div>
-            <div class="flex items-center gap-2.5 pb-3 mb-3 border-b border-border-gold/30">
-              <span class="w-2 h-2 bg-gold shrink-0"></span>
-              <h3 class="text-sm font-serif font-semibold tracking-wider uppercase text-gold">① Information</h3>
+            <div class="pb-3 mb-3 border-b border-border-gold/30">
+              <h3 class="text-sm font-serif font-semibold tracking-wider uppercase text-gold">Information</h3>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-1 pt-1">
               ${(s.information || []).map(item => `
@@ -542,13 +541,12 @@ document.addEventListener('DOMContentLoaded', async () => {
           </div>
         </div>
 
-        <!-- CARD 2: ③ HOLDS & HATCHES + ④ BALLAST & STRENGTH + ⑧ PERMISSIBLE LOADS -->
+        <!-- CARD 2: HOLDS & HATCHES + BALLAST & STRENGTH + PERMISSIBLE LOADS -->
         <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-5">
           <!-- Holds & Hatches -->
           <div>
-            <div class="flex items-center gap-2 pb-2 mb-2 border-b border-white/10">
-              <span class="w-1.5 h-1.5 bg-gold shrink-0"></span>
-              <h4 class="text-xs sm:text-sm font-serif font-semibold tracking-wider uppercase text-gold">③ Holds &amp; Hatches</h4>
+            <div class="pb-2 mb-2 border-b border-white/10">
+              <h4 class="text-xs sm:text-sm font-serif font-semibold tracking-wider uppercase text-gold">Holds &amp; Hatches</h4>
             </div>
             <div class="space-y-0.5">
               ${(s.holdsHatches || []).map(item => `
@@ -562,9 +560,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
           <!-- Ballast & Strength -->
           <div class="pt-2">
-            <div class="flex items-center gap-2 pb-2 mb-2 border-b border-white/10">
-              <span class="w-1.5 h-1.5 bg-gold shrink-0"></span>
-              <h4 class="text-xs sm:text-sm font-serif font-semibold tracking-wider uppercase text-gold">④ Ballast &amp; Strength</h4>
+            <div class="pb-2 mb-2 border-b border-white/10">
+              <h4 class="text-xs sm:text-sm font-serif font-semibold tracking-wider uppercase text-gold">Ballast &amp; Strength</h4>
             </div>
             <div class="space-y-0.5">
               ${(s.ballastStrength || []).map(item => `
@@ -578,9 +575,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
           <!-- Permissible Loads -->
           <div class="pt-2">
-            <div class="flex items-center gap-2 pb-2 mb-2 border-b border-white/10">
-              <span class="w-1.5 h-1.5 bg-gold shrink-0"></span>
-              <h4 class="text-xs sm:text-sm font-serif font-semibold tracking-wider uppercase text-gold">⑧ Permissible Loads</h4>
+            <div class="pb-2 mb-2 border-b border-white/10">
+              <h4 class="text-xs sm:text-sm font-serif font-semibold tracking-wider uppercase text-gold">Permissible Loads</h4>
             </div>
             <div class="space-y-0.5">
               ${(s.permissibleLoads || []).map(item => `
@@ -598,11 +594,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       <!-- Row 2: PARTICULARS + SPEED/TANKS/ENGINE -->
       <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
         
-        <!-- CARD 3: ② PARTICULARS -->
+        <!-- CARD 3: PARTICULARS -->
         <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-3">
-          <div class="flex items-center gap-2.5 pb-3 border-b border-border-gold/30">
-            <span class="w-2 h-2 bg-gold shrink-0"></span>
-            <h3 class="text-sm font-serif font-semibold tracking-wider uppercase text-gold">② Particulars &amp; Capacities</h3>
+          <div class="pb-3 border-b border-border-gold/30">
+            <h3 class="text-sm font-serif font-semibold tracking-wider uppercase text-gold">Particulars &amp; Capacities</h3>
           </div>
           <div class="space-y-0.5">
             ${(s.particulars || []).map(item => `
@@ -614,14 +609,13 @@ document.addEventListener('DOMContentLoaded', async () => {
           </div>
         </div>
 
-        <!-- CARD 4: ⑤ SPEED & CONSUMPTION + ⑥ TANK CAPACITIES + ⑦ MAIN ENGINE -->
+        <!-- CARD 4: SPEED & CONSUMPTION + TANK CAPACITIES + MAIN ENGINE -->
         <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-5">
           
           <!-- Speed & Consumption -->
           <div>
-            <div class="flex items-center gap-2 pb-2 mb-2 border-b border-white/10">
-              <span class="w-1.5 h-1.5 bg-gold shrink-0"></span>
-              <h4 class="text-xs sm:text-sm font-serif font-semibold tracking-wider uppercase text-gold">⑤ Speed &amp; Consumption</h4>
+            <div class="pb-2 mb-2 border-b border-white/10">
+              <h4 class="text-xs sm:text-sm font-serif font-semibold tracking-wider uppercase text-gold">Speed &amp; Consumption</h4>
             </div>
             <div class="space-y-0.5">
               ${(s.speedConsumption || []).map(item => `
@@ -635,9 +629,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
           <!-- Tank Capacities -->
           <div class="pt-2">
-            <div class="flex items-center gap-2 pb-2 mb-2 border-b border-white/10">
-              <span class="w-1.5 h-1.5 bg-gold shrink-0"></span>
-              <h4 class="text-xs sm:text-sm font-serif font-semibold tracking-wider uppercase text-gold">⑥ Tank Capacities (100%)</h4>
+            <div class="pb-2 mb-2 border-b border-white/10">
+              <h4 class="text-xs sm:text-sm font-serif font-semibold tracking-wider uppercase text-gold">Tank Capacities (100%)</h4>
             </div>
             <div class="space-y-0.5">
               ${(s.tankCapacities || []).map(item => `
@@ -651,9 +644,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
           <!-- Main Engine & Auxiliary Machinery -->
           <div class="pt-2">
-            <div class="flex items-center gap-2 pb-2 mb-2 border-b border-white/10">
-              <span class="w-1.5 h-1.5 bg-gold shrink-0"></span>
-              <h4 class="text-xs sm:text-sm font-serif font-semibold tracking-wider uppercase text-gold">⑦ Main Engine &amp; Machinery</h4>
+            <div class="pb-2 mb-2 border-b border-white/10">
+              <h4 class="text-xs sm:text-sm font-serif font-semibold tracking-wider uppercase text-gold">Main Engine &amp; Machinery</h4>
             </div>
             <div class="space-y-0.5">
               ${(s.mainEngine || []).map(item => `
