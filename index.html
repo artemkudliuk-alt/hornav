@@ -276,12 +276,12 @@
         <a href="#company" class="hover:text-gold transition-colors duration-200" id="link-company">Company</a>
         <a href="/fleet.html" class="hover:text-gold transition-colors duration-200" id="link-fleet">Managed Fleet</a>
         <a href="#careers" class="hover:text-gold transition-colors duration-200" id="link-careers">Careers</a>
-        <a href="#contact" class="hover:text-gold transition-colors duration-200" id="link-contact">Contact</a>
+        <a href="/contacts.html" class="hover:text-gold transition-colors duration-200" id="link-contact">Contact</a>
       </div>
 
       <!-- Action Button (Right) & Hamburger -->
       <div class="flex items-center gap-4" id="nav-actions">
-        <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] border border-gold hover:bg-gold hover:text-neutral-950 transition-colors duration-300 text-white hidden md:inline-flex rounded-none" data-magnetic id="btn-get-in-touch">
+        <a href="/contacts.html" class="inline-flex items-center gap-2 px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] border border-gold hover:bg-gold hover:text-neutral-950 transition-colors duration-300 text-white hidden md:inline-flex rounded-none" data-magnetic id="btn-get-in-touch">
           Get In Touch &rarr;
         </a>
         
@@ -308,7 +308,7 @@
       <a href="#company" class="hover:text-gold transition-colors duration-300" id="m-link-company">Company</a>
       <a href="/fleet.html" class="hover:text-gold transition-colors duration-300" id="m-link-fleet">Managed Fleet</a>
       <a href="#careers" class="hover:text-gold transition-colors duration-300" id="m-link-careers">Careers</a>
-      <a href="#contact" class="hover:text-gold transition-colors duration-300" id="m-link-contact">Contact</a>
+      <a href="/contacts.html" class="hover:text-gold transition-colors duration-300" id="m-link-contact">Contact</a>
     </div>
   </div>
 
@@ -1404,7 +1404,7 @@
           We are actively pursuing newbuilding projects and strategic acquisitions to expand our fleet capacity and enhance our service capabilities.
         </p>
         
-        <a href="#contact" class="px-6 py-3 border border-gold text-xs font-semibold tracking-wider text-white uppercase hover:bg-gold hover:text-neutral-950 transition-all duration-300 shrink-0 select-none" data-magnetic id="f-strat-btn">
+        <a href="/contacts.html" class="px-6 py-3 border border-gold text-xs font-semibold tracking-wider text-white uppercase hover:bg-gold hover:text-neutral-950 transition-all duration-300 shrink-0 select-none" data-magnetic id="f-strat-btn">
           Learn More &rarr;
         </a>
         
@@ -1977,282 +1977,77 @@
       </div>
     </section>
 
-    <!-- SECTION 08 — CONTACT & FOOTER -->
-    <section id="contact" class="relative min-h-[100dvh] flex flex-col justify-between px-8 lg:px-16 pt-20 pb-6 lg:pb-12 lg:pt-28 overflow-hidden bg-bg-primary premium-gradient-flow">
+    <!-- CORPORATE LUXURY FOOTER (Unified Across All Pages) -->
+    <footer class="max-w-[1520px] mx-auto w-full mt-20 pt-16 pb-12 border-t border-white/10 relative z-30 bg-[#141416] overflow-hidden rounded-none min-h-[380px] flex flex-col justify-between" id="footer-container">
       
-      <!-- Fullscreen Background Video & Gradient Overlays -->
-      <div class="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden" id="contact-bg-media">
-        <video class="absolute left-0 w-full h-[120%] top-[-10%] object-cover opacity-35 will-change-transform mix-blend-screen" style="mix-blend-mode: screen;" 
-               src="/4_screen.mp4" 
+      <!-- Background Video of the Ship (Aligned Right, Faded to Black on Left) -->
+      <div class="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden" id="footer-bg-media">
+        <video class="absolute right-0 top-0 w-full h-full object-cover opacity-60 will-change-transform" 
+               style="object-position: right center;"
+               src="/1_screen.mp4" 
                autoplay 
                muted 
                loop 
                playsinline 
-               id="contact-video">
+               id="footer-bg-video">
         </video>
-        <!-- Dark overlays to ensure perfect legibility of contact info and form -->
-        <div class="absolute inset-0 bg-bg-primary/85 z-10"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-bg-primary via-bg-primary/50 to-bg-primary z-10"></div>
+        <!-- Horizontal dark gradient to ensure text readability on the left -->
+        <div class="absolute inset-0 bg-gradient-to-r from-[#0b0b0d] via-[#0b0b0d]/90 via-[#0b0b0d]/60 to-transparent z-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-[#141416]/40 via-transparent to-[#141416] z-10"></div>
       </div>
 
-      <!-- Faint dot grid texture background -->
-      <div class="absolute inset-0 bg-[radial-gradient(rgba(200,155,60,0.02)_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none z-0"></div>
-
-      <!-- Interactive Ocean Currents Canvas Particles -->
-      <canvas id="contact-currents" class="absolute inset-0 pointer-events-none z-0 opacity-40"></canvas>
-
-      <!-- Faint decorative gold waves sweeping in from sides -->
-      <svg class="absolute right-0 bottom-0 w-80 h-96 pointer-events-none select-none z-0 opacity-20" viewBox="0 0 200 400" fill="none">
-        <path d="M200,400 C100,300 150,200 50,100 C0,50 100,0 200,0" stroke="#C89B3C" stroke-width="0.5" stroke-dasharray="2,4" />
-        <path d="M200,400 C120,320 170,220 70,120 C20,70 120,0 200,0" stroke="#C89B3C" stroke-width="0.3" opacity="0.6" />
-        <!-- Pulsing gold dots on curves -->
-        <circle cx="95" cy="150" r="1.5" fill="#E6C36A" class="animate-pulse" />
-        <circle cx="135" cy="270" r="1" fill="#E6C36A" />
-      </svg>
-
-      <div class="max-w-[1440px] mx-auto w-full relative z-10 flex-1 flex flex-col justify-center">
+      <!-- Foreground Content (Left info layout) -->
+      <div class="relative z-20 w-full flex flex-col md:flex-row items-stretch justify-between gap-12 px-6 sm:px-10 lg:px-16" id="footer-grid-content">
         
-        <!-- Grid: Contact Info & Details (Left) + Form (Right) -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center w-full text-left" id="contact-split-grid">
+        <!-- Left: Big Brand Info & Contacts -->
+        <div class="flex flex-col gap-6 max-w-xl text-left" id="footer-info-left">
+          <div class="flex items-center gap-3" id="footer-brand-header">
+            <img src="/Danamira_logo_gold.png" alt="Danamira Shipping Ltd Emblem" class="h-12 w-auto">
+            <div class="flex flex-col text-left leading-none">
+              <span class="text-lg font-extrabold tracking-[0.1em] text-white uppercase font-sans">Danamira</span>
+              <span class="text-[10px] tracking-[0.15em] text-gold uppercase mt-0.5 font-sans">Shipping Ltd</span>
+            </div>
+          </div>
           
-          <!-- Left Column: Contact details (5 Columns) -->
-          <div class="lg:col-span-5 flex flex-col" data-reveal id="contact-info-column">
-            
-            <span class="text-xs font-bold tracking-[0.25em] text-gold uppercase block text-left" id="contact-kicker">Get In Touch</span>
-            
-            <h2 class="text-4xl sm:text-5xl lg:text-[3.25rem] font-medium tracking-[0.01em] text-white uppercase font-serif mt-4 leading-[1.15]" id="contact-title">
-              Let's Discuss Your<br><span class="text-gold font-serif italic">Maritime Requirements</span>
-            </h2>
-            
-            <p class="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed mt-5 max-w-md text-left" id="contact-desc">
-              Our team is ready to support your business with reliable solutions and professional service.
-            </p>
+          <p class="text-sm text-neutral-400 font-light leading-relaxed max-w-md" id="footer-brand-desc">
+            Professional commercial and technical ship management under the Greek maritime framework, operating bulk carriers and general cargo vessels with total compliance and reliability.
+          </p>
 
-            <!-- Text Details List -->
-            <div class="flex flex-col gap-5 mt-8 font-sans text-xs" id="contact-details-list">
-              
-              <!-- Address -->
-              <div class="flex gap-3.5 items-start" id="item-addr">
-                <div class="w-8 h-8 rounded-full border border-gold/30 flex items-center justify-center text-gold shrink-0 bg-black/40 mt-0.5" id="icon-addr">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                    <circle cx="12" cy="10" r="3" />
-                  </svg>
-                </div>
-                <div class="text-left">
-                  <span class="block text-[9px] font-bold tracking-widest text-gold uppercase leading-none">Greek Branch Office</span>
-                  <span class="block text-white font-medium mt-1 text-xs">Zeppou 33, 166 75 Glyfada, Greece</span>
-                  <span class="block text-[11px] text-neutral-400 font-light mt-0.5">Operating under Greek Law 89/1967</span>
-                </div>
-              </div>
-
-              <!-- Phones -->
-              <div class="flex gap-3.5 items-start" id="item-phone">
-                <div class="w-8 h-8 rounded-full border border-gold/30 flex items-center justify-center text-gold shrink-0 bg-black/40 mt-0.5" id="icon-phone">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 013.82 2H7a2 2 0 012 1.72 12.06 12.06 0 00.57 2.22 2 2 0 01-.45 2.11L7.82 9.18a16 16 0 006 6l1.58-1.58a2 2 0 012.11-.45 12.06 12.06 0 002.22.57 2 2 0 011.72 2z" />
-                  </svg>
-                </div>
-                <div class="text-left">
-                  <span class="block text-[9px] font-bold tracking-widest text-gold uppercase leading-none">Phone Lines</span>
-                  <div class="flex flex-wrap gap-x-4 gap-y-1 mt-1">
-                    <a href="tel:+302113456550" class="text-white hover:text-gold transition-colors duration-200 font-mono text-xs">+30 211 34 56 550</a>
-                    <a href="tel:+302113456555" class="text-white hover:text-gold transition-colors duration-200 font-mono text-xs">+30 211 34 56 555</a>
-                  </div>
-                  <span class="block text-[10px] text-neutral-400 mt-0.5">Hours: Mon – Fri 10:00 – 18:00 (EET)</span>
-                </div>
-              </div>
-
-              <!-- Departmental Directory (5 Departments) -->
-              <div class="pt-3 border-t border-white/5 flex flex-col gap-2">
-                <span class="text-[9px] font-bold tracking-widest text-gold uppercase">Direct Departments</span>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
-                  <div class="p-2 rounded bg-black/30 border border-white/5">
-                    <span class="text-neutral-400 block text-[9px] uppercase">Chartering</span>
-                    <a href="mailto:chartering@danamira-shipping.com" class="text-white hover:text-gold transition-colors text-[10px] font-mono">chartering@danamira-shipping.com</a>
-                  </div>
-                  <div class="p-2 rounded bg-black/30 border border-white/5">
-                    <span class="text-neutral-400 block text-[9px] uppercase">Operations</span>
-                    <a href="mailto:operations@danamira-shipping.com" class="text-white hover:text-gold transition-colors text-[10px] font-mono">operations@danamira-shipping.com</a>
-                  </div>
-                  <div class="p-2 rounded bg-black/30 border border-white/5">
-                    <span class="text-neutral-400 block text-[9px] uppercase">Technical & Purchasing</span>
-                    <a href="mailto:tech@danamira-shipping.com" class="text-white hover:text-gold transition-colors text-[10px] font-mono">tech@danamira-shipping.com</a>
-                  </div>
-                  <div class="p-2 rounded bg-black/30 border border-white/5">
-                    <span class="text-neutral-400 block text-[9px] uppercase">Marine Safety & ISM</span>
-                    <a href="mailto:ism@danamira-shipping.com" class="text-white hover:text-gold transition-colors text-[10px] font-mono">ism@danamira-shipping.com</a>
-                  </div>
-                  <div class="p-2 rounded bg-black/30 border border-white/5 sm:col-span-2">
-                    <span class="text-neutral-400 block text-[9px] uppercase">Finance & Accounting</span>
-                    <a href="mailto:finance@danamira-shipping.com" class="text-white hover:text-gold transition-colors text-[10px] font-mono">finance@danamira-shipping.com</a>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Interactive Office MAP Location (Google Maps) -->
-              <div class="pt-2">
-                <span class="text-[9px] font-bold tracking-widest text-gold uppercase block mb-1.5">Office Map Location (Glyfada)</span>
-                <div class="w-full h-36 rounded-lg overflow-hidden border border-neutral-800 relative bg-neutral-900 shadow-inner">
-                  <iframe 
-                    class="w-full h-full border-0 grayscale invert contrast-125 opacity-80 hover:opacity-100 transition-opacity duration-300"
-                    src="https://maps.google.com/maps?q=Zeppou+33,+Glyfada+166+75,+Greece&t=&z=14&ie=UTF8&iwloc=&output=embed"
-                    loading="lazy"
-                    title="Danamira Shipping Ltd Office Location in Glyfada">
-                  </iframe>
-                </div>
-              </div>
-
+          <!-- Quick Contacts Info -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2 text-xs font-sans text-neutral-300" id="footer-quick-contacts">
+            <div class="flex flex-col gap-1">
+              <span class="text-[9px] font-bold text-gold uppercase tracking-widest leading-none font-mono">Executive Operations</span>
+              <a href="mailto:operations@danamira-shipping.com" class="hover:text-gold transition-colors duration-200 text-xs">operations@danamira-shipping.com</a>
+              <a href="mailto:chartering@danamira-shipping.com" class="hover:text-gold transition-colors duration-200 text-xs text-neutral-400">chartering@danamira-shipping.com</a>
             </div>
-
-          </div>
-
-          <!-- Right Column: Premium Form Card (7 Columns) -->
-          <div class="lg:col-span-7" data-reveal id="contact-form-column">
-            <div class="bg-bg-secondary/70 border border-neutral-800/80 rounded-lg p-8 sm:p-10 w-full relative z-10 text-left" id="contact-form-card">
-              
-              <!-- Shimmer top line -->
-              <div class="absolute top-0 left-0 w-full h-[1px] bg-neutral-800 transition-colors duration-500 z-10"></div>
-              <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent z-20"></div>
-              <div class="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-[2px] bg-gold-light blur-[1px] z-20"></div>
-
-              <!-- Shimmer bottom line -->
-              <div class="absolute bottom-0 left-0 w-full h-[1px] bg-neutral-800 transition-colors duration-500 z-10"></div>
-              <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent z-20"></div>
-              <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-[2px] bg-gold-light blur-[1px] z-20"></div>
-
-              <form class="flex flex-col gap-6" id="contact-inquiry-form" autocomplete="off">
-                
-                <!-- Full Name Field -->
-                <div class="flex flex-col gap-2">
-                  <label for="input-name" class="text-[11px] sm:text-xs font-bold text-neutral-400 tracking-widest uppercase">Full Name</label>
-                  <div class="relative flex items-center">
-                    <div class="absolute left-4 text-gold/60">
-                      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-                        <circle cx="12" cy="7" r="4" />
-                      </svg>
-                    </div>
-                    <input type="text" id="input-name" placeholder="Enter your full name" required class="w-full bg-black/45 border border-neutral-800/80 focus:border-gold rounded pl-11 pr-4 py-3 text-xs text-white placeholder-neutral-500 focus:outline-none transition-colors duration-300">
-                  </div>
-                </div>
-
-                <!-- Company Field -->
-                <div class="flex flex-col gap-2">
-                  <label for="input-company" class="text-[11px] sm:text-xs font-bold text-neutral-400 tracking-widest uppercase">Company</label>
-                  <div class="relative flex items-center">
-                    <div class="absolute left-4 text-gold/60">
-                      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                        <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z" />
-                      </svg>
-                    </div>
-                    <input type="text" id="input-company" placeholder="Enter your company name" required class="w-full bg-black/45 border border-neutral-800/80 focus:border-gold rounded pl-11 pr-4 py-3 text-xs text-white placeholder-neutral-500 focus:outline-none transition-colors duration-300">
-                  </div>
-                </div>
-
-                <!-- Email Field -->
-                <div class="flex flex-col gap-2">
-                  <label for="input-email" class="text-[11px] sm:text-xs font-bold text-neutral-400 tracking-widest uppercase">Email</label>
-                  <div class="relative flex items-center">
-                    <div class="absolute left-4 text-gold/60">
-                      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                        <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" />
-                      </svg>
-                    </div>
-                    <input type="email" id="input-email" placeholder="Enter your email address" required class="w-full bg-black/45 border border-neutral-800/80 focus:border-gold rounded pl-11 pr-4 py-3 text-xs text-white placeholder-neutral-500 focus:outline-none transition-colors duration-300">
-                  </div>
-                </div>
-
-                <!-- Message Field -->
-                <div class="flex flex-col gap-2">
-                  <label for="input-message" class="text-[11px] sm:text-xs font-bold text-neutral-400 tracking-widest uppercase">Message</label>
-                  <div class="relative flex items-start">
-                    <div class="absolute left-4 top-3 text-gold/60">
-                      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
-                      </svg>
-                    </div>
-                    <textarea id="input-message" placeholder="Write your message here..." required rows="4" class="w-full bg-black/45 border border-neutral-800/80 focus:border-gold rounded pl-11 pr-4 py-3 text-xs text-white placeholder-neutral-500 focus:outline-none transition-colors duration-300 resize-none"></textarea>
-                  </div>
-                </div>
-
-                <!-- Submit Button -->
-                <button type="submit" class="w-full py-4 rounded bg-gradient-to-r from-gold-light via-gold to-gold-light text-xs font-bold text-neutral-950 uppercase hover:brightness-110 active:scale-[0.985] transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 select-none" data-magnetic id="contact-btn-submit">
-                  Send Inquiry <span class="transition-transform duration-200" id="contact-btn-arrow">&rarr;</span>
-                </button>
-
-              </form>
-
+            <div class="flex flex-col gap-1">
+              <span class="text-[9px] font-bold text-gold uppercase tracking-widest leading-none font-mono">Greek Branch Office</span>
+              <span class="text-neutral-300 text-xs">Zeppou 33, 166 75 Glyfada, Greece</span>
+              <a href="tel:+302113456550" class="text-neutral-400 hover:text-gold transition-colors text-xs font-mono">+30 211 34 56 550</a>
             </div>
           </div>
+        </div>
 
+        <!-- Right: Navigation Quick Links -->
+        <div class="flex flex-col justify-between items-start md:items-end text-left md:text-right gap-6 z-20">
+          <div class="flex flex-col gap-2 text-xs uppercase tracking-widest font-mono text-neutral-400">
+            <a href="#" class="hover:text-gold transition-colors">Home</a>
+            <a href="#company" class="hover:text-gold transition-colors">Company Framework</a>
+            <a href="/fleet.html" class="hover:text-gold transition-colors">Managed Fleet Directory</a>
+            <a href="#careers" class="hover:text-gold transition-colors">Careers & Crewing</a>
+            <a href="/contacts.html" class="text-gold transition-colors font-bold">Contact Management &rarr;</a>
+          </div>
         </div>
 
       </div>
 
-      <!-- FOOTER CONTAINER -->
-      <footer class="max-w-[1440px] mx-auto w-full mt-16 pt-16 pb-12 border-t border-white/5 relative overflow-hidden rounded-lg min-h-[420px] flex flex-col justify-between" id="footer-container">
-        
-        <!-- Background Video of the Ship (Aligned Right, Faded to Black on Left) -->
-        <div class="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden" id="footer-bg-media">
-          <video class="absolute right-0 top-0 w-full h-full object-cover opacity-65 will-change-transform animate-fade-in" 
-                 style="object-position: right center;"
-                 src="/1_screen.mp4" 
-                 autoplay 
-                 muted 
-                 loop 
-                 playsinline 
-                 id="footer-bg-video">
-          </video>
-          <!-- Horizontal dark gradient to ensure text readability on the left -->
-          <div class="absolute inset-0 bg-gradient-to-r from-bg-primary via-bg-primary/90 via-bg-primary/60 to-transparent z-10"></div>
-          <!-- Subtle top/bottom shadow fades -->
-          <div class="absolute inset-0 bg-gradient-to-b from-bg-primary/30 via-transparent to-bg-primary/30 z-10"></div>
-        </div>
+      <!-- Bottom Copyright Row -->
+      <div class="relative z-20 w-full border-t border-white/10 pt-6 mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 px-6 sm:px-10 lg:px-16 text-xs text-neutral-500 font-sans tracking-wide" id="footer-copyright-row">
+        <span>&copy; 2026 Danamira Shipping Ltd. All rights reserved.</span>
+        <span>Greek Maritime Law 89/1967 • Glyfada, Athens</span>
+      </div>
 
-        <!-- Foreground Content (Left info layout) -->
-        <div class="relative z-20 w-full flex flex-col md:flex-row items-stretch justify-between gap-12 px-8 sm:px-12 lg:px-16" id="footer-grid-content">
-          
-          <!-- Left: Big Brand Info & Contacts (Инфа слева) -->
-          <div class="flex flex-col gap-6 max-w-xl text-left" id="footer-info-left">
-            <div class="flex items-center gap-3" id="footer-brand-header">
-              <img src="/Danamira_logo_gold.png" alt="Danamira Shipping Ltd Emblem" class="h-11 w-auto">
-              <div class="flex flex-col text-left leading-none">
-                <span class="text-lg font-extrabold tracking-[0.1em] text-white uppercase font-sans">Danamira</span>
-                <span class="text-[10px] tracking-[0.15em] text-gold uppercase mt-0.5">Shipping Ltd</span>
-              </div>
-            </div>
-            
-            <p class="text-sm text-neutral-400 font-light leading-relaxed max-w-md" id="footer-brand-desc">
-              Providing top-tier commercial and technical ship management, operating dry bulk and general cargo carriers globally with strict regulatory compliance and maritime excellence.
-            </p>
-
-            <!-- Quick Contacts Info -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2 text-xs font-sans text-neutral-300" id="footer-quick-contacts">
-              <div class="flex flex-col gap-1">
-                <span class="text-[9px] font-bold text-gold uppercase tracking-widest leading-none">Chartering & Operations</span>
-                <a href="mailto:chartering@danamira-shipping.com" class="hover:text-gold transition-colors duration-200 text-xs">chartering@danamira-shipping.com</a>
-                <a href="mailto:operations@danamira-shipping.com" class="hover:text-gold transition-colors duration-200 text-xs text-neutral-400">operations@danamira-shipping.com</a>
-              </div>
-              <div class="flex flex-col gap-1">
-                <span class="text-[9px] font-bold text-gold uppercase tracking-widest leading-none">Greek Branch Office</span>
-                <span class="text-neutral-300 text-xs">Zeppou 33, 166 75 Glyfada, Greece</span>
-                <a href="tel:+302113456550" class="text-neutral-400 hover:text-gold transition-colors text-xs font-mono">+30 211 34 56 550</a>
-              </div>
-            </div>
-          </div>
-
-
-        </div>
-
-        <!-- Bottom Copyright Row -->
-        <div class="relative z-20 w-full border-t border-white/5 pt-6 mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 px-8 sm:px-12 lg:px-16 text-xs text-neutral-500 font-sans tracking-wide" id="footer-copyright-row">
-          <span>&copy; 2026 Danamira Shipping Ltd. All rights reserved.</span>
-        </div>
-
-      </footer>
-
-    </section>
+    </footer>
 
 
   </main>
