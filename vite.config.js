@@ -39,6 +39,7 @@ export default defineConfig(({ mode }) => {
         input: {
           main: path.resolve(__dirname, 'index.html'),
           company: path.resolve(__dirname, 'company.html'),
+          accountability: path.resolve(__dirname, 'accountability.html'),
           vessel: path.resolve(__dirname, 'vessel.html'),
           fleet: path.resolve(__dirname, 'fleet.html'),
           contacts: path.resolve(__dirname, 'contacts.html')

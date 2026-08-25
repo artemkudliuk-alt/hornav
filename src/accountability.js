@@ -1,8 +1,8 @@
-// src/company.js - Interactivity for Company Profile & Framework page
+// src/accountability.js - Interactivity for Accountability in Action (Regulatory Architecture)
 import './style.css';
 
-function initCompany() {
-  // 0. Make all reveal elements visible with smooth trigger
+function initAccountability() {
+  // 0. Scroll reveal observer
   const reveals = document.querySelectorAll('[data-reveal]');
   if ('IntersectionObserver' in window) {
     const obs = new IntersectionObserver((entries) => {
@@ -43,41 +43,7 @@ function initCompany() {
     });
   }
 
-  // 2. Interactive Cargo Matrix Tabs
-  const cargoTabs = document.querySelectorAll('.cargo-tab-btn');
-  const cargoPanels = document.querySelectorAll('.cargo-panel');
-
-  if (cargoTabs.length > 0 && cargoPanels.length > 0) {
-    cargoTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const targetCategory = tab.getAttribute('data-cargo-category');
-
-        // Update Tab Active States
-        cargoTabs.forEach(t => {
-          if (t === tab) {
-            t.classList.remove('bg-white/5', 'text-neutral-400', 'border-white/10');
-            t.classList.add('bg-gold', 'text-neutral-950', 'border-gold', 'shadow-lg');
-          } else {
-            t.classList.remove('bg-gold', 'text-neutral-950', 'border-gold', 'shadow-lg');
-            t.classList.add('bg-white/5', 'text-neutral-400', 'border-white/10');
-          }
-        });
-
-        // Show Corresponding Panel
-        cargoPanels.forEach(panel => {
-          if (panel.getAttribute('data-cargo-panel') === targetCategory) {
-            panel.classList.remove('hidden');
-            panel.classList.add('grid');
-          } else {
-            panel.classList.add('hidden');
-            panel.classList.remove('grid');
-          }
-        });
-      });
-    });
-  }
-
-  // 3. Card Spotlight Cursor Tracking on Compliance Cards
+  // 2. Card Spotlight Cursor Tracking on Compliance Cards
   const cards = document.querySelectorAll('.framework-card');
   cards.forEach(card => {
     card.addEventListener('mousemove', (e) => {
@@ -89,7 +55,7 @@ function initCompany() {
     });
   });
 
-  // 4. PDF Modal Viewer Logic
+  // 3. PDF Modal Viewer Logic
   const pdfModal = document.getElementById('pdf-modal');
   const pdfModalContainer = document.getElementById('pdf-modal-container');
   const pdfModalIframe = document.getElementById('pdf-modal-iframe');
@@ -103,7 +69,6 @@ function initCompany() {
 
   function openPdfModal(pdfUrl) {
     if (!pdfModal || !pdfModalIframe) return;
-    // Set URL with fit to width and navigation panes enabled for smooth scrolling
     pdfModalIframe.src = `${pdfUrl}#view=FitH&toolbar=1&navpanes=1`;
     pdfModal.classList.remove('opacity-0', 'pointer-events-none');
     pdfModal.classList.add('opacity-100', 'pointer-events-auto');
@@ -117,7 +82,6 @@ function initCompany() {
     pdfModalIframe.src = '';
     document.body.style.overflow = '';
     
-    // Reset fullscreen if was expanded
     if (isFullscreen && pdfModalContainer) {
       toggleFullscreen(false);
     }
@@ -146,17 +110,9 @@ function initCompany() {
     });
   }
 
-  if (pdfModalExpand) {
-    pdfModalExpand.addEventListener('click', () => toggleFullscreen());
-  }
-
-  if (pdfModalBackdrop) {
-    pdfModalBackdrop.addEventListener('click', closePdfModal);
-  }
-
-  if (pdfModalClose) {
-    pdfModalClose.addEventListener('click', closePdfModal);
-  }
+  if (pdfModalClose) pdfModalClose.addEventListener('click', closePdfModal);
+  if (pdfModalBackdrop) pdfModalBackdrop.addEventListener('click', closePdfModal);
+  if (pdfModalExpand) pdfModalExpand.addEventListener('click', () => toggleFullscreen());
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && pdfModal && pdfModal.classList.contains('opacity-100')) {
@@ -166,7 +122,7 @@ function initCompany() {
 }
 
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initCompany);
+  document.addEventListener('DOMContentLoaded', initAccountability);
 } else {
-  initCompany();
+  initAccountability();
 }

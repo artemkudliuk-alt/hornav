@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Company Profile & Regulatory Framework | Danamira Shipping Ltd</title>
-  <meta name="description" content="Official profile of Danamira Shipping Ltd: Independent ship-management under Greek Law 89/1967, operational mission, dry bulk cargo portfolio, and comprehensive regulatory compliance framework." />
+  <title>About Us &bull; Company Profile &amp; Mission | Danamira Shipping Ltd</title>
+  <meta name="description" content="Official company profile of Danamira Shipping Ltd: Independent ship-management under Greek Law 89/1967, corporate mission, strategic expansion vision, and comprehensive dry bulk cargo portfolio." />
 
   <!-- Premium Fonts: Clash Display (Display), Plus Jakarta Sans (Sans) & Space Mono (Mono) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -28,13 +28,34 @@
       <a href="/" class="flex items-center gap-4 group" id="logo-link">
         <img src="/Danamira_logo_gold.png" alt="Danamira Shipping Ltd Logo" class="h-20 w-auto transition-transform duration-300 group-hover:scale-[1.02]" id="logo-img" />
         <div class="h-10 w-[1px] bg-border-gold/30 hidden sm:block"></div>
-        <span class="text-[9px] font-medium tracking-[0.25em] text-gold uppercase whitespace-nowrap hidden sm:inline-block">Maritime Expertise</span>
+        <span class="text-[9px] font-medium tracking-[0.25em] text-gold uppercase whitespace-nowrap hidden sm:inline-block font-sans">Maritime Expertise</span>
       </a>
       
-      <!-- Nav Links (Center) -->
+      <!-- Nav Links (Center) with Dropdown for Company -->
       <div class="hidden lg:flex items-center gap-10 text-xs font-semibold uppercase tracking-[0.25em] text-neutral-400" id="nav-links">
         <a href="/" class="hover:text-gold transition-colors duration-200" id="link-home">Home</a>
-        <a href="/company.html" class="text-gold hover:text-gold transition-colors duration-200" id="link-company">Company</a>
+        
+        <!-- Company Dropdown Trigger -->
+        <div class="nav-dropdown group">
+          <a href="/company.html" class="text-gold hover:text-gold transition-colors duration-200 flex items-center gap-1.5 py-4 cursor-pointer" id="link-company">
+            <span>Company</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3 h-3 text-gold/80 transition-transform duration-300 group-hover:rotate-180">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </a>
+          <!-- Dropdown Submenu -->
+          <div class="nav-dropdown-menu">
+            <a href="/company.html" class="nav-dropdown-item active">
+              <span>About Us</span>
+              <span class="text-gold text-[10px]">&bull;</span>
+            </a>
+            <a href="/accountability.html" class="nav-dropdown-item">
+              <span>Accountability in Action</span>
+              <span class="text-[10px] opacity-40">&rarr;</span>
+            </a>
+          </div>
+        </div>
+
         <a href="/fleet.html" class="hover:text-gold transition-colors duration-200" id="link-fleet">Managed Fleet</a>
         <a href="/contacts.html#careers" class="hover:text-gold transition-colors duration-200" id="link-careers">Careers</a>
         <a href="/contacts.html" class="hover:text-gold transition-colors duration-200" id="link-contact">Contact</a>
@@ -59,9 +80,16 @@
 
   <!-- Mobile Menu Overlay -->
   <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#161618]/98 z-40 flex flex-col justify-center items-center opacity-0 pointer-events-none transition-all duration-500 backdrop-blur-md">
-    <div class="flex flex-col items-center gap-8 text-lg font-semibold uppercase tracking-[0.3em] text-neutral-400" id="mobile-menu-links">
+    <div class="flex flex-col items-center gap-6 text-base font-semibold uppercase tracking-[0.25em] text-neutral-400" id="mobile-menu-links">
       <a href="/" class="hover:text-gold transition-colors duration-300">Home</a>
-      <a href="/company.html" class="text-gold transition-colors duration-300">Company</a>
+      
+      <!-- Mobile Submenu Group -->
+      <div class="flex flex-col items-center gap-3 py-2 border-y border-white/10 w-full text-center">
+        <span class="text-[10px] font-mono text-gold uppercase tracking-widest">Company Menu</span>
+        <a href="/company.html" class="text-gold transition-colors duration-300 text-sm">About Us</a>
+        <a href="/accountability.html" class="text-neutral-300 hover:text-gold transition-colors duration-300 text-sm">Accountability in Action</a>
+      </div>
+
       <a href="/fleet.html" class="hover:text-gold transition-colors duration-300">Managed Fleet</a>
       <a href="/contacts.html#careers" class="hover:text-gold transition-colors duration-300">Careers</a>
       <a href="/contacts.html" class="hover:text-gold transition-colors duration-300">Contact</a>
@@ -387,309 +415,24 @@
       </div>
     </section>
 
-    <!-- 4. ACCOUNTABILITY IN ACTION: COMPLETE REGULATORY & TECHNICAL FRAMEWORK -->
-    <section class="flex flex-col gap-12" data-reveal id="sec-accountability-framework">
-      
-      <div class="flex flex-col gap-3 border-b border-border-gold/30 pb-6">
+    <!-- 4. ACCOUNTABILITY & REGULATORY ARCHITECTURE BRIDGE -->
+    <section class="p-8 sm:p-12 bg-black/40 border border-neutral-800 hover:border-gold/40 transition-all duration-300 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden" data-reveal id="sec-accountability-bridge">
+      <div class="flex flex-col gap-3 text-left">
         <div class="flex items-center gap-3">
-          <span class="text-xs font-mono font-bold tracking-[0.25em] text-gold uppercase">
-            Accountability in Action &bull; Full Regulatory Architecture
-          </span>
+          <span class="text-xs font-mono font-bold tracking-[0.25em] text-gold uppercase">Institutional Governance</span>
           <div class="h-[1px] w-12 bg-gold/40"></div>
         </div>
-        <h2 class="text-2xl sm:text-4xl font-serif uppercase text-white font-medium">
-          Comprehensive Compliance &amp; Institutional Governance
+        <h2 class="text-2xl sm:text-3xl font-serif uppercase text-white font-medium">
+          Accountability in Action
         </h2>
-        <p class="text-xs sm:text-sm text-neutral-400 max-w-3xl font-light leading-relaxed">
-          DANAMIRA SHIPPING LTD conducts all commercial, technical, and crewing operations in strict conformity with national Greek legislation, international IMO conventions, ILO labor standards, IACS class regulations, and BIMCO contractual due diligence.
+        <p class="text-xs sm:text-sm text-neutral-400 max-w-2xl font-light leading-relaxed">
+          Explore our comprehensive compliance architecture: Greek Law 89/1967, IACS class certification, IMO/SOLAS/MARPOL conventions, seafarer healthcare protocols, and BIMCO due diligence.
         </p>
       </div>
-
-      <!-- 13 REGULATORY STANDARDS GRID -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-        <!-- 1. Greek Maritime & Corporate Legislation -->
-        <div class="framework-card p-6 bg-black/40 border border-neutral-800 hover:border-gold/50 transition-all duration-300 flex flex-col justify-between gap-5 relative group">
-          <div class="flex flex-col gap-4">
-            <div class="flex items-center justify-between">
-              <span class="text-[10px] font-mono text-gold uppercase font-bold tracking-widest">#01 &bull; Legislation</span>
-              <img src="/logos/nee_official.svg" alt="Hellenic Chamber of Shipping" class="h-8 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity" />
-            </div>
-            <h3 class="text-base font-serif uppercase text-white font-medium">Greek Maritime Legislation</h3>
-            <p class="text-xs text-neutral-400 font-light leading-relaxed">
-              The Company conducts its activities in Greece in accordance with applicable Greek corporate, maritime, employment and statutory requirements, maintaining appropriate corporate records, procedures and regulatory compliance.
-            </p>
-          </div>
-          <a href="https://nee.gr/en/hellenic-chamber-of-shipping/" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-gold hover:underline inline-flex items-center gap-1.5 pt-3 border-t border-white/5">
-            <span>Hellenic Chamber of Shipping (NEE)</span> &nearr;
-          </a>
-        </div>
-
-        <!-- 2. Law 89/1967 -->
-        <div class="framework-card p-6 bg-black/40 border border-neutral-800 hover:border-gold/50 transition-all duration-300 flex flex-col justify-between gap-5 relative group">
-          <div class="flex flex-col gap-4">
-            <div class="flex items-center justify-between">
-              <span class="text-[10px] font-mono text-gold uppercase font-bold tracking-widest">#02 &bull; Branch Framework</span>
-              <img src="/Hellenic.png" alt="Hellenic Republic" class="h-9 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity" />
-            </div>
-            <h3 class="text-base font-serif uppercase text-white font-medium">Greek Law 89/1967</h3>
-            <p class="text-xs text-neutral-400 font-light leading-relaxed">
-              The company operates under the Greek maritime framework Law 89/1967, combining regional maritime expertise with internationally aligned operational standards.
-            </p>
-          </div>
-          <a href="http://publicrevenue.gr/elib/view?d=/gr/act/1967/89" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-gold hover:underline inline-flex items-center gap-1.5 pt-3 border-t border-white/5">
-            <span>Greek Tax Authority / Law 89 Portal</span> &nearr;
-          </a>
-        </div>
-
-        <!-- 3. International Maritime Organization (IMO) -->
-        <div class="framework-card p-6 bg-black/40 border border-neutral-800 hover:border-gold/50 transition-all duration-300 flex flex-col justify-between gap-5 relative group">
-          <div class="flex flex-col gap-4">
-            <div class="flex items-center justify-between">
-              <span class="text-[10px] font-mono text-gold uppercase font-bold tracking-widest">#03 &bull; Global Framework</span>
-              <img src="/logos/imo_horizontal_white.png" alt="IMO" class="h-8 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity" />
-            </div>
-            <h3 class="text-base font-serif uppercase text-white font-medium">International Maritime Organization</h3>
-            <p class="text-xs text-neutral-400 font-light leading-relaxed">
-              The Company monitors and applies relevant IMO instruments, codes and amendments applicable to its vessels and operations, including requirements relating to safety, environmental protection, vessel operation and certification.
-            </p>
-          </div>
-          <a href="https://www.imo.org/en/" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-gold hover:underline inline-flex items-center gap-1.5 pt-3 border-t border-white/5">
-            <span>imo.org Official Portal</span> &nearr;
-          </a>
-        </div>
-
-        <!-- 4. SOLAS Convention -->
-        <div class="framework-card p-6 bg-black/40 border border-neutral-800 hover:border-gold/50 transition-all duration-300 flex flex-col justify-between gap-5 relative group">
-          <div class="flex flex-col gap-4">
-            <div class="flex items-center justify-between">
-              <span class="text-[10px] font-mono text-gold uppercase font-bold tracking-widest">#04 &bull; Vessel Safety</span>
-              <img src="/logos/imo_emblem_white.png" alt="IMO SOLAS" class="h-9 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity" />
-            </div>
-            <h3 class="text-base font-serif uppercase text-white font-medium">SOLAS Convention</h3>
-            <p class="text-xs text-neutral-400 font-light leading-relaxed">
-              The Company verifies that vessels meet applicable safety requirements for construction, equipment and operation, including required safety equipment, certification and operational standards compatible with safety of life at sea.
-            </p>
-          </div>
-          <a href="https://www.imo.org/en/about/conventions/pages/international-convention-for-the-safety-of-life-at-sea-(solas),-1974.aspx" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-gold hover:underline inline-flex items-center gap-1.5 pt-3 border-t border-white/5">
-            <span>SOLAS 1974 Convention</span> &nearr;
-          </a>
-        </div>
-
-        <!-- 5. MARPOL Convention -->
-        <div class="framework-card p-6 bg-black/40 border border-neutral-800 hover:border-gold/50 transition-all duration-300 flex flex-col justify-between gap-5 relative group">
-          <div class="flex flex-col gap-4">
-            <div class="flex items-center justify-between">
-              <span class="text-[10px] font-mono text-gold uppercase font-bold tracking-widest">#05 &bull; Decarbonization &amp; Environment</span>
-              <img src="/logos/imo_emblem_white.png" alt="IMO MARPOL" class="h-9 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity" />
-            </div>
-            <h3 class="text-base font-serif uppercase text-white font-medium">MARPOL &amp; Decarbonization</h3>
-            <p class="text-xs text-neutral-400 font-light leading-relaxed">
-              Minimizing ship-generated pollution (oil, garbage, sewage, air emissions). Reducing carbon footprint through active management of vessel efficiency indicators, including CII, EEXI, waste management, and ballast water treatment systems.
-            </p>
-          </div>
-          <a href="https://www.imo.org/en/about/conventions/pages/international-convention-for-the-prevention-of-pollution-from-ships-(marpol).aspx" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-gold hover:underline inline-flex items-center gap-1.5 pt-3 border-t border-white/5">
-            <span>MARPOL Convention (CII &amp; EEXI)</span> &nearr;
-          </a>
-        </div>
-
-        <!-- 6. STCW Convention -->
-        <div class="framework-card p-6 bg-black/40 border border-neutral-800 hover:border-gold/50 transition-all duration-300 flex flex-col justify-between gap-5 relative group">
-          <div class="flex flex-col gap-4">
-            <div class="flex items-center justify-between">
-              <span class="text-[10px] font-mono text-gold uppercase font-bold tracking-widest">#06 &bull; Seafarer Competency</span>
-              <img src="/logos/imo_emblem_white.png" alt="IMO STCW" class="h-9 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity" />
-            </div>
-            <h3 class="text-base font-serif uppercase text-white font-medium">STCW Convention</h3>
-            <p class="text-xs text-neutral-400 font-light leading-relaxed">
-              The Company verifies that seafarers hold the required qualifications, certificates, training and competencies for their positions and that applicable watchkeeping requirements are strictly observed across all bridge and engine operations.
-            </p>
-          </div>
-          <a href="https://www.imo.org/en/ourwork/humanelement/pages/stcw-convention.aspx" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-gold hover:underline inline-flex items-center gap-1.5 pt-3 border-t border-white/5">
-            <span>STCW Human Element Standards</span> &nearr;
-          </a>
-        </div>
-
-        <!-- 7. Vessel Quality & Age Standards -->
-        <div class="framework-card p-6 bg-black/40 border border-neutral-800 hover:border-gold/50 transition-all duration-300 flex flex-col justify-between gap-5 relative group">
-          <div class="flex flex-col gap-4">
-            <div class="flex items-center justify-between">
-              <span class="text-[10px] font-mono text-gold uppercase font-bold tracking-widest">#07 &bull; Quality Policy</span>
-              <span class="text-xs font-mono text-gold bg-gold/10 px-2 py-1">Age &gt; 20 Yrs Audit</span>
-            </div>
-            <h3 class="text-base font-serif uppercase text-white font-medium">Vessel Quality &amp; Age Standards</h3>
-            <p class="text-xs text-neutral-400 font-light leading-relaxed">
-              Selective approach to vessel employment considering age, class status, technical condition, safety track record, and healthcare. Vessels over 20 years of age are considered only following satisfactory technical evaluation and confirmation of compliance.
-            </p>
-          </div>
-          <div class="text-xs font-mono text-neutral-400 pt-3 border-t border-white/5">
-            Danamira Internal Technical Assessment Standard
-          </div>
-        </div>
-
-        <!-- 8. Crew Medical Fitness & Verification (Comprehensive 5-Step) -->
-        <div class="framework-card p-6 bg-black/40 border border-neutral-800 hover:border-gold/50 transition-all duration-300 flex flex-col justify-between gap-5 relative group md:col-span-2 lg:col-span-2">
-          <div class="flex flex-col gap-4">
-            <div class="flex items-center justify-between">
-              <span class="text-[10px] font-mono text-gold uppercase font-bold tracking-widest">#08 &bull; Seafarer Healthcare Protocol</span>
-              <span class="text-xs font-mono text-gold bg-gold/10 px-2 py-1">5-Stage Verification</span>
-            </div>
-            <h3 class="text-base font-serif uppercase text-white font-medium">Crew Medical Fitness &amp; Pre-Employment Screening</h3>
-            <p class="text-xs text-neutral-400 font-light leading-relaxed">
-              Every seafarer proposed for employment is subject to rigorous medical review before final approval and deployment. Particular attention is given to cardiovascular conditions, surgery histories, diabetes, long-term medication, and previous medical repatriation.
-            </p>
-
-            <!-- 5-Point Verification Checklist -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
-              <div class="p-2.5 bg-white/5 border border-white/5 text-[11px] font-mono text-neutral-300 flex items-center gap-2">
-                <span class="text-gold font-bold">(1)</span> Valid Medical Fitness-for-Duty Certificate
-              </div>
-              <div class="p-2.5 bg-white/5 border border-white/5 text-[11px] font-mono text-neutral-300 flex items-center gap-2">
-                <span class="text-gold font-bold">(2)</span> Signed Health Declaration / Medical History
-              </div>
-              <div class="p-2.5 bg-white/5 border border-white/5 text-[11px] font-mono text-neutral-300 flex items-center gap-2">
-                <span class="text-gold font-bold">(3)</span> Hospital discharge &amp; clinical summaries
-              </div>
-              <div class="p-2.5 bg-white/5 border border-white/5 text-[11px] font-mono text-neutral-300 flex items-center gap-2">
-                <span class="text-gold font-bold">(4)</span> Specialist medical reports &amp; diagnostic tests
-              </div>
-              <div class="p-2.5 bg-white/5 border border-white/5 text-[11px] font-mono text-neutral-300 flex items-center gap-2 sm:col-span-2">
-                <span class="text-gold font-bold">(5)</span> Valid Seafarer Employment Agreement (SEA) &amp; documentation
-              </div>
-            </div>
-          </div>
-          <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-white/5 text-xs font-mono">
-            <div class="flex flex-wrap items-center gap-3">
-              <button type="button" id="btn-view-medical-pdf" class="inline-flex items-center gap-2 px-3.5 py-2 bg-transparent hover:bg-white/5 text-white border border-white/20 hover:border-white/40 text-xs font-mono uppercase transition-all duration-200 cursor-pointer active:scale-95">
-                <svg class="w-4 h-4 text-red-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                  <polyline points="14 2 14 8 20 8"/>
-                </svg>
-                <span class="text-white font-medium">View Guidelines</span>
-                <span class="text-red-500 font-bold">(PDF)</span>
-              </button>
-              <a href="/fleet/docs/Guidelines_on_the_medical.pdf" download="Guidelines_on_the_medical_examinations_of_seafarers.pdf" class="inline-flex items-center gap-1.5 px-3.5 py-2 bg-white/5 hover:bg-white/10 text-neutral-300 hover:text-white border border-white/10 text-xs font-mono uppercase transition-all duration-200">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                </svg>
-                <span>Download PDF (700 KB)</span>
-              </a>
-            </div>
-            <span class="text-neutral-400 uppercase">ILO / IMO / WHO Joint Standard</span>
-          </div>
-        </div>
-
-        <!-- 9. MLC, 2006 (Maritime Labour Convention) -->
-        <div class="framework-card p-6 bg-black/40 border border-neutral-800 hover:border-gold/50 transition-all duration-300 flex flex-col justify-between gap-5 relative group">
-          <div class="flex flex-col gap-4">
-            <div class="flex items-center justify-between">
-              <span class="text-[10px] font-mono text-gold uppercase font-bold tracking-widest">#09 &bull; Labor Rights</span>
-              <img src="/logos/ilo_white.svg" alt="ILO MLC 2006" class="h-8 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity" />
-            </div>
-            <h3 class="text-base font-serif uppercase text-white font-medium">MLC, 2006 (ILO)</h3>
-            <p class="text-xs text-neutral-400 font-light leading-relaxed">
-              Applying international standards concerning Seafarer Employment Agreements, working and rest hours, wages, repatriation, medical care onboard and ashore, accommodation, food, and seafarer welfare.
-            </p>
-          </div>
-          <a href="https://www.ilo.org/international-labour-standards/maritime-labour-convention-2006" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-gold hover:underline inline-flex items-center gap-1.5 pt-3 border-t border-white/5">
-            <span>Maritime Labour Convention 2006</span> &nearr;
-          </a>
-        </div>
-
-        <!-- 10. Flag State Implementation -->
-        <div class="framework-card p-6 bg-black/40 border border-neutral-800 hover:border-gold/50 transition-all duration-300 flex flex-col justify-between gap-5 relative group">
-          <div class="flex flex-col gap-4">
-            <div class="flex items-center justify-between">
-              <span class="text-[10px] font-mono text-gold uppercase font-bold tracking-widest">#10 &bull; Flag State Audits</span>
-              <img src="/logos/imo_horizontal_white.png" alt="IMO Flag State" class="h-7 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity" />
-            </div>
-            <h3 class="text-base font-serif uppercase text-white font-medium">Flag State Implementation</h3>
-            <p class="text-xs text-neutral-400 font-light leading-relaxed">
-              For each vessel, the Company verifies compliance with requirements of the vessel's Flag Administration, including applicable statutory certification, annual surveys, documentation and enforcement of IMO conventions.
-            </p>
-          </div>
-          <a href="https://www.imo.org/en/ourwork/safety/pages/flagstateimplementation.aspx" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-gold hover:underline inline-flex items-center gap-1.5 pt-3 border-t border-white/5">
-            <span>IMO Flag State Implementation</span> &nearr;
-          </a>
-        </div>
-
-        <!-- 11. Classification Society (IACS) -->
-        <div class="framework-card p-6 bg-black/40 border border-neutral-800 hover:border-gold/50 transition-all duration-300 flex flex-col justify-between gap-5 relative group">
-          <div class="flex flex-col gap-4">
-            <div class="flex items-center justify-between">
-              <span class="text-[10px] font-mono text-gold uppercase font-bold tracking-widest">#11 &bull; Class Certification</span>
-              <img src="/logos/iacs_official.svg" alt="IACS" class="h-7 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity" />
-            </div>
-            <h3 class="text-base font-serif uppercase text-white font-medium">Classification Society (IACS)</h3>
-            <p class="text-xs text-neutral-400 font-light leading-relaxed">
-              Every vessel managed or operated is required to maintain valid Class status with an IACS member classification society, with continuous survey compliance and technical certification verified vessel-by-vessel.
-            </p>
-          </div>
-          <a href="https://iacs.org.uk/" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-gold hover:underline inline-flex items-center gap-1.5 pt-3 border-t border-white/5">
-            <span>iacs.org.uk Portal</span> &nearr;
-          </a>
-        </div>
-
-        <!-- 12. Commercial & Technical Due Diligence (BIMCO Clauses) -->
-        <div class="framework-card p-6 bg-black/40 border border-neutral-800 hover:border-gold/50 transition-all duration-300 flex flex-col justify-between gap-5 relative group">
-          <div class="flex flex-col gap-4">
-            <div class="flex items-center justify-between">
-              <span class="text-[10px] font-mono text-gold uppercase font-bold tracking-widest">#12 &bull; Commercial Clauses</span>
-              <img src="/logos/bimco_official.svg" alt="BIMCO" class="h-8 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity" />
-            </div>
-            <h3 class="text-base font-serif uppercase text-white font-medium">Commercial &amp; Technical Due Diligence</h3>
-            <p class="text-xs text-neutral-400 font-light leading-relaxed">
-              The Company conducts commercial and technical due diligence in accordance with applicable BIMCO standards and clauses, together with established maritime industry practices. Prior to fixture, each vessel and cargo is assessed for suitability, valid class and statutory status, technical condition, safety, insurance, cargo requirements and operational risks. Each vessel must be classed with an IACS member classification society. Fixtures are concluded only following satisfactory completion of due diligence and agreement of the applicable contractual terms.
-            </p>
-          </div>
-          <div class="flex flex-col gap-1.5 pt-3 border-t border-white/5 text-xs font-mono">
-            <a href="https://www.bimco.org/contractual-affairs/bimco-clauses/current-clauses/bulk_shipping_quality_clause_for_voyage_charter_parties_2000/?utm_source" target="_blank" rel="noopener noreferrer" class="text-gold hover:underline flex items-center gap-1">
-              <span>Bulk Shipping Quality Clause (2000)</span> &nearr;
-            </a>
-            <a href="https://www.bimco.org/contractual-affairs/bimco-clauses/current-clauses/dry_bulk_marine_risk_assessment_clause_for_time_charter_parties_2013/?utm_source" target="_blank" rel="noopener noreferrer" class="text-gold hover:underline flex items-center gap-1">
-              <span>Dry Bulk Marine Risk Assessment Clause (2013)</span> &nearr;
-            </a>
-          </div>
-        </div>
-
-        <!-- 13. Fleet & Cargo Operations -->
-        <div class="framework-card p-6 bg-black/40 border border-neutral-800 hover:border-gold/50 transition-all duration-300 flex flex-col justify-between gap-5 relative group">
-          <div class="flex flex-col gap-4">
-            <div class="flex items-center justify-between">
-              <span class="text-[10px] font-mono text-gold uppercase font-bold tracking-widest">#13 &bull; Fleet Operations</span>
-              <span class="text-xs font-mono text-gold bg-gold/10 px-2 py-1">24/7 Operations</span>
-            </div>
-            <h3 class="text-base font-serif uppercase text-white font-medium">Fleet &amp; Cargo Operations</h3>
-            <p class="text-xs text-neutral-400 font-light leading-relaxed">
-              The Company optimizes fleet performance, ensuring the safe and efficient transportation and distribution of cargoes to various ports in accordance with the terms and conditions of each transportation contract.
-            </p>
-          </div>
-          <div class="pt-3 border-t border-white/5 text-xs font-mono text-neutral-400">
-            Danamira Fleet Operations &amp; Route Optimization Protocol
-          </div>
-        </div>
-
-        <!-- 14. Sanction Clause & Screening (BIMCO Sanctions) -->
-        <div class="framework-card p-6 bg-black/40 border border-neutral-800 hover:border-gold/50 transition-all duration-300 flex flex-col justify-between gap-5 relative group md:col-span-2 lg:col-span-2">
-          <div class="flex flex-col gap-4">
-            <div class="flex items-center justify-between">
-              <span class="text-[10px] font-mono text-gold uppercase font-bold tracking-widest">#14 &bull; Sanctions Screening</span>
-              <img src="/logos/bimco_official.svg" alt="BIMCO Sanctions" class="h-8 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity" />
-            </div>
-            <h3 class="text-base font-serif uppercase text-white font-medium">Sanctions Clause &amp; Screening</h3>
-            <p class="text-xs text-neutral-400 font-light leading-relaxed">
-              The Company conducts sanctions and counterparty screening before entering into any fixture or contractual commitment. Relevant vessels, owners, charterers, counterparties, cargoes, ports and trading parties are checked against applicable international sanctions requirements.
-            </p>
-            <p class="text-xs text-neutral-400 font-light leading-relaxed">
-              The Company applies applicable BIMCO sanctions clauses in its contractual arrangements and does not proceed with transactions where sanctions restrictions, prohibited activities or unacceptable compliance risks are identified.
-            </p>
-          </div>
-          <a href="https://www.bimco.org/contractual-affairs/sanctions/" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-gold hover:underline inline-flex items-center gap-1.5 pt-3 border-t border-white/5">
-            <span>BIMCO Sanctions Advice &amp; Clauses</span> &nearr;
-          </a>
-        </div>
-
-      </div>
+      <a href="/accountability.html" class="inline-flex items-center gap-3 px-8 py-4 bg-gold/10 hover:bg-gold text-gold hover:text-neutral-950 border border-gold/40 text-xs font-mono font-bold tracking-[0.2em] uppercase transition-all duration-300 shrink-0">
+        <span>Explore Regulatory Architecture</span>
+        <span>&rarr;</span>
+      </a>
     </section>
 
     <!-- 5. CONTACT & MANAGEMENT INQUIRIES CTA -->
@@ -745,7 +488,8 @@
         <div class="flex flex-col gap-4 text-xs tracking-wider" id="footer-navigation">
           <span class="font-bold text-white uppercase text-[10px] tracking-[0.2em] font-mono">Navigation</span>
           <a href="/" class="text-neutral-400 hover:text-gold transition-colors">Home</a>
-          <a href="/company.html" class="text-gold hover:text-gold transition-colors">Company Profile</a>
+          <a href="/company.html" class="text-gold hover:text-gold transition-colors">About Us</a>
+          <a href="/accountability.html" class="text-neutral-400 hover:text-gold transition-colors">Accountability in Action</a>
           <a href="/fleet.html" class="text-neutral-400 hover:text-gold transition-colors">Managed Fleet</a>
           <a href="/contacts.html" class="text-neutral-400 hover:text-gold transition-colors">Contact</a>
         </div>
@@ -766,66 +510,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- FULLSCREEN PDF MODAL VIEWER POPUP (SCROLLABLE & EXPANDABLE) -->
-  <div id="pdf-modal" class="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 opacity-0 pointer-events-none transition-all duration-300 backdrop-blur-md bg-black/85">
-    <div id="pdf-modal-backdrop" class="absolute inset-0 cursor-pointer" title="Click outside to close"></div>
-
-    <!-- Modal Container with dynamic toggle for Fullscreen -->
-    <div id="pdf-modal-container" class="relative z-10 w-full max-w-6xl h-[94vh] sm:h-[90vh] bg-[#161618] border border-gold/40 rounded-xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300">
-      
-      <!-- Modal Header -->
-      <div class="flex items-center justify-between px-4 sm:px-6 py-3.5 bg-[#141416] border-b border-white/10 shrink-0 select-none">
-        <div class="flex items-center gap-3 min-w-0">
-          <div class="w-8 h-8 rounded bg-gold/10 border border-gold/30 flex items-center justify-center text-gold shrink-0">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-            </svg>
-          </div>
-          <div class="min-w-0">
-            <h3 id="pdf-modal-title" class="text-sm sm:text-base font-serif font-medium text-white truncate">
-              Guidelines on the Medical Examinations of Seafarers
-            </h3>
-            <span id="pdf-modal-subtitle" class="text-[10px] font-mono text-gold/80 block uppercase tracking-wider">
-              Official ILO / IMO / WHO Joint International Standard &bull; 70 Pages
-            </span>
-          </div>
-        </div>
-
-        <!-- Header Actions: Expand Fullscreen, Direct Download & Close Cross -->
-        <div class="flex items-center gap-2 sm:gap-3 shrink-0">
-          <!-- Toggle Fullscreen / Maximize -->
-          <button id="pdf-modal-expand" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-white/5 hover:bg-white/10 text-neutral-300 hover:text-white border border-white/10 text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer" title="Toggle Fullscreen Width">
-            <svg id="expand-icon-max" class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
-            </svg>
-            <span class="hidden md:inline" id="expand-btn-text">Full Width</span>
-          </button>
-
-          <!-- Direct Download -->
-          <a id="pdf-modal-download" href="/fleet/docs/Guidelines_on_the_medical.pdf" download="Guidelines_on_the_medical_examinations_of_seafarers.pdf" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-white/5 hover:bg-gold/20 text-gold border border-gold/30 text-xs font-mono font-bold uppercase tracking-wider transition-colors cursor-pointer">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.5V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-            </svg>
-            <span>Download</span>
-          </a>
-
-          <!-- Prominent Close Cross (Крестик) -->
-          <button id="pdf-modal-close" class="p-2 rounded-lg bg-white/5 hover:bg-red-500/20 text-neutral-400 hover:text-red-400 border border-white/10 hover:border-red-500/40 transition-colors cursor-pointer flex items-center justify-center" aria-label="Close modal" title="Close (Esc)">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- Iframe Container with Scrollable Viewport -->
-      <div class="flex-1 w-full h-full bg-[#111113] relative overflow-hidden">
-        <iframe id="pdf-modal-iframe" src="" class="w-full h-full border-0" title="PDF Document Viewer"></iframe>
-      </div>
-
-    </div>
-  </div>
 
   <script type="module" src="/src/company.js"></script>
 </body>

@@ -1178,6 +1178,79 @@ textarea:-webkit-autofill:focus {
   }
 }
 
+/* Navigation Dropdown Submenu (Company -> About Us / Accountability in Action) */
+.nav-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% - 15px);
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  min-width: 270px;
+  background-color: #17171a;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.95), 0 0 25px rgba(200, 155, 60, 0.08);
+  padding: 0.5rem 0;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s;
+  z-index: 60;
+}
+
+/* Hover bridge to keep dropdown open seamlessly */
+.nav-dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: -20px;
+  right: -20px;
+  height: 25px;
+  pointer-events: auto;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu,
+.nav-dropdown.active .nav-dropdown-menu {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.nav-dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #a3a3a3;
+  transition: all 0.2s ease;
+  border-left: 2px solid transparent;
+}
+
+.nav-dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+  color: #ffffff;
+  border-left-color: #c89b3c;
+  padding-left: 1.5rem;
+}
+
+.nav-dropdown-item.active {
+  color: #c89b3c;
+  border-left-color: #c89b3c;
+  background-color: rgba(200, 155, 60, 0.08);
+}
+
 
 
 
