@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 5. Card Hover Spotlight & 3D Tilt Effect
   const complianceSec = document.querySelector('#compliance');
   if (complianceSec) {
-    const cards = complianceSec.querySelectorAll('#compliance-memberships-grid > div');
+    const cards = complianceSec.querySelectorAll('#compliance-memberships-grid > *');
     cards.forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const cardRect = card.getBoundingClientRect();
