@@ -282,7 +282,7 @@ vesselLayoutStyles.textContent = `
     color: #f5f5f5 !important;
     font-family: var(--font-sans), "Plus Jakarta Sans", sans-serif !important;
     font-size: 0.8125rem !important;
-    font-weight: 600 !important;
+    font-weight: 400 !important;
     text-align: right !important;
     white-space: normal !important;
     margin-left: auto !important;
@@ -501,14 +501,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     structuredContainer.innerHTML = `
       <div class="space-y-3" id="vessel-accordion-root">
         ${sectionsConfig.map(sec => `
-          <div class="vessel-accordion-item bg-[#17171a] border border-white/[0.08] shadow-xl overflow-hidden transition-all duration-200">
+          <div class="vessel-accordion-item bg-[#17171a] border border-white/[0.08] shadow-xl overflow-hidden transition-all duration-200 group">
             <button type="button" class="vessel-accordion-trigger w-full p-4 sm:p-5 flex items-center justify-between gap-4 text-left cursor-pointer hover:bg-white/[0.03] transition-colors active:scale-[0.99]" data-accordion-id="${sec.id}" aria-expanded="${sec.defaultOpen ? 'true' : 'false'}">
-              <h3 class="text-xs sm:text-sm font-serif font-semibold tracking-wider uppercase text-gold">
+              <h3 class="text-xs sm:text-sm font-sans font-medium tracking-wider uppercase text-neutral-300 group-hover:text-gold transition-colors">
                 ${sec.title}
               </h3>
               <div class="flex items-center gap-2.5 shrink-0">
                 <span class="text-[10px] font-sans text-neutral-400 tabular-nums">${(sec.data || []).length} specs</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-gold/80 transition-transform duration-300 vessel-accordion-chevron ${sec.defaultOpen ? 'rotate-180' : ''}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-neutral-400 group-hover:text-gold transition-all duration-300 vessel-accordion-chevron ${sec.defaultOpen ? 'rotate-180 text-gold' : ''}">
                   <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
               </div>
@@ -518,7 +518,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 ${(sec.data || []).map(item => `
                   <div class="flex items-baseline justify-between py-1.5 border-b border-white/[0.04] text-xs sm:text-sm gap-3">
                     <span class="text-neutral-400 font-sans text-xs sm:text-sm font-normal">${item.label}</span>
-                    <span class="text-neutral-100 font-sans text-xs sm:text-sm font-semibold text-right tabular-nums">${item.value}</span>
+                    <span class="text-neutral-100 font-sans text-xs sm:text-sm font-normal text-right tabular-nums">${item.value}</span>
                   </div>
                 `).join('')}
               </div>
