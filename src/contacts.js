@@ -1,10 +1,10 @@
-﻿import './style.css';
+import './style.css';
 
 /**
  * Danamira Shipping Ltd - Contacts Page Logic
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+function initContacts() {
   // 1. Mobile Menu Toggle
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
@@ -38,12 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         await navigator.clipboard.writeText(email);
         const originalText = btn.innerHTML;
-        btn.innerHTML = `<span class="text-gold font-bold">✓ Copied!</span>`;
+        btn.innerHTML = `<span class="text-gold font-bold">✓ Copied to clipboard!</span>`;
         setTimeout(() => {
           btn.innerHTML = originalText;
-        }, 2000);
+        }, 2200);
       } catch (err) {
-        console.error('Failed to copy email:', err);
+        // Fallback: open mail client
+        window.location.href = `mailto:${email}`;
       }
     });
   });
@@ -110,4 +111,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 700);
     });
   }
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initContacts);
+} else {
+  initContacts();
+}
+
