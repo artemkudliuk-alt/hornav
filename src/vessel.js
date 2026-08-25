@@ -905,12 +905,42 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // Keyboard navigation for gallery & lightbox
+  // Inquiry Modal Logic
+  const inquiryModal = document.getElementById('inquiry-modal');
+  const btnOpenInquiryModal = document.getElementById('btn-open-inquiry-modal');
+  const inquiryModalClose = document.getElementById('inquiry-modal-close');
+  const inquiryModalBackdrop = document.getElementById('inquiry-modal-backdrop');
+  const inquirySubtitle = document.getElementById('inquiry-modal-vessel-subtitle');
+
+  function openInquiryModal() {
+    if (!inquiryModal) return;
+    if (inquirySubtitle) inquirySubtitle.textContent = `Direct chartering desk inquiry for ${vessel.name} (IMO: ${vessel.imoNumber}).`;
+    if (formVesselInput) formVesselInput.value = `${vessel.name} (IMO: ${vessel.imoNumber})`;
+    inquiryModal.classList.remove('opacity-0', 'pointer-events-none');
+    inquiryModal.classList.add('opacity-100', 'pointer-events-auto');
+    document.body.classList.add('overflow-hidden');
+  }
+
+  function closeInquiryModal() {
+    if (!inquiryModal) return;
+    inquiryModal.classList.add('opacity-0', 'pointer-events-none');
+    inquiryModal.classList.remove('opacity-100', 'pointer-events-auto');
+    document.body.classList.remove('overflow-hidden');
+  }
+
+  if (btnOpenInquiryModal) btnOpenInquiryModal.addEventListener('click', openInquiryModal);
+  if (inquiryModalClose) inquiryModalClose.addEventListener('click', closeInquiryModal);
+  if (inquiryModalBackdrop) inquiryModalBackdrop.addEventListener('click', closeInquiryModal);
+
+  // Keyboard navigation for gallery, lightbox, and inquiry modal
   window.addEventListener('keydown', (e) => {
     if (lightboxModal && !lightboxModal.classList.contains('pointer-events-none')) {
       if (e.key === 'Escape') closeLightbox();
       if (e.key === 'ArrowLeft') lightboxPrev?.click();
       if (e.key === 'ArrowRight') lightboxNext?.click();
+    }
+    if (inquiryModal && !inquiryModal.classList.contains('pointer-events-none')) {
+      if (e.key === 'Escape') closeInquiryModal();
     }
   });
 
