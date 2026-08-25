@@ -701,15 +701,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     `;
   }
 
-  const descEl = document.getElementById('vessel-rich-description');
-  if (descEl) {
-    descEl.innerHTML = vessel.description || `
-      <p class="mb-3"><strong>${vessel.name}</strong> is a high-specification geared multi-purpose general cargo vessel / bulk carrier operating in the commercial management of Danamira Shipping Ltd.</p>
-      <p class="mb-3">Equipped with 2 heavy-duty 30 MT deck cranes (combinable up to 60 MT) and robust box-shaped cargo holds, the vessel is optimized for grain bulk cargoes, project heavy-lift modules, steel coils, wind energy components, and dangerous IMO-classed parcels.</p>
-      <p>Classed under leading IACS classification society with full global trading certifications, ballast water management system (BWMS), and state-of-the-art fuel-efficient propulsion machinery.</p>
-    `;
-  }
-
   const formVesselInput = document.getElementById('form-vessel-name');
   if (formVesselInput) formVesselInput.value = `${vessel.name} (IMO: ${vessel.imoNumber})`;
 
