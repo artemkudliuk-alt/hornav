@@ -90,9 +90,9 @@
       <!-- LEFT COLUMN: HEADER & 4 KPIS + 2-ROW PHOTO GALLERY -->
       <div class="lg:col-span-7 xl:col-span-7 space-y-6" id="vessel-main-left">
         
-        <!-- CARD 1: VESSEL HEADER & 4 KPI METRICS -->
-        <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-6">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-6">
+        <!-- CARD 1: VESSEL HEADER -->
+        <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div class="flex flex-col gap-1">
               <span id="vessel-top-category" class="text-xs tracking-[0.2em] uppercase text-gold font-sans font-bold">
                 GENERAL CARGO &bull; ANTIGUA &amp; BARBUDA FLAG
@@ -116,46 +116,6 @@
                   <span class="text-[10px] font-sans text-neutral-400 uppercase tracking-wider">Technical Drawing</span>
                 </div>
               </button>
-            </div>
-          </div>
-
-          <!-- 4 Key Metrics -->
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
-            <div class="vessel-kpi-box">
-              <div class="vessel-kpi-circle">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M2 17l2 3h16l2-3M4 14l3-8h10l3 8M12 4v8M9 9h6" /></svg>
-              </div>
-              <div class="flex flex-col min-w-0">
-                <span class="text-[11px] uppercase tracking-wider text-neutral-400 font-sans font-medium">Deadweight</span>
-                <span id="spec-dwt" class="text-sm sm:text-base font-bold text-white mt-1 leading-tight font-sans tracking-tight">6,408 MT</span>
-              </div>
-            </div>
-            <div class="vessel-kpi-box">
-              <div class="vessel-kpi-circle">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
-              </div>
-              <div class="flex flex-col min-w-0">
-                <span class="text-[11px] uppercase tracking-wider text-neutral-400 font-sans font-medium">Grain Capacity</span>
-                <span id="spec-grain" class="text-sm sm:text-base font-bold text-white mt-1 leading-tight font-sans tracking-tight">315,000 cu.ft</span>
-              </div>
-            </div>
-            <div class="vessel-kpi-box">
-              <div class="vessel-kpi-circle">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 20h16M7 20V5l8 4v11M15 9l4 2v4a2 2 0 11-4 0" /></svg>
-              </div>
-              <div class="flex flex-col min-w-0">
-                <span class="text-[11px] uppercase tracking-wider text-neutral-400 font-sans font-medium">Deck Gear</span>
-                <span id="spec-cranes" class="text-sm sm:text-base font-bold text-white mt-1 leading-tight font-sans tracking-tight">2 x 30 MT</span>
-              </div>
-            </div>
-            <div class="vessel-kpi-box">
-              <div class="vessel-kpi-circle">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 18h18M3 14h18M3 10h18M3 6h18M12 3v18" /></svg>
-              </div>
-              <div class="flex flex-col min-w-0">
-                <span class="text-[11px] uppercase tracking-wider text-neutral-400 font-sans font-medium">Summer Draft</span>
-                <span id="spec-draft" class="text-sm sm:text-base font-bold text-white mt-1 leading-tight font-sans tracking-tight">6.85 m</span>
-              </div>
             </div>
           </div>
         </div>
@@ -196,7 +156,49 @@
           </div>
         </div>
 
-        <!-- CARD 3: "GET IN TOUCH" BUTTON CARD -->
+        <!-- CARD 3: 4 KEY METRICS (ICONS UNDER PHOTOS) -->
+        <div class="bg-[#17171a] border border-white/[0.08] p-4 sm:p-5 shadow-2xl">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
+            <div class="vessel-kpi-box">
+              <div class="vessel-kpi-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M2 17l2 3h16l2-3M4 14l3-8h10l3 8M12 4v8M9 9h6" /></svg>
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="text-[11px] uppercase tracking-wider text-neutral-400 font-sans font-medium">Deadweight</span>
+                <span id="spec-dwt" class="text-sm sm:text-base font-bold text-white mt-1 leading-tight font-sans tracking-tight">6,408 MT</span>
+              </div>
+            </div>
+            <div class="vessel-kpi-box">
+              <div class="vessel-kpi-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="text-[11px] uppercase tracking-wider text-neutral-400 font-sans font-medium">Grain Capacity</span>
+                <span id="spec-grain" class="text-sm sm:text-base font-bold text-white mt-1 leading-tight font-sans tracking-tight">315,000 cu.ft</span>
+              </div>
+            </div>
+            <div class="vessel-kpi-box">
+              <div class="vessel-kpi-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 20h16M7 20V5l8 4v11M15 9l4 2v4a2 2 0 11-4 0" /></svg>
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="text-[11px] uppercase tracking-wider text-neutral-400 font-sans font-medium">Deck Gear</span>
+                <span id="spec-cranes" class="text-sm sm:text-base font-bold text-white mt-1 leading-tight font-sans tracking-tight">2 x 30 MT</span>
+              </div>
+            </div>
+            <div class="vessel-kpi-box">
+              <div class="vessel-kpi-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 18h18M3 14h18M3 10h18M3 6h18M12 3v18" /></svg>
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="text-[11px] uppercase tracking-wider text-neutral-400 font-sans font-medium">Summer Draft</span>
+                <span id="spec-draft" class="text-sm sm:text-base font-bold text-white mt-1 leading-tight font-sans tracking-tight">6.85 m</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 4: "GET IN TOUCH" BUTTON CARD -->
         <div class="vessel-advisor-card space-y-4 bg-[#17171a] p-5 sm:p-6 border border-white/[0.08] shadow-2xl" id="charter-inquiry">
           <div class="flex items-center justify-between">
             <h2 class="text-xl sm:text-2xl font-serif text-white font-medium tracking-tight">Get in Touch</h2>
