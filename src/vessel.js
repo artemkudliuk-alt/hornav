@@ -14,9 +14,6 @@ vesselLayoutStyles.textContent = `
   .vessel-hero-left {
     width: 100% !important;
     min-width: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important;
   }
   .vessel-hero-right {
     width: 100% !important;
@@ -25,9 +22,9 @@ vesselLayoutStyles.textContent = `
   .vessel-stage-box {
     position: relative !important;
     width: 100% !important;
-    height: 360px !important;
-    min-height: 360px !important;
-    max-height: 360px !important;
+    height: 380px !important;
+    min-height: 380px !important;
+    max-height: 480px !important;
     overflow: hidden !important;
     border-radius: 0 !important;
     background-color: #111113 !important;
@@ -43,9 +40,8 @@ vesselLayoutStyles.textContent = `
   }
   @media (min-width: 640px) {
     .vessel-stage-box {
-      height: 420px !important;
-      min-height: 420px !important;
-      max-height: 420px !important;
+      height: 440px !important;
+      min-height: 440px !important;
     }
   }
   .vessel-thumbs-5 {
@@ -53,11 +49,11 @@ vesselLayoutStyles.textContent = `
     grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
     gap: 0.5rem !important;
     width: 100% !important;
-    height: 56px !important;
+    height: 60px !important;
   }
   .vessel-thumb-btn {
     position: relative !important;
-    height: 56px !important;
+    height: 60px !important;
     width: 100% !important;
     overflow: hidden !important;
     border-radius: 0 !important;
@@ -75,58 +71,37 @@ vesselLayoutStyles.textContent = `
   @media (min-width: 1024px) {
     .vessel-hero-grid {
       display: grid !important;
-      grid-template-columns: 1.75fr 1fr !important;
-      align-items: stretch !important;
-      gap: 2rem !important;
+      grid-template-columns: minmax(0, 1fr) 380px !important;
+      align-items: start !important;
+      gap: 2.5rem !important;
       width: 100% !important;
-    }
-    .vessel-hero-left {
-      display: flex !important;
-      flex-direction: column !important;
-      justify-content: space-between !important;
-      height: 100% !important;
-      width: 100% !important;
-      max-width: 100% !important;
     }
     .vessel-hero-right {
-      height: 100% !important;
-      width: 100% !important;
+      position: sticky !important;
+      top: 6rem !important;
+      width: 380px !important;
       max-width: 100% !important;
-    }
-    .vessel-stage-box {
-      height: 460px !important;
-      min-height: 460px !important;
-      max-height: 460px !important;
-      flex: none !important;
-      margin-bottom: 0.75rem !important;
-    }
-    .vessel-thumbs-5 {
-      height: 64px !important;
-      margin-bottom: 0.5rem !important;
-    }
-    .vessel-thumb-btn {
-      height: 64px !important;
+      align-self: start !important;
     }
     .vessel-advisor-card {
-      height: 100% !important;
-      min-height: 560px !important;
-      display: flex !important;
-      flex-direction: column !important;
-      justify-content: space-between !important;
-      box-sizing: border-box !important;
+      height: auto !important;
+      min-height: auto !important;
     }
   }
-  @media (min-width: 1200px) {
+  @media (min-width: 1280px) {
     .vessel-hero-grid {
-      grid-template-columns: 1.8fr 1fr !important;
-      gap: 2.25rem !important;
+      grid-template-columns: minmax(0, 1fr) 400px !important;
+      gap: 3rem !important;
+    }
+    .vessel-hero-right {
+      width: 400px !important;
     }
   }
   .vessel-advisor-card {
     background-color: #17171a !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     border-radius: 0 !important;
-    padding: 1.25rem 1.5rem !important;
+    padding: 1.5rem !important;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5) !important;
   }
   .vessel-avatar-circle {
@@ -300,29 +275,30 @@ vesselLayoutStyles.textContent = `
   .vessel-specs-grid {
     display: grid !important;
     grid-template-columns: 1fr !important;
-    row-gap: 1.25rem !important;
-    column-gap: 3rem !important;
+    row-gap: 1rem !important;
+    column-gap: 2rem !important;
     width: 100% !important;
-    margin-top: 1.5rem !important;
+    margin-top: 1rem !important;
   }
   @media (min-width: 640px) {
     .vessel-specs-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     }
   }
-  @media (min-width: 1024px) {
+  @media (min-width: 1200px) {
     .vessel-specs-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      column-gap: 2.5rem !important;
     }
   }
   .vessel-spec-item {
     display: flex !important;
-    align-items: center !important;
+    align-items: baseline !important;
     justify-content: space-between !important;
-    padding-bottom: 0.75rem !important;
+    padding-bottom: 0.625rem !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
     font-size: 0.75rem !important;
-    gap: 1.25rem !important;
+    gap: 1rem !important;
     min-width: 0 !important;
   }
   .vessel-spec-label {
@@ -338,11 +314,9 @@ vesselLayoutStyles.textContent = `
     color: #ffffff !important;
     font-family: monospace !important;
     font-size: 0.75rem !important;
-    font-weight: 500 !important;
+    font-weight: 600 !important;
     text-align: right !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
+    white-space: normal !important;
     margin-left: auto !important;
   }
   #lightbox-modal {
@@ -369,14 +343,14 @@ vesselLayoutStyles.textContent = `
   .lightbox-card-window {
     position: relative !important;
     z-index: 10 !important;
-    width: 100% !important;
-    max-width: 820px !important;
-    max-height: 80vh !important;
-    height: auto !important;
-    background-color: #161619 !important;
-    border: 1px solid rgba(200, 155, 60, 0.5) !important;
+    width: 96vw !important;
+    max-width: 1440px !important;
+    height: 92vh !important;
+    max-height: 94vh !important;
+    background-color: #141416 !important;
+    border: 1px solid rgba(200, 155, 60, 0.4) !important;
     border-radius: 0 !important;
-    box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.95), 0 0 30px rgba(200, 155, 60, 0.12) !important;
+    box-shadow: 0 25px 70px -10px rgba(0, 0, 0, 0.98), 0 0 35px rgba(200, 155, 60, 0.15) !important;
     display: flex !important;
     flex-direction: column !important;
     overflow: hidden !important;
@@ -386,23 +360,24 @@ vesselLayoutStyles.textContent = `
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
-    padding: 0.625rem 1rem !important;
-    background-color: #101012 !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding: 0.75rem 1.25rem !important;
+    background-color: #0d0d0f !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
     flex-shrink: 0 !important;
   }
   .lightbox-stage-container {
     position: relative !important;
     width: 100% !important;
-    height: 44vh !important;
-    max-height: 400px !important;
-    min-height: 220px !important;
-    background-color: #09090b !important;
+    flex: 1 1 auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    background-color: #08080a !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     overflow: hidden !important;
-    padding: 0.5rem !important;
+    padding: 1rem 3.5rem !important;
     box-sizing: border-box !important;
   }
   #lightbox-img {
@@ -416,40 +391,42 @@ vesselLayoutStyles.textContent = `
     user-select: none !important;
     -webkit-user-drag: none !important;
     pointer-events: none !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8) !important;
   }
   .lightbox-nav-btn {
     position: absolute !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
-    width: 40px !important;
-    height: 40px !important;
+    width: 48px !important;
+    height: 48px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    background-color: rgba(22, 22, 25, 0.9) !important;
+    background-color: rgba(18, 18, 20, 0.85) !important;
     color: #ffffff !important;
-    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
     border-radius: 0 !important;
     cursor: pointer !important;
     z-index: 20 !important;
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7) !important;
   }
   .lightbox-nav-btn:hover {
     background-color: #c89b3c !important;
     color: #000000 !important;
     border-color: #c89b3c !important;
+    transform: translateY(-50%) scale(1.05) !important;
   }
   .lightbox-nav-btn.prev {
-    left: 0.75rem !important;
+    left: 1rem !important;
   }
   .lightbox-nav-btn.next {
-    right: 0.75rem !important;
+    right: 1rem !important;
   }
   .lightbox-footer-bar {
-    padding: 0.5rem 1rem !important;
-    background-color: #101012 !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding: 0.625rem 1.25rem 0.75rem !important;
+    background-color: #0d0d0f !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
     flex-shrink: 0 !important;
   }
   #lightbox-thumbnails {
@@ -459,28 +436,35 @@ vesselLayoutStyles.textContent = `
     overflow-x: auto !important;
     padding: 0.25rem 0 !important;
     max-width: 100% !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+  #lightbox-thumbnails::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
   }
   .lb-thumb-btn {
     flex-shrink: 0 !important;
-    width: 60px !important;
-    height: 42px !important;
+    width: 76px !important;
+    height: 52px !important;
     border-radius: 0 !important;
     overflow: hidden !important;
     background-color: #000000 !important;
     cursor: pointer !important;
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    opacity: 0.6 !important;
+    opacity: 0.5 !important;
     transition: all 0.2s ease !important;
     padding: 0 !important;
   }
   .lb-thumb-btn:hover {
     opacity: 1 !important;
-    border-color: rgba(255, 255, 255, 0.5) !important;
+    border-color: rgba(255, 255, 255, 0.6) !important;
   }
   .lb-thumb-btn.active {
     opacity: 1 !important;
     border: 2px solid #c89b3c !important;
-    box-shadow: 0 0 10px rgba(200, 155, 60, 0.4) !important;
+    box-shadow: 0 0 12px rgba(200, 155, 60, 0.5) !important;
   }
   .lb-thumb-btn img {
     width: 100% !important;
@@ -516,33 +500,288 @@ document.addEventListener('DOMContentLoaded', async () => {
   const taglineEl = document.getElementById('vessel-tagline');
   if (taglineEl) taglineEl.textContent = `IMO: ${vessel.imoNumber} • Built ${vessel.yearBuilt || 2014} • ${vessel.classSociety} • Call Sign: ${vessel.callSign || 'V2FX5'}`;
 
-  // Populate Key Specifications Directly (100% match with FLEET_DATABASE)
-  const specMap = {
-    'spec-dwt': vessel.dwt || '6,408 MT',
-    'spec-grain': vessel.grainCapacity ? vessel.grainCapacity.split('(')[0].trim() : '315,000 cu.ft',
-    'spec-cranes': vessel.deckGear || '2 x 30 MT Cranes',
-    'spec-draft': vessel.draft ? vessel.draft.split('(')[0].trim() : '6.85 m',
-    'spec-imo': vessel.imoNumber || '9613616',
-    'spec-year': `Built in ${vessel.yearBuilt || 2014}`,
-    'spec-class': vessel.classSociety || 'DNV Class',
-    'spec-gt': vessel.gt || '4,591',
-    'spec-nt': vessel.nt || '2,352',
-    'spec-loa': vessel.loa || '108.20 m',
-    'spec-beam': vessel.beam || '18.20 m',
-    'spec-holds': vessel.holdsCount || '2 Holds / 2 Hatches',
-    'spec-bale': vessel.baleCapacity ? vessel.baleCapacity.split('(')[0].trim() : '305,000 cu.ft',
-    'spec-hatch1': vessel.hatch1Dims || '25.60 m x 15.20 m',
-    'spec-hatch2': vessel.hatch2Dims || '38.40 m x 15.20 m',
-    'spec-strength': vessel.tankTopStrength || '15.0 MT / sq.m',
-    'spec-speed': vessel.ecoSpeed || '11.0 knots',
-    'spec-thruster': vessel.bowThruster || 'Fitted (350 kW)',
-    'spec-flag': vessel.flag || 'Antigua & Barbuda'
-  };
+  // 1. Populate General Description Table (Exact Spec from TZ)
+  const tabVesselNameCell = document.getElementById('tab-vessel-name-cell');
+  if (tabVesselNameCell) tabVesselNameCell.textContent = vessel.name.replace('MV ', '');
 
-  Object.entries(specMap).forEach(([id, val]) => {
-    const el = document.getElementById(id);
-    if (el) el.textContent = val || '—';
+  const tabVesselTypeCell = document.getElementById('tab-vessel-type-cell');
+  if (tabVesselTypeCell) tabVesselTypeCell.textContent = vessel.type;
+
+  const tabVesselBuiltCell = document.getElementById('tab-vessel-built-cell');
+  if (tabVesselBuiltCell) tabVesselBuiltCell.textContent = vessel.yearBuilt || '2014';
+
+  const tabVesselFlagCell = document.getElementById('tab-vessel-flag-cell');
+  if (tabVesselFlagCell) tabVesselFlagCell.textContent = vessel.flag || 'Antigua & Barbuda';
+
+  const tabVesselDwtCell = document.getElementById('tab-vessel-dwt-cell');
+  if (tabVesselDwtCell) tabVesselDwtCell.textContent = vessel.dwt || '6,408 MT';
+
+  const tabVesselHoldsCell = document.getElementById('tab-vessel-holds-cell');
+  if (tabVesselHoldsCell) {
+    tabVesselHoldsCell.textContent = vessel.holdsCount ? (vessel.holdsCount.includes('(') ? vessel.holdsCount.split('(')[1].replace(')', '') : vessel.holdsCount) : '2HO / 2HA';
+  }
+
+  const tabVesselGearCell = document.getElementById('tab-vessel-gear-cell');
+  if (tabVesselGearCell) tabVesselGearCell.textContent = vessel.deckGear ? vessel.deckGear.replace(' Cranes (60 MT comb.)', '').replace(' Cranes', '') : '2 x 30';
+
+  // 2. Tab Navigation Switching Logic
+  const tabBtns = document.querySelectorAll('.vessel-tab-btn');
+  const tabPanels = document.querySelectorAll('.vessel-panel');
+  const gaPlanIframe = document.getElementById('ga-plan-tab-iframe');
+  const btnDownloadGaPlanTab = document.getElementById('btn-download-ga-plan-tab');
+
+  if (btnDownloadGaPlanTab) {
+    btnDownloadGaPlanTab.href = vessel.pdfGaPlanUrl;
+    btnDownloadGaPlanTab.setAttribute('download', `${vessel.name.replace(/\s+/g, '_')}_GA_Plan.pdf`);
+  }
+
+  // Load GA-Plan PDF into iframe immediately
+  if (gaPlanIframe && vessel.pdfGaPlanUrl) {
+    gaPlanIframe.src = `${vessel.pdfGaPlanUrl}#toolbar=1&navpanes=0&scrollbar=1&view=FitH`;
+  }
+
+  function switchTab(tabKey) {
+    tabBtns.forEach(btn => {
+      const isTarget = btn.getAttribute('data-vessel-tab') === tabKey;
+      if (isTarget) {
+        btn.className = 'vessel-tab-btn px-5 sm:px-6 py-3 text-xs font-mono font-bold uppercase tracking-wider bg-gold text-neutral-950 border border-gold shadow-lg cursor-pointer transition-all duration-200';
+      } else {
+        btn.className = 'vessel-tab-btn px-5 sm:px-6 py-3 text-xs font-mono font-bold uppercase tracking-wider bg-white/5 text-neutral-400 border border-white/10 hover:border-gold hover:text-white cursor-pointer transition-all duration-200';
+      }
+    });
+
+    tabPanels.forEach(panel => {
+      const isTarget = panel.getAttribute('data-vessel-panel') === tabKey;
+      if (isTarget) {
+        panel.classList.remove('hidden');
+        panel.classList.add('flex');
+      } else {
+        panel.classList.add('hidden');
+        panel.classList.remove('flex');
+      }
+    });
+
+    // Ensure GA-Plan PDF is loaded into iframe when user switches to GA-Plan tab
+    if (tabKey === 'gaplan' && gaPlanIframe && vessel.pdfGaPlanUrl) {
+      if (!gaPlanIframe.src || gaPlanIframe.src.includes('about:blank') || !gaPlanIframe.src.includes(vessel.pdfGaPlanUrl)) {
+        gaPlanIframe.src = `${vessel.pdfGaPlanUrl}#toolbar=1&navpanes=0&scrollbar=1&view=FitH`;
+      }
+    }
+  }
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tabKey = btn.getAttribute('data-vessel-tab');
+      switchTab(tabKey);
+    });
   });
+
+  // Check URL hash for direct tab linking
+  const hash = window.location.hash.replace('#', '');
+  if (hash === 'gaplan' || hash === 'panorama' || hash === 'description') {
+    switchTab(hash);
+  }
+
+  // Populate Top 4 KPI metrics
+  const specDwt = document.getElementById('spec-dwt');
+  if (specDwt) specDwt.textContent = vessel.dwt || '6,408 MT';
+
+  const specGrain = document.getElementById('spec-grain');
+  if (specGrain) specGrain.textContent = vessel.grainCapacity ? vessel.grainCapacity.split('(')[0].trim() : '315,000 cu.ft';
+
+  const specCranes = document.getElementById('spec-cranes');
+  if (specCranes) specCranes.textContent = vessel.deckGear || '2 x 30 MT Cranes';
+
+  const specDraft = document.getElementById('spec-draft');
+  if (specDraft) specDraft.textContent = vessel.draft ? vessel.draft.split('(')[0].trim() : '6.85 m';
+
+  // Render Structured Technical Particulars (Matching Official Vessel Description Sheet)
+  const structuredContainer = document.getElementById('vessel-structured-specs-container');
+  if (structuredContainer && vessel.specSections) {
+    const s = vessel.specSections;
+    
+    structuredContainer.innerHTML = `
+      <!-- Row 1: INFORMATION + HOLDS/BALLAST/LOADS -->
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+        
+        <!-- CARD 1: ① INFORMATION -->
+        <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2 pb-3 mb-3 border-b border-border-gold/30">
+              <span class="w-2 h-2 bg-gold shrink-0"></span>
+              <h3 class="text-xs font-mono font-bold tracking-[0.2em] uppercase text-gold">① INFORMATION</h3>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 pt-1">
+              ${(s.information || []).map(item => `
+                <div class="flex items-baseline justify-between py-1 border-b border-white/[0.06] text-xs">
+                  <span class="text-neutral-400 font-mono text-[11px] uppercase">${item.label}</span>
+                  <span class="text-white font-mono font-semibold text-right">${item.value}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2: ③ HOLDS & HATCHES + ④ BALLAST & STRENGTH + ⑧ PERMISSIBLE LOADS -->
+        <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-4">
+          <!-- Holds & Hatches -->
+          <div>
+            <div class="flex items-center gap-2 pb-2 mb-2 border-b border-white/10">
+              <span class="w-1.5 h-1.5 bg-gold shrink-0"></span>
+              <h4 class="text-[11px] font-mono font-bold tracking-wider uppercase text-gold">③ Holds &amp; Hatches</h4>
+            </div>
+            <div class="space-y-1">
+              ${(s.holdsHatches || []).map(item => `
+                <div class="flex items-baseline justify-between py-0.5 border-b border-white/[0.04] text-xs">
+                  <span class="text-neutral-400 font-mono text-[11px] uppercase">${item.label}</span>
+                  <span class="text-white font-mono font-semibold text-right">${item.value}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Ballast & Strength -->
+          <div class="pt-2">
+            <div class="flex items-center gap-2 pb-2 mb-2 border-b border-white/10">
+              <span class="w-1.5 h-1.5 bg-gold shrink-0"></span>
+              <h4 class="text-[11px] font-mono font-bold tracking-wider uppercase text-gold">④ Ballast &amp; Strength</h4>
+            </div>
+            <div class="space-y-1">
+              ${(s.ballastStrength || []).map(item => `
+                <div class="flex items-baseline justify-between py-0.5 border-b border-white/[0.04] text-xs">
+                  <span class="text-neutral-400 font-mono text-[11px] uppercase">${item.label}</span>
+                  <span class="text-white font-mono font-semibold text-right">${item.value}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Permissible Loads -->
+          <div class="pt-2">
+            <div class="flex items-center gap-2 pb-2 mb-2 border-b border-white/10">
+              <span class="w-1.5 h-1.5 bg-gold shrink-0"></span>
+              <h4 class="text-[11px] font-mono font-bold tracking-wider uppercase text-gold">⑧ Permissible Loads</h4>
+            </div>
+            <div class="space-y-1">
+              ${(s.permissibleLoads || []).map(item => `
+                <div class="flex items-baseline justify-between py-0.5 border-b border-white/[0.04] text-xs">
+                  <span class="text-neutral-400 font-mono text-[11px] uppercase">${item.label}</span>
+                  <span class="text-gold font-mono font-semibold text-right">${item.value}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Row 2: PARTICULARS + SPEED/TANKS/ENGINE -->
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+        
+        <!-- CARD 3: ② PARTICULARS -->
+        <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-3">
+          <div class="flex items-center gap-2 pb-3 border-b border-border-gold/30">
+            <span class="w-2 h-2 bg-gold shrink-0"></span>
+            <h3 class="text-xs font-mono font-bold tracking-[0.2em] uppercase text-gold">② PARTICULARS &amp; CAPACITIES</h3>
+          </div>
+          <div class="space-y-1">
+            ${(s.particulars || []).map(item => `
+              <div class="flex items-baseline justify-between py-1 border-b border-white/[0.06] text-xs">
+                <span class="text-neutral-400 font-mono text-[11px] uppercase">${item.label}</span>
+                <span class="text-white font-mono font-semibold text-right">${item.value}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- CARD 4: ⑤ SPEED & CONSUMPTION + ⑥ TANK CAPACITIES + ⑦ MAIN ENGINE -->
+        <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-4">
+          
+          <!-- Speed & Consumption -->
+          <div>
+            <div class="flex items-center gap-2 pb-2 mb-2 border-b border-white/10">
+              <span class="w-1.5 h-1.5 bg-gold shrink-0"></span>
+              <h4 class="text-[11px] font-mono font-bold tracking-wider uppercase text-gold">⑤ Speed &amp; Consumption</h4>
+            </div>
+            <div class="space-y-1">
+              ${(s.speedConsumption || []).map(item => `
+                <div class="flex items-baseline justify-between py-0.5 border-b border-white/[0.04] text-xs">
+                  <span class="text-neutral-400 font-mono text-[11px] uppercase">${item.label}</span>
+                  <span class="text-white font-mono font-semibold text-right">${item.value}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Tank Capacities -->
+          <div class="pt-2">
+            <div class="flex items-center gap-2 pb-2 mb-2 border-b border-white/10">
+              <span class="w-1.5 h-1.5 bg-gold shrink-0"></span>
+              <h4 class="text-[11px] font-mono font-bold tracking-wider uppercase text-gold">⑥ Tank Capacities (100%)</h4>
+            </div>
+            <div class="space-y-1">
+              ${(s.tankCapacities || []).map(item => `
+                <div class="flex items-baseline justify-between py-0.5 border-b border-white/[0.04] text-xs">
+                  <span class="text-neutral-400 font-mono text-[11px] uppercase">${item.label}</span>
+                  <span class="text-white font-mono font-semibold text-right">${item.value}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Main Engine & Auxiliary Machinery -->
+          <div class="pt-2">
+            <div class="flex items-center gap-2 pb-2 mb-2 border-b border-white/10">
+              <span class="w-1.5 h-1.5 bg-gold shrink-0"></span>
+              <h4 class="text-[11px] font-mono font-bold tracking-wider uppercase text-gold">⑦ Main Engine &amp; Machinery</h4>
+            </div>
+            <div class="space-y-1">
+              ${(s.mainEngine || []).map(item => `
+                <div class="flex items-baseline justify-between py-0.5 border-b border-white/[0.04] text-xs">
+                  <span class="text-neutral-400 font-mono text-[11px] uppercase">${item.label}</span>
+                  <span class="text-white font-mono font-semibold text-right">${item.value}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    `;
+  }
+
+  // Render Feature Badges Bar
+  const badgesBar = document.getElementById('vessel-feature-badges-bar');
+  if (badgesBar) {
+    badgesBar.innerHTML = `
+      <div class="bg-[#111113] border border-white/10 p-3 flex flex-col items-center text-center gap-1.5">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="w-5 h-5 text-gold"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+        <span class="text-[9px] font-mono uppercase text-neutral-400">Grain Capacity</span>
+        <span class="text-xs font-mono font-bold text-white">${vessel.grainCapacity ? vessel.grainCapacity.split('(')[0].trim() : '352,000 cu.ft'}</span>
+      </div>
+      <div class="bg-[#111113] border border-white/10 p-3 flex flex-col items-center text-center gap-1.5">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="w-5 h-5 text-gold"><path d="M4 20h16M7 20V5l8 4v11M15 9l4 2v4a2 2 0 11-4 0"/></svg>
+        <span class="text-[9px] font-mono uppercase text-neutral-400">Tanktop Strength</span>
+        <span class="text-xs font-mono font-bold text-white">${vessel.tankTopStrength || '16.5 MT / m²'}</span>
+      </div>
+      <div class="bg-[#111113] border border-white/10 p-3 flex flex-col items-center text-center gap-1.5">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="w-5 h-5 text-gold"><path d="M4 4h16v16H4zM4 10h16M10 4v16"/></svg>
+        <span class="text-[9px] font-mono uppercase text-neutral-400">Hatch Covers</span>
+        <span class="text-xs font-mono font-bold text-white">Hydraulic Folding</span>
+      </div>
+      <div class="bg-[#111113] border border-white/10 p-3 flex flex-col items-center text-center gap-1.5">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="w-5 h-5 text-gold"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <span class="text-[9px] font-mono uppercase text-neutral-400">Fire Safety</span>
+        <span class="text-xs font-mono font-bold text-white">CO2 Fitted in Holds</span>
+      </div>
+      <div class="bg-[#111113] border border-white/10 p-3 flex flex-col items-center text-center gap-1.5 col-span-2 sm:col-span-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="w-5 h-5 text-gold"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5-6.5-4.5-6.5 4.5 2-7.5L2 9h7z"/></svg>
+        <span class="text-[9px] font-mono uppercase text-neutral-400">Class Society</span>
+        <span class="text-xs font-mono font-bold text-white">${vessel.classSociety ? vessel.classSociety.split('(')[0].trim() : 'IACS Class'}</span>
+      </div>
+    `;
+  }
 
   const descEl = document.getElementById('vessel-rich-description');
   if (descEl) {
@@ -551,33 +790,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       <p class="mb-3">Equipped with 2 heavy-duty 30 MT deck cranes (combinable up to 60 MT) and robust box-shaped cargo holds, the vessel is optimized for grain bulk cargoes, project heavy-lift modules, steel coils, wind energy components, and dangerous IMO-classed parcels.</p>
       <p>Classed under leading IACS classification society with full global trading certifications, ballast water management system (BWMS), and state-of-the-art fuel-efficient propulsion machinery.</p>
     `;
-  }
-
-  // Overview Expand / Collapse Toggle
-  const overviewContent = document.getElementById('overview-content');
-  const overviewToggleBtn = document.getElementById('overview-toggle-btn');
-  const overviewToggleText = document.getElementById('overview-toggle-text');
-  const overviewToggleIcon = document.getElementById('overview-toggle-icon');
-  const overviewGradient = document.getElementById('overview-gradient');
-
-  let isOverviewExpanded = false;
-  if (overviewToggleBtn && overviewContent) {
-    overviewToggleBtn.addEventListener('click', () => {
-      isOverviewExpanded = !isOverviewExpanded;
-      if (isOverviewExpanded) {
-        overviewContent.classList.remove('max-h-[140px]');
-        overviewContent.classList.add('max-h-[1200px]');
-        if (overviewGradient) overviewGradient.classList.add('opacity-0');
-        if (overviewToggleText) overviewToggleText.textContent = 'Show Less';
-        if (overviewToggleIcon) overviewToggleIcon.classList.add('rotate-180');
-      } else {
-        overviewContent.classList.add('max-h-[140px]');
-        overviewContent.classList.remove('max-h-[1200px]');
-        if (overviewGradient) overviewGradient.classList.remove('opacity-0');
-        if (overviewToggleText) overviewToggleText.textContent = 'Show More';
-        if (overviewToggleIcon) overviewToggleIcon.classList.remove('rotate-180');
-      }
-    });
   }
 
   const formVesselInput = document.getElementById('form-vessel-name');
@@ -595,7 +807,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const stageImg = document.getElementById('gallery-stage-img');
   const stageTitle = document.getElementById('gallery-stage-title');
-  const counterEl = document.getElementById('gallery-counter');
+  const counterEl = document.getElementById('gallery-counter-tab');
   const thumbsContainer = document.getElementById('gallery-thumbnails');
   const fullGridContainer = document.getElementById('gallery-full-grid');
 
@@ -741,6 +953,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         updateLightboxPhoto(idx);
       }
     });
+
+    lightboxThumbsContainer.addEventListener('wheel', (e) => {
+      if (e.deltaY !== 0) {
+        e.preventDefault();
+        lightboxThumbsContainer.scrollLeft += e.deltaY * 1.5;
+      }
+    }, { passive: false });
   }
 
   document.getElementById('btn-open-stage-lightbox')?.addEventListener('click', () => openLightbox(currentPhotoIndex));
@@ -823,11 +1042,33 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Modal PDF Viewer Handler
   const pdfModal = document.getElementById('pdf-modal');
+  const pdfModalContainer = document.getElementById('pdf-modal-container');
   const pdfIframe = document.getElementById('pdf-modal-iframe');
   const pdfTitle = document.getElementById('pdf-modal-title');
   const pdfModalDownload = document.getElementById('pdf-modal-download');
   const pdfCloseBtn = document.getElementById('pdf-modal-close');
+  const pdfExpandBtn = document.getElementById('pdf-modal-expand');
+  const expandBtnText = document.getElementById('expand-btn-text');
   const pdfBackdrop = document.getElementById('pdf-modal-backdrop');
+
+  let isPdfFullscreen = false;
+
+  function togglePdfFullscreen(forceState) {
+    if (!pdfModalContainer) return;
+    isPdfFullscreen = typeof forceState === 'boolean' ? forceState : !isPdfFullscreen;
+    
+    if (isPdfFullscreen) {
+      pdfModalContainer.classList.remove('max-w-6xl', 'h-[94vh]', 'sm:h-[90vh]', 'rounded-xl');
+      pdfModalContainer.classList.add('max-w-none', 'w-screen', 'h-screen', 'rounded-none', 'border-0');
+      if (pdfModal) pdfModal.classList.remove('p-2', 'sm:p-4', 'md:p-6');
+      if (expandBtnText) expandBtnText.textContent = 'Exit Fullscreen';
+    } else {
+      pdfModalContainer.classList.remove('max-w-none', 'w-screen', 'h-screen', 'rounded-none', 'border-0');
+      pdfModalContainer.classList.add('max-w-6xl', 'h-[94vh]', 'sm:h-[90vh]', 'rounded-xl');
+      if (pdfModal) pdfModal.classList.add('p-2', 'sm:p-4', 'md:p-6');
+      if (expandBtnText) expandBtnText.textContent = 'Full Width';
+    }
+  }
 
   function openPdfModal(title, url) {
     if (!pdfModal || !pdfIframe) return;
@@ -836,7 +1077,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       pdfModalDownload.href = url;
       pdfModalDownload.setAttribute('download', `${title.replace(/\s+/g, '_')}.pdf`);
     }
-    pdfIframe.src = url;
+    pdfIframe.src = `${url}#toolbar=1&navpanes=0&scrollbar=1&view=FitH`;
     pdfModal.classList.remove('opacity-0', 'pointer-events-none');
     pdfModal.classList.add('opacity-100', 'pointer-events-auto');
     document.body.classList.add('overflow-hidden');
@@ -848,11 +1089,24 @@ document.addEventListener('DOMContentLoaded', async () => {
     pdfModal.classList.remove('opacity-100', 'pointer-events-auto');
     document.body.classList.remove('overflow-hidden');
     setTimeout(() => {
-      pdfIframe.src = '';
+      pdfIframe.src = 'about:blank';
     }, 300);
+    if (isPdfFullscreen && pdfModalContainer) {
+      togglePdfFullscreen(false);
+    }
   }
 
+  if (pdfExpandBtn) pdfExpandBtn.addEventListener('click', () => togglePdfFullscreen());
+
   document.getElementById('btn-open-pdf-hero')?.addEventListener('click', () => {
+    openPdfModal(`${vessel.name} — General Arrangement Plan`, vessel.pdfGaPlanUrl);
+  });
+
+  document.getElementById('btn-tab-pdf-trigger')?.addEventListener('click', () => {
+    openPdfModal(`${vessel.name} — General Arrangement Plan`, vessel.pdfGaPlanUrl);
+  });
+
+  document.getElementById('btn-view-ga-plan-tab')?.addEventListener('click', () => {
     openPdfModal(`${vessel.name} — General Arrangement Plan`, vessel.pdfGaPlanUrl);
   });
 
@@ -894,32 +1148,4 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // Exact height synchronization between left photo stage and right inquiry form on desktop
-  function syncHeroHeight() {
-    if (window.innerWidth < 1024) {
-      const stage = document.querySelector('.vessel-stage-box');
-      if (stage) stage.style.height = '';
-      return;
-    }
-    const rightCard = document.querySelector('.vessel-advisor-card');
-    const stage = document.querySelector('.vessel-stage-box');
-    const thumbs = document.getElementById('gallery-thumbnails');
-    const bottomBar = document.querySelector('.vessel-hero-left > div:last-child');
-    
-    if (rightCard && stage && thumbs) {
-      const rightHeight = rightCard.getBoundingClientRect().height;
-      const thumbsHeight = thumbs.getBoundingClientRect().height || 64;
-      const bottomBarHeight = bottomBar ? bottomBar.getBoundingClientRect().height : 22;
-      const gapTotal = 24; // clean gap between stage, thumbnails and action line
-      const calculatedStageHeight = Math.round(rightHeight - thumbsHeight - bottomBarHeight - gapTotal);
-      if (calculatedStageHeight > 320) {
-        stage.style.height = `${calculatedStageHeight}px`;
-      }
-    }
-  }
-
-  syncHeroHeight();
-  window.addEventListener('resize', syncHeroHeight);
-  window.addEventListener('load', syncHeroHeight);
-  setTimeout(syncHeroHeight, 200);
-  setTimeout(syncHeroHeight, 600);
 });

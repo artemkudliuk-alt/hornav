@@ -23,6 +23,38 @@ document.addEventListener('DOMContentLoaded', async () => {
       countIndicator.textContent = `Showing ${filtered.length} of ${fleetList.length} vessels`;
     }
 
+    // 1. Render General Description Table
+    const tableBody = document.getElementById('fleet-table-body');
+    if (tableBody) {
+      tableBody.innerHTML = filtered.map(v => `
+        <tr class="hover:bg-white/[0.04] transition-colors group">
+          <td class="py-4 px-4 font-bold text-white whitespace-nowrap">
+            <div class="flex items-center gap-2.5">
+              <a href="/vessel.html?id=${v.id}" class="text-sm sm:text-base font-bold text-white uppercase hover:text-gold transition-colors underline-offset-2">
+                ${v.name.replace('MV ', '')}
+              </a>
+              <button type="button" data-pdf="${v.pdfGaPlanUrl}" data-vessel="${v.name}" class="btn-ga-plan text-[9px] font-bold text-white bg-red-600 hover:bg-red-500 px-1.5 py-0.5 rounded-none transition-colors cursor-pointer inline-flex items-center gap-1 shadow-sm font-mono shrink-0" title="Open GA-Plan (PDF)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="w-3 h-3"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+                PDF
+              </button>
+            </div>
+          </td>
+          <td class="py-4 px-4 text-neutral-300 whitespace-nowrap">${v.type}</td>
+          <td class="py-4 px-4 text-white font-semibold">${v.yearBuilt}</td>
+          <td class="py-4 px-4 text-neutral-300 whitespace-nowrap">${v.flag}</td>
+          <td class="py-4 px-4 text-gold font-bold whitespace-nowrap">${v.dwt}</td>
+          <td class="py-4 px-4 text-neutral-300 whitespace-nowrap">${v.holdsCount ? (v.holdsCount.includes('(') ? v.holdsCount.split('(')[1].replace(')', '') : v.holdsCount) : '2HO / 2HA'}</td>
+          <td class="py-4 px-4 text-neutral-300 whitespace-nowrap">${v.deckGear}</td>
+          <td class="py-4 px-4 text-right whitespace-nowrap">
+            <a href="/vessel.html?id=${v.id}" class="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-mono bg-gold hover:bg-gold-light text-neutral-950 font-bold transition-colors shadow-sm">
+              View &rarr;
+            </a>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // 2. Render Cards Grid
     container.innerHTML = filtered.map((v, idx) => `
       <div class="bg-bg-secondary/70 border border-neutral-800/80 hover:border-gold/40 rounded-none p-6 sm:p-7 flex flex-col gap-6 transition-all duration-500 hover:-translate-y-1 group relative shadow-xl text-left" id="f-card-${v.id}">
         
@@ -110,9 +142,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       </div>
     `).join('');
 
-    // Attach PDF modal triggers
-    container.querySelectorAll('.btn-ga-plan').forEach(btn => {
-      btn.addEventListener('click', () => {
+    // Attach PDF modal triggers on all .btn-ga-plan
+    document.querySelectorAll('.btn-ga-plan').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
         const url = btn.getAttribute('data-pdf');
         const name = btn.getAttribute('data-vessel');
         openPdfModal(url, name);
@@ -139,11 +172,33 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // PDF Modal
   const modal = document.getElementById('pdf-modal');
+  const modalContainer = document.getElementById('pdf-modal-container');
   const iframe = document.getElementById('pdf-modal-iframe');
   const title = document.getElementById('pdf-modal-title');
   const downloadBtn = document.getElementById('pdf-modal-download');
   const closeBtn = document.getElementById('pdf-modal-close');
+  const expandBtn = document.getElementById('pdf-modal-expand');
+  const expandBtnText = document.getElementById('expand-btn-text');
   const backdrop = document.getElementById('pdf-modal-backdrop');
+
+  let isFullscreen = false;
+
+  function toggleFullscreen(forceState) {
+    if (!modalContainer) return;
+    isFullscreen = typeof forceState === 'boolean' ? forceState : !isFullscreen;
+    
+    if (isFullscreen) {
+      modalContainer.classList.remove('max-w-6xl', 'h-[94vh]', 'sm:h-[90vh]', 'rounded-xl');
+      modalContainer.classList.add('max-w-none', 'w-screen', 'h-screen', 'rounded-none', 'border-0');
+      if (modal) modal.classList.remove('p-2', 'sm:p-4', 'md:p-6');
+      if (expandBtnText) expandBtnText.textContent = 'Exit Fullscreen';
+    } else {
+      modalContainer.classList.remove('max-w-none', 'w-screen', 'h-screen', 'rounded-none', 'border-0');
+      modalContainer.classList.add('max-w-6xl', 'h-[94vh]', 'sm:h-[90vh]', 'rounded-xl');
+      if (modal) modal.classList.add('p-2', 'sm:p-4', 'md:p-6');
+      if (expandBtnText) expandBtnText.textContent = 'Full Width';
+    }
+  }
 
   function openPdfModal(pdfUrl, vesselName) {
     if (!modal || !iframe) return;
@@ -164,8 +219,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     modal.classList.add('opacity-0', 'pointer-events-none');
     document.body.style.overflow = '';
     setTimeout(() => { iframe.src = 'about:blank'; }, 200);
+    if (isFullscreen && modalContainer) {
+      toggleFullscreen(false);
+    }
   }
 
+  if (expandBtn) expandBtn.addEventListener('click', () => toggleFullscreen());
   if (closeBtn) closeBtn.addEventListener('click', closePdfModal);
   if (backdrop) backdrop.addEventListener('click', closePdfModal);
   window.addEventListener('keydown', (e) => {

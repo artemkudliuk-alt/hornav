@@ -30,8 +30,9 @@
       <!-- Nav Links (Center) -->
       <div class="hidden lg:flex items-center gap-10 text-xs font-semibold uppercase tracking-[0.25em] text-neutral-400" id="nav-links">
         <a href="/" class="hover:text-gold transition-colors duration-200" id="link-home">Home</a>
-        <a href="/#company" class="hover:text-gold transition-colors duration-200" id="link-company">Company</a>
+        <a href="/company.html" class="hover:text-gold transition-colors duration-200" id="link-company">Company</a>
         <a href="/fleet.html" class="text-gold hover:text-gold transition-colors duration-200" id="link-fleet">Managed Fleet</a>
+        <a href="/contacts.html#careers" class="hover:text-gold transition-colors duration-200" id="link-careers">Careers</a>
         <a href="/contacts.html" class="hover:text-gold transition-colors duration-200" id="link-contact">Contact</a>
       </div>
 
@@ -58,8 +59,9 @@
     <div class="absolute inset-0 bg-[radial-gradient(rgba(200,155,60,0.02)_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none z-0"></div>
     <div class="flex flex-col items-center gap-8 text-lg font-semibold uppercase tracking-[0.3em] text-neutral-400 relative z-10" id="mobile-menu-links">
       <a href="/" class="hover:text-gold transition-colors duration-300">Home</a>
-      <a href="/#company" class="hover:text-gold transition-colors duration-300">Company</a>
+      <a href="/company.html" class="hover:text-gold transition-colors duration-300">Company</a>
       <a href="/fleet.html" class="text-gold transition-colors duration-300">Managed Fleet</a>
+      <a href="/contacts.html#careers" class="hover:text-gold transition-colors duration-300">Careers</a>
       <a href="/contacts.html" class="hover:text-gold transition-colors duration-300">Contact</a>
     </div>
   </div>
@@ -69,14 +71,17 @@
     
     <!-- PAGE HERO BANNER (Spacious Title & Harmonious Typography) -->
     <div class="space-y-10 pb-6">
-      <div class="space-y-4 pt-4 sm:pt-6">
-        <span class="text-xs font-bold font-mono tracking-[0.25em] text-gold uppercase block">
-          Commercial Fleet Directory & Technical Particulars
-        </span>
-        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-serif font-medium text-white tracking-tight leading-tight">
-          Managed Fleet Catalog
+      <div class="space-y-4 pt-4 sm:pt-6 max-w-4xl">
+        <div class="flex items-center gap-2.5">
+          <span class="w-2 h-2 bg-gold shrink-0"></span>
+          <span class="text-xs font-bold font-mono tracking-[0.25em] text-gold uppercase block">
+            Commercial Fleet Directory &bull; Technical Particulars
+          </span>
+        </div>
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-serif font-medium text-white tracking-tight leading-[1.08] uppercase">
+          Managed <span class="text-gold">Fleet</span> Catalog
         </h1>
-        <p class="text-xs sm:text-sm text-neutral-300 font-light leading-relaxed max-w-3xl pt-2">
+        <p class="text-sm sm:text-base text-neutral-300 font-light leading-relaxed max-w-3xl pt-2">
           Modern geared multi-purpose general cargo vessels and bulk carriers operating across Mediterranean, Black Sea, Continent, and transatlantic trade routes. All vessels are classed under leading IACS classification societies (DNV, Bureau Veritas).
         </p>
       </div>
@@ -124,12 +129,103 @@
       </div>
     </div>
 
+    <!-- GENERAL DESCRIPTION TABLE (Exact Spec from TZ) -->
+    <section class="space-y-4" id="vessel-general-description-table-sec">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border-gold/30 pb-3">
+        <div class="flex items-center gap-2.5">
+          <span class="w-2 h-2 bg-gold shrink-0"></span>
+          <h2 class="text-xs font-mono font-bold tracking-[0.25em] uppercase text-gold">
+            General Description of Vessels &bull; Technical Schedule
+          </h2>
+        </div>
+        <span class="text-[11px] font-mono text-neutral-400">
+          Click vessel name or <span class="text-gold font-bold">[PDF]</span> to view official GA-Plan
+        </span>
+      </div>
+
+      <div class="overflow-x-auto border border-neutral-800 bg-[#141416]/90 backdrop-blur-md shadow-2xl">
+        <table class="w-full text-left text-xs font-mono border-collapse" id="fleet-summary-table">
+          <thead>
+            <tr class="bg-black/70 border-b border-border-gold/30 text-gold text-[10px] tracking-wider uppercase select-none">
+              <th class="py-3.5 px-4 font-bold">Vessel Name</th>
+              <th class="py-3.5 px-4 font-bold">Type</th>
+              <th class="py-3.5 px-4 font-bold">Built</th>
+              <th class="py-3.5 px-4 font-bold">Flag</th>
+              <th class="py-3.5 px-4 font-bold">DWT</th>
+              <th class="py-3.5 px-4 font-bold">Holds / Hatches</th>
+              <th class="py-3.5 px-4 font-bold">Gear</th>
+              <th class="py-3.5 px-4 font-bold text-right">Details</th>
+            </tr>
+          </thead>
+          <tbody id="fleet-table-body" class="divide-y divide-white/5 text-neutral-300">
+            <!-- Dynamically populated by fleet.js -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
     <!-- 2-COLUMN LUXURY VESSEL CATALOG CARDS GRID (Sharp 90deg Corners) -->
     <div id="fleet-cards-container" class="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10">
       <!-- Dynamically populated by src/fleet.js with exact main page luxury card design -->
     </div>
 
   </main>
+
+  <!-- FULLSCREEN PDF MODAL VIEWER POPUP (GA-PLAN) -->
+  <div id="pdf-modal" class="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 opacity-0 pointer-events-none transition-all duration-300 backdrop-blur-md bg-black/85">
+    <div id="pdf-modal-backdrop" class="absolute inset-0 cursor-pointer" title="Click outside to close"></div>
+
+    <div id="pdf-modal-container" class="relative z-10 w-full max-w-6xl h-[94vh] sm:h-[90vh] bg-[#161618] border border-gold/40 rounded-xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300">
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between px-4 sm:px-6 py-3.5 bg-[#141416] border-b border-white/10 shrink-0 select-none">
+        <div class="flex items-center gap-3 min-w-0">
+          <div class="w-8 h-8 rounded bg-gold/10 border border-gold/30 flex items-center justify-center text-gold shrink-0">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+            </svg>
+          </div>
+          <div class="min-w-0">
+            <h3 id="pdf-modal-title" class="text-sm sm:text-base font-serif font-medium text-white truncate">
+              General Arrangement Plan (GA-Plan)
+            </h3>
+            <span id="pdf-modal-subtitle" class="text-[10px] font-mono text-gold/80 block uppercase tracking-wider">
+              Official Technical Drawing &bull; Danamira Managed Fleet
+            </span>
+          </div>
+        </div>
+
+        <!-- Header Actions: Full Width, Direct Download & Close Cross -->
+        <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+          <button id="pdf-modal-expand" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-white/5 hover:bg-white/10 text-neutral-300 hover:text-white border border-white/10 text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer" title="Toggle Fullscreen Width">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+            </svg>
+            <span class="hidden md:inline" id="expand-btn-text">Full Width</span>
+          </button>
+
+          <a id="pdf-modal-download" href="#" download target="_blank" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-white/5 hover:bg-gold/20 text-gold border border-gold/30 text-xs font-mono font-bold uppercase tracking-wider transition-colors cursor-pointer">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.5V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+            </svg>
+            <span>Download</span>
+          </a>
+
+          <button id="pdf-modal-close" class="p-2 rounded-lg bg-white/5 hover:bg-red-500/20 text-neutral-400 hover:text-red-400 border border-white/10 hover:border-red-500/40 transition-colors cursor-pointer flex items-center justify-center" aria-label="Close modal" title="Close (Esc)">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Iframe Container -->
+      <div class="flex-1 w-full h-full bg-[#111113] relative overflow-hidden">
+        <iframe id="pdf-modal-iframe" src="" class="w-full h-full border-0" title="GA-Plan PDF Viewer"></iframe>
+      </div>
+
+    </div>
+  </div>
 
   <!-- CORPORATE LUXURY FOOTER (Unified Across All Pages) -->
   <footer class="max-w-[1520px] mx-auto w-full mt-20 pt-16 pb-12 border-t border-white/10 relative overflow-hidden rounded-none min-h-[380px] flex flex-col justify-between" id="footer-container">
@@ -157,10 +253,10 @@
       <!-- Left: Big Brand Info & Contacts -->
       <div class="flex flex-col gap-6 max-w-xl text-left" id="footer-info-left">
         <div class="flex items-center gap-3" id="footer-brand-header">
-          <img src="/Danamira_logo_gold.png" alt="Danamira Shipping Ltd Emblem" class="h-11 w-auto">
+          <img src="/Danamira_logo_gold.png" alt="Danamira Shipping Ltd Emblem" class="h-12 w-auto">
           <div class="flex flex-col text-left leading-none">
             <span class="text-lg font-extrabold tracking-[0.1em] text-white uppercase font-sans">Danamira</span>
-            <span class="text-[10px] tracking-[0.15em] text-gold uppercase mt-0.5">Shipping Ltd</span>
+            <span class="text-[10px] tracking-[0.15em] text-gold uppercase mt-0.5 font-sans">Shipping Ltd</span>
           </div>
         </div>
         
@@ -189,7 +285,7 @@
           <span class="text-[10px] font-mono font-bold uppercase tracking-widest text-gold">Navigation</span>
           <div class="flex flex-col gap-2 text-xs font-sans text-neutral-400">
             <a href="/" class="hover:text-gold transition-colors">Home Overview</a>
-            <a href="/#company" class="hover:text-gold transition-colors">About Company</a>
+            <a href="/company.html" class="hover:text-gold transition-colors">Company Profile</a>
             <a href="/fleet.html" class="hover:text-gold transition-colors">Managed Fleet Catalog</a>
             <a href="/contacts.html" class="hover:text-gold transition-colors">Contact Desk</a>
           </div>
