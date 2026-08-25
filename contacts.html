@@ -89,14 +89,14 @@
       </div>
     </div>
 
-    <!-- 2-COLUMN SPLIT GRID (Solid CSS Grid) -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start w-full">
+    <!-- 2-COLUMN SPLIT GRID (Equal Height Columns with items-stretch) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch w-full">
       
       <!-- LEFT COLUMN: Office Headquarters, Phones, Messengers, Map (5 Cols) -->
-      <div class="lg:col-span-5 flex flex-col gap-6 w-full">
+      <div class="lg:col-span-5 flex flex-col gap-6 w-full h-full">
         
         <!-- Office Headquarters Details Card -->
-        <div class="bg-[#232323] border border-white/10 p-6 sm:p-8 rounded-none shadow-xl space-y-6">
+        <div class="bg-[#232323] border border-white/10 p-6 sm:p-8 rounded-none shadow-xl space-y-6 shrink-0">
           <div class="flex items-center gap-3">
             <div class="w-11 h-11 rounded-none border border-gold/50 flex items-center justify-center text-gold bg-black/50 shrink-0">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
@@ -151,16 +151,16 @@
           </div>
         </div>
 
-        <!-- Google Maps Location Card -->
-        <div class="bg-[#232323] border border-white/10 p-6 sm:p-8 rounded-none shadow-xl space-y-3">
-          <div class="flex items-center justify-between">
+        <!-- Google Maps Location Card (Stretches vertically to bottom of form) -->
+        <div class="bg-[#232323] border border-white/10 p-6 sm:p-8 rounded-none shadow-xl flex flex-col flex-1 h-full space-y-3">
+          <div class="flex items-center justify-between shrink-0">
             <span class="text-[10px] font-mono font-bold uppercase tracking-widest text-gold">Office Location • Glyfada</span>
             <a href="https://maps.google.com/?q=Zeppou+33,+Glyfada+166+75,+Greece" target="_blank" rel="noopener noreferrer" class="text-[10px] font-mono text-neutral-400 hover:text-gold underline">Open in Google Maps &rarr;</a>
           </div>
-          <div class="w-full h-64 rounded-none overflow-hidden border border-white/10 relative bg-[#1c1c1c] shadow-inner">
+          <div class="w-full flex-1 min-h-[280px] rounded-none overflow-hidden border border-white/10 relative bg-[#1c1c1c] shadow-inner">
             <iframe 
-              class="w-full h-full border-0 grayscale invert contrast-125 opacity-85 hover:opacity-100 transition-opacity duration-300"
-              src="https://maps.google.com/maps?q=Zeppou+33,+Glyfada+166+75,+Greece&t=&z=14&ie=UTF8&iwloc=&output=embed"
+              class="w-full h-full min-h-[280px] border-0"
+              src="https://maps.google.com/maps?q=Zeppou+33,+Glyfada+166+75,+Greece&t=&z=15&ie=UTF8&iwloc=&output=embed"
               loading="lazy"
               title="Danamira Shipping Ltd Office Location in Glyfada">
             </iframe>
