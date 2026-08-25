@@ -303,21 +303,22 @@ vesselLayoutStyles.textContent = `
   }
   .vessel-spec-label {
     color: #a3a3a3 !important;
-    font-family: monospace !important;
-    font-size: 0.6875rem !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.05em !important;
-    white-space: nowrap !important;
-    flex-shrink: 0 !important;
+    font-family: var(--font-sans), "Plus Jakarta Sans", sans-serif !important;
+    font-size: 0.8125rem !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    white-space: normal !important;
+    flex-shrink: 1 !important;
   }
   .vessel-spec-value {
-    color: #ffffff !important;
-    font-family: monospace !important;
-    font-size: 0.75rem !important;
+    color: #f5f5f5 !important;
+    font-family: var(--font-sans), "Plus Jakarta Sans", sans-serif !important;
+    font-size: 0.8125rem !important;
     font-weight: 600 !important;
     text-align: right !important;
     white-space: normal !important;
     margin-left: auto !important;
+    font-variant-numeric: tabular-nums !important;
   }
   #lightbox-modal {
     position: fixed !important;
@@ -525,15 +526,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         <!-- CARD 1: ① INFORMATION -->
         <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl flex flex-col justify-between">
           <div>
-            <div class="flex items-center gap-2 pb-3 mb-3 border-b border-border-gold/30">
+            <div class="flex items-center gap-2.5 pb-3 mb-3 border-b border-border-gold/30">
               <span class="w-2 h-2 bg-gold shrink-0"></span>
-              <h3 class="text-xs font-mono font-bold tracking-[0.2em] uppercase text-gold">① INFORMATION</h3>
+              <h3 class="text-sm font-serif font-semibold tracking-wider uppercase text-gold">① Information</h3>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 pt-1">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-1 pt-1">
               ${(s.information || []).map(item => `
-                <div class="flex items-baseline justify-between py-1 border-b border-white/[0.06] text-xs">
-                  <span class="text-neutral-400 font-mono text-[11px] uppercase">${item.label}</span>
-                  <span class="text-white font-mono font-semibold text-right">${item.value}</span>
+                <div class="flex items-baseline justify-between py-1.5 border-b border-white/[0.06] text-xs sm:text-sm gap-3">
+                  <span class="text-neutral-400 font-sans text-xs sm:text-sm font-normal">${item.label}</span>
+                  <span class="text-neutral-100 font-sans text-xs sm:text-sm font-semibold text-right tabular-nums">${item.value}</span>
                 </div>
               `).join('')}
             </div>
@@ -541,18 +542,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         </div>
 
         <!-- CARD 2: ③ HOLDS & HATCHES + ④ BALLAST & STRENGTH + ⑧ PERMISSIBLE LOADS -->
-        <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-4">
+        <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-5">
           <!-- Holds & Hatches -->
           <div>
             <div class="flex items-center gap-2 pb-2 mb-2 border-b border-white/10">
               <span class="w-1.5 h-1.5 bg-gold shrink-0"></span>
-              <h4 class="text-[11px] font-mono font-bold tracking-wider uppercase text-gold">③ Holds &amp; Hatches</h4>
+              <h4 class="text-xs sm:text-sm font-serif font-semibold tracking-wider uppercase text-gold">③ Holds &amp; Hatches</h4>
             </div>
-            <div class="space-y-1">
+            <div class="space-y-0.5">
               ${(s.holdsHatches || []).map(item => `
-                <div class="flex items-baseline justify-between py-0.5 border-b border-white/[0.04] text-xs">
-                  <span class="text-neutral-400 font-mono text-[11px] uppercase">${item.label}</span>
-                  <span class="text-white font-mono font-semibold text-right">${item.value}</span>
+                <div class="flex items-baseline justify-between py-1.5 border-b border-white/[0.04] text-xs sm:text-sm gap-3">
+                  <span class="text-neutral-400 font-sans text-xs sm:text-sm font-normal">${item.label}</span>
+                  <span class="text-neutral-100 font-sans text-xs sm:text-sm font-semibold text-right tabular-nums">${item.value}</span>
                 </div>
               `).join('')}
             </div>
@@ -562,13 +563,13 @@ document.addEventListener('DOMContentLoaded', async () => {
           <div class="pt-2">
             <div class="flex items-center gap-2 pb-2 mb-2 border-b border-white/10">
               <span class="w-1.5 h-1.5 bg-gold shrink-0"></span>
-              <h4 class="text-[11px] font-mono font-bold tracking-wider uppercase text-gold">④ Ballast &amp; Strength</h4>
+              <h4 class="text-xs sm:text-sm font-serif font-semibold tracking-wider uppercase text-gold">④ Ballast &amp; Strength</h4>
             </div>
-            <div class="space-y-1">
+            <div class="space-y-0.5">
               ${(s.ballastStrength || []).map(item => `
-                <div class="flex items-baseline justify-between py-0.5 border-b border-white/[0.04] text-xs">
-                  <span class="text-neutral-400 font-mono text-[11px] uppercase">${item.label}</span>
-                  <span class="text-white font-mono font-semibold text-right">${item.value}</span>
+                <div class="flex items-baseline justify-between py-1.5 border-b border-white/[0.04] text-xs sm:text-sm gap-3">
+                  <span class="text-neutral-400 font-sans text-xs sm:text-sm font-normal">${item.label}</span>
+                  <span class="text-neutral-100 font-sans text-xs sm:text-sm font-semibold text-right tabular-nums">${item.value}</span>
                 </div>
               `).join('')}
             </div>
@@ -578,13 +579,13 @@ document.addEventListener('DOMContentLoaded', async () => {
           <div class="pt-2">
             <div class="flex items-center gap-2 pb-2 mb-2 border-b border-white/10">
               <span class="w-1.5 h-1.5 bg-gold shrink-0"></span>
-              <h4 class="text-[11px] font-mono font-bold tracking-wider uppercase text-gold">⑧ Permissible Loads</h4>
+              <h4 class="text-xs sm:text-sm font-serif font-semibold tracking-wider uppercase text-gold">⑧ Permissible Loads</h4>
             </div>
-            <div class="space-y-1">
+            <div class="space-y-0.5">
               ${(s.permissibleLoads || []).map(item => `
-                <div class="flex items-baseline justify-between py-0.5 border-b border-white/[0.04] text-xs">
-                  <span class="text-neutral-400 font-mono text-[11px] uppercase">${item.label}</span>
-                  <span class="text-gold font-mono font-semibold text-right">${item.value}</span>
+                <div class="flex items-baseline justify-between py-1.5 border-b border-white/[0.04] text-xs sm:text-sm gap-3">
+                  <span class="text-neutral-400 font-sans text-xs sm:text-sm font-normal">${item.label}</span>
+                  <span class="text-gold font-sans text-xs sm:text-sm font-semibold text-right tabular-nums">${item.value}</span>
                 </div>
               `).join('')}
             </div>
@@ -598,34 +599,34 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         <!-- CARD 3: ② PARTICULARS -->
         <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-3">
-          <div class="flex items-center gap-2 pb-3 border-b border-border-gold/30">
+          <div class="flex items-center gap-2.5 pb-3 border-b border-border-gold/30">
             <span class="w-2 h-2 bg-gold shrink-0"></span>
-            <h3 class="text-xs font-mono font-bold tracking-[0.2em] uppercase text-gold">② PARTICULARS &amp; CAPACITIES</h3>
+            <h3 class="text-sm font-serif font-semibold tracking-wider uppercase text-gold">② Particulars &amp; Capacities</h3>
           </div>
-          <div class="space-y-1">
+          <div class="space-y-0.5">
             ${(s.particulars || []).map(item => `
-              <div class="flex items-baseline justify-between py-1 border-b border-white/[0.06] text-xs">
-                <span class="text-neutral-400 font-mono text-[11px] uppercase">${item.label}</span>
-                <span class="text-white font-mono font-semibold text-right">${item.value}</span>
+              <div class="flex items-baseline justify-between py-1.5 border-b border-white/[0.06] text-xs sm:text-sm gap-3">
+                <span class="text-neutral-400 font-sans text-xs sm:text-sm font-normal">${item.label}</span>
+                <span class="text-neutral-100 font-sans text-xs sm:text-sm font-semibold text-right tabular-nums">${item.value}</span>
               </div>
             `).join('')}
           </div>
         </div>
 
         <!-- CARD 4: ⑤ SPEED & CONSUMPTION + ⑥ TANK CAPACITIES + ⑦ MAIN ENGINE -->
-        <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-4">
+        <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-5">
           
           <!-- Speed & Consumption -->
           <div>
             <div class="flex items-center gap-2 pb-2 mb-2 border-b border-white/10">
               <span class="w-1.5 h-1.5 bg-gold shrink-0"></span>
-              <h4 class="text-[11px] font-mono font-bold tracking-wider uppercase text-gold">⑤ Speed &amp; Consumption</h4>
+              <h4 class="text-xs sm:text-sm font-serif font-semibold tracking-wider uppercase text-gold">⑤ Speed &amp; Consumption</h4>
             </div>
-            <div class="space-y-1">
+            <div class="space-y-0.5">
               ${(s.speedConsumption || []).map(item => `
-                <div class="flex items-baseline justify-between py-0.5 border-b border-white/[0.04] text-xs">
-                  <span class="text-neutral-400 font-mono text-[11px] uppercase">${item.label}</span>
-                  <span class="text-white font-mono font-semibold text-right">${item.value}</span>
+                <div class="flex items-baseline justify-between py-1.5 border-b border-white/[0.04] text-xs sm:text-sm gap-3">
+                  <span class="text-neutral-400 font-sans text-xs sm:text-sm font-normal">${item.label}</span>
+                  <span class="text-neutral-100 font-sans text-xs sm:text-sm font-semibold text-right tabular-nums">${item.value}</span>
                 </div>
               `).join('')}
             </div>
@@ -635,13 +636,13 @@ document.addEventListener('DOMContentLoaded', async () => {
           <div class="pt-2">
             <div class="flex items-center gap-2 pb-2 mb-2 border-b border-white/10">
               <span class="w-1.5 h-1.5 bg-gold shrink-0"></span>
-              <h4 class="text-[11px] font-mono font-bold tracking-wider uppercase text-gold">⑥ Tank Capacities (100%)</h4>
+              <h4 class="text-xs sm:text-sm font-serif font-semibold tracking-wider uppercase text-gold">⑥ Tank Capacities (100%)</h4>
             </div>
-            <div class="space-y-1">
+            <div class="space-y-0.5">
               ${(s.tankCapacities || []).map(item => `
-                <div class="flex items-baseline justify-between py-0.5 border-b border-white/[0.04] text-xs">
-                  <span class="text-neutral-400 font-mono text-[11px] uppercase">${item.label}</span>
-                  <span class="text-white font-mono font-semibold text-right">${item.value}</span>
+                <div class="flex items-baseline justify-between py-1.5 border-b border-white/[0.04] text-xs sm:text-sm gap-3">
+                  <span class="text-neutral-400 font-sans text-xs sm:text-sm font-normal">${item.label}</span>
+                  <span class="text-neutral-100 font-sans text-xs sm:text-sm font-semibold text-right tabular-nums">${item.value}</span>
                 </div>
               `).join('')}
             </div>
@@ -651,13 +652,13 @@ document.addEventListener('DOMContentLoaded', async () => {
           <div class="pt-2">
             <div class="flex items-center gap-2 pb-2 mb-2 border-b border-white/10">
               <span class="w-1.5 h-1.5 bg-gold shrink-0"></span>
-              <h4 class="text-[11px] font-mono font-bold tracking-wider uppercase text-gold">⑦ Main Engine &amp; Machinery</h4>
+              <h4 class="text-xs sm:text-sm font-serif font-semibold tracking-wider uppercase text-gold">⑦ Main Engine &amp; Machinery</h4>
             </div>
-            <div class="space-y-1">
+            <div class="space-y-0.5">
               ${(s.mainEngine || []).map(item => `
-                <div class="flex items-baseline justify-between py-0.5 border-b border-white/[0.04] text-xs">
-                  <span class="text-neutral-400 font-mono text-[11px] uppercase">${item.label}</span>
-                  <span class="text-white font-mono font-semibold text-right">${item.value}</span>
+                <div class="flex items-baseline justify-between py-1.5 border-b border-white/[0.04] text-xs sm:text-sm gap-3">
+                  <span class="text-neutral-400 font-sans text-xs sm:text-sm font-normal">${item.label}</span>
+                  <span class="text-neutral-100 font-sans text-xs sm:text-sm font-semibold text-right tabular-nums">${item.value}</span>
                 </div>
               `).join('')}
             </div>
@@ -673,30 +674,30 @@ document.addEventListener('DOMContentLoaded', async () => {
   const badgesBar = document.getElementById('vessel-feature-badges-bar');
   if (badgesBar) {
     badgesBar.innerHTML = `
-      <div class="bg-[#111113] border border-white/10 p-3 flex flex-col items-center text-center gap-1.5">
+      <div class="bg-[#111113] border border-white/10 p-3.5 flex flex-col items-center text-center gap-1.5">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="w-5 h-5 text-gold"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-        <span class="text-[9px] font-mono uppercase text-neutral-400">Grain Capacity</span>
-        <span class="text-xs font-mono font-bold text-white">${vessel.grainCapacity ? vessel.grainCapacity.split('(')[0].trim() : '352,000 cu.ft'}</span>
+        <span class="text-[11px] font-sans uppercase tracking-wider text-neutral-400 font-medium">Grain Capacity</span>
+        <span class="text-xs sm:text-sm font-sans font-bold text-white tracking-tight">${vessel.grainCapacity ? vessel.grainCapacity.split('(')[0].trim() : '352,000 cu.ft'}</span>
       </div>
-      <div class="bg-[#111113] border border-white/10 p-3 flex flex-col items-center text-center gap-1.5">
+      <div class="bg-[#111113] border border-white/10 p-3.5 flex flex-col items-center text-center gap-1.5">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="w-5 h-5 text-gold"><path d="M4 20h16M7 20V5l8 4v11M15 9l4 2v4a2 2 0 11-4 0"/></svg>
-        <span class="text-[9px] font-mono uppercase text-neutral-400">Tanktop Strength</span>
-        <span class="text-xs font-mono font-bold text-white">${vessel.tankTopStrength || '16.5 MT / m²'}</span>
+        <span class="text-[11px] font-sans uppercase tracking-wider text-neutral-400 font-medium">Tanktop Strength</span>
+        <span class="text-xs sm:text-sm font-sans font-bold text-white tracking-tight">${vessel.tankTopStrength || '16.5 MT / m²'}</span>
       </div>
-      <div class="bg-[#111113] border border-white/10 p-3 flex flex-col items-center text-center gap-1.5">
+      <div class="bg-[#111113] border border-white/10 p-3.5 flex flex-col items-center text-center gap-1.5">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="w-5 h-5 text-gold"><path d="M4 4h16v16H4zM4 10h16M10 4v16"/></svg>
-        <span class="text-[9px] font-mono uppercase text-neutral-400">Hatch Covers</span>
-        <span class="text-xs font-mono font-bold text-white">Hydraulic Folding</span>
+        <span class="text-[11px] font-sans uppercase tracking-wider text-neutral-400 font-medium">Hatch Covers</span>
+        <span class="text-xs sm:text-sm font-sans font-bold text-white tracking-tight">Hydraulic Folding</span>
       </div>
-      <div class="bg-[#111113] border border-white/10 p-3 flex flex-col items-center text-center gap-1.5">
+      <div class="bg-[#111113] border border-white/10 p-3.5 flex flex-col items-center text-center gap-1.5">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="w-5 h-5 text-gold"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        <span class="text-[9px] font-mono uppercase text-neutral-400">Fire Safety</span>
-        <span class="text-xs font-mono font-bold text-white">CO2 Fitted in Holds</span>
+        <span class="text-[11px] font-sans uppercase tracking-wider text-neutral-400 font-medium">Fire Safety</span>
+        <span class="text-xs sm:text-sm font-sans font-bold text-white tracking-tight">CO2 Fitted in Holds</span>
       </div>
-      <div class="bg-[#111113] border border-white/10 p-3 flex flex-col items-center text-center gap-1.5 col-span-2 sm:col-span-1">
+      <div class="bg-[#111113] border border-white/10 p-3.5 flex flex-col items-center text-center gap-1.5 col-span-2 sm:col-span-1">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="w-5 h-5 text-gold"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5-6.5-4.5-6.5 4.5 2-7.5L2 9h7z"/></svg>
-        <span class="text-[9px] font-mono uppercase text-neutral-400">Class Society</span>
-        <span class="text-xs font-mono font-bold text-white">${vessel.classSociety ? vessel.classSociety.split('(')[0].trim() : 'IACS Class'}</span>
+        <span class="text-[11px] font-sans uppercase tracking-wider text-neutral-400 font-medium">Class Society</span>
+        <span class="text-xs sm:text-sm font-sans font-bold text-white tracking-tight">${vessel.classSociety ? vessel.classSociety.split('(')[0].trim() : 'IACS Class'}</span>
       </div>
     `;
   }
