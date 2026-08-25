@@ -337,144 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 7. Section 07 — Careers Interactive File Uploads & Path Selection
-  const cardShore = document.getElementById('card-shore');
-  const cardOnboard = document.getElementById('card-onboard');
-  const applyBtn = document.getElementById('careers-btn-apply');
-  const submitBanner = document.getElementById('careers-submit-banner');
-  const submitSubtitle = document.getElementById('careers-submit-subtitle');
-
-  let activePath = null;
-  const uploadedFiles = {
-    shore: { cv: null, cl: null, docs: null },
-    onboard: { cv: null, cl: null, docs: null }
-  };
-
-  const fileInputs = [
-    { id: 'cv-shore', card: 'shore', slot: 'cv', desc: 'desc-cv-shore', defaultText: 'Upload your CV and professional profile.', circle: 'circle-cv-shore' },
-    { id: 'cl-shore', card: 'shore', slot: 'cl', desc: 'desc-cl-shore', defaultText: 'Attach your cover letter.', circle: 'circle-cl-shore' },
-    { id: 'docs-shore', card: 'shore', slot: 'docs', desc: 'desc-docs-shore', defaultText: 'Provide any relevant certificates or documents.', circle: 'circle-docs-shore' },
-    { id: 'cv-onboard', card: 'onboard', slot: 'cv', desc: 'desc-cv-onboard', defaultText: 'Upload your CV and professional profile.', circle: 'circle-cv-onboard' },
-    { id: 'cl-onboard', card: 'onboard', slot: 'cl', desc: 'desc-cl-onboard', defaultText: 'Attach your cover letter.', circle: 'circle-cl-onboard' },
-    { id: 'docs-onboard', card: 'onboard', slot: 'docs', desc: 'desc-docs-onboard', defaultText: 'Provide any relevant certificates or documents.', circle: 'circle-docs-onboard' }
-  ];
-
-  fileInputs.forEach(inputInfo => {
-    const inputEl = document.getElementById(inputInfo.id);
-    const descEl = document.getElementById(inputInfo.desc);
-    const circleEl = document.getElementById(inputInfo.circle);
-
-    if (inputEl && descEl && circleEl) {
-      inputEl.addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        if (file) {
-          uploadedFiles[inputInfo.card][inputInfo.slot] = file;
-          descEl.textContent = `✓ ${file.name}`;
-          descEl.classList.add('text-gold');
-          descEl.classList.remove('text-neutral-400');
-          circleEl.classList.add('border-gold', 'bg-gold/10');
-
-          // Switch active path
-          activePath = inputInfo.card;
-          updateCardSelectionStates();
-        } else {
-          uploadedFiles[inputInfo.card][inputInfo.slot] = null;
-          descEl.textContent = inputInfo.defaultText;
-          descEl.classList.remove('text-gold');
-          descEl.classList.add('text-neutral-400');
-          circleEl.classList.remove('border-gold', 'bg-gold/10');
-
-          // Recalculate active path if this card has no more files
-          checkAndResetActivePath();
-        }
-      });
-    }
-  });
-
-  function updateCardSelectionStates() {
-    if (activePath === 'shore') {
-      cardShore.classList.add('card-active');
-      cardShore.classList.remove('card-dimmed');
-      cardOnboard.classList.add('card-dimmed');
-      cardOnboard.classList.remove('card-active');
-    } else if (activePath === 'onboard') {
-      cardOnboard.classList.add('card-active');
-      cardOnboard.classList.remove('card-dimmed');
-      cardShore.classList.add('card-dimmed');
-      cardShore.classList.remove('card-active');
-    } else {
-      cardShore.classList.remove('card-active', 'card-dimmed');
-      cardOnboard.classList.remove('card-active', 'card-dimmed');
-    }
-  }
-
-  function checkAndResetActivePath() {
-    const shoreHasFiles = Object.values(uploadedFiles.shore).some(val => val !== null);
-    const onboardHasFiles = Object.values(uploadedFiles.onboard).some(val => val !== null);
-
-    if (!shoreHasFiles && !onboardHasFiles) {
-      activePath = null;
-    } else if (shoreHasFiles && !onboardHasFiles) {
-      activePath = 'shore';
-    } else if (!shoreHasFiles && onboardHasFiles) {
-      activePath = 'onboard';
-    }
-    updateCardSelectionStates();
-  }
-
-  // Handle Apply Now Submit Button
-  if (applyBtn && submitBanner) {
-    applyBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-
-      // Check if a CV has been uploaded for the active path
-      if (!activePath || !uploadedFiles[activePath].cv) {
-        // Shake feedback
-        const targetCard = activePath === 'onboard' ? cardOnboard : (activePath === 'shore' ? cardShore : null);
-        
-        if (targetCard) {
-          targetCard.classList.add('shake-error');
-          setTimeout(() => targetCard.classList.remove('shake-error'), 450);
-        } else {
-          // Shake both if none selected
-          cardShore.classList.add('shake-error');
-          cardOnboard.classList.add('shake-error');
-          setTimeout(() => {
-            cardShore.classList.remove('shake-error');
-            cardOnboard.classList.remove('shake-error');
-          }, 450);
-        }
-
-        if (submitSubtitle) {
-          submitSubtitle.textContent = 'Please attach your CV inside the selected card before submitting.';
-          submitSubtitle.classList.add('text-gold');
-          submitSubtitle.classList.remove('text-neutral-400');
-        }
-        return;
-      }
-
-      // Success State Morph
-      submitBanner.style.opacity = '0';
-      setTimeout(() => {
-        submitBanner.innerHTML = `
-          <div class="flex items-center gap-4 py-2 text-left" id="careers-success-group">
-            <div class="w-12 h-12 flex items-center justify-center text-gold bg-black/40 border border-gold rounded-full shrink-0" id="careers-success-icon">
-              <svg class="w-7 h-7 animate-pulse" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-            </div>
-            <div class="flex flex-col text-left">
-              <h4 class="text-xl font-serif font-medium text-gold">Application Submitted Successfully</h4>
-              <p class="text-neutral-300 font-sans text-xs font-light mt-0.5">Thank you for taking the first step. Our crew manager will review your credentials and contact you shortly.</p>
-            </div>
-          </div>
-        `;
-        submitBanner.style.opacity = '1';
-        submitBanner.style.borderColor = 'rgba(200, 155, 60, 0.4)';
-        submitBanner.style.boxShadow = '0 0 20px rgba(200, 155, 60, 0.1)';
-      }, 300);
-    });
-  }
+  // 7. Section 07 Careers (Removed per Ship Management Specification)
 
   // 8. Section 08 — Contact Lead Form Handling
   const contactForm = document.getElementById('contact-inquiry-form');
@@ -742,7 +605,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const translateY = baseTranslateY - progress * 50; // shift up by additional 50px
         
         let opacity = 1;
-        const isLightSection = secInfo.el.id === 'markets' || secInfo.el.id === 'careers';
+        const isLightSection = secInfo.el.id === 'markets';
         if (idx === 0) {
           // The first section (Hero) fades out quickly to avoid clashing with Section 2
           opacity = Math.max(0, 1 - progress / 0.4);
@@ -788,12 +651,11 @@ document.addEventListener('DOMContentLoaded', () => {
       'markets': 'company',
       'fleet': 'fleet',
       'compliance': 'company',
-      'careers': 'careers',
       'contact': 'contact'
     };
     
     const activeNavKey = sectionToNav[activeSectionId] || 'home';
-    const navKeys = ['home', 'company', 'fleet', 'careers', 'contact'];
+    const navKeys = ['home', 'company', 'fleet', 'contact'];
     
     navKeys.forEach(key => {
       const headerLink = document.getElementById(`link-${key}`);
@@ -859,9 +721,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('cargo'),
       document.getElementById('markets'),
       document.getElementById('fleet'),
-      document.getElementById('compliance'),
-      document.getElementById('careers'),
-      document.getElementById('contact')
+      document.getElementById('compliance')
     ].filter(Boolean);
 
     // Ensure all sections have the stacking class so padding-top is active
