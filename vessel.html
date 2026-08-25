@@ -83,277 +83,177 @@
     </div>
   </div>
 
-  <!-- 3 MASTER TABS BAR (As per TZ: Vessel Description, GA plan, Panorama) -->
-  <div class="mx-auto max-w-[1440px] w-full px-6 sm:px-8 lg:px-16 pt-4 pb-4">
-    <div class="flex flex-wrap items-center gap-3 border-b border-border-gold/30 pb-4" id="vessel-tabs-bar">
-      <button type="button" data-vessel-tab="description" class="vessel-tab-btn px-5 sm:px-6 py-3 text-xs font-mono font-bold uppercase tracking-wider bg-gold text-neutral-950 border border-gold shadow-lg cursor-pointer transition-all duration-200">
-        📄 1. Vessel Description
-      </button>
-      <button type="button" data-vessel-tab="gaplan" class="vessel-tab-btn px-5 sm:px-6 py-3 text-xs font-mono font-bold uppercase tracking-wider bg-white/5 text-neutral-400 border border-white/10 hover:border-gold hover:text-white cursor-pointer transition-all duration-200">
-        📐 2. GA Plan (PDF)
-      </button>
-      <button type="button" data-vessel-tab="panorama" class="vessel-tab-btn px-5 sm:px-6 py-3 text-xs font-mono font-bold uppercase tracking-wider bg-white/5 text-neutral-400 border border-white/10 hover:border-gold hover:text-white cursor-pointer transition-all duration-200">
-        📸 3. Panorama &amp; Photos
-      </button>
-    </div>
-  </div>
-
-  <!-- TOP 2-COLUMN SECTION (Tab Content Left + Minimal Get in Touch Right) -->
-  <section class="mx-auto max-w-[1440px] w-full px-6 sm:px-8 lg:px-16 pb-16">
-    <div class="vessel-hero-grid items-start">
+  <!-- MAIN 2-COLUMN SECTION (Left Content + Right Contact) -->
+  <section class="mx-auto max-w-[1440px] w-full px-6 sm:px-8 lg:px-16 pt-2 pb-20">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
       
-      <!-- LEFT BLOCK: TAB PANELS -->
-      <div class="vessel-hero-left space-y-6" id="vessel-tab-panels-container">
+      <!-- LEFT BLOCK: HERO + 2-ROW PHOTO GALLERY + 8 TECHNICAL SECTIONS -->
+      <div class="lg:col-span-8 space-y-6" id="vessel-main-container">
         
-        <!-- PANEL 1: VESSEL DESCRIPTION (Default Active) -->
-        <div data-vessel-panel="description" class="vessel-panel flex flex-col gap-6">
-          
-          <!-- Exact General Description Table as per TZ -->
-          <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-4">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <span class="h-2 w-2 bg-gold shrink-0"></span>
-                <h2 class="text-xs font-mono font-bold tracking-[0.2em] uppercase text-gold">General Description</h2>
-              </div>
-              <span class="text-[10px] font-mono text-neutral-400">Official Specification Table</span>
+        <!-- CARD 1: VESSEL HEADER & 4 KPI METRICS -->
+        <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-6">
+            <div class="flex flex-col gap-1">
+              <span id="vessel-top-category" class="text-xs tracking-[0.2em] uppercase text-gold font-mono font-bold">
+                GENERAL CARGO &bull; ANTIGUA &amp; BARBUDA FLAG
+              </span>
+              <h1 id="vessel-name-title" class="text-2xl sm:text-4xl font-serif font-medium text-white tracking-tight mt-1">
+                MV MOLPADIA
+              </h1>
+              <span id="vessel-tagline" class="text-xs font-mono text-neutral-400 mt-1">
+                IMO: 9613616 &bull; Built 2014 &bull; DNV Class &bull; Call Sign: V2FX5
+              </span>
             </div>
-            
-            <div class="overflow-x-auto border border-neutral-800 bg-[#111113]">
-              <table class="w-full text-left text-xs font-mono border-collapse" id="vessel-gen-desc-table">
-                <thead>
-                  <tr class="bg-black/80 border-b border-border-gold/30 text-gold text-[10px] uppercase">
-                    <th class="py-3 px-3.5">Vessel Name</th>
-                    <th class="py-3 px-3.5">Type</th>
-                    <th class="py-3 px-3.5">Built</th>
-                    <th class="py-3 px-3.5">Flag</th>
-                    <th class="py-3 px-3.5">DWT</th>
-                    <th class="py-3 px-3.5">Holds / Hatches</th>
-                    <th class="py-3 px-3.5">Gear</th>
-                  </tr>
-                </thead>
-                <tbody class="text-neutral-300">
-                  <tr>
-                    <td class="py-3.5 px-3.5 font-bold text-white whitespace-nowrap">
-                      <div class="flex items-center gap-2.5">
-                        <span id="tab-vessel-name-cell" class="text-sm sm:text-base font-bold text-white uppercase">MV MOLPADIA</span>
-                        <button type="button" id="btn-tab-pdf-trigger" class="text-[9px] font-mono font-bold bg-transparent hover:bg-white/5 border border-white/20 hover:border-white/40 px-1.5 py-0.5 rounded-none transition-colors cursor-pointer inline-flex items-center gap-1 shrink-0 active:scale-95" title="Open GA-Plan (PDF)">
-                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3 h-3 text-red-500"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                          <span class="text-red-500 font-bold">PDF</span>
-                        </button>
-                      </div>
-                    </td>
-                    <td id="tab-vessel-type-cell" class="py-3.5 px-3.5 whitespace-nowrap">General Cargo</td>
-                    <td id="tab-vessel-built-cell" class="py-3.5 px-3.5 text-white font-semibold">2014</td>
-                    <td id="tab-vessel-flag-cell" class="py-3.5 px-3.5 whitespace-nowrap">Antigua &amp; Barbuda</td>
-                    <td id="tab-vessel-dwt-cell" class="py-3.5 px-3.5 text-gold font-bold whitespace-nowrap">6,408 MT</td>
-                    <td id="tab-vessel-holds-cell" class="py-3.5 px-3.5 whitespace-nowrap">2HO / 2HA</td>
-                    <td id="tab-vessel-gear-cell" class="py-3.5 px-3.5 whitespace-nowrap">2 x 30</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <!-- Top Specs Key Value Cards (Sharp Corners) -->
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-6">
-              <div class="flex flex-col gap-1">
-                <span id="vessel-top-category" class="text-xs tracking-[0.2em] uppercase text-gold font-mono font-bold">
-                  GENERAL CARGO &bull; ANTIGUA &amp; BARBUDA FLAG
-                </span>
-                <h1 id="vessel-name-title" class="text-2xl sm:text-3xl font-serif font-medium text-white tracking-tight mt-1">
-                  MV MOLPADIA
-                </h1>
-                <span id="vessel-tagline" class="text-xs font-mono text-neutral-400 mt-1">
-                  IMO: 9613616 &bull; Built 2014 &bull; DNV Class &bull; Call Sign: V2FX5
-                </span>
-              </div>
-              <div class="flex items-center gap-2">
-                <button id="btn-open-pdf-hero" type="button" class="group flex items-center gap-2.5 px-3.5 py-2 bg-transparent hover:bg-white/5 border border-white/20 hover:border-white/40 text-white transition-all duration-200 cursor-pointer active:scale-95">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-red-500 shrink-0"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                  <div class="flex flex-col text-left">
-                    <div class="flex items-center gap-1">
-                      <span class="text-xs font-mono font-bold text-red-500">PDF</span>
-                      <span class="text-xs font-mono font-medium uppercase text-white">GA-Plan</span>
-                      <span class="text-neutral-400 text-[10px]">↗</span>
-                    </div>
-                    <span class="text-[9px] font-mono text-neutral-400 uppercase tracking-wider">Technical Drawing</span>
+            <div class="flex items-center gap-2">
+              <button id="btn-open-pdf-hero" type="button" class="group flex items-center gap-2.5 px-4 py-2.5 bg-transparent hover:bg-white/5 border border-white/20 hover:border-white/40 text-white transition-all duration-200 cursor-pointer active:scale-95 shadow-md">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-red-500 shrink-0"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                <div class="flex flex-col text-left">
+                  <div class="flex items-center gap-1">
+                    <span class="text-xs font-mono font-bold text-red-500">PDF</span>
+                    <span class="text-xs font-mono font-medium uppercase text-white">GA-Plan</span>
+                    <span class="text-neutral-400 text-[10px]">↗</span>
                   </div>
-                </button>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-white/10">
-              <div class="vessel-kpi-box">
-                <div class="vessel-kpi-circle">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M2 17l2 3h16l2-3M4 14l3-8h10l3 8M12 4v8M9 9h6" /></svg>
+                  <span class="text-[9px] font-mono text-neutral-400 uppercase tracking-wider">Technical Drawing</span>
                 </div>
-                <div class="flex flex-col min-w-0">
-                  <span class="text-[10px] uppercase tracking-wider text-neutral-400 font-mono font-medium">Deadweight</span>
-                  <span id="spec-dwt" class="text-sm sm:text-base font-semibold text-white mt-1 leading-tight font-mono">6,408 MT</span>
-                </div>
-              </div>
-              <div class="vessel-kpi-box">
-                <div class="vessel-kpi-circle">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
-                </div>
-                <div class="flex flex-col min-w-0">
-                  <span class="text-[10px] uppercase tracking-wider text-neutral-400 font-mono font-medium">Grain Capacity</span>
-                  <span id="spec-grain" class="text-sm sm:text-base font-semibold text-white mt-1 leading-tight font-mono">315,000 cu.ft</span>
-                </div>
-              </div>
-              <div class="vessel-kpi-box">
-                <div class="vessel-kpi-circle">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 20h16M7 20V5l8 4v11M15 9l4 2v4a2 2 0 11-4 0" /></svg>
-                </div>
-                <div class="flex flex-col min-w-0">
-                  <span class="text-[10px] uppercase tracking-wider text-neutral-400 font-mono font-medium">Deck Gear</span>
-                  <span id="spec-cranes" class="text-sm sm:text-base font-semibold text-white mt-1 leading-tight font-mono">2 x 30 MT</span>
-                </div>
-              </div>
-              <div class="vessel-kpi-box">
-                <div class="vessel-kpi-circle">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 18h18M3 14h18M3 10h18M3 6h18M12 3v18" /></svg>
-                </div>
-                <div class="flex flex-col min-w-0">
-                  <span class="text-[10px] uppercase tracking-wider text-neutral-400 font-mono font-medium">Summer Draft</span>
-                  <span id="spec-draft" class="text-sm sm:text-base font-semibold text-white mt-1 leading-tight font-mono">6.85 m</span>
-                </div>
-              </div>
+              </button>
             </div>
           </div>
 
-          <!-- STRUCTURED TECHNICAL SPECIFICATIONS (Matching Official Vessel Description Sheet) -->
-          <div id="vessel-structured-specs-container" class="space-y-6">
+          <!-- 4 Key Metrics -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div class="vessel-kpi-box">
+              <div class="vessel-kpi-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M2 17l2 3h16l2-3M4 14l3-8h10l3 8M12 4v8M9 9h6" /></svg>
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="text-[10px] uppercase tracking-wider text-neutral-400 font-mono font-medium">Deadweight</span>
+                <span id="spec-dwt" class="text-sm sm:text-base font-semibold text-white mt-1 leading-tight font-mono">6,408 MT</span>
+              </div>
+            </div>
+            <div class="vessel-kpi-box">
+              <div class="vessel-kpi-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="text-[10px] uppercase tracking-wider text-neutral-400 font-mono font-medium">Grain Capacity</span>
+                <span id="spec-grain" class="text-sm sm:text-base font-semibold text-white mt-1 leading-tight font-mono">315,000 cu.ft</span>
+              </div>
+            </div>
+            <div class="vessel-kpi-box">
+              <div class="vessel-kpi-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 20h16M7 20V5l8 4v11M15 9l4 2v4a2 2 0 11-4 0" /></svg>
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="text-[10px] uppercase tracking-wider text-neutral-400 font-mono font-medium">Deck Gear</span>
+                <span id="spec-cranes" class="text-sm sm:text-base font-semibold text-white mt-1 leading-tight font-mono">2 x 30 MT</span>
+              </div>
+            </div>
+            <div class="vessel-kpi-box">
+              <div class="vessel-kpi-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 18h18M3 14h18M3 10h18M3 6h18M12 3v18" /></svg>
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="text-[10px] uppercase tracking-wider text-neutral-400 font-mono font-medium">Summer Draft</span>
+                <span id="spec-draft" class="text-sm sm:text-base font-semibold text-white mt-1 leading-tight font-mono">6.85 m</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2: 2-ROW PHOTO GALLERY -->
+        <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <span class="h-2 w-2 bg-gold shrink-0"></span>
+              <h2 class="text-xs font-mono font-bold tracking-[0.2em] uppercase text-gold">Photographic Survey &amp; Vessel Archive</h2>
+            </div>
+            <div class="flex items-center gap-3">
+              <span id="gallery-counter-tab" class="text-xs font-mono text-neutral-400">1 / 22 photos</span>
+              <button type="button" id="btn-open-all-photos" class="text-xs font-mono text-gold hover:underline flex items-center gap-1 cursor-pointer">
+                <span>View Fullscreen</span> &nearr;
+              </button>
+            </div>
+          </div>
+
+          <!-- ROW 1: Large Main Stage Photo -->
+          <div class="vessel-stage-box group cursor-pointer relative h-[380px] sm:h-[460px] bg-black/60 overflow-hidden border border-white/10" id="btn-open-stage-lightbox" title="Click to view full-screen photo">
+            <img id="gallery-stage-img" alt="Vessel Inspection Photo" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-[1.02]" src="">
+            
+            <!-- Navigation Chevrons -->
+            <button id="gallery-prev-btn" class="absolute left-3 top-1/2 -translate-y-1/2 grid h-10 w-10 place-items-center bg-black/80 text-white backdrop-blur-sm border border-white/20 hover:bg-gold hover:text-neutral-950 transition-all duration-200 cursor-pointer shadow-xl z-20" aria-label="Previous image">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4 pointer-events-none"><path d="M15 19l-7-7 7-7"></path></svg>
+            </button>
+            <button id="gallery-next-btn" class="absolute right-3 top-1/2 -translate-y-1/2 grid h-10 w-10 place-items-center bg-black/80 text-white backdrop-blur-sm border border-white/20 hover:bg-gold hover:text-neutral-950 transition-all duration-200 cursor-pointer shadow-xl z-20" aria-label="Next image">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4 pointer-events-none"><path d="M9 5l7 7-7 7"></path></svg>
+            </button>
+
+            <!-- Bottom Left Photo Caption -->
+            <div class="absolute left-3 bottom-3 pointer-events-none z-20 max-w-[calc(100%-24px)]">
+              <span id="gallery-stage-title" class="text-xs font-medium text-white bg-black/85 backdrop-blur-sm px-3 py-1.5 border border-white/15 block truncate">
+                Main Exterior at Sea
+              </span>
+            </div>
+
+            <!-- Bottom Right Zoom Icon -->
+            <div class="absolute right-3 bottom-3 pointer-events-none z-20">
+              <span class="text-[10px] font-mono text-white/90 bg-black/70 px-2.5 py-1 border border-white/10 flex items-center gap-1.5 backdrop-blur-sm">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+                Zoom
+              </span>
+            </div>
+          </div>
+
+          <!-- ROW 2: 5-Thumbnails Strip with +N on 5th slot -->
+          <div id="gallery-thumbnails" class="grid grid-cols-4 sm:grid-cols-5 gap-2.5 w-full">
+            <!-- Populated dynamically by vessel.js -->
+          </div>
+        </div>
+
+        <!-- CARD 3: KEY FEATURE BADGES BAR & OFFICIAL DISCLAIMER -->
+        <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-4">
+          <div class="grid grid-cols-2 sm:grid-cols-5 gap-3" id="vessel-feature-badges-bar">
             <!-- Dynamically populated by vessel.js -->
           </div>
-
-          <!-- Bottom Key Feature Badges Bar & Official Disclaimer -->
-          <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-4">
-            <div class="grid grid-cols-2 sm:grid-cols-5 gap-3" id="vessel-feature-badges-bar">
-              <!-- Dynamically populated by vessel.js -->
-            </div>
-            <div class="pt-3 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-[10px] font-mono text-neutral-400">
-              <span>NOTES: All details are given in good faith and believed to be correct, but without guarantee.</span>
-              <span class="text-gold uppercase tracking-wider font-semibold">DANAMIRA MANAGED FLEET</span>
-            </div>
+          <div class="pt-3 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-[10px] font-mono text-neutral-400">
+            <span>NOTES: All details are given in good faith and believed to be correct, but without guarantee.</span>
+            <span class="text-gold uppercase tracking-wider font-semibold">DANAMIRA MANAGED FLEET</span>
           </div>
+        </div>
 
-          <!-- Commercial Description Overview -->
-          <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-4">
+        <!-- CARD 4: STRUCTURED TECHNICAL SPECIFICATIONS (8 Modular Sections) -->
+        <div id="vessel-structured-specs-container" class="space-y-6">
+          <!-- Dynamically populated by vessel.js -->
+        </div>
+
+        <!-- CARD 5: COMMERCIAL DESCRIPTION OVERVIEW -->
+        <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="h-2 w-2 bg-gold shrink-0"></span>
+            <h2 class="text-xs font-mono font-bold tracking-[0.2em] uppercase text-gold">Overview &amp; Commercial Description</h2>
+          </div>
+          <div id="vessel-rich-description" class="prose prose-invert prose-gold max-w-none text-xs sm:text-sm text-neutral-300 leading-relaxed font-light">
+            <!-- Populated by vessel.js -->
+          </div>
+        </div>
+
+        <!-- CARD 6: TRADING AREA MAP -->
+        <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-4">
+          <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="h-2 w-2 bg-gold shrink-0"></span>
-              <h2 class="text-xs font-mono font-bold tracking-[0.2em] uppercase text-gold">Overview &amp; Commercial Description</h2>
+              <h2 class="text-xs font-mono font-bold tracking-[0.2em] uppercase text-gold">Trading Area &amp; Headquarters</h2>
             </div>
-            <div id="vessel-rich-description" class="prose prose-invert prose-gold max-w-none text-xs sm:text-sm text-neutral-300 leading-relaxed font-light">
-              <!-- Populated by vessel.js -->
-            </div>
+            <span class="text-[11px] font-mono text-neutral-400">Mediterranean, Black Sea, Continent &amp; Glyfada HQ</span>
           </div>
-
-          <!-- Trading Map -->
-          <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-4">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <span class="h-2 w-2 bg-gold shrink-0"></span>
-                <h2 class="text-xs font-mono font-bold tracking-[0.2em] uppercase text-gold">Trading Area &amp; Headquarters</h2>
-              </div>
-              <span class="text-[11px] font-mono text-neutral-400">Mediterranean, Black Sea, Continent &amp; Glyfada HQ</span>
-            </div>
-            <div class="aspect-[16/9] max-h-[300px] w-full overflow-hidden border border-white/10 bg-neutral-900">
-              <iframe width="100%" height="100%" style="border:0; filter: invert(90%) hue-rotate(180deg) brightness(85%);" loading="lazy" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Zeppou%2033%2C%20Glyfada%2C%20Greece&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
-            </div>
+          <div class="aspect-[16/9] max-h-[300px] w-full overflow-hidden border border-white/10 bg-neutral-900">
+            <iframe width="100%" height="100%" style="border:0; filter: invert(90%) hue-rotate(180deg) brightness(85%);" loading="lazy" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Zeppou%2033%2C%20Glyfada%2C%20Greece&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
           </div>
-
-        </div>
-
-        <!-- PANEL 2: GA PLAN (General Arrangement Drawing) -->
-        <div data-vessel-panel="gaplan" class="vessel-panel hidden flex-col gap-6">
-          <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-5">
-            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
-              <div class="flex items-center gap-2.5">
-                <span class="h-2 w-2 bg-gold shrink-0"></span>
-                <div>
-                  <h2 class="text-xs font-mono font-bold tracking-[0.2em] uppercase text-gold">General Arrangement Plan (GA-Plan)</h2>
-                  <span class="text-[11px] font-mono text-neutral-400">Official technical drawing and cargo compartment arrangement</span>
-                </div>
-              </div>
-              <div class="flex items-center gap-2">
-                <button type="button" id="btn-view-ga-plan-tab" class="inline-flex items-center gap-2 px-3.5 py-2 bg-transparent hover:bg-white/5 text-white border border-white/20 hover:border-white/40 text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer active:scale-95">
-                  <svg class="w-3.5 h-3.5 text-red-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                  <span class="text-white font-medium">Open Fullscreen</span>
-                  <span class="text-red-500 font-bold">(PDF)</span>
-                </button>
-                <a id="btn-download-ga-plan-tab" href="#" download class="inline-flex items-center gap-2 px-3.5 py-2 bg-transparent hover:bg-white/5 text-white border border-white/20 hover:border-white/40 text-xs font-mono uppercase tracking-wider transition-colors active:scale-95">
-                  <svg class="w-3.5 h-3.5 text-red-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                  <span class="text-white font-medium">Download</span>
-                  <span class="text-red-500 font-bold">(PDF)</span>
-                </a>
-              </div>
-            </div>
-
-            <!-- GA Plan Embedded Frame -->
-            <div class="w-full h-[650px] bg-[#111113] border border-white/10 relative overflow-hidden flex flex-col">
-              <iframe id="ga-plan-tab-iframe" src="about:blank" class="w-full h-full border-0" title="GA-Plan Drawing"></iframe>
-            </div>
-          </div>
-        </div>
-
-        <!-- PANEL 3: PANORAMA & INSPECTION PHOTOS -->
-        <div data-vessel-panel="panorama" class="vessel-panel hidden flex-col gap-6">
-          
-          <!-- Photo Stage Box -->
-          <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-4">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <span class="h-2 w-2 bg-gold shrink-0"></span>
-                <h2 class="text-xs font-mono font-bold tracking-[0.2em] uppercase text-gold">Photographic Survey &amp; Panorama</h2>
-              </div>
-              <span id="gallery-counter-tab" class="text-xs font-mono text-gold">Photo 1 of 22</span>
-            </div>
-
-            <!-- Main Photo Stage -->
-            <div class="vessel-stage-box group cursor-pointer relative" id="btn-open-stage-lightbox" title="Click to view full-screen photo">
-              <img id="gallery-stage-img" alt="Vessel Inspection Photo" class="w-full h-full object-cover transition-all duration-300 group-hover:scale-[1.02]" src="">
-              
-              <!-- Navigation Chevrons -->
-              <button id="gallery-prev-btn" class="absolute left-3 top-1/2 -translate-y-1/2 grid h-9 w-9 place-items-center bg-black/70 text-white backdrop-blur-sm border border-white/20 hover:bg-gold hover:text-neutral-950 transition-all duration-200 cursor-pointer shadow-md z-20" aria-label="Previous image">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4 pointer-events-none"><path d="M15 19l-7-7 7-7"></path></svg>
-              </button>
-              <button id="gallery-next-btn" class="absolute right-3 top-1/2 -translate-y-1/2 grid h-9 w-9 place-items-center bg-black/70 text-white backdrop-blur-sm border border-white/20 hover:bg-gold hover:text-neutral-950 transition-all duration-200 cursor-pointer shadow-md z-20" aria-label="Next image">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4 pointer-events-none"><path d="M9 5l7 7-7 7"></path></svg>
-              </button>
-
-              <div class="absolute left-3 bottom-3 pointer-events-none z-20 max-w-[calc(100%-24px)]">
-                <span id="gallery-stage-title" class="text-xs font-medium text-white bg-black/85 backdrop-blur-sm px-3 py-1.5 border border-white/15 block truncate">
-                  Main Exterior at Sea
-                </span>
-              </div>
-            </div>
-
-            <!-- 5-Thumbnails Strip -->
-            <div id="gallery-thumbnails" class="vessel-thumbs-5">
-              <!-- Populated dynamically by vessel.js -->
-            </div>
-          </div>
-
-          <!-- Full 22 Photo Inspection Grid -->
-          <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-4">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <span class="h-2 w-2 bg-gold shrink-0"></span>
-                <h2 class="text-xs font-mono font-bold tracking-[0.2em] uppercase text-gold">Complete Inspection Archive</h2>
-              </div>
-              <span class="text-xs font-mono text-neutral-400">Click any photo to zoom</span>
-            </div>
-            <div id="gallery-full-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 w-full">
-              <!-- Populated by vessel.js -->
-            </div>
-          </div>
-
         </div>
 
       </div>
 
-      <!-- RIGHT BLOCK: Minimal "Get in Touch" Box -->
-      <div class="vessel-hero-right" id="charter-inquiry">
+      <!-- RIGHT BLOCK: Minimal "Get in Touch" Box (Sticky on Desktop) -->
+      <div class="lg:col-span-4 sticky top-24" id="charter-inquiry">
         <div class="vessel-advisor-card space-y-5 bg-[#17171a] p-6 border border-white/[0.08] shadow-2xl">
           
           <!-- Header -->

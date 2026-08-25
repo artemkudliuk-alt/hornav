@@ -500,88 +500,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   const taglineEl = document.getElementById('vessel-tagline');
   if (taglineEl) taglineEl.textContent = `IMO: ${vessel.imoNumber} • Built ${vessel.yearBuilt || 2014} • ${vessel.classSociety} • Call Sign: ${vessel.callSign || 'V2FX5'}`;
 
-  // 1. Populate General Description Table (Exact Spec from TZ)
-  const tabVesselNameCell = document.getElementById('tab-vessel-name-cell');
-  if (tabVesselNameCell) tabVesselNameCell.textContent = vessel.name.replace('MV ', '');
-
-  const tabVesselTypeCell = document.getElementById('tab-vessel-type-cell');
-  if (tabVesselTypeCell) tabVesselTypeCell.textContent = vessel.type;
-
-  const tabVesselBuiltCell = document.getElementById('tab-vessel-built-cell');
-  if (tabVesselBuiltCell) tabVesselBuiltCell.textContent = vessel.yearBuilt || '2014';
-
-  const tabVesselFlagCell = document.getElementById('tab-vessel-flag-cell');
-  if (tabVesselFlagCell) tabVesselFlagCell.textContent = vessel.flag || 'Antigua & Barbuda';
-
-  const tabVesselDwtCell = document.getElementById('tab-vessel-dwt-cell');
-  if (tabVesselDwtCell) tabVesselDwtCell.textContent = vessel.dwt || '6,408 MT';
-
-  const tabVesselHoldsCell = document.getElementById('tab-vessel-holds-cell');
-  if (tabVesselHoldsCell) {
-    tabVesselHoldsCell.textContent = vessel.holdsCount ? (vessel.holdsCount.includes('(') ? vessel.holdsCount.split('(')[1].replace(')', '') : vessel.holdsCount) : '2HO / 2HA';
-  }
-
-  const tabVesselGearCell = document.getElementById('tab-vessel-gear-cell');
-  if (tabVesselGearCell) tabVesselGearCell.textContent = vessel.deckGear ? vessel.deckGear.replace(' Cranes (60 MT comb.)', '').replace(' Cranes', '') : '2 x 30';
-
-  // 2. Tab Navigation Switching Logic
-  const tabBtns = document.querySelectorAll('.vessel-tab-btn');
-  const tabPanels = document.querySelectorAll('.vessel-panel');
-  const gaPlanIframe = document.getElementById('ga-plan-tab-iframe');
-  const btnDownloadGaPlanTab = document.getElementById('btn-download-ga-plan-tab');
-
-  if (btnDownloadGaPlanTab) {
-    btnDownloadGaPlanTab.href = vessel.pdfGaPlanUrl;
-    btnDownloadGaPlanTab.setAttribute('download', `${vessel.name.replace(/\s+/g, '_')}_GA_Plan.pdf`);
-  }
-
-  // Load GA-Plan PDF into iframe immediately
-  if (gaPlanIframe && vessel.pdfGaPlanUrl) {
-    gaPlanIframe.src = `${vessel.pdfGaPlanUrl}#toolbar=1&navpanes=0&scrollbar=1&view=FitH`;
-  }
-
-  function switchTab(tabKey) {
-    tabBtns.forEach(btn => {
-      const isTarget = btn.getAttribute('data-vessel-tab') === tabKey;
-      if (isTarget) {
-        btn.className = 'vessel-tab-btn px-5 sm:px-6 py-3 text-xs font-mono font-bold uppercase tracking-wider bg-gold text-neutral-950 border border-gold shadow-lg cursor-pointer transition-all duration-200';
-      } else {
-        btn.className = 'vessel-tab-btn px-5 sm:px-6 py-3 text-xs font-mono font-bold uppercase tracking-wider bg-white/5 text-neutral-400 border border-white/10 hover:border-gold hover:text-white cursor-pointer transition-all duration-200';
-      }
-    });
-
-    tabPanels.forEach(panel => {
-      const isTarget = panel.getAttribute('data-vessel-panel') === tabKey;
-      if (isTarget) {
-        panel.classList.remove('hidden');
-        panel.classList.add('flex');
-      } else {
-        panel.classList.add('hidden');
-        panel.classList.remove('flex');
-      }
-    });
-
-    // Ensure GA-Plan PDF is loaded into iframe when user switches to GA-Plan tab
-    if (tabKey === 'gaplan' && gaPlanIframe && vessel.pdfGaPlanUrl) {
-      if (!gaPlanIframe.src || gaPlanIframe.src.includes('about:blank') || !gaPlanIframe.src.includes(vessel.pdfGaPlanUrl)) {
-        gaPlanIframe.src = `${vessel.pdfGaPlanUrl}#toolbar=1&navpanes=0&scrollbar=1&view=FitH`;
-      }
-    }
-  }
-
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const tabKey = btn.getAttribute('data-vessel-tab');
-      switchTab(tabKey);
-    });
-  });
-
-  // Check URL hash for direct tab linking
-  const hash = window.location.hash.replace('#', '');
-  if (hash === 'gaplan' || hash === 'panorama' || hash === 'description') {
-    switchTab(hash);
-  }
-
   // Populate Top 4 KPI metrics
   const specDwt = document.getElementById('spec-dwt');
   if (specDwt) specDwt.textContent = vessel.dwt || '6,408 MT';
@@ -809,7 +727,33 @@ document.addEventListener('DOMContentLoaded', async () => {
   const stageTitle = document.getElementById('gallery-stage-title');
   const counterEl = document.getElementById('gallery-counter-tab');
   const thumbsContainer = document.getElementById('gallery-thumbnails');
-  const fullGridContainer = document.getElementById('gallery-full-grid');
+
+  function renderGalleryThumbnails() {
+    if (!thumbsContainer) return;
+    const top4 = photos.slice(0, 4);
+    const fifthPhoto = photos[4] || photos[0];
+    const moreCount = Math.max(0, photos.length - 4);
+
+    let html = top4.map((p, idx) => `
+      <button type="button" data-idx="${idx}" class="vessel-thumb-btn relative h-20 sm:h-24 overflow-hidden border ${idx === currentPhotoIndex ? 'border-2 border-gold ring-2 ring-gold/40 opacity-100 shadow-md' : 'border-white/15 opacity-70 hover:opacity-100 hover:border-white/40'} transition-all cursor-pointer bg-black/60 group">
+        <img src="${p.url}" alt="${p.title}" class="w-full h-full object-cover pointer-events-none group-hover:scale-105 transition-transform duration-300">
+      </button>`
+    ).join('');
+
+    if (photos.length > 4) {
+      html += `
+        <button type="button" id="btn-open-gallery-more" class="vessel-thumb-more relative h-20 sm:h-24 overflow-hidden border border-gold/40 hover:border-gold transition-all cursor-pointer bg-black/80 group">
+          <img src="${fifthPhoto.url}" alt="All Inspection Photos" class="w-full h-full object-cover opacity-35 group-hover:scale-105 group-hover:opacity-45 transition-all duration-300 pointer-events-none">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent flex flex-col items-center justify-center p-1 text-center pointer-events-none">
+            <span class="text-xs sm:text-sm font-mono font-bold text-gold tracking-wider">+${moreCount}</span>
+            <span class="text-[9px] font-mono text-white/90 uppercase tracking-widest mt-0.5">All Photos &rarr;</span>
+          </div>
+        </button>
+      `;
+    }
+
+    thumbsContainer.innerHTML = html;
+  }
 
   function updateGallery(idx) {
     currentPhotoIndex = idx;
@@ -818,55 +762,34 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (stageTitle) stageTitle.textContent = p.title || `Photo #${idx + 1}`;
     if (counterEl) counterEl.textContent = `${idx + 1} / ${photos.length} photos`;
 
-    // Highlight top 5 thumbnails if within range
+    // Highlight top 4 thumbnails if within range
     if (thumbsContainer) {
-      const thumbs = thumbsContainer.querySelectorAll('button');
+      const thumbs = thumbsContainer.querySelectorAll('.vessel-thumb-btn');
       thumbs.forEach((t, deg) => {
         if (deg === idx) {
-          t.classList.add('border-amber-400', 'ring-2', 'ring-amber-400/40', 'opacity-100');
-          t.classList.remove('border-white/10', 'opacity-70');
+          t.className = 'vessel-thumb-btn relative h-20 sm:h-24 overflow-hidden border-2 border-gold ring-2 ring-gold/40 opacity-100 shadow-md transition-all cursor-pointer bg-black/60 group';
         } else {
-          t.classList.remove('border-amber-400', 'ring-2', 'ring-amber-400/40', 'opacity-100');
-          t.classList.add('border-white/10', 'opacity-70');
+          t.className = 'vessel-thumb-btn relative h-20 sm:h-24 overflow-hidden border border-white/15 opacity-70 hover:opacity-100 hover:border-white/40 transition-all cursor-pointer bg-black/60 group';
         }
       });
     }
   }
 
-  // Render Top 5 Preview Thumbnails
-  if (thumbsContainer) {
-    const top5Photos = photos.slice(0, 5);
-    thumbsContainer.innerHTML = top5Photos.map((p, idx) => `
-      <button type="button" data-idx="${idx}" class="vessel-thumb-btn ${idx === 0 ? 'border-amber-400 ring-2 ring-amber-400/40 opacity-100 shadow-md' : 'border-white/10 opacity-70 hover:opacity-100 hover:border-white/30'}">
-        <img src="${p.url}" alt="${p.title}" class="w-full h-full object-cover">
-      </button>`
-    ).join('');
+  // Initialize gallery
+  updateGallery(0);
+  renderGalleryThumbnails();
 
+  if (thumbsContainer) {
     thumbsContainer.addEventListener('click', (e) => {
-      const btn = e.target.closest('button');
+      const moreBtn = e.target.closest('#btn-open-gallery-more');
+      if (moreBtn) {
+        openLightbox(4);
+        return;
+      }
+      const btn = e.target.closest('.vessel-thumb-btn');
       if (btn) {
         const idx = Number(btn.getAttribute('data-idx'));
         updateGallery(idx);
-      }
-    });
-  }
-
-  // Render Full Photographic Archive Grid (6-column compact)
-  if (fullGridContainer) {
-    fullGridContainer.innerHTML = photos.map((p, idx) => `
-      <div data-idx="${idx}" class="group relative h-24 sm:h-28 rounded-md overflow-hidden bg-[#111113] border border-white/10 cursor-pointer hover:border-gold transition-all shadow-md">
-        <img src="${p.url}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-2 flex items-end">
-          <span class="text-[10px] text-white truncate font-mono">${p.title}</span>
-        </div>
-      </div>`
-    ).join('');
-
-    fullGridContainer.addEventListener('click', (e) => {
-      const card = e.target.closest('[data-idx]');
-      if (card) {
-        const idx = Number(card.getAttribute('data-idx'));
-        openLightbox(idx);
       }
     });
   }
@@ -881,6 +804,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     e.stopPropagation();
     const next = (currentPhotoIndex + 1) % photos.length;
     updateGallery(next);
+  });
+
+  document.getElementById('btn-open-stage-lightbox')?.addEventListener('click', () => {
+    openLightbox(currentPhotoIndex);
+  });
+
+  document.getElementById('btn-open-all-photos')?.addEventListener('click', () => {
+    openLightbox(0);
   });
 
   // Lightbox Modal Logic
