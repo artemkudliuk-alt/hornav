@@ -47,22 +47,23 @@ vesselLayoutStyles.textContent = `
   .vessel-thumbs-5 {
     display: grid !important;
     grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
-    gap: 0.5rem !important;
+    gap: 0.625rem !important;
     width: 100% !important;
-    height: 60px !important;
   }
-  .vessel-thumb-btn {
+  .vessel-thumb-btn,
+  .vessel-thumb-more {
     position: relative !important;
-    height: 60px !important;
     width: 100% !important;
+    aspect-ratio: 16 / 10 !important;
     overflow: hidden !important;
     border-radius: 0 !important;
     background-color: #000 !important;
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
     cursor: pointer !important;
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
-  .vessel-thumb-btn img {
+  .vessel-thumb-btn img,
+  .vessel-thumb-more img {
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
@@ -670,38 +671,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     `;
   }
 
-  // Render Feature Badges Bar
-  const badgesBar = document.getElementById('vessel-feature-badges-bar');
-  if (badgesBar) {
-    badgesBar.innerHTML = `
-      <div class="bg-[#111113] border border-white/10 p-3.5 flex flex-col items-center text-center gap-1.5">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="w-5 h-5 text-gold"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-        <span class="text-[11px] font-sans uppercase tracking-wider text-neutral-400 font-medium">Grain Capacity</span>
-        <span class="text-xs sm:text-sm font-sans font-bold text-white tracking-tight">${vessel.grainCapacity ? vessel.grainCapacity.split('(')[0].trim() : '352,000 cu.ft'}</span>
-      </div>
-      <div class="bg-[#111113] border border-white/10 p-3.5 flex flex-col items-center text-center gap-1.5">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="w-5 h-5 text-gold"><path d="M4 20h16M7 20V5l8 4v11M15 9l4 2v4a2 2 0 11-4 0"/></svg>
-        <span class="text-[11px] font-sans uppercase tracking-wider text-neutral-400 font-medium">Tanktop Strength</span>
-        <span class="text-xs sm:text-sm font-sans font-bold text-white tracking-tight">${vessel.tankTopStrength || '16.5 MT / m²'}</span>
-      </div>
-      <div class="bg-[#111113] border border-white/10 p-3.5 flex flex-col items-center text-center gap-1.5">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="w-5 h-5 text-gold"><path d="M4 4h16v16H4zM4 10h16M10 4v16"/></svg>
-        <span class="text-[11px] font-sans uppercase tracking-wider text-neutral-400 font-medium">Hatch Covers</span>
-        <span class="text-xs sm:text-sm font-sans font-bold text-white tracking-tight">Hydraulic Folding</span>
-      </div>
-      <div class="bg-[#111113] border border-white/10 p-3.5 flex flex-col items-center text-center gap-1.5">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="w-5 h-5 text-gold"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        <span class="text-[11px] font-sans uppercase tracking-wider text-neutral-400 font-medium">Fire Safety</span>
-        <span class="text-xs sm:text-sm font-sans font-bold text-white tracking-tight">CO2 Fitted in Holds</span>
-      </div>
-      <div class="bg-[#111113] border border-white/10 p-3.5 flex flex-col items-center text-center gap-1.5 col-span-2 sm:col-span-1">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="w-5 h-5 text-gold"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5-6.5-4.5-6.5 4.5 2-7.5L2 9h7z"/></svg>
-        <span class="text-[11px] font-sans uppercase tracking-wider text-neutral-400 font-medium">Class Society</span>
-        <span class="text-xs sm:text-sm font-sans font-bold text-white tracking-tight">${vessel.classSociety ? vessel.classSociety.split('(')[0].trim() : 'IACS Class'}</span>
-      </div>
-    `;
-  }
-
   const formVesselInput = document.getElementById('form-vessel-name');
   if (formVesselInput) formVesselInput.value = `${vessel.name} (IMO: ${vessel.imoNumber})`;
 
@@ -727,18 +696,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     const moreCount = Math.max(0, photos.length - 4);
 
     let html = top4.map((p, idx) => `
-      <button type="button" data-idx="${idx}" class="vessel-thumb-btn relative h-20 sm:h-24 overflow-hidden border ${idx === currentPhotoIndex ? 'border-2 border-gold ring-2 ring-gold/40 opacity-100 shadow-md' : 'border-white/15 opacity-70 hover:opacity-100 hover:border-white/40'} transition-all cursor-pointer bg-black/60 group">
+      <button type="button" data-idx="${idx}" class="vessel-thumb-btn relative w-full aspect-[4/3] sm:aspect-[16/10] overflow-hidden border ${idx === currentPhotoIndex ? 'border-2 border-gold ring-2 ring-gold/40 opacity-100 shadow-md' : 'border-white/15 opacity-75 hover:opacity-100 hover:border-white/40'} transition-all cursor-pointer bg-black/60 group">
         <img src="${p.url}" alt="${p.title}" class="w-full h-full object-cover pointer-events-none group-hover:scale-105 transition-transform duration-300">
       </button>`
     ).join('');
 
     if (photos.length > 4) {
       html += `
-        <button type="button" id="btn-open-gallery-more" class="vessel-thumb-more relative h-20 sm:h-24 overflow-hidden border border-gold/40 hover:border-gold transition-all cursor-pointer bg-black/80 group">
+        <button type="button" id="btn-open-gallery-more" class="vessel-thumb-more relative w-full aspect-[4/3] sm:aspect-[16/10] overflow-hidden border border-gold/40 hover:border-gold transition-all cursor-pointer bg-black/80 group flex flex-col items-center justify-center">
           <img src="${fifthPhoto.url}" alt="All Inspection Photos" class="w-full h-full object-cover opacity-35 group-hover:scale-105 group-hover:opacity-45 transition-all duration-300 pointer-events-none">
           <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent flex flex-col items-center justify-center p-1 text-center pointer-events-none">
-            <span class="text-xs sm:text-sm font-mono font-bold text-gold tracking-wider">+${moreCount}</span>
-            <span class="text-[9px] font-mono text-white/90 uppercase tracking-widest mt-0.5">All Photos &rarr;</span>
+            <span class="text-sm sm:text-base font-sans font-bold text-gold tracking-tight">+${moreCount}</span>
+            <span class="text-[9px] sm:text-[10px] font-sans font-semibold text-white/90 uppercase tracking-wider mt-0.5">All Photos &rarr;</span>
           </div>
         </button>
       `;
@@ -759,9 +728,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       const thumbs = thumbsContainer.querySelectorAll('.vessel-thumb-btn');
       thumbs.forEach((t, deg) => {
         if (deg === idx) {
-          t.className = 'vessel-thumb-btn relative h-20 sm:h-24 overflow-hidden border-2 border-gold ring-2 ring-gold/40 opacity-100 shadow-md transition-all cursor-pointer bg-black/60 group';
+          t.className = 'vessel-thumb-btn relative w-full aspect-[4/3] sm:aspect-[16/10] overflow-hidden border-2 border-gold ring-2 ring-gold/40 opacity-100 shadow-md transition-all cursor-pointer bg-black/60 group';
         } else {
-          t.className = 'vessel-thumb-btn relative h-20 sm:h-24 overflow-hidden border border-white/15 opacity-70 hover:opacity-100 hover:border-white/40 transition-all cursor-pointer bg-black/60 group';
+          t.className = 'vessel-thumb-btn relative w-full aspect-[4/3] sm:aspect-[16/10] overflow-hidden border border-white/15 opacity-75 hover:opacity-100 hover:border-white/40 transition-all cursor-pointer bg-black/60 group';
         }
       });
     }
