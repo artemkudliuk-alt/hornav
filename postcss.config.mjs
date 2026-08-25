@@ -6,7 +6,11 @@ export default {
     tailwindcss(),
     purgecss({
       content: [
+        './*.html',
         './index.html',
+        './fleet.html',
+        './vessel.html',
+        './contacts.html',
         './src/**/*.html',
         './src/**/*.js',
         './src/**/*.ts',

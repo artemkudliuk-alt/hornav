@@ -1,29 +1,30 @@
+﻿import './style.css';
+
 /**
- * Danamira Shipping Ltd � Contacts Page Logic
+ * Danamira Shipping Ltd - Contacts Page Logic
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Mobile Menu Toggle
-  const mobileBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const mobileCloseBtn = document.getElementById('mobile-menu-close');
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
 
-  if (mobileBtn && mobileMenu) {
-    mobileBtn.addEventListener('click', () => {
-      mobileMenu.classList.remove('translate-x-full');
-      document.body.style.overflow = 'hidden';
+  if (mobileMenuBtn && mobileMenuOverlay) {
+    mobileMenuBtn.addEventListener('click', () => {
+      const isOpen = mobileMenuBtn.classList.toggle('active');
+      mobileMenuOverlay.classList.toggle('active', isOpen);
+      
+      if (isOpen) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
     });
 
-    if (mobileCloseBtn) {
-      mobileCloseBtn.addEventListener('click', () => {
-        mobileMenu.classList.add('translate-x-full');
-        document.body.style.overflow = '';
-      });
-    }
-
-    mobileMenu.querySelectorAll('a').forEach(link => {
+    mobileMenuOverlay.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
-        mobileMenu.classList.add('translate-x-full');
+        mobileMenuBtn.classList.remove('active');
+        mobileMenuOverlay.classList.remove('active');
         document.body.style.overflow = '';
       });
     });
@@ -37,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         await navigator.clipboard.writeText(email);
         const originalText = btn.innerHTML;
-        btn.innerHTML = `<span class="text-emerald-400 font-bold">? Copied!</span>`;
+        btn.innerHTML = `<span class="text-gold font-bold">✓ Copied!</span>`;
         setTimeout(() => {
           btn.innerHTML = originalText;
         }, 2000);
@@ -96,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h3 class="text-2xl font-serif text-white font-medium">Message Dispatched</h3>
+            <h3 class="text-2xl font-serif text-white font-medium uppercase">Message Dispatched</h3>
             <p class="text-xs sm:text-sm text-neutral-300 max-w-md font-light leading-relaxed">
               Thank you for contacting Danamira Shipping Ltd. Your message has been routed to our Glyfada office management desk. A designated representative will follow up with you promptly.
             </p>
