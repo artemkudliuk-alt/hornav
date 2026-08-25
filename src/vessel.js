@@ -488,8 +488,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const s = vessel.specSections;
     
     const sectionsConfig = [
-      { id: 'info', title: 'Information', data: s.information, defaultOpen: true },
-      { id: 'particulars', title: 'Particulars & Capacities', data: s.particulars, defaultOpen: true },
+      { id: 'info', title: 'Information', data: s.information, isStatic: true },
+      { id: 'particulars', title: 'Particulars & Capacities', data: s.particulars, defaultOpen: false },
       { id: 'holds', title: 'Holds & Hatches', data: s.holdsHatches, defaultOpen: false },
       { id: 'ballast', title: 'Ballast & Strength', data: s.ballastStrength, defaultOpen: false },
       { id: 'speed', title: 'Speed & Consumption', data: s.speedConsumption, defaultOpen: false },
@@ -500,31 +500,54 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     structuredContainer.innerHTML = `
       <div class="space-y-3" id="vessel-accordion-root">
-        ${sectionsConfig.map(sec => `
-          <div class="vessel-accordion-item bg-[#17171a] border border-white/[0.08] shadow-xl overflow-hidden transition-all duration-200 group">
-            <button type="button" class="vessel-accordion-trigger w-full p-4 sm:p-5 flex items-center justify-between gap-4 text-left cursor-pointer hover:bg-white/[0.03] transition-colors active:scale-[0.99]" data-accordion-id="${sec.id}" aria-expanded="${sec.defaultOpen ? 'true' : 'false'}">
-              <h3 class="text-xs sm:text-sm font-sans font-medium tracking-wider uppercase text-neutral-300 group-hover:text-gold transition-colors">
-                ${sec.title}
-              </h3>
-              <div class="flex items-center gap-2.5 shrink-0">
-                <span class="text-[10px] font-sans text-neutral-400 tabular-nums">${(sec.data || []).length} specs</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-neutral-400 group-hover:text-gold transition-all duration-300 vessel-accordion-chevron ${sec.defaultOpen ? 'rotate-180 text-gold' : ''}">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </div>
-            </button>
-            <div class="vessel-accordion-content ${sec.defaultOpen ? 'block' : 'hidden'} px-4 sm:px-5 pb-4 pt-1 border-t border-white/[0.06]">
-              <div class="space-y-0.5">
-                ${(sec.data || []).map(item => `
-                  <div class="flex items-baseline justify-between py-1.5 border-b border-white/[0.04] text-xs sm:text-sm gap-3">
-                    <span class="text-neutral-400 font-sans text-xs sm:text-sm font-normal">${item.label}</span>
-                    <span class="text-neutral-100 font-sans text-xs sm:text-sm font-normal text-right tabular-nums">${item.value}</span>
+        ${sectionsConfig.map(sec => {
+          if (sec.isStatic) {
+            return `
+              <div class="vessel-static-item bg-[#17171a] border border-white/[0.08] shadow-xl overflow-hidden">
+                <div class="p-4 sm:p-5 flex items-center justify-between border-b border-white/[0.06]">
+                  <h3 class="text-xs sm:text-sm font-sans font-medium tracking-wider uppercase text-neutral-300">
+                    ${sec.title}
+                  </h3>
+                </div>
+                <div class="px-4 sm:px-5 pb-4 pt-1">
+                  <div class="space-y-0.5">
+                    ${(sec.data || []).map(item => `
+                      <div class="flex items-baseline justify-between py-1.5 border-b border-white/[0.04] text-xs sm:text-sm gap-3">
+                        <span class="text-neutral-400 font-sans text-xs sm:text-sm font-normal">${item.label}</span>
+                        <span class="text-neutral-100 font-sans text-xs sm:text-sm font-normal text-right tabular-nums">${item.value}</span>
+                      </div>
+                    `).join('')}
                   </div>
-                `).join('')}
+                </div>
+              </div>
+            `;
+          }
+
+          return `
+            <div class="vessel-accordion-item bg-[#17171a] border border-white/[0.08] shadow-xl overflow-hidden transition-all duration-200 group">
+              <button type="button" class="vessel-accordion-trigger w-full p-4 sm:p-5 flex items-center justify-between gap-4 text-left cursor-pointer hover:bg-white/[0.03] transition-colors active:scale-[0.99]" data-accordion-id="${sec.id}" aria-expanded="${sec.defaultOpen ? 'true' : 'false'}">
+                <h3 class="text-xs sm:text-sm font-sans font-medium tracking-wider uppercase text-neutral-300 group-hover:text-gold transition-colors">
+                  ${sec.title}
+                </h3>
+                <div class="flex items-center shrink-0">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-neutral-400 group-hover:text-gold transition-all duration-300 vessel-accordion-chevron ${sec.defaultOpen ? 'rotate-180 text-gold' : ''}">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
+              </button>
+              <div class="vessel-accordion-content ${sec.defaultOpen ? 'block' : 'hidden'} px-4 sm:px-5 pb-4 pt-1 border-t border-white/[0.06]">
+                <div class="space-y-0.5">
+                  ${(sec.data || []).map(item => `
+                    <div class="flex items-baseline justify-between py-1.5 border-b border-white/[0.04] text-xs sm:text-sm gap-3">
+                      <span class="text-neutral-400 font-sans text-xs sm:text-sm font-normal">${item.label}</span>
+                      <span class="text-neutral-100 font-sans text-xs sm:text-sm font-normal text-right tabular-nums">${item.value}</span>
+                    </div>
+                  `).join('')}
+                </div>
               </div>
             </div>
-          </div>
-        `).join('')}
+          `;
+        }).join('')}
       </div>
     `;
 
