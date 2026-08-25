@@ -129,41 +129,6 @@
       </div>
     </div>
 
-    <!-- GENERAL DESCRIPTION TABLE (Exact Spec from TZ) -->
-    <section class="space-y-4" id="vessel-general-description-table-sec">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border-gold/30 pb-3">
-        <div class="flex items-center gap-2.5">
-          <span class="w-2 h-2 bg-gold shrink-0"></span>
-          <h2 class="text-xs font-mono font-bold tracking-[0.25em] uppercase text-gold">
-            General Description of Vessels &bull; Technical Schedule
-          </h2>
-        </div>
-        <span class="text-[11px] font-mono text-neutral-400">
-          Click vessel name or <span class="text-gold font-bold">[PDF]</span> to view official GA-Plan
-        </span>
-      </div>
-
-      <div class="overflow-x-auto border border-neutral-800 bg-[#141416]/90 backdrop-blur-md shadow-2xl">
-        <table class="w-full text-left text-xs font-mono border-collapse" id="fleet-summary-table">
-          <thead>
-            <tr class="bg-black/70 border-b border-border-gold/30 text-gold text-[10px] tracking-wider uppercase select-none">
-              <th class="py-3.5 px-4 font-bold">Vessel Name</th>
-              <th class="py-3.5 px-4 font-bold">Type</th>
-              <th class="py-3.5 px-4 font-bold">Built</th>
-              <th class="py-3.5 px-4 font-bold">Flag</th>
-              <th class="py-3.5 px-4 font-bold">DWT</th>
-              <th class="py-3.5 px-4 font-bold">Holds / Hatches</th>
-              <th class="py-3.5 px-4 font-bold">Gear</th>
-              <th class="py-3.5 px-4 font-bold text-right">Details</th>
-            </tr>
-          </thead>
-          <tbody id="fleet-table-body" class="divide-y divide-white/5 text-neutral-300">
-            <!-- Dynamically populated by fleet.js -->
-          </tbody>
-        </table>
-      </div>
-    </section>
-
     <!-- 2-COLUMN LUXURY VESSEL CATALOG CARDS GRID (Sharp 90deg Corners) -->
     <div id="fleet-cards-container" class="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10">
       <!-- Dynamically populated by src/fleet.js with exact main page luxury card design -->

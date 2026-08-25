@@ -23,38 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       countIndicator.textContent = `Showing ${filtered.length} of ${fleetList.length} vessels`;
     }
 
-    // 1. Render General Description Table
-    const tableBody = document.getElementById('fleet-table-body');
-    if (tableBody) {
-      tableBody.innerHTML = filtered.map(v => `
-        <tr class="hover:bg-white/[0.04] transition-colors group">
-          <td class="py-4 px-4 font-bold text-white whitespace-nowrap">
-            <div class="flex items-center gap-2.5">
-              <a href="/vessel.html?id=${v.id}" class="text-sm sm:text-base font-bold text-white uppercase hover:text-gold transition-colors underline-offset-2">
-                ${v.name.replace('MV ', '')}
-              </a>
-              <button type="button" data-pdf="${v.pdfGaPlanUrl}" data-vessel="${v.name}" class="btn-ga-plan text-[9px] font-bold text-white bg-red-600 hover:bg-red-500 px-1.5 py-0.5 rounded-none transition-colors cursor-pointer inline-flex items-center gap-1 shadow-sm font-mono shrink-0" title="Open GA-Plan (PDF)">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="w-3 h-3"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
-                PDF
-              </button>
-            </div>
-          </td>
-          <td class="py-4 px-4 text-neutral-300 whitespace-nowrap">${v.type}</td>
-          <td class="py-4 px-4 text-white font-semibold">${v.yearBuilt}</td>
-          <td class="py-4 px-4 text-neutral-300 whitespace-nowrap">${v.flag}</td>
-          <td class="py-4 px-4 text-gold font-bold whitespace-nowrap">${v.dwt}</td>
-          <td class="py-4 px-4 text-neutral-300 whitespace-nowrap">${v.holdsCount ? (v.holdsCount.includes('(') ? v.holdsCount.split('(')[1].replace(')', '') : v.holdsCount) : '2HO / 2HA'}</td>
-          <td class="py-4 px-4 text-neutral-300 whitespace-nowrap">${v.deckGear}</td>
-          <td class="py-4 px-4 text-right whitespace-nowrap">
-            <a href="/vessel.html?id=${v.id}" class="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-mono bg-gold hover:bg-gold-light text-neutral-950 font-bold transition-colors shadow-sm">
-              View &rarr;
-            </a>
-          </td>
-        </tr>
-      `).join('');
-    }
-
-    // 2. Render Cards Grid
+    // Render Cards Grid
     container.innerHTML = filtered.map((v, idx) => `
       <div class="bg-bg-secondary/70 border border-neutral-800/80 hover:border-gold/40 rounded-none p-6 sm:p-7 flex flex-col gap-6 transition-all duration-500 hover:-translate-y-1 group relative shadow-xl text-left" id="f-card-${v.id}">
         
@@ -121,9 +90,10 @@ document.addEventListener('DOMContentLoaded', async () => {
           <!-- Buttons & Actions Row (Sharp Corners) -->
           <div class="flex flex-wrap items-center justify-between gap-3 pt-5 mt-4 border-t border-white/5">
             <div class="flex items-center gap-2">
-              <button type="button" data-pdf="${v.pdfGaPlanUrl}" data-vessel="${v.name}" class="btn-ga-plan inline-flex items-center gap-1.5 px-3 py-1.5 rounded-none bg-white/5 hover:bg-gold/20 text-gold border border-gold/30 text-[10px] font-mono font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer hover:border-gold active:scale-95">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+              <button type="button" data-pdf="${v.pdfGaPlanUrl}" data-vessel="${v.name}" class="btn-ga-plan inline-flex items-center gap-1.5 px-3 py-1.5 rounded-none bg-red-600 hover:bg-red-500 text-white border border-red-500 text-[10px] font-mono font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer shadow-md active:scale-95">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
                 </svg>
                 PDF GA-Plan
               </button>
