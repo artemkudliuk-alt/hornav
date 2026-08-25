@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     root: './',
-    base: './',
+    base: '/',
     css: {
       postcss: './postcss.config.mjs'
     },
@@ -37,7 +37,9 @@ export default defineConfig(({ mode }) => {
       } : undefined,
       rollupOptions: {
         input: {
-          main: path.resolve(__dirname, 'index.html')
+          main: path.resolve(__dirname, 'index.html'),
+          vessel: path.resolve(__dirname, 'vessel.html'),
+          fleet: path.resolve(__dirname, 'fleet.html')
         },
         output: {
           chunkFileNames: 'assets/js/[name]-[hash].js',

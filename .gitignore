@@ -1,8 +1,11 @@
 # Node modules
 node_modules/
+admin/node_modules/
+admin/.next/
 
 # Build outputs
 dist/
+create_files.py
 
 # Local env files
 .env
@@ -21,3 +24,4 @@ dist/
 # OS files
 .DS_Store
 Thumbs.db
+

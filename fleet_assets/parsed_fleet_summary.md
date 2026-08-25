@@ -1,0 +1,258 @@
+# FILE: Contact Details.docx
+
+CONTACT 
+
+DANAMIRA SHIPPING LTD                                                                       МНЕ НУЖНА ЗДЕСЬ УСТАНОВИТЬ
+
+Greek Branch                                                                                                                   MAP Location 
+
+Tel: +30 211 34 56 550
+
+Tel: +30 211 34 56 555
+
+Address: Zeppou 33, 166 75 Glyfada, GreeceWeb: www.danamira-shipping.com
+
+Office hours: Monday–Friday 10:00–18:00
+
+====================================================================================
+
+DEPARTMENT
+
+====================================================================================
+
+Chartering Department 
+
+E: chartering@danamira-shipping.com
+
+Operations Department
+
+E: operations@danamira-shipping.com
+
+Technical & Purchasing Department
+
+E: tech@danamira-shipping.com
+
+Marine, Safety & ISM Department
+
+E: ism@danamira-shipping.com
+
+Finance & Accounting Department
+
+E: finance@danamira-shipping.com
+
+---
+
+# FILE: MOLPADIA\(1) MOLPADIA PRESENTATION.docx
+
+MV MOLPADIA 
+
+________________________________________________________________________
+
+● BALE CAPACITY 
+
+● CARGO HOLD NUMBER 1
+
+● CARGO HOLD NUMBER 2
+
+---
+
+# FILE: (1) Vessel mode.docx
+
+Vessel description
+
+===========================================
+
+● Переименуйте Fleet на MANAGED FLEET на сайте. 
+
+На сайте таблица с General description судов чтобы описывалось так как внизу 
+
+Vessel Name
+
+Type 
+
+Built
+
+Flag
+
+DWT
+
+Holds/Hatches
+
+Gear
+
+MOLPADIA (PDF)
+
+General Cargo
+
+2014
+
+Antigua & Barbuda
+
+6,408 MT
+
+2HO / 2HA
+
+2 x 30
+
+(1) Вставить фото судов MOLPADIA и METANIRA 
+
+(2) Когда нажимаешь на название судна чтоб открывался PDF с описанием, но над ним или возле него был символ PDF. Как открываешь сразу идет Vessel Description, GA plan, Panorama.
+
+Photo
+
+---
+
+# FILE: METANIRA\(1) METANIRA PRESENTATION.docx
+
+● HOLD-1
+
+● HOLD-2
+
+---
+
+# FILE: COMPANY FRAMEWORK.docx
+
+    HOMEPAGE               COMPANY PROFILE                         MANAGED FLEET             CAREERS          CONTACT
+
+COMPANY
+
+❶ PRESENTATION 
+
+Established in June 2026 in Glyfada, Greece  
+
+Operates under the Greek maritime framework Law 89/1967. 
+
+Link: http://publicrevenue.gr/elib/view?d=/gr/act/1967/89
+
+DANAMIRA SHIPPING LTD is an independent ship-management company registered in Liberia with its Greek Branch opened in Glyfada, Greece. Provides integrated ship management services covering commercial management, sale & purchase, chartering, vessel operations, technical, ISM and safety management and financial & accounting support. 
+
+❷ Mission Statement 
+
+DANAMIRA SHIPPING LTD focuses on the dry cargo market, primarily managing and operating general cargo and bulk carrier vessels. Our commercial team actively evaluates voyage and time charter opportunities across international trading areas, while our operation and technical departments provide continuous support throughout each vessel's employment.
+
+Corporate vision. Long-term development through strategic fleet expansion and continuous growth of the Company’s maritime operations. Future plans include the consideration of newbuilding projects, particularly in relation to new vessel framework, design, and construction development. 
+
+Cargo Transportation: Efficient seaborne transportation of dry bulk cargoes through the commercial and technical operation of general cargo and bulk carrier vessels – ensuring reliability, compliance, operational performance across international trades, with strategic presence in the Black, Mediterranean and Baltic seas, Continent, Scandinavian countries, West Africa, USA Gulf and Caribbean sea subject to market opportunities and demand.
+
+□ Agribulk cargoes: wheat, maize, barley, oats, rice, soybeans, sunflower seeds, rapeseed, soy meal, pellets, distillers grains.   
+
+□ Solid Bulk Chemicals & Fertilizers: urea, NPK compound fertilizers, ammonium sulphate, phosphates, potash, silica sand, salt, clay, limestone, coal, wood pellets, mono-ammonium phosphates, ammonium nitrate. 
+
+□ Metallic & Mineral Cargoes: iron ore, steel products (coils, slabs, pipes, plates, rebars, wire rod in coils, billets, pig iron), bauxites, manganese ore, copper concentrate, nickel ore, barytes, perlites.
+
+Accountability in action
+
+Greek Maritime & Corporate Legislation
+
+The Company conducts its activities in Greece in accordance with applicable Greek corporate, maritime, employment and statutory requirements, maintaining appropriate corporate records, procedures and regulatory compliance.
+
+Link: https://nee.gr/en/hellenic-chamber-of-shipping/
+
+Law 89/1967
+
+The company operates under the Greek maritime framework Law 89/1967, combining regional maritime expertise with internationally aligned operational standards.
+
+Link: http://publicrevenue.gr/elib/view?d=/gr/act/1967/89
+
+International Maritime Organization (IMO)
+
+The Company monitors and applies relevant IMO instruments, codes and amendments applicable to its vessels and operations, including requirements relating to safety, environmental protection, vessel operation and certification. IMO notes that governments implement conventions through national law.
+
+Link: https://www.imo.org/en/
+
+SOLAS Convention
+
+The Company verifies that vessels meet applicable safety requirements for construction, equipment and operation, including required safety equipment, certification and operational standards. SOLAS establishes minimum standards for ship construction, equipment and operation compatible with safety.
+
+Link: https://www.imo.org/en/about/conventions/pages/international-convention-for-the-safety-of-life-at-sea-(solas),-1974.aspx
+
+MARPOL Convention
+
+The Company maintains procedures aimed at preventing and minimizing pollution from vessel operations, including applicable requirements concerning oil, garbage, sewage, air emissions and other regulated ship-generated pollution. 
+
+The Company focuses on reducing the carbon footprint of maritime trade through proactive management of vessel efficiency indicators, including CII and EEXI, together with waste management and ballast water treatment procedures in compliance with applicable international regulations.
+
+Link: https://www.imo.org/en/about/conventions/pages/international-convention-for-the-prevention-of-pollution-from-ships-(marpol).aspx
+
+STCW Convention
+
+The Company verifies that seafarers hold the required qualifications, certificates, training and competencies for their positions and that applicable watchkeeping requirements are observed. STCW establishes international minimum standards for training, certification and watchkeeping
+
+Link: https://www.imo.org/en/ourwork/humanelement/pages/stcw-convention.aspx
+
+Vessel quality & Healthcare
+
+Conditions & terms of DANAMIRA SHIPPING LTD:
+
+● The Company applies a selective approach to vessel’s employment, considering: vessel age and class, technical condition, Safety record, regulatory compliance, healthcare.
+
+● Vessel Quality & Age Standards 
+
+Vessels over 20 years of age are considered only following satisfactory technical evaluation and confirmation of compliance with the Company’s required standards.
+
+● Crew Medical Fitness & Pre-Employment Screening                                                     Every seafarer proposed for employment is subject to medical review before final approval and deployment.
+
+Particular attention is given to significant previous illnesses, hospitalization or surgery, cardiovascular and neurological conditions, diabetes, long-term medication, previous medical repatriation or sign-off, and other conditions that may affect fitness for service at sea.
+
+Each seafarer must personally complete, date and sign a Health Declaration / Medical History confirming that the information provided is complete and accurate.
+
+● Crew Documentation & Verification
+
+Before deployment, the Company verifies, as applicable:
+
+(1) Valid Medical Examination / Fitness-for-Duty Certificate 
+
+(2) Signed Health Declaration / Medical History 
+
+(3) Relevant hospital discharge summaries and medical records, where applicable 
+
+(4) Specialist reports, additional examinations or test results, where required 
+
+(5) Valid Seafarer Employment Agreement (SEA) and employment documentation
+
+PDF_Guidelines on the medical examinations of seafarers
+
+MLC, 2006
+
+The Company applies applicable standards concerning Seafarer Employment Agreements, working and rest hours, wages, repatriation, medical care, accommodation, food, health and safety, recruitment and seafarers' welfare
+
+Link: https://www.ilo.org/international-labour-standards/maritime-labour-convention-2006
+
+Flag State Implementation
+
+For each vessel, the Company verifies compliance with requirements of the vessel's Flag Administration, including applicable statutory certification, surveys, documentation and implementation of relevant international conventions.
+
+Link: https://www.imo.org/en/ourwork/safety/pages/flagstateimplementation.aspx
+
+Classification Society
+
+The Company considers each vessel’s valid Class status, required surveys, outstanding conditions and recommendations of class, and applicable technical certifications. Each vessel is required to be classed with an IACS member classification society, with class status and related requirements assessed on a vessel-by-vessel basis.
+
+Link:  https://iacs.org.uk/
+
+Commercial & Technical Due Diligence
+
+The Company conducts commercial and technical due diligence in accordance with applicable BIMCO standards and clauses, together with established maritime industry practices. Prior to fixture, each vessel and cargo is assessed for suitability, valid class and statutory status, technical condition, safety, insurance, cargo requirements and operational risks. Each vessel must be classed with an IACS member classification society. Fixtures are concluded only following satisfactory completion of due diligence and agreement of the applicable contractual terms.
+
+Bulk Shipping quality Clause 
+
+Link: https://www.bimco.org/contractual-affairs/bimco-clauses/current-clauses/bulk_shipping_quality_clause_for_voyage_charter_parties_2000/?utm_source
+
+Dry Bulk Marine Risk Assessment Clause for Time Charter Parties 2013
+
+Link: https://www.bimco.org/contractual-affairs/bimco-clauses/current-clauses/dry_bulk_marine_risk_assessment_clause_for_time_charter_parties_2013/?utm_source
+
+Fleet & Cargo Operations
+
+The Company optimizes fleet performance, ensuring the safe and efficient transportation and distribution of cargoes to various ports in accordance with the terms and conditions of each transportation contract.
+
+Sanction Clause 
+
+The Company conducts sanctions and counterparty screening before entering into any fixture or contractual commitment. Relevant vessels, owners, charterers, counterparties, cargoes, ports and trading parties are checked against applicable international sanctions requirements.
+
+The Company applies applicable BIMCO sanctions clauses in its contractual arrangements and does not proceed with transactions where sanctions restrictions, prohibited activities or unacceptable compliance risks are identified.
+
+Link: https://www.bimco.org/contractual-affairs/sanctions/
+
+---
+

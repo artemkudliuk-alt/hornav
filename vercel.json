@@ -1,0 +1,1 @@
+{"cleanUrls": true, "rewrites": [{"source": "/fleet", "destination": "/fleet.html"}, {"source": "/vessel", "destination": "/vessel.html"}]}

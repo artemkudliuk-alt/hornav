@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">MV MOLPADIA — Technical Particulars | Danamira Shipping</title>
+  <meta name="description" content="Commercial specifications, general arrangement plan, crane capacities, and photo inspection gallery of dry bulk cargo vessel." />
+  <!-- Premium Fonts: Clash Display (Display), Plus Jakarta Sans (Sans) & Space Mono (Mono) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@300,400,500,600,700&display=swap" rel="stylesheet">
+  <script type="module" src="/src/vessel.js"></script>
+  <link rel="stylesheet" href="/src/style.css" />
+
+  <style>
+    .vessel-hero-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      width: 100%;
+    }
+    .vessel-hero-left {
+      width: 100%;
+      min-width: 0;
+    }
+    .vessel-hero-right {
+      width: 100%;
+      min-width: 0;
+    }
+    .vessel-stage-box {
+      position: relative;
+      width: 100%;
+      height: 290px;
+      overflow: hidden;
+      border-radius: 0.5rem;
+      background-color: #111113;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+    @media (min-width: 640px) {
+      .vessel-stage-box {
+        height: 330px;
+      }
+    }
+    @media (min-width: 1024px) {
+      .vessel-stage-box {
+        height: 350px;
+      }
+    }
+    .vessel-thumbs-5 {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0.5rem;
+      width: 100%;
+    }
+    .vessel-thumb-btn {
+      position: relative;
+      height: 52px;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 0.375rem;
+      background-color: #000;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @media (min-width: 640px) {
+      .vessel-thumb-btn {
+        height: 60px;
+      }
+    }
+    @media (min-width: 1024px) {
+      .vessel-thumb-btn {
+        height: 64px;
+      }
+    }
+    @media (min-width: 768px) {
+      .vessel-hero-grid {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 2rem;
+      }
+      .vessel-hero-left {
+        flex: 1 1 63%;
+        max-width: 63%;
+        width: 63%;
+        min-width: 0;
+      }
+      .vessel-hero-right {
+        flex: 0 0 37%;
+        max-width: 37%;
+        width: 37%;
+        min-width: 0;
+        position: sticky;
+        top: 5.5rem;
+      }
+    }
+    @media (min-width: 1200px) {
+      .vessel-hero-grid {
+        gap: 2.25rem;
+      }
+      .vessel-hero-left {
+        flex: 1 1 64%;
+        max-width: 64%;
+        width: 64%;
+      }
+      .vessel-hero-right {
+        flex: 0 0 36%;
+        max-width: 36%;
+        width: 36%;
+      }
+    }
+  </style>
+</head>
+<body class="bg-[#141416] text-[#ececed] font-sans antialiased selection:bg-[#c89b3c]/30 selection:text-[#e6c36a] overflow-x-hidden min-h-[100dvh] flex flex-col justify-between">
+
+  <!-- Header Navigation (Unified Corporate Nav across all pages) -->
+  <header class="w-full h-24 sm:h-28 bg-[#161618]/95 backdrop-blur-md sticky top-0 left-0 z-50 border-b border-white/[0.08]">
+    <nav class="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-16 h-24 sm:h-28 flex items-center justify-between" id="main-nav">
+      <!-- Logo Container -->
+      <a href="/" class="flex items-center gap-4 group select-none" id="logo-link">
+        <img src="/Danamira_logo_gold.png" alt="Danamira Shipping Ltd Logo" class="h-16 sm:h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]" id="logo-img">
+        <!-- Divider -->
+        <div class="h-10 w-[1px] bg-border-gold/30 hidden sm:block"></div>
+        <!-- Slogan -->
+        <span class="text-[9px] font-medium tracking-[0.25em] text-gold uppercase whitespace-nowrap hidden sm:inline-block font-sans">Maritime Expertise</span>
+      </a>
+      
+      <!-- Nav Links (Center) -->
+      <div class="hidden lg:flex items-center gap-10 text-xs font-semibold uppercase tracking-[0.25em] text-neutral-400" id="nav-links">
+        <a href="/" class="hover:text-gold transition-colors duration-200" id="link-home">Home</a>
+        <a href="/#company" class="hover:text-gold transition-colors duration-200" id="link-company">Company</a>
+        <a href="/fleet.html" class="text-gold hover:text-gold transition-colors duration-200" id="link-fleet">Managed Fleet</a>
+        <a href="/#careers" class="hover:text-gold transition-colors duration-200" id="link-careers">Careers</a>
+        <a href="/#contact" class="hover:text-gold transition-colors duration-200" id="link-contact">Contact</a>
+      </div>
+
+      <!-- Action Button (Right) & Hamburger -->
+      <div class="flex items-center gap-4" id="nav-actions">
+        <a href="/#contact" class="inline-flex items-center gap-2 px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] border border-gold hover:bg-gold hover:text-neutral-950 transition-colors duration-300 text-white hidden md:inline-flex rounded-none" id="btn-get-in-touch">
+          Get In Touch &rarr;
+        </a>
+        
+        <!-- Hamburger Button (Mobile Only) -->
+        <button id="mobile-menu-btn" class="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 border border-border-gold/30 hover:border-gold/60 transition-colors duration-300 rounded-none focus:outline-none cursor-pointer z-50" aria-label="Toggle Navigation Menu">
+          <span class="w-6 h-[2px] bg-white transition-all duration-300 origin-center" id="hamburger-line-1"></span>
+          <span class="w-6 h-[2px] bg-white transition-all duration-300 origin-center" id="hamburger-line-2"></span>
+          <span class="w-6 h-[2px] bg-white transition-all duration-300 origin-center" id="hamburger-line-3"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- 2px Luxury Animated Border Line -->
+    <div class="absolute bottom-0 left-0 w-full h-[2px] luxury-border-line"></div>
+  </header>
+
+  <!-- Mobile Fullscreen Menu Overlay -->
+  <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#161618]/98 z-40 flex flex-col justify-center items-center opacity-0 pointer-events-none transition-all duration-500 backdrop-blur-md">
+    <div class="absolute inset-0 bg-[radial-gradient(rgba(200,155,60,0.02)_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none z-0"></div>
+    <div class="flex flex-col items-center gap-8 text-lg font-semibold uppercase tracking-[0.3em] text-neutral-400 relative z-10" id="mobile-menu-links">
+      <a href="/" class="hover:text-gold transition-colors duration-300">Home</a>
+      <a href="/#company" class="hover:text-gold transition-colors duration-300">Company</a>
+      <a href="/fleet.html" class="text-gold transition-colors duration-300">Managed Fleet</a>
+      <a href="/#careers" class="hover:text-gold transition-colors duration-300">Careers</a>
+      <a href="/#contact" class="hover:text-gold transition-colors duration-300">Contact</a>
+    </div>
+  </div>
+
+  <!-- BREADCRUMBS -->
+  <div class="mx-auto max-w-6xl w-full px-6 sm:px-8 lg:px-10 pt-6 pb-2">
+    <div class="flex items-center justify-between gap-4">
+      <nav class="flex items-center gap-2 text-xs font-mono tracking-wider uppercase text-neutral-400">
+        <a class="transition-colors hover:text-gold" href="/fleet.html">&larr; BACK TO CATALOG</a>
+        <span class="text-neutral-600">/</span>
+        <span id="breadcrumb-vessel" class="text-neutral-200 font-medium truncate max-w-[280px]">MV MOLPADIA</span>
+      </nav>
+
+      <span class="hidden sm:inline-flex items-center gap-2 text-[10px] font-mono tracking-wider uppercase text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-none border border-emerald-500/20">
+        <span class="h-1.5 w-1.5 rounded-none bg-emerald-400 animate-pulse"></span>
+        COMMERCIALLY MANAGED
+      </span>
+    </div>
+  </div>
+
+  <!-- TOP 2-COLUMN SECTION (Swiss Maritime Minimal Player + Inquiry Desk) -->
+  <section class="mx-auto max-w-6xl w-full px-6 sm:px-8 lg:px-10 pb-8">
+    <div class="vessel-hero-grid">
+      
+      <!-- LEFT BLOCK (Compact 16:9 Stage + 5 Thumbnails + Lightbox Trigger) -->
+      <div class="vessel-hero-left space-y-2.5">
+        
+        <!-- Main Photo Stage -->
+        <div class="vessel-stage-box group cursor-pointer" id="btn-open-stage-lightbox" title="Click to view full-screen photo">
+          <img id="gallery-stage-img" alt="Vessel Inspection Photo" class="w-full h-full object-cover transition-all duration-300 group-hover:scale-[1.02]" src="">
+          
+          <!-- Prev / Next Navigation Arrows -->
+          <button id="gallery-prev-btn" class="absolute left-3 top-1/2 -translate-y-1/2 grid h-9 w-9 place-items-center rounded-none bg-black/60 text-white backdrop-blur-sm border border-white/20 hover:bg-gold hover:text-neutral-950 transition-all duration-200 opacity-0 group-hover:opacity-100 cursor-pointer shadow-md active:scale-95 z-20" aria-label="Previous image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4 pointer-events-none"><path d="M15 19l-7-7 7-7"></path></svg>
+          </button>
+          
+          <button id="gallery-next-btn" class="absolute right-3 top-1/2 -translate-y-1/2 grid h-9 w-9 place-items-center rounded-none bg-black/60 text-white backdrop-blur-sm border border-white/20 hover:bg-gold hover:text-neutral-950 transition-all duration-200 opacity-0 group-hover:opacity-100 cursor-pointer shadow-md active:scale-95 z-20" aria-label="Next image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4 pointer-events-none"><path d="M9 5l7 7-7 7"></path></svg>
+          </button>
+
+          <!-- Top-Left Counter Pill -->
+          <div class="absolute left-3 top-3 bg-black/85 backdrop-blur-sm px-2.5 py-1 text-xs font-mono text-white pointer-events-none z-20 border border-white/10">
+            <span id="gallery-counter">1 / 22 photos</span>
+          </div>
+
+          <!-- Top-Right Fullscreen / Lightbox Hint -->
+          <div class="absolute right-3 top-3 bg-black/70 backdrop-blur-sm px-2.5 py-1 text-[10px] font-mono text-neutral-300 opacity-0 group-hover:opacity-100 transition-opacity border border-white/10 flex items-center gap-1.5 z-20">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-3 w-3"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"></path></svg>
+            <span>Full View</span>
+          </div>
+
+          <!-- Bottom Left Caption Overlay -->
+          <div class="absolute left-3 bottom-3 pointer-events-none z-20 max-w-[calc(100%-24px)]">
+            <span id="gallery-stage-title" class="text-xs font-medium text-white/90 bg-black/85 backdrop-blur-sm px-3 py-1.5 border border-white/15 block truncate">
+              Main Exterior at Sea
+            </span>
+          </div>
+        </div>
+
+        <!-- 5-Thumbnails Grid Strip -->
+        <div id="gallery-thumbnails" class="vessel-thumbs-5">
+          <!-- Populated dynamically by vessel.js -->
+        </div>
+
+        <!-- Bottom Gallery Quick Action -->
+        <div class="flex items-center justify-between pt-1 text-[11px] font-mono text-neutral-400">
+          <span>Click any thumbnail to preview</span>
+          <button id="btn-open-all-photos" type="button" class="text-gold hover:text-gold-light hover:underline cursor-pointer flex items-center gap-1 font-medium">
+            <span>View all 22 photos &rarr;</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- RIGHT BLOCK: Swiss Chartering Desk & Consultation Form (Dark Luxury Card) -->
+      <div class="vessel-hero-right" id="charter-inquiry">
+        <div class="vessel-advisor-card space-y-5">
+          
+          <!-- Status & Availability Header -->
+          <div class="space-y-1">
+            <span class="text-[10px] font-mono tracking-widest text-neutral-400 uppercase">STATUS</span>
+            <div class="flex items-baseline justify-between">
+              <span class="text-2xl sm:text-3xl font-serif text-white font-normal tracking-tight">OPEN SPOT</span>
+              <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-none border border-emerald-500/20 font-semibold">
+                PROMPT MED
+              </span>
+            </div>
+          </div>
+
+          <!-- Advisor Row (Crisp Circular Avatar) -->
+          <div class="flex items-center gap-3.5 pt-4 pb-1 border-t border-white/[0.08]">
+            <div class="vessel-avatar-circle select-none">
+              <span>DS</span>
+              <span class="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-emerald-500 ring-2 ring-[#17171a]"></span>
+            </div>
+            <div class="flex flex-col min-w-0">
+              <span class="text-sm font-semibold text-white leading-tight truncate">Danamira Chartering Desk</span>
+              <span class="text-[10px] font-mono text-neutral-400 tracking-wider uppercase mt-1">VERIFIED ADVISOR</span>
+            </div>
+          </div>
+
+          <!-- Quick Messengers Buttons (Branded Colors & Generous Spacing) -->
+          <div class="vessel-messengers-row">
+            <a href="https://wa.me/302113456550?text=Hello%20Danamira!%20I%20would%20like%20to%20inquire%20about%20freight%20and%20availability%20for%20vessel." target="_blank" rel="noopener noreferrer" style="background-color: #25D366 !important; color: #ffffff !important; border: 1px solid #20bd5a !important; box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35) !important;" class="vessel-btn-wa">
+              <svg viewBox="0 0 24 24" fill="currentColor" class="h-4.5 w-4.5 shrink-0 fill-white">
+                <path d="M20.5 3.5A11 11 0 0 0 3.4 17.1L2 22l5-1.3A11 11 0 0 0 20.5 3.5zM12 20a8 8 0 0 1-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4a.5.5 0 0 0 0-.5c0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.7 3.1.6.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1z"></path>
+              </svg>
+              <span style="color: #ffffff !important; font-weight: 700 !important;">WhatsApp</span>
+            </a>
+
+            <a href="https://t.me/danamira_shipping" target="_blank" rel="noopener noreferrer" style="background-color: #0088cc !important; color: #ffffff !important; border: 1px solid #0077b5 !important; box-shadow: 0 4px 14px rgba(0, 136, 204, 0.35) !important;" class="vessel-btn-tg">
+              <svg viewBox="0 0 24 24" fill="currentColor" class="h-4.5 w-4.5 shrink-0 fill-white">
+                <path d="M9.8 15.3 9.6 19c.4 0 .6-.2.8-.4l1.9-1.8 4 2.9c.7.4 1.2.2 1.4-.7l2.6-12h0c.2-1-.4-1.5-1.1-1.2L3.6 10.4c-1 .4-1 1-.2 1.2l4.2 1.3 9.7-6.1c.4-.3.8-.1.5.2z"></path>
+              </svg>
+              <span style="color: #ffffff !important; font-weight: 700 !important;">Telegram</span>
+            </a>
+          </div>
+
+          <!-- Request Consultation Form (Spacious Margin Top & Divider) -->
+          <div class="space-y-3 pt-4 border-t border-white/[0.08]">
+            <span class="text-[11px] font-mono font-semibold tracking-wider uppercase text-neutral-300 block">
+              REQUEST CONSULTATION
+            </span>
+
+            <form id="vessel-inquiry-form" class="space-y-2.5">
+              <input id="form-vessel-name" type="text" readonly class="vessel-form-input !text-gold !font-mono !font-bold !bg-[#111113] !border-white/10">
+
+              <input id="form-name" required type="text" placeholder="Full name" class="vessel-form-input !bg-[#111113] !border-white/10 placeholder-neutral-500">
+
+              <input id="form-phone" required type="tel" placeholder="Phone / WhatsApp (+380 / +30...)" class="vessel-form-input !bg-[#111113] !border-white/10 placeholder-neutral-500 font-mono">
+
+              <input id="form-email" type="email" placeholder="Email (optional)" class="vessel-form-input !bg-[#111113] !border-white/10 placeholder-neutral-500">
+
+              <textarea id="form-message" rows="2" placeholder="Cargo parcel, laycan & ports..." class="vessel-form-input !h-auto !bg-[#111113] !border-white/10 placeholder-neutral-500 resize-none py-2"></textarea>
+
+              <button type="submit" class="vessel-btn-submit">
+                SEND INQUIRY
+              </button>
+
+              <div id="form-success-msg" class="hidden p-3 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs rounded-md text-center font-mono">
+                ✓ Inquiry submitted! Our chartering desk will reply promptly.
+              </div>
+            </form>
+          </div>
+
+          <!-- Direct Office Info (Generous Spacious Padding & Line-Height) -->
+          <div class="border-t border-white/[0.08] pt-4 mt-2 text-xs font-mono text-neutral-400 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-neutral-500">Direct Email:</span>
+              <a href="mailto:chartering@danamira-shipping.com" class="text-gold hover:underline font-medium">chartering@danamira-shipping.com</a>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-neutral-500">Greek HQ:</span>
+              <span class="text-neutral-300">Zeppou 33, Glyfada, Greece</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SWISS DIVIDER WITH GENEROUS SPACING -->
+  <div class="mx-auto max-w-6xl w-full px-6 sm:px-8 lg:px-10">
+    <div class="swiss-divider !my-8 lg:!my-12"></div>
+  </div>
+
+  <!-- LOWER SECTION: Particulars & Specifications (Generous Top Margin) -->
+  <main class="vessel-main-content mx-auto max-w-6xl w-full px-6 sm:px-8 lg:px-10 pb-24 space-y-14">
+    
+    <!-- 1. VESSEL TITLE & 4-COLUMN HIGHLIGHT METRICS CARD (Dark Luxury Style) -->
+    <div class="bg-[#17171a] border border-white/[0.08] p-6 sm:p-8 rounded-none shadow-2xl space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4">
+        <div class="flex flex-col gap-1">
+          <span id="vessel-top-category" class="text-xs tracking-[0.2em] uppercase text-gold font-mono font-bold">
+            GENERAL CARGO • ANTIGUA & BARBUDA FLAG
+          </span>
+          <h1 id="vessel-name-title" class="text-2xl sm:text-3xl font-serif font-medium text-white tracking-tight mt-1">
+            MV MOLPADIA
+          </h1>
+          <span id="vessel-tagline" class="text-xs font-mono text-neutral-400 mt-1">
+            IMO: 9613616 • Built 2014 • DNV Class • Call Sign: V2FX5
+          </span>
+        </div>
+
+        <!-- Action buttons for GA-Plan with Clear Gap -->
+        <div class="flex items-center gap-3 shrink-0">
+          <button id="btn-open-pdf-hero" type="button" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-none bg-gold/10 hover:bg-gold/20 text-gold border border-gold/40 text-xs font-mono font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer shadow-sm active:scale-95">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+            </svg>
+            GA-Plan (PDF)
+          </button>
+
+          <a id="btn-download-pdf-hero" href="#" download class="inline-flex items-center gap-2 px-4 py-2.5 rounded-none bg-white/5 hover:bg-white/10 text-neutral-300 border border-white/15 text-xs font-mono font-bold uppercase tracking-wider transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+            </svg>
+            Download
+          </a>
+        </div>
+      </div>
+
+      <!-- 4 Quick Highlight Metrics (with Clean 1.5px Stroke Icons) -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t border-white/10">
+        
+        <!-- Metric 1: DWT (Ship Displacement) -->
+        <div class="vessel-kpi-box">
+          <div class="vessel-kpi-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2 17l2 3h16l2-3M4 14l3-8h10l3 8M12 4v8M9 9h6" />
+            </svg>
+          </div>
+          <div class="flex flex-col min-w-0">
+            <span class="text-[10px] uppercase tracking-wider text-neutral-400 font-mono font-medium">Deadweight</span>
+            <span id="spec-dwt" class="text-sm sm:text-base font-semibold text-white mt-1 leading-tight font-mono truncate">6,408 MT</span>
+          </div>
+        </div>
+
+        <!-- Metric 2: Grain Capacity (Cargo Hold Cube) -->
+        <div class="vessel-kpi-box">
+          <div class="vessel-kpi-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+            </svg>
+          </div>
+          <div class="flex flex-col min-w-0">
+            <span class="text-[10px] uppercase tracking-wider text-neutral-400 font-mono font-medium">Grain Capacity</span>
+            <span id="spec-grain" class="text-sm sm:text-base font-semibold text-white mt-1 leading-tight font-mono truncate">315,000 cu.ft</span>
+          </div>
+        </div>
+
+        <!-- Metric 3: Deck Cranes (Crane Jib Hook) -->
+        <div class="vessel-kpi-box">
+          <div class="vessel-kpi-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 20h16M7 20V5l8 4v11M15 9l4 2v4a2 2 0 11-4 0" />
+            </svg>
+          </div>
+          <div class="flex flex-col min-w-0">
+            <span class="text-[10px] uppercase tracking-wider text-neutral-400 font-mono font-medium">Deck Gear</span>
+            <span id="spec-cranes" class="text-sm sm:text-base font-semibold text-white mt-1 leading-tight font-mono truncate">2 x 30 MT</span>
+          </div>
+        </div>
+
+        <!-- Metric 4: Summer Draft (Draft Gauge) -->
+        <div class="vessel-kpi-box">
+          <div class="vessel-kpi-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 18h18M3 14h18M3 10h18M3 6h18M12 3v18" />
+            </svg>
+          </div>
+          <div class="flex flex-col min-w-0">
+            <span class="text-[10px] uppercase tracking-wider text-neutral-400 font-mono font-medium">Summer Draft</span>
+            <span id="spec-draft" class="text-sm sm:text-base font-semibold text-white mt-1 leading-tight font-mono truncate">6.85 m</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 2. DETAILS SECTION (Spacious 3-Column Table with 48px Column Gap) -->
+    <div class="vessel-details-section">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="h-2 w-2 bg-gold rounded-none shrink-0"></span>
+        <h2 class="text-xs font-mono font-bold tracking-[0.2em] uppercase text-gold">Details & Technical Specifications</h2>
+      </div>
+      
+      <div class="vessel-specs-grid">
+        
+        <div class="vessel-spec-item">
+          <span class="vessel-spec-label">IMO Number:</span>
+          <span id="spec-imo" class="vessel-spec-value">9613616</span>
+        </div>
+
+        <div class="vessel-spec-item">
+          <span class="vessel-spec-label">Year Built:</span>
+          <span id="spec-year" class="vessel-spec-value">Built in 2014</span>
+        </div>
+
+        <div class="vessel-spec-item">
+          <span class="vessel-spec-label">Classification:</span>
+          <span id="spec-class" class="vessel-spec-value">DNV Class</span>
+        </div>
+
+        <div class="vessel-spec-item">
+          <span class="vessel-spec-label">Gross Tonnage (GT):</span>
+          <span id="spec-gt" class="vessel-spec-value">4,591</span>
+        </div>
+
+        <div class="vessel-spec-item">
+          <span class="vessel-spec-label">Net Tonnage (NT):</span>
+          <span id="spec-nt" class="vessel-spec-value">2,352</span>
+        </div>
+
+        <div class="vessel-spec-item">
+          <span class="vessel-spec-label">Length Overall (LOA):</span>
+          <span id="spec-loa" class="vessel-spec-value">108.20 m</span>
+        </div>
+
+        <div class="vessel-spec-item">
+          <span class="vessel-spec-label">Breadth / Beam:</span>
+          <span id="spec-beam" class="vessel-spec-value">18.20 m</span>
+        </div>
+
+        <div class="vessel-spec-item">
+          <span class="vessel-spec-label">Holds / Hatches:</span>
+          <span id="spec-holds" class="vessel-spec-value">2 Holds / 2 Hatches</span>
+        </div>
+
+        <div class="vessel-spec-item">
+          <span class="vessel-spec-label">Bale Capacity:</span>
+          <span id="spec-bale" class="vessel-spec-value">305,000 cu.ft</span>
+        </div>
+
+        <div class="vessel-spec-item">
+          <span class="vessel-spec-label">Hatch 1 Dimensions:</span>
+          <span id="spec-hatch1" class="vessel-spec-value">25.60 x 15.20 m</span>
+        </div>
+
+        <div class="vessel-spec-item">
+          <span class="vessel-spec-label">Hatch 2 Dimensions:</span>
+          <span id="spec-hatch2" class="vessel-spec-value">38.40 x 15.20 m</span>
+        </div>
+
+        <div class="vessel-spec-item">
+          <span class="vessel-spec-label">Tanktop Strength:</span>
+          <span id="spec-strength" class="vessel-spec-value">15.0 MT / m²</span>
+        </div>
+
+        <div class="vessel-spec-item">
+          <span class="vessel-spec-label">Eco Speed:</span>
+          <span id="spec-speed" class="vessel-spec-value">11.0 knots</span>
+        </div>
+
+        <div class="vessel-spec-item">
+          <span class="vessel-spec-label">Bow Thruster:</span>
+          <span id="spec-thruster" class="vessel-spec-value">Fitted (350 kW)</span>
+        </div>
+
+        <div class="vessel-spec-item">
+          <span class="vessel-spec-label">Flag / Registry:</span>
+          <span id="spec-flag" class="vessel-spec-value">Antigua & Barbuda</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 3. OVERVIEW SECTION (Collapsible with Show More Button) -->
+    <div class="space-y-4 border-t border-white/10 pt-8">
+      <div class="flex items-center gap-2">
+        <span class="h-2 w-2 bg-gold rounded-none"></span>
+        <h2 class="text-xs font-mono font-bold tracking-[0.2em] uppercase text-gold">Overview & Commercial Description</h2>
+      </div>
+      <div class="relative">
+        <div id="overview-content" class="text-xs sm:text-sm font-light leading-[1.8] text-neutral-300 transition-all duration-500 overflow-hidden max-h-[140px]">
+          <div id="vessel-rich-description" class="prose prose-invert prose-gold max-w-none leading-relaxed text-neutral-300 whitespace-pre-line">
+            <!-- Populated by vessel.js -->
+          </div>
+          <div id="overview-gradient" class="absolute bottom-0 inset-x-0 h-14 bg-gradient-to-t from-[#141416] to-transparent pointer-events-none"></div>
+        </div>
+        <button id="overview-toggle-btn" class="mt-3 inline-flex items-center gap-2 border border-white/15 bg-white/5 hover:border-gold px-4 py-2 text-xs font-mono font-bold tracking-wider uppercase text-white hover:text-gold transition-all duration-300 cursor-pointer shadow-sm rounded-none">
+          <span id="overview-toggle-text">Show More</span>
+          <svg id="overview-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 text-gold transition-transform duration-300">
+            <path d="M6 9l6 6 6-6"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- 4. LOCATION / TRADING MAP SECTION -->
+    <div class="space-y-4 border-t border-white/10 pt-8">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="h-2 w-2 bg-gold rounded-none"></span>
+          <h2 class="text-xs font-mono font-bold tracking-[0.2em] uppercase text-gold">Trading Range & Management Office</h2>
+        </div>
+        <span class="text-[11px] font-mono text-neutral-400">Mediterranean, Black Sea, Continent & Greek HQ</span>
+      </div>
+      <div class="relative aspect-[16/9] max-h-[340px] w-full overflow-hidden border border-white/10 rounded-none shadow-xl bg-neutral-900">
+        <iframe width="100%" height="100%" style="border:0; filter: invert(90%) hue-rotate(180deg) brightness(85%);" loading="lazy" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Zeppou%2033%2C%20Glyfada%2C%20Greece&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+      </div>
+    </div>
+
+    <!-- 5. FULL PHOTOGRAPHIC INSPECTION GALLERY (Compact Grid with Lightbox) -->
+    <div class="space-y-4 border-t border-white/10 pt-8">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="h-2 w-2 bg-gold rounded-none"></span>
+          <h2 class="text-xs font-mono font-bold tracking-[0.2em] uppercase text-gold">Photo Inspection Archive</h2>
+        </div>
+        <span class="text-xs font-mono text-neutral-400">22 high-resolution survey photos</span>
+      </div>
+      <div id="gallery-full-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 w-full">
+        <!-- Populated by vessel.js -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- CORPORATE LUXURY FOOTER (Unified Across All Pages) -->
+  <footer class="max-w-[1520px] mx-auto w-full mt-20 pt-16 pb-12 border-t border-white/10 relative overflow-hidden rounded-none min-h-[380px] flex flex-col justify-between" id="footer-container">
+    
+    <!-- Background Video of the Ship (Aligned Right, Faded to Black on Left) -->
+    <div class="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden" id="footer-bg-media">
+      <video class="absolute right-0 top-0 w-full h-full object-cover opacity-60 will-change-transform" 
+             style="object-position: right center;"
+             src="/1_screen.mp4" 
+             autoplay 
+             muted 
+             loop 
+             playsinline 
+             id="footer-bg-video">
+      </video>
+      <!-- Horizontal dark gradient to ensure text readability on the left -->
+      <div class="absolute inset-0 bg-gradient-to-r from-[#0b0b0d] via-[#0b0b0d]/90 via-[#0b0b0d]/60 to-transparent z-10"></div>
+      <!-- Subtle top/bottom shadow fades -->
+      <div class="absolute inset-0 bg-gradient-to-b from-[#0b0b0d]/40 via-transparent to-[#0b0b0d]/40 z-10"></div>
+    </div>
+
+    <!-- Foreground Content (Left info layout & Navigation) -->
+    <div class="relative z-20 w-full flex flex-col md:flex-row items-stretch justify-between gap-12 px-6 sm:px-12 lg:px-16" id="footer-grid-content">
+      
+      <!-- Left: Big Brand Info & Contacts -->
+      <div class="flex flex-col gap-6 max-w-xl text-left" id="footer-info-left">
+        <div class="flex items-center gap-3" id="footer-brand-header">
+          <img src="/Danamira_logo_gold.png" alt="Danamira Shipping Ltd Emblem" class="h-11 w-auto">
+          <div class="flex flex-col text-left leading-none">
+            <span class="text-lg font-extrabold tracking-[0.1em] text-white uppercase font-sans">Danamira</span>
+            <span class="text-[10px] tracking-[0.15em] text-gold uppercase mt-0.5">Shipping Ltd</span>
+          </div>
+        </div>
+        
+        <p class="text-sm text-neutral-400 font-light leading-relaxed max-w-md" id="footer-brand-desc">
+          Providing top-tier commercial and technical ship management, operating dry bulk and general cargo carriers globally with strict regulatory compliance and maritime excellence.
+        </p>
+
+        <!-- Quick Contacts Info -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2 text-xs font-sans text-neutral-300" id="footer-quick-contacts">
+          <div class="flex flex-col gap-1">
+            <span class="text-[9px] font-bold text-gold uppercase tracking-widest leading-none">Chartering & Operations</span>
+            <a href="mailto:chartering@danamira-shipping.com" class="hover:text-gold transition-colors duration-200 text-xs">chartering@danamira-shipping.com</a>
+            <a href="mailto:operations@danamira-shipping.com" class="hover:text-gold transition-colors duration-200 text-xs text-neutral-400">operations@danamira-shipping.com</a>
+          </div>
+          <div class="flex flex-col gap-1">
+            <span class="text-[9px] font-bold text-gold uppercase tracking-widest leading-none">Greek Branch Office</span>
+            <span class="text-neutral-300 text-xs">Zeppou 33, 166 75 Glyfada, Greece</span>
+            <a href="tel:+302113456550" class="text-neutral-400 hover:text-gold transition-colors text-xs font-mono">+30 211 34 56 550</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Navigation Column -->
+      <div class="flex flex-col justify-between gap-6 text-left" id="footer-nav-col">
+        <div class="flex flex-col gap-3">
+          <span class="text-[10px] font-mono font-bold uppercase tracking-widest text-gold">Navigation</span>
+          <div class="flex flex-col gap-2 text-xs font-sans text-neutral-400">
+            <a href="/" class="hover:text-gold transition-colors">Home Overview</a>
+            <a href="/#company" class="hover:text-gold transition-colors">About Company</a>
+            <a href="/fleet.html" class="hover:text-gold transition-colors">Managed Fleet Catalog</a>
+            <a href="/#careers" class="hover:text-gold transition-colors">Maritime Careers</a>
+            <a href="/#contact" class="hover:text-gold transition-colors">Contact Desk</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Copyright Row -->
+    <div class="relative z-20 w-full border-t border-white/10 pt-6 mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 px-6 sm:px-12 lg:px-16 text-xs text-neutral-500 font-sans tracking-wide" id="footer-copyright-row">
+      <span>&copy; 2026 Danamira Shipping Ltd. All rights reserved. Greek Branch (Law 89/1967)</span>
+      <div class="flex items-center gap-6">
+        <a href="/fleet.html" class="text-gold hover:underline">Fleet Directory</a>
+        <a href="/" class="text-neutral-400 hover:text-white">&larr; Return to Main Website</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- FULL POPUP LIGHTBOX MODAL (Framed Luxury Window with Bottom Thumbnails Strip) -->
+  <div id="lightbox-modal" class="opacity-0 pointer-events-none">
+    <div id="lightbox-backdrop" class="absolute inset-0 cursor-pointer"></div>
+    
+    <!-- Modal Card Window (Framed 90deg Swiss Architectural Style) -->
+    <div class="lightbox-card-window">
+      
+      <!-- Top Modal Bar -->
+      <div class="lightbox-header-bar">
+        <div class="flex items-center gap-3 min-w-0">
+          <div class="w-7 h-7 rounded-none bg-gold/10 border border-gold/30 flex items-center justify-center text-gold shrink-0 text-xs">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+            </svg>
+          </div>
+          <div class="min-w-0">
+            <h3 id="lightbox-title" class="text-xs sm:text-sm font-serif font-medium text-white truncate">
+              MV MOLPADIA — Inspection Gallery
+            </h3>
+            <span id="lightbox-category" class="text-[9px] font-mono text-gold/80 block uppercase tracking-wider">
+              Technical Survey Photographic Archive
+            </span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2.5 shrink-0">
+          <span id="lightbox-counter" class="bg-black/60 text-white text-[11px] font-mono px-2.5 py-0.5 rounded-none border border-white/15">
+            1 / 22
+          </span>
+          <button id="lightbox-close" class="p-1.5 rounded-none bg-white/5 hover:bg-red-500/20 text-neutral-400 hover:text-white border border-white/10 hover:border-red-500/30 transition-colors cursor-pointer text-xs" aria-label="Close Lightbox">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Stage Photo View with Centered Symmetrical Navigation Chevrons -->
+      <div class="lightbox-stage-container">
+        <img id="lightbox-img" src="" alt="Full Inspection Photo">
+
+        <!-- Left Chevron -->
+        <button id="lightbox-prev" class="lightbox-nav-btn prev" aria-label="Previous photo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="h-4 w-4 pointer-events-none"><path d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+
+        <!-- Right Chevron -->
+        <button id="lightbox-next" class="lightbox-nav-btn next" aria-label="Next photo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="h-4 w-4 pointer-events-none"><path d="M9 5l7 7-7 7"></path></svg>
+        </button>
+      </div>
+
+      <!-- Bottom Horizontal Thumbnail Strip (Photo Carousel) -->
+      <div class="lightbox-footer-bar">
+        <div class="flex items-center justify-between pb-1 text-[10px] font-mono text-neutral-400">
+          <span>Inspection Gallery</span>
+          <span class="text-gold">Click thumbnail to switch photo</span>
+        </div>
+        <div id="lightbox-thumbnails">
+          <!-- Populated dynamically by vessel.js -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- POPUP PDF MODAL VIEWER -->
+  <div id="pdf-modal" class="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 opacity-0 pointer-events-none transition-all duration-300 backdrop-blur-md bg-black/80">
+    <div id="pdf-modal-backdrop" class="absolute inset-0 cursor-pointer"></div>
+    <div class="relative z-10 w-full max-w-6xl h-[92vh] sm:h-[90vh] bg-[#1a1a1c] border border-gold/40 rounded-xl shadow-2xl flex flex-col overflow-hidden">
+      <div class="flex items-center justify-between px-4 sm:px-6 py-3 bg-[#141416] border-b border-white/10 shrink-0">
+        <div class="flex items-center gap-3 min-w-0">
+          <h3 id="pdf-modal-title" class="text-sm sm:text-base font-serif font-medium text-white truncate">General Arrangement Plan</h3>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <a id="pdf-modal-download" href="#" download class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-white/5 hover:bg-gold/20 text-gold border border-gold/30 text-xs font-mono font-bold uppercase">
+            Download PDF
+          </a>
+          <button id="pdf-modal-close" class="p-2 rounded-lg bg-white/5 hover:bg-red-500/20 text-neutral-400 hover:text-white">
+            ✕
+          </button>
+        </div>
+      </div>
+      <div class="flex-1 w-full h-full bg-[#111113] relative overflow-hidden">
+        <iframe id="pdf-modal-iframe" src="" class="w-full h-full border-0"></iframe>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

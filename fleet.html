@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Managed Fleet Directory — Danamira Shipping Ltd</title>
+  <meta name="description" content="Technical particulars, general arrangement plans, and freight availability for the commercially managed fleet of Danamira Shipping Ltd." />
+  <!-- Premium Fonts: Clash Display (Display), Plus Jakarta Sans (Sans) & Space Mono (Mono) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@300,400,500,600,700&display=swap" rel="stylesheet">
+  <script type="module" src="/src/fleet.js"></script>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body class="bg-[#141416] text-[#e0e0e0] font-sans antialiased selection:bg-[#c89b3c]/30 selection:text-[#e6c36a] overflow-x-hidden min-h-[100dvh] flex flex-col justify-between">
+
+  <!-- Header Navigation (Unified Corporate Nav across all pages) -->
+  <header class="w-full h-24 sm:h-28 bg-[#161618]/95 backdrop-blur-md sticky top-0 left-0 z-50 border-b border-white/[0.08]">
+    <nav class="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-16 h-24 sm:h-28 flex items-center justify-between" id="main-nav">
+      <!-- Logo Container -->
+      <a href="/" class="flex items-center gap-4 group select-none" id="logo-link">
+        <img src="/Danamira_logo_gold.png" alt="Danamira Shipping Ltd Logo" class="h-16 sm:h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]" id="logo-img">
+        <!-- Divider -->
+        <div class="h-10 w-[1px] bg-border-gold/30 hidden sm:block"></div>
+        <!-- Slogan -->
+        <span class="text-[9px] font-medium tracking-[0.25em] text-gold uppercase whitespace-nowrap hidden sm:inline-block font-sans">Maritime Expertise</span>
+      </a>
+      
+      <!-- Nav Links (Center) -->
+      <div class="hidden lg:flex items-center gap-10 text-xs font-semibold uppercase tracking-[0.25em] text-neutral-400" id="nav-links">
+        <a href="/" class="hover:text-gold transition-colors duration-200" id="link-home">Home</a>
+        <a href="/#company" class="hover:text-gold transition-colors duration-200" id="link-company">Company</a>
+        <a href="/fleet.html" class="text-gold hover:text-gold transition-colors duration-200" id="link-fleet">Managed Fleet</a>
+        <a href="/#careers" class="hover:text-gold transition-colors duration-200" id="link-careers">Careers</a>
+        <a href="/#contact" class="hover:text-gold transition-colors duration-200" id="link-contact">Contact</a>
+      </div>
+
+      <!-- Action Button (Right) & Hamburger -->
+      <div class="flex items-center gap-4" id="nav-actions">
+        <a href="/#contact" class="inline-flex items-center gap-2 px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] border border-gold hover:bg-gold hover:text-neutral-950 transition-colors duration-300 text-white hidden md:inline-flex rounded-none" id="btn-get-in-touch">
+          Get In Touch &rarr;
+        </a>
+        
+        <!-- Hamburger Button (Mobile Only) -->
+        <button id="mobile-menu-btn" class="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 border border-border-gold/30 hover:border-gold/60 transition-colors duration-300 rounded-none focus:outline-none cursor-pointer z-50" aria-label="Toggle Navigation Menu">
+          <span class="w-6 h-[2px] bg-white transition-all duration-300 origin-center" id="hamburger-line-1"></span>
+          <span class="w-6 h-[2px] bg-white transition-all duration-300 origin-center" id="hamburger-line-2"></span>
+          <span class="w-6 h-[2px] bg-white transition-all duration-300 origin-center" id="hamburger-line-3"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- 2px Luxury Animated Border Line -->
+    <div class="absolute bottom-0 left-0 w-full h-[2px] luxury-border-line"></div>
+  </header>
+
+  <!-- Mobile Fullscreen Menu Overlay -->
+  <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#161618]/98 z-40 flex flex-col justify-center items-center opacity-0 pointer-events-none transition-all duration-500 backdrop-blur-md">
+    <div class="absolute inset-0 bg-[radial-gradient(rgba(200,155,60,0.02)_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none z-0"></div>
+    <div class="flex flex-col items-center gap-8 text-lg font-semibold uppercase tracking-[0.3em] text-neutral-400 relative z-10" id="mobile-menu-links">
+      <a href="/" class="hover:text-gold transition-colors duration-300">Home</a>
+      <a href="/#company" class="hover:text-gold transition-colors duration-300">Company</a>
+      <a href="/fleet.html" class="text-gold transition-colors duration-300">Managed Fleet</a>
+      <a href="/#careers" class="hover:text-gold transition-colors duration-300">Careers</a>
+      <a href="/#contact" class="hover:text-gold transition-colors duration-300">Contact</a>
+    </div>
+  </div>
+
+  <!-- MAIN FLEET CATALOG (Exact Alignment with Header and Cards: max-w-[1440px]) -->
+  <main class="max-w-[1440px] mx-auto w-full px-6 sm:px-8 lg:px-16 pt-20 sm:pt-28 lg:pt-32 pb-24 space-y-12 flex-1 text-left">
+    
+    <!-- PAGE HERO BANNER (Spacious Title & Harmonious Typography) -->
+    <div class="space-y-10 pb-6">
+      <div class="space-y-4 pt-4 sm:pt-6">
+        <span class="text-xs font-bold font-mono tracking-[0.25em] text-gold uppercase block">
+          Commercial Fleet Directory & Technical Particulars
+        </span>
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-serif font-medium text-white tracking-tight leading-tight">
+          Managed Fleet Catalog
+        </h1>
+        <p class="text-xs sm:text-sm text-neutral-300 font-light leading-relaxed max-w-3xl pt-2">
+          Modern geared multi-purpose general cargo vessels and bulk carriers operating across Mediterranean, Black Sea, Continent, and transatlantic trade routes. All vessels are classed under leading IACS classification societies (DNV, Bureau Veritas).
+        </p>
+      </div>
+
+      <!-- Fleet KPI Highlights (Clean, Borderless Typography Stat Strip with Subtle Row Dividers) -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 py-8 border-y border-white/10 text-left my-6">
+        <div class="flex flex-col gap-1.5">
+          <span class="text-[10px] font-mono uppercase tracking-widest text-gold/70">Active Managed Fleet</span>
+          <span class="text-2xl sm:text-3xl font-serif text-white font-medium">2 Vessels</span>
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <span class="text-[10px] font-mono uppercase tracking-widest text-gold/70">Total Deadweight</span>
+          <span class="text-2xl sm:text-3xl font-serif text-gold font-medium">13,608 DWT</span>
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <span class="text-[10px] font-mono uppercase tracking-widest text-gold/70">Heavy-Lift Cranes</span>
+          <span class="text-2xl sm:text-3xl font-serif text-white font-medium">4 x 30 MT (60 MT comb.)</span>
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <span class="text-[10px] font-mono uppercase tracking-widest text-gold/70">Total Grain Capacity</span>
+          <span class="text-2xl sm:text-3xl font-serif text-white font-medium">667,000 cu.ft</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILTER & SORT BAR (Sharp Buttons, Perfectly Aligned) -->
+    <div class="flex flex-wrap items-center justify-between gap-4">
+      <div class="flex flex-wrap items-center gap-2">
+        <button type="button" data-filter="all" class="fleet-filter-btn px-4 py-2 text-xs font-mono font-bold uppercase tracking-wider bg-gold text-neutral-950 transition-all duration-200 cursor-pointer shadow-md rounded-none">
+          All Fleet (2)
+        </button>
+        <button type="button" data-filter="general-cargo" class="fleet-filter-btn px-4 py-2 text-xs font-mono font-bold uppercase tracking-wider bg-white/5 text-neutral-300 hover:bg-white/10 transition-all duration-200 cursor-pointer border border-white/10 hover:border-gold rounded-none">
+          General Cargo (1)
+        </button>
+        <button type="button" data-filter="bulk-carrier" class="fleet-filter-btn px-4 py-2 text-xs font-mono font-bold uppercase tracking-wider bg-white/5 text-neutral-300 hover:bg-white/10 transition-all duration-200 cursor-pointer border border-white/10 hover:border-gold rounded-none">
+          Bulk Carrier (1)
+        </button>
+        <button type="button" data-filter="geared" class="fleet-filter-btn px-4 py-2 text-xs font-mono font-bold uppercase tracking-wider bg-white/5 text-neutral-300 hover:bg-white/10 transition-all duration-200 cursor-pointer border border-white/10 hover:border-gold rounded-none">
+          Geared with Cranes (2)
+        </button>
+      </div>
+
+      <div class="flex items-center gap-4 text-xs font-mono text-neutral-400">
+        <span id="fleet-count-indicator">Showing 2 of 2 vessels</span>
+      </div>
+    </div>
+
+    <!-- 2-COLUMN LUXURY VESSEL CATALOG CARDS GRID (Sharp 90deg Corners) -->
+    <div id="fleet-cards-container" class="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10">
+      <!-- Dynamically populated by src/fleet.js with exact main page luxury card design -->
+    </div>
+
+    <!-- COMMERCIAL CHARTERING CAPABILITIES & BROKER DESK -->
+    <div class="bg-[#17171a] border border-gold/40 rounded-none p-8 sm:p-10 shadow-2xl w-full">
+      <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 w-full">
+        
+        <div class="space-y-4 max-w-2xl text-left flex-1">
+          <span class="text-[10px] font-mono font-bold uppercase tracking-widest text-gold block">
+            Commercial Operations, Freight Bookings & Inquiries
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-serif text-white font-medium">
+            Available for Voyage, Time Charter & Project Heavy-Lift Parcels
+          </h2>
+          <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+            Our chartering desk provides prompt freight indications, customized voyage estimations, and comprehensive cargo stowage calculations. Contact direct owners & managers for open positions in the Mediterranean and Black Sea.
+          </p>
+
+          <!-- Direct Office Contacts Strip -->
+          <div class="flex flex-wrap items-center gap-6 pt-3 text-xs font-mono text-neutral-400 border-t border-white/[0.08]">
+            <div class="flex items-center gap-1.5">
+              <span class="text-gold uppercase text-[10px] font-bold">Email:</span>
+              <button type="button" class="btn-copy-email text-neutral-200 hover:text-gold underline cursor-pointer transition-colors" data-email="chartering@danamira-shipping.com" title="Click to copy email address">
+                chartering@danamira-shipping.com
+              </button>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="text-gold uppercase text-[10px] font-bold">Direct Phone:</span>
+              <a href="tel:+302113456550" class="text-neutral-200 hover:text-gold transition-colors">+30 211 34 56 550</a>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="text-gold uppercase text-[10px] font-bold">HQ:</span>
+              <span class="text-neutral-300">Glyfada, Athens, Greece</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row lg:flex-col gap-3 w-full lg:w-80 shrink-0">
+          <!-- WhatsApp Button (Brand Green #25D366) -->
+          <a href="https://wa.me/302113456550?text=Hello%20Danamira%20Chartering%20Desk!%20I%20would%20like%20to%20inquire%20about%20freight%20and%20vessel%20availability." target="_blank" rel="noopener noreferrer" style="background-color: #25D366 !important; color: #ffffff !important; border: 1px solid #20bd5a !important; box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35) !important;" class="w-full py-3.5 px-5 rounded-none font-mono font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2.5 transition-all hover:brightness-110 active:scale-98">
+            <svg class="w-4 h-4 shrink-0 fill-white" viewBox="0 0 24 24"><path d="M20.5 3.5A11 11 0 0 0 3.4 17.1L2 22l5-1.3A11 11 0 0 0 20.5 3.5zM12 20a8 8 0 0 1-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4a.5.5 0 0 0 0-.5c0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.7 3.1.6.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1z"/></svg>
+            <span style="color: #ffffff !important; font-weight: 700 !important;">WhatsApp (+30 211 34 56 550)</span>
+          </a>
+
+          <!-- Telegram Button (Brand Blue #0088cc) -->
+          <a href="https://t.me/danamira_shipping" target="_blank" rel="noopener noreferrer" style="background-color: #0088cc !important; color: #ffffff !important; border: 1px solid #0077b5 !important; box-shadow: 0 4px 14px rgba(0, 136, 204, 0.35) !important;" class="w-full py-3.5 px-5 rounded-none font-mono font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2.5 transition-all hover:brightness-110 active:scale-98">
+            <svg class="w-4 h-4 shrink-0 fill-white" viewBox="0 0 24 24"><path d="M9.8 15.3 9.6 19c.4 0 .6-.2.8-.4l1.9-1.8 4 2.9c.7.4 1.2.2 1.4-.7l2.6-12h0c.2-1-.4-1.5-1.1-1.2L3.6 10.4c-1 .4-1 1-.2 1.2l4.2 1.3 9.7-6.1c.4-.3.8-.1.5.2z"/></svg>
+            <span style="color: #ffffff !important; font-weight: 700 !important;">Telegram Desk</span>
+          </a>
+
+          <!-- Send Direct Inquiry Button (Opens In-Page Modal) -->
+          <button id="btn-open-charter-modal" type="button" class="w-full py-3.5 px-5 rounded-none bg-gold hover:bg-gold-light text-neutral-950 font-sans font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-lg cursor-pointer active:scale-98">
+            <svg class="w-4 h-4 shrink-0 text-neutral-950" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+            </svg>
+            <span class="text-neutral-950 font-bold">Send Direct Freight Inquiry</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- CORPORATE LUXURY FOOTER (Unified Across All Pages) -->
+  <footer class="max-w-[1520px] mx-auto w-full mt-20 pt-16 pb-12 border-t border-white/10 relative overflow-hidden rounded-none min-h-[380px] flex flex-col justify-between" id="footer-container">
+    
+    <!-- Background Video of the Ship (Aligned Right, Faded to Black on Left) -->
+    <div class="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden" id="footer-bg-media">
+      <video class="absolute right-0 top-0 w-full h-full object-cover opacity-60 will-change-transform" 
+             style="object-position: right center;"
+             src="/1_screen.mp4" 
+             autoplay 
+             muted 
+             loop 
+             playsinline 
+             id="footer-bg-video">
+      </video>
+      <!-- Horizontal dark gradient to ensure text readability on the left -->
+      <div class="absolute inset-0 bg-gradient-to-r from-[#0b0b0d] via-[#0b0b0d]/90 via-[#0b0b0d]/60 to-transparent z-10"></div>
+      <!-- Subtle top/bottom shadow fades -->
+      <div class="absolute inset-0 bg-gradient-to-b from-[#0b0b0d]/40 via-transparent to-[#0b0b0d]/40 z-10"></div>
+    </div>
+
+    <!-- Foreground Content (Left info layout & Navigation) -->
+    <div class="relative z-20 w-full flex flex-col md:flex-row items-stretch justify-between gap-12 px-6 sm:px-12 lg:px-16" id="footer-grid-content">
+      
+      <!-- Left: Big Brand Info & Contacts -->
+      <div class="flex flex-col gap-6 max-w-xl text-left" id="footer-info-left">
+        <div class="flex items-center gap-3" id="footer-brand-header">
+          <img src="/Danamira_logo_gold.png" alt="Danamira Shipping Ltd Emblem" class="h-11 w-auto">
+          <div class="flex flex-col text-left leading-none">
+            <span class="text-lg font-extrabold tracking-[0.1em] text-white uppercase font-sans">Danamira</span>
+            <span class="text-[10px] tracking-[0.15em] text-gold uppercase mt-0.5">Shipping Ltd</span>
+          </div>
+        </div>
+        
+        <p class="text-sm text-neutral-400 font-light leading-relaxed max-w-md" id="footer-brand-desc">
+          Providing top-tier commercial and technical ship management, operating dry bulk and general cargo carriers globally with strict regulatory compliance and maritime excellence.
+        </p>
+
+        <!-- Quick Contacts Info -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2 text-xs font-sans text-neutral-300" id="footer-quick-contacts">
+          <div class="flex flex-col gap-1">
+            <span class="text-[9px] font-bold text-gold uppercase tracking-widest leading-none">Chartering & Operations</span>
+            <a href="mailto:chartering@danamira-shipping.com" class="hover:text-gold transition-colors duration-200 text-xs">chartering@danamira-shipping.com</a>
+            <a href="mailto:operations@danamira-shipping.com" class="hover:text-gold transition-colors duration-200 text-xs text-neutral-400">operations@danamira-shipping.com</a>
+          </div>
+          <div class="flex flex-col gap-1">
+            <span class="text-[9px] font-bold text-gold uppercase tracking-widest leading-none">Greek Branch Office</span>
+            <span class="text-neutral-300 text-xs">Zeppou 33, 166 75 Glyfada, Greece</span>
+            <a href="tel:+302113456550" class="text-neutral-400 hover:text-gold transition-colors text-xs font-mono">+30 211 34 56 550</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Navigation Column -->
+      <div class="flex flex-col justify-between gap-6 text-left" id="footer-nav-col">
+        <div class="flex flex-col gap-3">
+          <span class="text-[10px] font-mono font-bold uppercase tracking-widest text-gold">Navigation</span>
+          <div class="flex flex-col gap-2 text-xs font-sans text-neutral-400">
+            <a href="/" class="hover:text-gold transition-colors">Home Overview</a>
+            <a href="/#company" class="hover:text-gold transition-colors">About Company</a>
+            <a href="/fleet.html" class="hover:text-gold transition-colors">Managed Fleet Catalog</a>
+            <a href="/#careers" class="hover:text-gold transition-colors">Maritime Careers</a>
+            <a href="/#contact" class="hover:text-gold transition-colors">Contact Desk</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Copyright Row -->
+    <div class="relative z-20 w-full border-t border-white/10 pt-6 mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 px-6 sm:px-12 lg:px-16 text-xs text-neutral-500 font-sans tracking-wide" id="footer-copyright-row">
+      <span>&copy; 2026 Danamira Shipping Ltd. All rights reserved. Greek Branch (Law 89/1967)</span>
+      <div class="flex items-center gap-6">
+        <a href="/fleet.html" class="text-gold hover:underline">Fleet Directory</a>
+        <a href="/" class="text-neutral-400 hover:text-white">&larr; Return to Main Website</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- POPUP PDF MODAL VIEWER -->
+  <div id="pdf-modal" class="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 opacity-0 pointer-events-none transition-all duration-300 backdrop-blur-md bg-black/80">
+    <div id="pdf-modal-backdrop" class="absolute inset-0 cursor-pointer"></div>
+    <div class="relative z-10 w-full max-w-6xl h-[92vh] sm:h-[90vh] bg-[#1a1a1c] border border-gold/40 rounded-none shadow-2xl flex flex-col overflow-hidden">
+      <div class="flex items-center justify-between px-4 sm:px-6 py-3.5 bg-[#141416] border-b border-white/10 shrink-0">
+        <div class="flex items-center gap-3 min-w-0">
+          <h3 id="pdf-modal-title" class="text-sm sm:text-base font-serif font-medium text-white truncate">General Arrangement Plan</h3>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <a id="pdf-modal-download" href="#" download class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-none bg-white/5 hover:bg-gold/20 text-gold border border-gold/30 text-xs font-mono font-bold uppercase">
+            Download PDF
+          </a>
+          <button id="pdf-modal-close" class="p-2 rounded-none bg-white/5 hover:bg-red-500/20 text-neutral-400 hover:text-white cursor-pointer">
+            ✕
+          </button>
+        </div>
+      </div>
+      <div class="flex-1 w-full h-full bg-[#111113] relative overflow-hidden">
+        <iframe id="pdf-modal-iframe" src="" class="w-full h-full border-0"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- POPUP FREIGHT & CHARTERING CONSULTATION MODAL -->
+  <div id="charter-modal" class="fixed inset-0 z-[60] flex items-center justify-center p-3 sm:p-6 opacity-0 pointer-events-none transition-all duration-300 backdrop-blur-md bg-black/85">
+    <div id="charter-modal-backdrop" class="absolute inset-0 cursor-pointer"></div>
+    <div class="relative z-10 w-full max-w-lg bg-[#17171a] border border-gold/50 rounded-none shadow-[0_25px_60px_rgba(0,0,0,0.85)] flex flex-col overflow-hidden text-left">
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between px-6 py-4 bg-[#141416] border-b border-white/10 shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-none bg-gold/10 border border-gold/30 flex items-center justify-center text-gold text-xs font-bold font-mono">
+            DS
+          </div>
+          <div>
+            <h3 class="text-base font-serif font-medium text-white">Direct Chartering Inquiry</h3>
+            <span class="text-[10px] font-mono text-gold block uppercase tracking-wider">Danamira Operations Desk</span>
+          </div>
+        </div>
+        <button id="charter-modal-close" class="p-2 rounded-none bg-white/5 hover:bg-red-500/20 text-neutral-400 hover:text-white transition-colors cursor-pointer text-sm">
+          ✕
+        </button>
+      </div>
+
+      <!-- Modal Body Form -->
+      <form id="charter-modal-form" class="p-6 space-y-4 font-sans text-xs">
+        <div>
+          <label class="block text-[10px] font-mono uppercase tracking-widest text-neutral-400 mb-1.5">Target Vessel / Fleet Interest</label>
+          <select id="charter-vessel-select" class="w-full bg-[#111113] border border-white/20 text-white px-3 py-2.5 rounded-none font-mono text-xs focus:border-gold focus:outline-none">
+            <option value="General Fleet Inquiry">Any Available Fleet Position</option>
+            <option value="MV MOLPADIA (6,408 DWT)">MV MOLPADIA (6,408 DWT • General Cargo)</option>
+            <option value="MV METANIRA (7,200 DWT)">MV METANIRA (7,200 DWT • Bulk Carrier)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-[10px] font-mono uppercase tracking-widest text-neutral-400 mb-1.5">Your Full Name & Company *</label>
+          <input type="text" id="charter-name" required placeholder="e.g. Captain Marcus Vance / Navis Brokerage" class="w-full bg-[#111113] border border-white/20 text-white px-3 py-2.5 rounded-none font-sans text-xs focus:border-gold focus:outline-none placeholder-neutral-600">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[10px] font-mono uppercase tracking-widest text-neutral-400 mb-1.5">Phone / WhatsApp *</label>
+            <input type="tel" id="charter-phone" required placeholder="+30 ... / +380 ..." class="w-full bg-[#111113] border border-white/20 text-white px-3 py-2.5 rounded-none font-mono text-xs focus:border-gold focus:outline-none placeholder-neutral-600">
+          </div>
+          <div>
+            <label class="block text-[10px] font-mono uppercase tracking-widest text-neutral-400 mb-1.5">Direct Email</label>
+            <input type="email" id="charter-email" placeholder="charterer@domain.com" class="w-full bg-[#111113] border border-white/20 text-white px-3 py-2.5 rounded-none font-mono text-xs focus:border-gold focus:outline-none placeholder-neutral-600">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[10px] font-mono uppercase tracking-widest text-neutral-400 mb-1.5">Cargo, Quantity, Load / Disch Ports & Laycan</label>
+          <textarea id="charter-details" rows="3" placeholder="e.g. 5,000 MT steel coils, Ravenna to Alexandria, Laycan 15-20 Sep" class="w-full bg-[#111113] border border-white/20 text-white px-3 py-2 rounded-none font-sans text-xs focus:border-gold focus:outline-none placeholder-neutral-600 resize-none"></textarea>
+        </div>
+
+        <div id="charter-status-msg" class="hidden text-xs font-mono text-emerald-400 py-1.5 text-center bg-emerald-950/40 border border-emerald-500/30"></div>
+
+        <button type="submit" id="charter-submit-btn" class="w-full py-3.5 bg-gold hover:bg-gold-light text-neutral-950 font-sans font-bold text-xs uppercase tracking-wider rounded-none transition-all shadow-lg cursor-pointer active:scale-98">
+          Submit Direct Inquiry &rarr;
+        </button>
+
+        <div class="flex items-center justify-between text-[10px] font-mono text-neutral-500 pt-2 border-t border-white/5">
+          <span>Desk: chartering@danamira-shipping.com</span>
+          <span>+30 211 34 56 550</span>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast-container" class="fixed bottom-6 right-6 z-[70] pointer-events-none space-y-2"></div>
+
+  <script type="module" src="/src/fleet.js"></script>
+</body>
+</html>
