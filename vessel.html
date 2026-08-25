@@ -83,42 +83,44 @@
     </div>
   </div>
 
-  <!-- MAIN 2-COLUMN SECTION (Left: Header & Gallery | Right: Specifications) -->
-  <section class="mx-auto max-w-[1560px] w-full px-4 sm:px-6 lg:px-8 pt-2 pb-16">
+  <!-- MAIN SECTION (Full-width Header, then 2-Column Grid) -->
+  <section class="mx-auto max-w-[1560px] w-full px-4 sm:px-6 lg:px-8 pt-2 pb-16 space-y-6">
+    
+    <!-- FULL-WIDTH CARD: VESSEL HEADER & GA-PLAN PDF -->
+    <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="flex flex-col gap-1">
+          <span id="vessel-top-category" class="text-xs tracking-[0.2em] uppercase text-gold font-sans font-bold">
+            GENERAL CARGO &bull; ANTIGUA &amp; BARBUDA FLAG
+          </span>
+          <h1 id="vessel-name-title" class="text-3xl sm:text-4xl lg:text-5xl font-serif font-medium text-white tracking-tight mt-1">
+            MV MOLPADIA
+          </h1>
+          <span id="vessel-tagline" class="text-xs sm:text-sm font-sans text-neutral-300 font-normal mt-1">
+            IMO: 9613616 &bull; Built 2014 &bull; DNV Class &bull; Call Sign: V2FX5
+          </span>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <button id="btn-open-pdf-hero" type="button" class="group flex items-center gap-2.5 px-4 py-2.5 bg-transparent hover:bg-white/5 border border-white/20 hover:border-white/40 text-white transition-all duration-200 cursor-pointer active:scale-95 shadow-md">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-red-500 shrink-0"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <div class="flex flex-col text-left">
+              <div class="flex items-center gap-1">
+                <span class="text-xs font-sans font-bold text-red-500">PDF</span>
+                <span class="text-xs font-sans font-semibold uppercase text-white">GA-Plan</span>
+                <span class="text-neutral-400 text-[10px]">↗</span>
+              </div>
+              <span class="text-[10px] font-sans text-neutral-400 uppercase tracking-wider">Technical Drawing</span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2-COLUMN GRID (Left: Gallery & KPIs & CTA | Right: Specifications on same level) -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
       
-      <!-- LEFT COLUMN: HEADER & 4 KPIS + 2-ROW PHOTO GALLERY -->
+      <!-- LEFT COLUMN: PHOTO GALLERY + 4 KPIS + GET IN TOUCH -->
       <div class="lg:col-span-7 xl:col-span-7 space-y-6" id="vessel-main-left">
-        
-        <!-- CARD 1: VESSEL HEADER -->
-        <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div class="flex flex-col gap-1">
-              <span id="vessel-top-category" class="text-xs tracking-[0.2em] uppercase text-gold font-sans font-bold">
-                GENERAL CARGO &bull; ANTIGUA &amp; BARBUDA FLAG
-              </span>
-              <h1 id="vessel-name-title" class="text-3xl sm:text-4xl lg:text-5xl font-serif font-medium text-white tracking-tight mt-1">
-                MV MOLPADIA
-              </h1>
-              <span id="vessel-tagline" class="text-xs sm:text-sm font-sans text-neutral-300 font-normal mt-1">
-                IMO: 9613616 &bull; Built 2014 &bull; DNV Class &bull; Call Sign: V2FX5
-              </span>
-            </div>
-            <div class="flex items-center gap-2">
-              <button id="btn-open-pdf-hero" type="button" class="group flex items-center gap-2.5 px-4 py-2.5 bg-transparent hover:bg-white/5 border border-white/20 hover:border-white/40 text-white transition-all duration-200 cursor-pointer active:scale-95 shadow-md">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-red-500 shrink-0"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                <div class="flex flex-col text-left">
-                  <div class="flex items-center gap-1">
-                    <span class="text-xs font-sans font-bold text-red-500">PDF</span>
-                    <span class="text-xs font-sans font-semibold uppercase text-white">GA-Plan</span>
-                    <span class="text-neutral-400 text-[10px]">↗</span>
-                  </div>
-                  <span class="text-[10px] font-sans text-neutral-400 uppercase tracking-wider">Technical Drawing</span>
-                </div>
-              </button>
-            </div>
-          </div>
-        </div>
 
         <!-- CARD 2: 2-ROW PHOTO GALLERY -->
         <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-4">
