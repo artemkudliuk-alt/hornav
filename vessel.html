@@ -68,7 +68,7 @@
   </div>
 
   <!-- BREADCRUMBS -->
-  <div class="mx-auto max-w-[1440px] w-full px-6 sm:px-8 lg:px-16 pt-6 pb-2">
+  <div class="mx-auto max-w-[1560px] w-full px-4 sm:px-6 lg:px-8 pt-6 pb-2">
     <div class="flex items-center justify-between gap-4">
       <nav class="flex items-center gap-2 text-xs font-sans tracking-wide uppercase text-neutral-400">
         <a class="transition-colors hover:text-gold font-medium" href="/fleet.html">&larr; BACK TO MANAGED FLEET</a>
@@ -83,12 +83,12 @@
     </div>
   </div>
 
-  <!-- MAIN 2-COLUMN SECTION (Left Content + Right Contact) -->
-  <section class="mx-auto max-w-[1440px] w-full px-6 sm:px-8 lg:px-16 pt-2 pb-20">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+  <!-- MAIN 2-COLUMN SECTION (Left: Header & Gallery | Right: Specifications) -->
+  <section class="mx-auto max-w-[1560px] w-full px-4 sm:px-6 lg:px-8 pt-2 pb-16">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
       
-      <!-- LEFT BLOCK: HERO + 2-ROW PHOTO GALLERY + 8 TECHNICAL SECTIONS -->
-      <div class="lg:col-span-8 space-y-6" id="vessel-main-container">
+      <!-- LEFT COLUMN: HEADER & 4 KPIS + 2-ROW PHOTO GALLERY -->
+      <div class="lg:col-span-7 xl:col-span-7 space-y-6" id="vessel-main-left">
         
         <!-- CARD 1: VESSEL HEADER & 4 KPI METRICS -->
         <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-6">
@@ -120,7 +120,7 @@
           </div>
 
           <!-- 4 Key Metrics -->
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
             <div class="vessel-kpi-box">
               <div class="vessel-kpi-circle">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M2 17l2 3h16l2-3M4 14l3-8h10l3 8M12 4v8M9 9h6" /></svg>
@@ -196,67 +196,67 @@
           </div>
         </div>
 
-        <!-- CARD 3: STRUCTURED TECHNICAL SPECIFICATIONS (8 Modular Sections) -->
-        <div id="vessel-structured-specs-container" class="space-y-6">
-          <!-- Dynamically populated by vessel.js -->
+      </div>
+
+      <!-- RIGHT COLUMN: ACCORDION SPECIFICATIONS (Single Column Dropdowns) -->
+      <div class="lg:col-span-5 xl:col-span-5 space-y-3" id="vessel-structured-specs-container">
+        <!-- Populated dynamically as collapsible accordion dropdowns by vessel.js -->
+      </div>
+
+    </div>
+
+    <!-- CENTERED BOTTOM BLOCK (~50% Screen Width): "GET IN TOUCH" -->
+    <div class="mt-12 sm:mt-16 max-w-2xl sm:max-w-3xl mx-auto w-full" id="charter-inquiry">
+      <div class="vessel-advisor-card space-y-6 bg-[#17171a] p-6 sm:p-8 border border-white/[0.08] shadow-2xl">
+        
+        <!-- Header -->
+        <div class="text-center space-y-1.5">
+          <span class="text-[10px] font-sans tracking-widest text-gold uppercase font-bold">COMMERCIAL INQUIRIES</span>
+          <div class="flex items-center justify-center gap-3">
+            <h2 class="text-2xl sm:text-3xl font-serif text-white font-medium tracking-tight">Get in Touch</h2>
+            <span class="text-[10px] font-sans text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 border border-emerald-500/20 font-semibold uppercase">
+              Available
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-neutral-300 font-normal leading-relaxed max-w-md mx-auto">
+            Contact our chartering desk directly for prompt freight rates, laycan &amp; terms.
+          </p>
+        </div>
+
+        <!-- Quick Messengers Row -->
+        <div class="vessel-messengers-row grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg mx-auto w-full">
+          <a href="https://wa.me/302113456550?text=Hello%20Danamira!%20I%20would%20like%20to%20inquire%20about%20freight%20and%20availability%20for%20vessel." target="_blank" rel="noopener noreferrer" style="background-color: #25D366 !important; color: #ffffff !important; border: 1px solid #20bd5a !important; box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35) !important;" class="vessel-btn-wa flex items-center justify-center gap-2 py-3 px-4 text-xs font-sans font-bold uppercase tracking-wider rounded-none">
+            <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4 shrink-0 fill-white"><path d="M20.5 3.5A11 11 0 0 0 3.4 17.1L2 22l5-1.3A11 11 0 0 0 20.5 3.5zM12 20a8 8 0 0 1-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4a.5.5 0 0 0 0-.5c0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.7 3.1.6.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1z"></path></svg>
+            <span>WhatsApp</span>
+          </a>
+
+          <a href="https://t.me/danamira_shipping" target="_blank" rel="noopener noreferrer" style="background-color: #0088cc !important; color: #ffffff !important; border: 1px solid #0077b5 !important; box-shadow: 0 4px 14px rgba(0, 136, 204, 0.35) !important;" class="vessel-btn-tg flex items-center justify-center gap-2 py-3 px-4 text-xs font-sans font-bold uppercase tracking-wider rounded-none">
+            <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4 shrink-0 fill-white"><path d="M9.8 15.3 9.6 19c.4 0 .6-.2.8-.4l1.9-1.8 4 2.9c.7.4 1.2.2 1.4-.7l2.6-12h0c.2-1-.4-1.5-1.1-1.2L3.6 10.4c-1 .4-1 1-.2 1.2l4.2 1.3 9.7-6.1c.4-.3.8-.1.5.2z"></path></svg>
+            <span>Telegram</span>
+          </a>
+        </div>
+
+        <!-- "Get in Touch" Modal Trigger Button -->
+        <div class="pt-2 max-w-lg mx-auto w-full">
+          <button type="button" id="btn-open-inquiry-modal" class="vessel-btn-submit w-full py-4 bg-gold hover:bg-gold-light text-neutral-950 text-xs sm:text-sm font-sans font-bold uppercase tracking-wider transition-all cursor-pointer border border-gold shadow-lg hover:shadow-gold/20 flex items-center justify-center gap-2 active:scale-98">
+            <span>Get in Touch</span>
+            <span>&rarr;</span>
+          </button>
+        </div>
+
+        <!-- Direct Office Contacts -->
+        <div class="border-t border-white/[0.08] pt-4 text-xs sm:text-sm font-sans text-neutral-300 flex flex-col sm:flex-row items-center justify-between gap-3 max-w-lg mx-auto w-full">
+          <div class="flex items-center gap-2">
+            <span class="text-neutral-400">Direct Email:</span>
+            <a href="mailto:chartering@danamira-shipping.com" class="text-gold hover:underline font-medium">chartering@danamira-shipping.com</a>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-neutral-400">Direct Phone:</span>
+            <a href="tel:+302113456550" class="text-white hover:text-gold font-medium">+30 211 34 56 550</a>
+          </div>
         </div>
 
       </div>
-
-      <!-- RIGHT BLOCK: Minimal "Get in Touch" Box (Sticky on Desktop) -->
-      <div class="lg:col-span-4 sticky top-24" id="charter-inquiry">
-        <div class="vessel-advisor-card space-y-5 bg-[#17171a] p-6 border border-white/[0.08] shadow-2xl">
-          
-          <!-- Header -->
-          <div class="space-y-1">
-            <span class="text-[10px] font-sans tracking-widest text-gold uppercase font-bold">COMMERCIAL INQUIRIES</span>
-            <div class="flex items-baseline justify-between">
-              <h2 class="text-2xl sm:text-3xl font-serif text-white font-medium tracking-tight">Get in Touch</h2>
-              <span class="text-[10px] font-sans text-emerald-400 bg-emerald-500/10 px-2 py-0.5 border border-emerald-500/20 font-semibold uppercase">
-                Available
-              </span>
-            </div>
-            <p class="text-xs sm:text-sm text-neutral-300 font-normal leading-relaxed">
-              Contact our chartering desk directly for prompt freight rates, laycan &amp; terms.
-            </p>
-          </div>
-
-          <!-- Quick Messengers Row -->
-          <div class="vessel-messengers-row flex gap-2">
-            <a href="https://wa.me/302113456550?text=Hello%20Danamira!%20I%20would%20like%20to%20inquire%20about%20freight%20and%20availability%20for%20vessel." target="_blank" rel="noopener noreferrer" style="background-color: #25D366 !important; color: #ffffff !important; border: 1px solid #20bd5a !important; box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35) !important;" class="vessel-btn-wa flex-1 flex items-center justify-center gap-2 py-2.5 px-3 text-xs font-sans font-bold uppercase tracking-wider rounded-none">
-              <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4 shrink-0 fill-white"><path d="M20.5 3.5A11 11 0 0 0 3.4 17.1L2 22l5-1.3A11 11 0 0 0 20.5 3.5zM12 20a8 8 0 0 1-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4a.5.5 0 0 0 0-.5c0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.7 3.1.6.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1z"></path></svg>
-              <span>WhatsApp</span>
-            </a>
-
-            <a href="https://t.me/danamira_shipping" target="_blank" rel="noopener noreferrer" style="background-color: #0088cc !important; color: #ffffff !important; border: 1px solid #0077b5 !important; box-shadow: 0 4px 14px rgba(0, 136, 204, 0.35) !important;" class="vessel-btn-tg flex-1 flex items-center justify-center gap-2 py-2.5 px-3 text-xs font-sans font-bold uppercase tracking-wider rounded-none">
-              <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4 shrink-0 fill-white"><path d="M9.8 15.3 9.6 19c.4 0 .6-.2.8-.4l1.9-1.8 4 2.9c.7.4 1.2.2 1.4-.7l2.6-12h0c.2-1-.4-1.5-1.1-1.2L3.6 10.4c-1 .4-1 1-.2 1.2l4.2 1.3 9.7-6.1c.4-.3.8-.1.5.2z"></path></svg>
-              <span>Telegram</span>
-            </a>
-          </div>
-
-          <!-- "Get in Touch" Modal Trigger Button -->
-          <div class="pt-3 border-t border-white/[0.08]">
-            <button type="button" id="btn-open-inquiry-modal" class="vessel-btn-submit w-full py-3.5 bg-gold hover:bg-gold-light text-neutral-950 text-xs sm:text-sm font-sans font-bold uppercase tracking-wider transition-all cursor-pointer border border-gold shadow-lg hover:shadow-gold/20 flex items-center justify-center gap-2 active:scale-98">
-              <span>Get in Touch</span>
-              <span>&rarr;</span>
-            </button>
-          </div>
-
-          <!-- Direct Office Contacts -->
-          <div class="border-t border-white/[0.08] pt-3 text-xs sm:text-sm font-sans text-neutral-300 space-y-2">
-            <div class="flex items-center justify-between">
-              <span class="text-neutral-400">Direct Email:</span>
-              <a href="mailto:chartering@danamira-shipping.com" class="text-gold hover:underline font-medium">chartering@danamira-shipping.com</a>
-            </div>
-            <div class="flex items-center justify-between">
-              <span class="text-neutral-400">Direct Phone:</span>
-              <a href="tel:+302113456550" class="text-white hover:text-gold font-medium">+30 211 34 56 550</a>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
     </div>
   </section>
 

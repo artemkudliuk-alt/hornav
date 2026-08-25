@@ -5,20 +5,6 @@ import { FLEET_DATABASE } from './vessel-data.js';
 const vesselLayoutStyles = document.createElement('style');
 vesselLayoutStyles.setAttribute('data-vessel-swiss-layout', 'true');
 vesselLayoutStyles.textContent = `
-  .vessel-hero-grid {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 1.5rem !important;
-    width: 100% !important;
-  }
-  .vessel-hero-left {
-    width: 100% !important;
-    min-width: 0 !important;
-  }
-  .vessel-hero-right {
-    width: 100% !important;
-    min-width: 0 !important;
-  }
   .vessel-stage-box {
     position: relative !important;
     width: 100% !important;
@@ -69,40 +55,21 @@ vesselLayoutStyles.textContent = `
     object-fit: cover !important;
     display: block !important;
   }
-  @media (min-width: 1024px) {
-    .vessel-hero-grid {
-      display: grid !important;
-      grid-template-columns: minmax(0, 1fr) 380px !important;
-      align-items: start !important;
-      gap: 2.5rem !important;
-      width: 100% !important;
-    }
-    .vessel-hero-right {
-      position: sticky !important;
-      top: 6rem !important;
-      width: 380px !important;
-      max-width: 100% !important;
-      align-self: start !important;
-    }
-    .vessel-advisor-card {
-      height: auto !important;
-      min-height: auto !important;
-    }
+  .vessel-accordion-item {
+    background-color: #17171a !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
   }
-  @media (min-width: 1280px) {
-    .vessel-hero-grid {
-      grid-template-columns: minmax(0, 1fr) 400px !important;
-      gap: 3rem !important;
-    }
-    .vessel-hero-right {
-      width: 400px !important;
-    }
+  .vessel-accordion-trigger {
+    transition: background-color 0.2s ease !important;
+  }
+  .vessel-accordion-trigger:hover {
+    background-color: rgba(255, 255, 255, 0.03) !important;
   }
   .vessel-advisor-card {
     background-color: #17171a !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     border-radius: 0 !important;
-    padding: 1.5rem !important;
+  }
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5) !important;
   }
   .vessel-avatar-circle {
@@ -520,147 +487,73 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (structuredContainer && vessel.specSections) {
     const s = vessel.specSections;
     
+    const sectionsConfig = [
+      { id: 'info', title: 'Information', data: s.information, defaultOpen: true },
+      { id: 'particulars', title: 'Particulars & Capacities', data: s.particulars, defaultOpen: true },
+      { id: 'holds', title: 'Holds & Hatches', data: s.holdsHatches, defaultOpen: false },
+      { id: 'ballast', title: 'Ballast & Strength', data: s.ballastStrength, defaultOpen: false },
+      { id: 'speed', title: 'Speed & Consumption', data: s.speedConsumption, defaultOpen: false },
+      { id: 'tanks', title: 'Tank Capacities (100%)', data: s.tankCapacities, defaultOpen: false },
+      { id: 'engine', title: 'Main Engine & Machinery', data: s.mainEngine, defaultOpen: false },
+      { id: 'loads', title: 'Permissible Loads', data: s.permissibleLoads, defaultOpen: false }
+    ];
+
     structuredContainer.innerHTML = `
-      <!-- Row 1: INFORMATION + HOLDS/BALLAST/LOADS -->
-      <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
-        
-        <!-- CARD 1: INFORMATION -->
-        <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl flex flex-col justify-between">
-          <div>
-            <div class="pb-3 mb-3 border-b border-border-gold/30">
-              <h3 class="text-sm font-serif font-semibold tracking-wider uppercase text-gold">Information</h3>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-1 pt-1">
-              ${(s.information || []).map(item => `
-                <div class="flex items-baseline justify-between py-1.5 border-b border-white/[0.06] text-xs sm:text-sm gap-3">
-                  <span class="text-neutral-400 font-sans text-xs sm:text-sm font-normal">${item.label}</span>
-                  <span class="text-neutral-100 font-sans text-xs sm:text-sm font-semibold text-right tabular-nums">${item.value}</span>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-        </div>
-
-        <!-- CARD 2: HOLDS & HATCHES + BALLAST & STRENGTH + PERMISSIBLE LOADS -->
-        <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-5">
-          <!-- Holds & Hatches -->
-          <div>
-            <div class="pb-2 mb-2 border-b border-white/10">
-              <h4 class="text-xs sm:text-sm font-serif font-semibold tracking-wider uppercase text-gold">Holds &amp; Hatches</h4>
-            </div>
-            <div class="space-y-0.5">
-              ${(s.holdsHatches || []).map(item => `
-                <div class="flex items-baseline justify-between py-1.5 border-b border-white/[0.04] text-xs sm:text-sm gap-3">
-                  <span class="text-neutral-400 font-sans text-xs sm:text-sm font-normal">${item.label}</span>
-                  <span class="text-neutral-100 font-sans text-xs sm:text-sm font-semibold text-right tabular-nums">${item.value}</span>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-
-          <!-- Ballast & Strength -->
-          <div class="pt-2">
-            <div class="pb-2 mb-2 border-b border-white/10">
-              <h4 class="text-xs sm:text-sm font-serif font-semibold tracking-wider uppercase text-gold">Ballast &amp; Strength</h4>
-            </div>
-            <div class="space-y-0.5">
-              ${(s.ballastStrength || []).map(item => `
-                <div class="flex items-baseline justify-between py-1.5 border-b border-white/[0.04] text-xs sm:text-sm gap-3">
-                  <span class="text-neutral-400 font-sans text-xs sm:text-sm font-normal">${item.label}</span>
-                  <span class="text-neutral-100 font-sans text-xs sm:text-sm font-semibold text-right tabular-nums">${item.value}</span>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-
-          <!-- Permissible Loads -->
-          <div class="pt-2">
-            <div class="pb-2 mb-2 border-b border-white/10">
-              <h4 class="text-xs sm:text-sm font-serif font-semibold tracking-wider uppercase text-gold">Permissible Loads</h4>
-            </div>
-            <div class="space-y-0.5">
-              ${(s.permissibleLoads || []).map(item => `
-                <div class="flex items-baseline justify-between py-1.5 border-b border-white/[0.04] text-xs sm:text-sm gap-3">
-                  <span class="text-neutral-400 font-sans text-xs sm:text-sm font-normal">${item.label}</span>
-                  <span class="text-gold font-sans text-xs sm:text-sm font-semibold text-right tabular-nums">${item.value}</span>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Row 2: PARTICULARS + SPEED/TANKS/ENGINE -->
-      <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
-        
-        <!-- CARD 3: PARTICULARS -->
-        <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-3">
-          <div class="pb-3 border-b border-border-gold/30">
-            <h3 class="text-sm font-serif font-semibold tracking-wider uppercase text-gold">Particulars &amp; Capacities</h3>
-          </div>
-          <div class="space-y-0.5">
-            ${(s.particulars || []).map(item => `
-              <div class="flex items-baseline justify-between py-1.5 border-b border-white/[0.06] text-xs sm:text-sm gap-3">
-                <span class="text-neutral-400 font-sans text-xs sm:text-sm font-normal">${item.label}</span>
-                <span class="text-neutral-100 font-sans text-xs sm:text-sm font-semibold text-right tabular-nums">${item.value}</span>
+      <div class="space-y-3" id="vessel-accordion-root">
+        ${sectionsConfig.map(sec => `
+          <div class="vessel-accordion-item bg-[#17171a] border border-white/[0.08] shadow-xl overflow-hidden transition-all duration-200">
+            <button type="button" class="vessel-accordion-trigger w-full p-4 sm:p-5 flex items-center justify-between gap-4 text-left cursor-pointer hover:bg-white/[0.03] transition-colors active:scale-[0.99]" data-accordion-id="${sec.id}" aria-expanded="${sec.defaultOpen ? 'true' : 'false'}">
+              <h3 class="text-xs sm:text-sm font-serif font-semibold tracking-wider uppercase text-gold">
+                ${sec.title}
+              </h3>
+              <div class="flex items-center gap-2.5 shrink-0">
+                <span class="text-[10px] font-sans text-neutral-400 tabular-nums">${(sec.data || []).length} specs</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-gold/80 transition-transform duration-300 vessel-accordion-chevron ${sec.defaultOpen ? 'rotate-180' : ''}">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
               </div>
-            `).join('')}
-          </div>
-        </div>
-
-        <!-- CARD 4: SPEED & CONSUMPTION + TANK CAPACITIES + MAIN ENGINE -->
-        <div class="bg-[#17171a] border border-white/[0.08] p-5 sm:p-6 shadow-2xl space-y-5">
-          
-          <!-- Speed & Consumption -->
-          <div>
-            <div class="pb-2 mb-2 border-b border-white/10">
-              <h4 class="text-xs sm:text-sm font-serif font-semibold tracking-wider uppercase text-gold">Speed &amp; Consumption</h4>
-            </div>
-            <div class="space-y-0.5">
-              ${(s.speedConsumption || []).map(item => `
-                <div class="flex items-baseline justify-between py-1.5 border-b border-white/[0.04] text-xs sm:text-sm gap-3">
-                  <span class="text-neutral-400 font-sans text-xs sm:text-sm font-normal">${item.label}</span>
-                  <span class="text-neutral-100 font-sans text-xs sm:text-sm font-semibold text-right tabular-nums">${item.value}</span>
-                </div>
-              `).join('')}
+            </button>
+            <div class="vessel-accordion-content ${sec.defaultOpen ? 'block' : 'hidden'} px-4 sm:px-5 pb-4 pt-1 border-t border-white/[0.06]">
+              <div class="space-y-0.5">
+                ${(sec.data || []).map(item => `
+                  <div class="flex items-baseline justify-between py-1.5 border-b border-white/[0.04] text-xs sm:text-sm gap-3">
+                    <span class="text-neutral-400 font-sans text-xs sm:text-sm font-normal">${item.label}</span>
+                    <span class="text-neutral-100 font-sans text-xs sm:text-sm font-semibold text-right tabular-nums">${item.value}</span>
+                  </div>
+                `).join('')}
+              </div>
             </div>
           </div>
-
-          <!-- Tank Capacities -->
-          <div class="pt-2">
-            <div class="pb-2 mb-2 border-b border-white/10">
-              <h4 class="text-xs sm:text-sm font-serif font-semibold tracking-wider uppercase text-gold">Tank Capacities (100%)</h4>
-            </div>
-            <div class="space-y-0.5">
-              ${(s.tankCapacities || []).map(item => `
-                <div class="flex items-baseline justify-between py-1.5 border-b border-white/[0.04] text-xs sm:text-sm gap-3">
-                  <span class="text-neutral-400 font-sans text-xs sm:text-sm font-normal">${item.label}</span>
-                  <span class="text-neutral-100 font-sans text-xs sm:text-sm font-semibold text-right tabular-nums">${item.value}</span>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-
-          <!-- Main Engine & Auxiliary Machinery -->
-          <div class="pt-2">
-            <div class="pb-2 mb-2 border-b border-white/10">
-              <h4 class="text-xs sm:text-sm font-serif font-semibold tracking-wider uppercase text-gold">Main Engine &amp; Machinery</h4>
-            </div>
-            <div class="space-y-0.5">
-              ${(s.mainEngine || []).map(item => `
-                <div class="flex items-baseline justify-between py-1.5 border-b border-white/[0.04] text-xs sm:text-sm gap-3">
-                  <span class="text-neutral-400 font-sans text-xs sm:text-sm font-normal">${item.label}</span>
-                  <span class="text-neutral-100 font-sans text-xs sm:text-sm font-semibold text-right tabular-nums">${item.value}</span>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-
-        </div>
-
+        `).join('')}
       </div>
     `;
+
+    // Accordion Event Delegation
+    const accordionRoot = document.getElementById('vessel-accordion-root');
+    if (accordionRoot) {
+      accordionRoot.addEventListener('click', (e) => {
+        const trigger = e.target.closest('.vessel-accordion-trigger');
+        if (!trigger) return;
+        const item = trigger.closest('.vessel-accordion-item');
+        if (!item) return;
+        const content = item.querySelector('.vessel-accordion-content');
+        const chevron = item.querySelector('.vessel-accordion-chevron');
+        if (!content) return;
+        
+        const isHidden = content.classList.contains('hidden');
+        if (isHidden) {
+          content.classList.remove('hidden');
+          content.classList.add('block');
+          trigger.setAttribute('aria-expanded', 'true');
+          if (chevron) chevron.classList.add('rotate-180');
+        } else {
+          content.classList.remove('block');
+          content.classList.add('hidden');
+          trigger.setAttribute('aria-expanded', 'false');
+          if (chevron) chevron.classList.remove('rotate-180');
+        }
+      });
+    }
   }
 
   const formVesselInput = document.getElementById('form-vessel-name');
