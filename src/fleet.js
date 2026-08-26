@@ -90,16 +90,22 @@ document.addEventListener('DOMContentLoaded', async () => {
           <!-- Buttons & Actions Row (Sharp Corners) -->
           <div class="flex flex-wrap items-center justify-between gap-3 pt-5 mt-4 border-t border-white/5">
             <div class="flex items-center gap-2">
-              <button type="button" data-pdf="${v.pdfGaPlanUrl}" data-vessel="${v.name}" class="btn-ga-plan inline-flex items-center gap-1.5 px-3 py-1.5 rounded-none bg-transparent hover:bg-white/5 text-white border border-white/20 hover:border-white/40 text-[10px] font-mono uppercase tracking-wider transition-all duration-200 cursor-pointer active:scale-95">
-                <svg class="w-3.5 h-3.5 text-red-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                  <polyline points="14 2 14 8 20 8"/>
+              <button type="button" data-pdf="${v.pdfGaPlanUrl}" data-vessel="${v.name}" class="btn-ga-plan group inline-flex items-center gap-2 px-3 py-2 rounded-none bg-[#141416] hover:bg-[#1a1a1d] text-white border border-white/20 hover:border-red-500/60 text-xs font-mono uppercase tracking-wider transition-all duration-200 cursor-pointer active:scale-95 shadow-sm">
+                <!-- Classic Red PDF Document Badge Icon -->
+                <svg viewBox="0 0 32 36" class="w-4 h-4.5 shrink-0 transition-transform duration-200 group-hover:scale-105" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 2C5.34315 2 4 3.34315 4 5V31C4 32.6569 5.34315 34 7 34H25C26.6569 34 28 32.6569 28 31V12L18 2H7Z" stroke="#EF4444" stroke-width="2.2" stroke-linejoin="round" fill="none"/>
+                  <path d="M18 2V12H28" stroke="#EF4444" stroke-width="2.2" stroke-linejoin="round"/>
+                  <line x1="8" y1="13" x2="15" y2="13" stroke="#9CA3AF" stroke-width="1.8" stroke-linecap="round"/>
+                  <line x1="8" y1="17.5" x2="24" y2="17.5" stroke="#9CA3AF" stroke-width="1.8" stroke-linecap="round"/>
+                  <line x1="8" y1="22" x2="24" y2="22" stroke="#9CA3AF" stroke-width="1.8" stroke-linecap="round"/>
+                  <rect x="2" y="21" width="18" height="11" rx="2" fill="#EF4444"/>
+                  <text x="11" y="29.5" fill="white" font-size="7.5" font-weight="900" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" letter-spacing="-0.3px">PDF</text>
                 </svg>
-                <span class="text-red-500 font-bold">PDF</span>
-                <span class="text-white font-medium">GA-Plan</span>
+                <span class="font-bold text-white tracking-wider">GA-PLAN</span>
+                <span class="text-[10px] text-neutral-400 group-hover:text-white transition-colors">&nearr;</span>
               </button>
 
-              <a href="/vessel.html?id=${v.id}" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-none bg-gold/10 hover:bg-gold text-gold hover:text-black border border-gold/40 text-[10px] font-mono font-bold uppercase tracking-wider transition-all duration-200">
+              <a href="/vessel.html?id=${v.id}" class="inline-flex items-center gap-1 px-3 py-2 rounded-none bg-gold/10 hover:bg-gold text-gold hover:text-black border border-gold/40 text-[10px] font-mono font-bold uppercase tracking-wider transition-all duration-200">
                 Full Particulars &rarr;
               </a>
             </div>
