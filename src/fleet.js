@@ -27,16 +27,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Render Cards Grid
     container.innerHTML = filtered.map((v, idx) => `
-      <div class="bg-bg-secondary/70 border border-neutral-800/80 hover:border-gold/40 rounded-none p-6 sm:p-7 flex flex-col gap-6 transition-all duration-500 hover:-translate-y-1 group relative shadow-xl text-left" id="f-card-${v.id}">
+      <div class="bg-bg-secondary/70 border border-neutral-800/80 hover:border-gold/40 rounded-none p-6 sm:p-7 flex flex-col gap-6 transition-all duration-500 hover:-translate-y-1 group relative shadow-xl text-left overflow-hidden" id="f-card-${v.id}">
         
-        <!-- High-Contrast Status Badge (Sharp Corners) -->
-        <div class="absolute top-9 right-9 z-20 bg-neutral-950/95 text-white border-2 border-emerald-500 text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1.5 rounded-none shadow-2xl flex items-center gap-1.5 backdrop-blur-md">
-          <span class="w-2 h-2 rounded-none bg-emerald-400 shadow-[0_0_8px_#34d399] inline-block"></span>
-          <span class="text-white font-bold tracking-wider">${v.status.toUpperCase()}</span>
-        </div>
-
-        <!-- Image Container (Sharp Corners) -->
+        <!-- Image Container (Sharp Corners & Safe Badge Placement) -->
         <a href="/vessel.html?id=${v.id}" class="block w-full h-72 overflow-hidden rounded-none relative bg-neutral-900 group/img" title="View Full Particulars of ${v.name}">
+          <!-- High-Contrast Status Badge (Strictly inside image container) -->
+          <div class="absolute top-3 right-3 z-20 bg-neutral-950/95 text-white border-2 border-emerald-500 text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1.5 rounded-none shadow-2xl flex items-center gap-1.5 backdrop-blur-md">
+            <span class="w-2 h-2 rounded-none bg-emerald-400 shadow-[0_0_8px_#34d399] inline-block"></span>
+            <span class="text-white font-bold tracking-wider">${v.status.toUpperCase()}</span>
+          </div>
+
           <img src="${v.coverImageUrl}" alt="${v.name} Commercial Vessel Danamira Shipping" class="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105">
           <div class="absolute inset-0 bg-gradient-to-t from-[#141416]/80 via-transparent to-transparent pointer-events-none"></div>
           <span class="absolute bottom-3 left-3 bg-black/70 backdrop-blur-sm text-white/90 text-[10px] font-mono px-2.5 py-1 rounded-none border border-white/10 opacity-0 group-hover/img:opacity-100 transition-opacity inline-flex items-center gap-1.5">
