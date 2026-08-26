@@ -913,7 +913,67 @@ document.addEventListener('DOMContentLoaded', async () => {
     }, { passive: false });
   }
 
-  document.getElementById('btn-open-stage-lightbox')?.addEventListener('click', () => openLightbox(currentPhotoIndex));
+  // Touch Swipe for Vessel Stage Box
+  const stageBox = document.getElementById('btn-open-stage-lightbox');
+  let isStageSwiping = false;
+  if (stageBox) {
+    let startX = 0;
+    let startY = 0;
+    let distX = 0;
+    let distY = 0;
+    let startTime = 0;
+
+    stageBox.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        const touch = e.touches[0];
+        startX = touch.clientX;
+        startY = touch.clientY;
+        distX = 0;
+        distY = 0;
+        isStageSwiping = false;
+        startTime = Date.now();
+      }
+    }, { passive: true });
+
+    stageBox.addEventListener('touchmove', (e) => {
+      if (e.touches.length === 1) {
+        const touch = e.touches[0];
+        distX = touch.clientX - startX;
+        distY = touch.clientY - startY;
+        if (Math.abs(distX) > Math.abs(distY) && Math.abs(distX) > 10) {
+          isStageSwiping = true;
+        }
+      }
+    }, { passive: true });
+
+    stageBox.addEventListener('touchend', () => {
+      const threshold = 35; // px minimum swipe distance
+      if (isStageSwiping && Math.abs(distX) >= threshold && Math.abs(distX) > Math.abs(distY)) {
+        if (distX < 0) {
+          // Swipe Left -> Next Photo
+          const next = (currentPhotoIndex + 1) % photos.length;
+          updateGallery(next);
+        } else {
+          // Swipe Right -> Previous Photo
+          const prev = (currentPhotoIndex - 1 + photos.length) % photos.length;
+          updateGallery(prev);
+        }
+      }
+      // Reset swipe flag after small delay to avoid triggering click
+      setTimeout(() => {
+        isStageSwiping = false;
+      }, 80);
+    }, { passive: true });
+  }
+
+  document.getElementById('btn-open-stage-lightbox')?.addEventListener('click', (e) => {
+    if (isStageSwiping) {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+    openLightbox(currentPhotoIndex);
+  });
   document.getElementById('btn-open-all-photos')?.addEventListener('click', () => openLightbox(0));
   if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
   if (lightboxBackdrop) lightboxBackdrop.addEventListener('click', closeLightbox);
@@ -932,6 +992,55 @@ document.addEventListener('DOMContentLoaded', async () => {
       const next = (lightboxIndex + 1) % photos.length;
       updateLightboxPhoto(next);
     });
+  }
+
+  // Touch Swipe for Full-Screen Lightbox Modal
+  if (lightboxModal) {
+    let lbStartX = 0;
+    let lbStartY = 0;
+    let lbDistX = 0;
+    let lbDistY = 0;
+    let lbIsSwiping = false;
+
+    lightboxModal.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        const touch = e.touches[0];
+        lbStartX = touch.clientX;
+        lbStartY = touch.clientY;
+        lbDistX = 0;
+        lbDistY = 0;
+        lbIsSwiping = false;
+      }
+    }, { passive: true });
+
+    lightboxModal.addEventListener('touchmove', (e) => {
+      if (e.touches.length === 1) {
+        const touch = e.touches[0];
+        lbDistX = touch.clientX - lbStartX;
+        lbDistY = touch.clientY - lbStartY;
+        if (Math.abs(lbDistX) > Math.abs(lbDistY) && Math.abs(lbDistX) > 10) {
+          lbIsSwiping = true;
+        }
+      }
+    }, { passive: true });
+
+    lightboxModal.addEventListener('touchend', () => {
+      const threshold = 35;
+      if (lbIsSwiping && Math.abs(lbDistX) >= threshold && Math.abs(lbDistX) > Math.abs(lbDistY)) {
+        if (lbDistX < 0) {
+          // Swipe Left -> Next Photo
+          const next = (lightboxIndex + 1) % photos.length;
+          updateLightboxPhoto(next);
+        } else {
+          // Swipe Right -> Previous Photo
+          const prev = (lightboxIndex - 1 + photos.length) % photos.length;
+          updateLightboxPhoto(prev);
+        }
+      }
+      setTimeout(() => {
+        lbIsSwiping = false;
+      }, 80);
+    }, { passive: true });
   }
 
   // Inquiry Modal Logic
