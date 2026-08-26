@@ -146,37 +146,49 @@ export function initSwipeableRows() {
 
       let isDown = false;
       let startX = 0;
-      let scrollLeft = 0;
+      let startScrollLeft = 0;
       let hasMoved = false;
 
-      container.addEventListener('pointerdown', (e) => {
+      const getPageX = (e) => {
+        if (e.touches && e.touches.length > 0) return e.touches[0].pageX;
+        if (e.changedTouches && e.changedTouches.length > 0) return e.changedTouches[0].pageX;
+        return e.pageX || e.clientX || 0;
+      };
+
+      const startDrag = (e) => {
         isDown = true;
         hasMoved = false;
-        startX = e.pageX - container.offsetLeft;
-        scrollLeft = container.scrollLeft;
+        startX = getPageX(e);
+        startScrollLeft = container.scrollLeft;
         container.style.scrollBehavior = 'auto';
         container.style.scrollSnapType = 'none';
-      });
+      };
 
-      window.addEventListener('pointermove', (e) => {
+      const moveDrag = (e) => {
         if (!isDown) return;
-        const x = e.pageX - container.offsetLeft;
-        const walk = (x - startX);
-        if (Math.abs(walk) > 4) {
+        const currentX = getPageX(e);
+        const diff = currentX - startX;
+        if (Math.abs(diff) > 4) {
           hasMoved = true;
         }
-        container.scrollLeft = scrollLeft - walk;
-      });
+        container.scrollLeft = startScrollLeft - diff;
+      };
 
-      const endHandler = () => {
+      const endDrag = () => {
         if (!isDown) return;
         isDown = false;
         container.style.scrollBehavior = 'smooth';
         container.style.scrollSnapType = 'x proximity';
       };
 
-      window.addEventListener('pointerup', endHandler);
-      window.addEventListener('pointercancel', endHandler);
+      container.addEventListener('mousedown', startDrag);
+      window.addEventListener('mousemove', moveDrag);
+      window.addEventListener('mouseup', endDrag);
+
+      container.addEventListener('touchstart', startDrag, { passive: true });
+      window.addEventListener('touchmove', moveDrag, { passive: true });
+      window.addEventListener('touchend', endDrag, { passive: true });
+      window.addEventListener('touchcancel', endDrag, { passive: true });
 
       // Prevent button click if the user was swiping/dragging
       container.addEventListener('click', (e) => {
