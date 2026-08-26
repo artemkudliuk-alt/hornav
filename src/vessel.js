@@ -212,59 +212,78 @@ vesselLayoutStyles.textContent = `
     display: flex !important;
     flex-direction: column !important;
     justify-content: space-between !important;
-    padding: 1rem 1.125rem !important;
+    padding: 1rem !important;
     background-color: #141416 !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     border-radius: 0 !important;
     box-sizing: border-box !important;
     transition: all 0.25s ease !important;
     position: relative !important;
+    min-height: 110px !important;
+  }
+  @media (min-width: 640px) {
+    .vessel-kpi-box {
+      padding: 1.125rem 1.25rem !important;
+      min-height: 120px !important;
+    }
   }
   .vessel-kpi-box:hover {
     border-color: rgba(200, 155, 60, 0.4) !important;
     background-color: #17171a !important;
   }
-  .vessel-kpi-top {
+  .vessel-kpi-icon-box {
+    width: 2.25rem !important;
+    height: 2.25rem !important;
+    background-color: rgba(200, 155, 60, 0.1) !important;
+    border: 1px solid rgba(200, 155, 60, 0.3) !important;
     display: flex !important;
     align-items: center !important;
-    justify-content: space-between !important;
-    width: 100% !important;
+    justify-content: center !important;
+    color: #c89b3c !important;
+    margin-bottom: 0.75rem !important;
+    flex-shrink: 0 !important;
+    transition: all 0.25s ease !important;
+  }
+  .vessel-kpi-box:hover .vessel-kpi-icon-box {
+    background-color: rgba(200, 155, 60, 0.2) !important;
+    border-color: rgba(200, 155, 60, 0.5) !important;
+    transform: scale(1.05) !important;
+  }
+  .vessel-kpi-content {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.25rem !important;
+    min-width: 0 !important;
   }
   .vessel-kpi-label {
-    font-family: var(--font-sans), "Plus Jakarta Sans", sans-serif !important;
-    font-size: 0.6875rem !important;
-    font-weight: 600 !important;
+    font-family: var(--font-mono), monospace !important;
+    font-size: 0.625rem !important;
+    font-weight: 500 !important;
     text-transform: uppercase !important;
-    letter-spacing: 0.12em !important;
-    color: #a3a3a3 !important;
+    letter-spacing: 0.1em !important;
+    color: #9ca3af !important;
     transition: color 0.2s ease !important;
+    line-height: 1.2 !important;
+    display: block !important;
+  }
+  @media (min-width: 640px) {
+    .vessel-kpi-label {
+      font-size: 0.6875rem !important;
+    }
   }
   .vessel-kpi-box:hover .vessel-kpi-label {
     color: #c89b3c !important;
   }
-  .vessel-kpi-icon {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    color: rgba(200, 155, 60, 0.8) !important;
-    transition: transform 0.2s ease, color 0.2s ease !important;
-  }
-  .vessel-kpi-box:hover .vessel-kpi-icon {
-    color: #e6c36a !important;
-    transform: scale(1.08) !important;
-  }
   .vessel-kpi-val {
     font-family: var(--font-sans), "Plus Jakarta Sans", sans-serif !important;
     font-size: 0.9375rem !important;
-    font-weight: 500 !important;
+    font-weight: 600 !important;
     color: #ffffff !important;
-    margin-top: 0.5rem !important;
     line-height: 1.25 !important;
     letter-spacing: -0.01em !important;
     font-variant-numeric: tabular-nums !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
+    word-break: break-word !important;
+    display: block !important;
   }
   @media (min-width: 640px) {
     .vessel-kpi-val {
