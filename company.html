@@ -131,41 +131,62 @@
         </div>
 
         <!-- Right Presentation Specs Card -->
-        <div class="lg:col-span-5 bg-black/40 border border-neutral-800 p-8 flex flex-col gap-6 relative backdrop-blur-sm">
-          <div class="absolute top-0 right-0 w-24 h-24 bg-gold/5 blur-xl pointer-events-none"></div>
-          <span class="text-xs font-mono font-bold tracking-[0.2em] text-gold uppercase block border-b border-border-gold/20 pb-3">
-            Company Presentation &bull; Key Facts
-          </span>
+        <div class="lg:col-span-5 bg-[#141416]/95 border border-neutral-800 p-5 sm:p-7 lg:p-8 flex flex-col gap-4 relative backdrop-blur-md shadow-2xl rounded-none text-left">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-gold/5 blur-2xl pointer-events-none"></div>
+          
+          <!-- Card Header Badge -->
+          <div class="flex items-center justify-between border-b border-border-gold/30 pb-3 mb-1">
+            <span class="text-[11px] font-mono font-bold tracking-[0.2em] text-gold uppercase">
+              Company Presentation &bull; Key Facts
+            </span>
+            <span class="w-1.5 h-1.5 rounded-full bg-gold shadow-[0_0_8px_rgba(200,155,60,0.8)]"></span>
+          </div>
 
-          <div class="space-y-4 text-xs font-mono">
-            <div class="flex justify-between items-center py-2 border-b border-white/5">
-              <span class="text-neutral-400 uppercase">Headquarters</span>
-              <span class="text-white font-bold">Glyfada, Greece</span>
+          <!-- Structured Specifications Table -->
+          <div class="flex flex-col text-left font-sans">
+            
+            <!-- Row 1: Headquarters -->
+            <div class="py-3 sm:py-3.5 border-b border-white/10 flex items-baseline justify-between gap-4 text-left">
+              <span class="text-[11px] sm:text-xs font-sans font-semibold tracking-[0.12em] text-neutral-400 uppercase">Headquarters</span>
+              <span class="text-xs sm:text-sm font-medium text-white text-right">Glyfada, Greece</span>
             </div>
-            <div class="flex justify-between items-center py-2 border-b border-white/5">
-              <span class="text-neutral-400 uppercase">Established</span>
-              <span class="text-white font-bold">June 2026</span>
+
+            <!-- Row 2: Established -->
+            <div class="py-3 sm:py-3.5 border-b border-white/10 flex items-baseline justify-between gap-4 text-left">
+              <span class="text-[11px] sm:text-xs font-sans font-semibold tracking-[0.12em] text-neutral-400 uppercase">Established</span>
+              <span class="text-xs sm:text-sm font-medium text-white text-right">June 2026</span>
             </div>
-            <div class="flex justify-between items-center py-2 border-b border-white/5">
-              <span class="text-neutral-400 uppercase">Corporate Framework</span>
-              <a href="http://publicrevenue.gr/elib/view?d=/gr/act/1967/89" target="_blank" rel="noopener noreferrer" class="text-gold hover:underline font-bold flex items-center gap-1">
-                Greek Law 89/1967 &nearr;
+
+            <!-- Row 3: Corporate Framework -->
+            <div class="py-3 sm:py-3.5 border-b border-white/10 flex items-baseline justify-between gap-4 text-left">
+              <span class="text-[11px] sm:text-xs font-sans font-semibold tracking-[0.12em] text-neutral-400 uppercase">Corporate Framework</span>
+              <a href="http://publicrevenue.gr/elib/view?d=/gr/act/1967/89" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs sm:text-sm font-medium text-gold hover:text-gold-light hover:underline transition-colors text-right shrink-0">
+                <span>Greek Law 89/1967</span>
+                <span class="text-[10px]">&nearr;</span>
               </a>
             </div>
-            <div class="flex justify-between items-center py-2 border-b border-white/5">
-              <span class="text-neutral-400 uppercase">Primary Registry</span>
-              <span class="text-white font-bold">Republic of Liberia</span>
+
+            <!-- Row 4: Primary Registry -->
+            <div class="py-3 sm:py-3.5 border-b border-white/10 flex items-baseline justify-between gap-4 text-left">
+              <span class="text-[11px] sm:text-xs font-sans font-semibold tracking-[0.12em] text-neutral-400 uppercase">Primary Registry</span>
+              <span class="text-xs sm:text-sm font-medium text-white text-right">Republic of Liberia</span>
             </div>
-            <div class="flex justify-between items-center py-2 border-b border-white/5">
-              <span class="text-neutral-400 uppercase">Institutional Chamber</span>
-              <a href="https://nee.gr/en/hellenic-chamber-of-shipping/" target="_blank" rel="noopener noreferrer" class="text-gold hover:underline font-bold flex items-center gap-1">
-                Hellenic Chamber of Shipping &nearr;
+
+            <!-- Row 5: Institutional Chamber -->
+            <div class="py-3 sm:py-3.5 border-b border-white/10 flex items-baseline justify-between gap-4 text-left">
+              <span class="text-[11px] sm:text-xs font-sans font-semibold tracking-[0.12em] text-neutral-400 uppercase">Institutional Chamber</span>
+              <a href="https://nee.gr/en/hellenic-chamber-of-shipping/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs sm:text-sm font-medium text-gold hover:text-gold-light hover:underline transition-colors text-right">
+                <span>Hellenic Chamber of Shipping</span>
+                <span class="text-[10px]">&nearr;</span>
               </a>
             </div>
-            <div class="flex justify-between items-center py-2">
-              <span class="text-neutral-400 uppercase">Core Management Scope</span>
-              <span class="text-white font-bold">Dry Bulk &amp; General Cargo</span>
+
+            <!-- Row 6: Management Scope -->
+            <div class="py-3 sm:py-3.5 flex items-baseline justify-between gap-4 text-left">
+              <span class="text-[11px] sm:text-xs font-sans font-semibold tracking-[0.12em] text-neutral-400 uppercase">Management Scope</span>
+              <span class="text-xs sm:text-sm font-medium text-white text-right">Dry Bulk &amp; General Cargo</span>
             </div>
+
           </div>
         </div>
       </div>
