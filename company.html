@@ -266,16 +266,19 @@
         </div>
       </div>
 
-      <!-- Cargo Category Tabs -->
-      <div class="flex flex-wrap gap-3 border-b border-border-gold/20 pb-4">
-        <button type="button" data-cargo-category="agribulk" class="cargo-tab-btn px-5 py-3 text-xs font-mono font-bold uppercase tracking-wider bg-gold text-neutral-950 border border-gold shadow-lg cursor-pointer transition-all duration-200">
-          1. Agribulk Cargoes
+      <!-- Cargo Category Tabs (Single Row on Mobile, Full Width & Spaced on Desktop) -->
+      <div class="grid grid-cols-3 gap-1.5 min-[400px]:gap-2.5 lg:flex lg:flex-wrap lg:gap-3 border-b border-border-gold/20 pb-4">
+        <button type="button" data-cargo-category="agribulk" class="cargo-tab-btn px-1.5 py-2.5 min-[380px]:px-2.5 min-[380px]:py-3 lg:px-5 lg:py-3 text-[10px] min-[380px]:text-[11px] lg:text-xs font-mono font-bold uppercase tracking-tight min-[380px]:tracking-wider bg-gold text-neutral-950 border border-gold shadow-lg cursor-pointer transition-all duration-200 text-center flex items-center justify-center">
+          <span class="lg:hidden">1. Agribulk</span>
+          <span class="hidden lg:inline">1. Agribulk Cargoes</span>
         </button>
-        <button type="button" data-cargo-category="chemicals" class="cargo-tab-btn px-5 py-3 text-xs font-mono font-bold uppercase tracking-wider bg-white/5 text-neutral-400 border border-white/10 hover:border-gold hover:text-white cursor-pointer transition-all duration-200">
-          2. Solid Bulk Chemicals &amp; Fertilizers
+        <button type="button" data-cargo-category="chemicals" class="cargo-tab-btn px-1.5 py-2.5 min-[380px]:px-2.5 min-[380px]:py-3 lg:px-5 lg:py-3 text-[10px] min-[380px]:text-[11px] lg:text-xs font-mono font-bold uppercase tracking-tight min-[380px]:tracking-wider bg-white/5 text-neutral-400 border border-white/10 hover:border-gold hover:text-white cursor-pointer transition-all duration-200 text-center flex items-center justify-center">
+          <span class="lg:hidden">2. Chemicals</span>
+          <span class="hidden lg:inline">2. Solid Bulk Chemicals &amp; Fertilizers</span>
         </button>
-        <button type="button" data-cargo-category="metals" class="cargo-tab-btn px-5 py-3 text-xs font-mono font-bold uppercase tracking-wider bg-white/5 text-neutral-400 border border-white/10 hover:border-gold hover:text-white cursor-pointer transition-all duration-200">
-          3. Metallic &amp; Mineral Cargoes
+        <button type="button" data-cargo-category="metals" class="cargo-tab-btn px-1.5 py-2.5 min-[380px]:px-2.5 min-[380px]:py-3 lg:px-5 lg:py-3 text-[10px] min-[380px]:text-[11px] lg:text-xs font-mono font-bold uppercase tracking-tight min-[380px]:tracking-wider bg-white/5 text-neutral-400 border border-white/10 hover:border-gold hover:text-white cursor-pointer transition-all duration-200 text-center flex items-center justify-center">
+          <span class="lg:hidden">3. Minerals</span>
+          <span class="hidden lg:inline">3. Metallic &amp; Mineral Cargoes</span>
         </button>
       </div>
 
