@@ -345,30 +345,30 @@
             </div>
           </div>
 
-          <form id="contact-page-form" class="space-y-8 sm:space-y-10">
+          <form id="contact-page-form" class="flex flex-col gap-7 sm:gap-9">
             
             <!-- Row 1: Name & Company -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
-              <div class="flex flex-col gap-2">
-                <label for="c-name" class="text-[11px] sm:text-xs font-mono uppercase tracking-[0.16em] text-neutral-300 font-bold block mb-1">Your Name</label>
+              <div class="flex flex-col gap-1.5">
+                <label for="c-name" class="text-[11px] sm:text-xs font-mono uppercase tracking-[0.16em] text-neutral-300 font-bold block">Your Name</label>
                 <input type="text" id="c-name" required placeholder="Captain Marcus Vance" class="contact-field font-sans">
               </div>
 
-              <div class="flex flex-col gap-2">
-                <label for="c-company" class="text-[11px] sm:text-xs font-mono uppercase tracking-[0.16em] text-neutral-300 font-bold block mb-1">Company / Organization</label>
+              <div class="flex flex-col gap-1.5">
+                <label for="c-company" class="text-[11px] sm:text-xs font-mono uppercase tracking-[0.16em] text-neutral-300 font-bold block">Company / Organization</label>
                 <input type="text" id="c-company" required placeholder="Navis Maritime / Charterer" class="contact-field font-sans">
               </div>
             </div>
 
-            <!-- Row 2: Email & Department -->
+            <!-- Row 2: Email & Department (Generous top gap from Row 1) -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
-              <div class="flex flex-col gap-2">
-                <label for="c-email" class="text-[11px] sm:text-xs font-mono uppercase tracking-[0.16em] text-neutral-300 font-bold block mb-1">Email Address</label>
+              <div class="flex flex-col gap-1.5">
+                <label for="c-email" class="text-[11px] sm:text-xs font-mono uppercase tracking-[0.16em] text-neutral-300 font-bold block">Email Address</label>
                 <input type="email" id="c-email" required placeholder="m.vance@company.com" class="contact-field font-mono">
               </div>
 
-              <div class="flex flex-col gap-2">
-                <label for="c-department" class="text-[11px] sm:text-xs font-mono uppercase tracking-[0.16em] text-neutral-300 font-bold block mb-1">Target Department</label>
+              <div class="flex flex-col gap-1.5">
+                <label for="c-department" class="text-[11px] sm:text-xs font-mono uppercase tracking-[0.16em] text-neutral-300 font-bold block">Target Department</label>
                 <select id="c-department" class="contact-field font-mono cursor-pointer">
                   <option value="Executive & Ship Management">Executive &amp; Ship Management</option>
                   <option value="Chartering & Commercial">Chartering &amp; Commercial</option>
@@ -381,14 +381,14 @@
               </div>
             </div>
 
-            <!-- Row 3: Message -->
-            <div class="flex flex-col gap-2">
-              <label for="c-message" class="text-[11px] sm:text-xs font-mono uppercase tracking-[0.16em] text-neutral-300 font-bold block mb-1">Inquiry Details</label>
+            <!-- Row 3: Message (Generous top gap from Row 2) -->
+            <div class="flex flex-col gap-1.5">
+              <label for="c-message" class="text-[11px] sm:text-xs font-mono uppercase tracking-[0.16em] text-neutral-300 font-bold block">Inquiry Details</label>
               <textarea id="c-message" required rows="4" placeholder="Please outline your technical/commercial vessel requirements, ship management inquiries, or operational matter..." class="contact-field font-sans resize-none"></textarea>
             </div>
 
             <!-- Submit Button -->
-            <div class="pt-4 sm:pt-6">
+            <div class="pt-2 sm:pt-4">
               <button id="contact-submit-btn" type="submit" class="btn-contact-submit inline-flex items-center justify-center gap-3 w-full group">
                 <span>Send Message to Management</span>
                 <svg class="w-4 h-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
