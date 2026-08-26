@@ -719,7 +719,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     pdfDownloadHero.setAttribute('download', `${vessel.name.replace(/\s+/g, '_')}_GA_Plan.pdf`);
   }
 
-  ['btn-open-pdf-hero', 'btn-tab-pdf-trigger', 'btn-view-ga-plan-tab'].forEach(id => {
+  ['btn-open-pdf-hero', 'btn-open-pdf-hero-desktop', 'btn-tab-pdf-trigger', 'btn-view-ga-plan-tab'].forEach(id => {
     const el = document.getElementById(id);
     if (el) {
       el.setAttribute('data-pdf', vessel.pdfGaPlanUrl);
@@ -1134,6 +1134,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   initPdfModal();
 
   document.getElementById('btn-open-pdf-hero')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    openPdfModal(vessel.pdfGaPlanUrl, `${vessel.name} — General Arrangement Plan`, 'Official Technical Blueprint • Danamira Managed Fleet', `${vessel.name.replace(/\s+/g, '_')}_GA_Plan.pdf`);
+  });
+
+  document.getElementById('btn-open-pdf-hero-desktop')?.addEventListener('click', (e) => {
     e.preventDefault();
     openPdfModal(vessel.pdfGaPlanUrl, `${vessel.name} — General Arrangement Plan`, 'Official Technical Blueprint • Danamira Managed Fleet', `${vessel.name.replace(/\s+/g, '_')}_GA_Plan.pdf`);
   });
