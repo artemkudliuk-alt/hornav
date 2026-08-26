@@ -678,7 +678,7 @@
     </section>
 
     <!-- SECTION 03 — CARGO SPECIALIZATION -->
-    <section id="cargo" class="relative min-h-[100dvh] flex flex-col justify-center px-8 lg:px-16 pt-20 pb-24 lg:pt-28 lg:pb-44 lg:pb-60 border-b border-border-gold overflow-hidden bg-bg-primary premium-gradient-flow">
+    <section id="cargo" class="relative min-h-[100dvh] flex flex-col justify-center px-4 sm:px-8 lg:px-16 pt-24 sm:pt-28 pb-20 sm:pb-24 lg:pb-44 border-b border-border-gold overflow-hidden bg-bg-primary premium-gradient-flow">
       
 
 
@@ -715,16 +715,18 @@
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4 border-t border-border-gold/30 pt-6 mt-1" id="cargo-metrics">
             
             <!-- Metric 1: Vessel Types -->
-            <div class="metric-item flex flex-col items-center text-center gap-2" id="cargo-metric-vessels">
+            <div class="metric-item flex flex-col items-center text-center gap-2" id="cargo-metric-types">
               <div class="value-icon-container shrink-0 w-12 h-12 flex items-center justify-center">
                 <div class="value-icon-glow"></div>
                 <svg class="w-10 h-10 text-gold value-icon" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M2 17l1.5-3.5h17L22 17v3H2v-3zM4 13.5L5.5 8h13l1.5 5.5M8 8V5h3v3M13 8V4h3v4" />
+                  <path d="M3 18l2-9h14l2 9H3z" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M12 9V4M8 6h8" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M4 18c1.5 1.5 3.5 1.5 5 0 1.5 1.5 3.5 1.5 5 0 1.5 1.5 3.5 1.5 5 0" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
               </div>
               <div>
-                <span class="block text-xs font-bold tracking-wider text-gold uppercase mb-1" id="m-title-vessels">Vessel Types</span>
-                <span class="block text-xs sm:text-sm text-neutral-400 font-light leading-snug" id="m-desc-vessels">Bulk Carrier<br>General Cargo</span>
+                <span class="block text-xs font-bold tracking-wider text-gold uppercase mb-1" id="m-title-types">Vessel Types</span>
+                <span class="block text-xs sm:text-sm text-neutral-400 font-light leading-snug" id="m-desc-types">Bulk Carriers<br>General Cargo</span>
               </div>
             </div>
 
@@ -768,7 +770,7 @@
                 <div class="value-icon-glow"></div>
                 <svg class="w-10 h-10 text-gold value-icon" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" />
                 </svg>
               </div>
               <div>
@@ -792,73 +794,78 @@
           <div class="flex flex-col gap-5" id="cargo-cards-list" data-stagger-group>
             
             <!-- Card 01 — Agribulk Cargo -->
-            <div class="sloped-card relative py-5 pl-14 sm:pl-24 lg:pl-20 pr-4 sm:pr-8 lg:pr-6 rounded group flex flex-col justify-center" id="c-card-agribulk">
+            <div class="sloped-card relative p-4 sm:py-6 sm:pl-24 sm:pr-8 lg:pl-20 lg:pr-6 rounded group flex flex-col justify-center" id="c-card-agribulk">
               <!-- SVG Background and Border Overlay -->
               <svg class="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 100 100" preserveAspectRatio="none">
                 <polygon points="6,0.5 99.5,0.5 99.5,99.5 0.5,99.5" class="card-bg-polygon" />
                 <polygon points="6,0.5 99.5,0.5 99.5,99.5 0.5,99.5" fill="none" stroke="rgba(200, 155, 60, 0.2)" stroke-width="1" vector-effect="non-scaling-stroke" class="card-border-polygon" />
               </svg>
               <!-- Faint background number -->
-              <div class="absolute right-8 top-4 text-7xl sm:text-[6rem] font-bold text-white/5 font-serif select-none pointer-events-none leading-none z-0">01</div>
+              <div class="absolute right-4 sm:right-8 top-2 sm:top-4 text-5xl sm:text-7xl font-bold text-white/[0.04] font-serif select-none pointer-events-none leading-none z-0">01</div>
               
-              <!-- Circular Badge overlapping border -->
-              <div class="cargo-badge-container absolute left-[-16px] sm:left-[-24px] top-1/2 -translate-y-1/2 w-14 h-14 sm:w-20 sm:h-20 shrink-0 z-20" id="c-badge-agribulk">
+              <!-- Circular Badge (Desktop: Overlapping Left; Mobile: Integrated Header) -->
+              <div class="cargo-badge-container hidden sm:flex absolute left-[-24px] top-1/2 -translate-y-1/2 w-20 h-20 shrink-0 z-20" id="c-badge-agribulk">
                 <div class="value-icon-glow"></div>
                 <!-- Detailed Wheat SVG Icon -->
-                <svg class="w-7 h-7 sm:w-10 sm:h-10 text-gold value-icon" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                <svg class="w-10 h-10 text-gold value-icon" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
                   <path d="M5 19c4.5-1.5 9-4.5 12-9M7 14c-1.5-2.5.5-5 2-4.5 1 2-1 4-2 4.5zm4-3.5c-1.5-2.5.5-5 2-4.5 1 2-1 4-2 4.5zm4.5-4c-1.5-2.5.5-5 2-4.5 1 2-1 4-2 4.5zm-5 7.5c2.5-1.5 5 .5 4.5 2-2 1-4-1-4.5-2zm4-3.5c2.5-1.5 5 .5 4.5 2-2 1-4-1-4.5-2zm4-3.5c2.5-1.5 5 .5 4.5 2-2 1-4-1-4.5-2z" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
               
               <!-- Content Wrapper -->
               <div class="w-full flex flex-col gap-3 relative z-10 text-left" id="card-content-agribulk">
-                <div>
-                  <h3 class="text-lg sm:text-xl font-medium tracking-widest text-gold font-serif uppercase" id="c-card-title-agribulk">Agribulk Cargo</h3>
+                <!-- Mobile Header with Icon -->
+                <div class="flex sm:hidden items-center gap-3">
+                  <div class="w-10 h-10 rounded-full border border-gold/40 bg-[#161618] flex items-center justify-center shrink-0 shadow-md">
+                    <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" stroke-width="1.3" viewBox="0 0 24 24">
+                      <path d="M5 19c4.5-1.5 9-4.5 12-9M7 14c-1.5-2.5.5-5 2-4.5 1 2-1 4-2 4.5zm4-3.5c-1.5-2.5.5-5 2-4.5 1 2-1 4-2 4.5zm4.5-4c-1.5-2.5.5-5 2-4.5 1 2-1 4-2 4.5zm-5 7.5c2.5-1.5 5 .5 4.5 2-2 1-4-1-4.5-2zm4-3.5c2.5-1.5 5 .5 4.5 2-2 1-4-1-4.5-2zm4-3.5c2.5-1.5 5 .5 4.5 2-2 1-4-1-4.5-2z" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-base font-medium tracking-wider text-gold font-serif uppercase">Agribulk Cargo</h3>
+                    <div class="h-[1px] w-10 bg-gold/50 mt-0.5"></div>
+                  </div>
+                </div>
+
+                <!-- Desktop Title -->
+                <div class="hidden sm:block">
+                  <h3 class="text-xl font-medium tracking-widest text-gold font-serif uppercase" id="c-card-title-agribulk">Agribulk Cargo</h3>
                   <div class="h-[1px] w-12 bg-gold/50 mt-1" id="c-card-line-agribulk"></div>
                 </div>
                 
-                <!-- 3-Column Cargo Items List -->
-                <div class="grid grid-cols-3 gap-x-4 sm:gap-x-8 gap-y-1 sm:gap-y-1.5" id="card-list-agribulk">
-                  <!-- Col 1 -->
-                  <ul class="flex flex-col gap-1 sm:gap-1.5 lg:gap-0.5">
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Wheat</li>
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Grain</li>
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Corn</li>
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Barley</li>
-                  </ul>
-                  <!-- Col 2 -->
-                  <ul class="flex flex-col gap-1 sm:gap-1.5 lg:gap-0.5">
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Oats</li>
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Rice</li>
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Soybeans</li>
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Sunflower</li>
-                  </ul>
-                  <!-- Col 3 -->
-                  <ul class="flex flex-col gap-1 sm:gap-1.5 lg:gap-0.5">
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Rapeseed</li>
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Soy Meal</li>
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Pellets</li>
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Distillers</li>
-                  </ul>
-                </div>
+                <!-- Responsive Cargo Items List -->
+                <ul class="grid grid-cols-2 sm:grid-cols-3 gap-x-4 sm:gap-x-8 gap-y-2 sm:gap-y-1.5 text-left w-full" id="card-list-agribulk">
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Wheat</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Grain</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Corn</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Barley</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Oats</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Rice</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Soybeans</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Sunflower</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Rapeseed</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Soy Meal</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Pellets</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Distillers</span></li>
+                </ul>
               </div>
             </div>
 
             <!-- Card 02 — Solid Bulk Chemicals & Fertilizers -->
-            <div class="sloped-card relative py-5 pl-14 sm:pl-24 lg:pl-20 pr-4 sm:pr-8 lg:pr-6 rounded group flex flex-col justify-center" id="c-card-chemicals">
+            <div class="sloped-card relative p-4 sm:py-6 sm:pl-24 sm:pr-8 lg:pl-20 lg:pr-6 rounded group flex flex-col justify-center" id="c-card-chemicals">
               <!-- SVG Background and Border Overlay -->
               <svg class="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 100 100" preserveAspectRatio="none">
                 <polygon points="6,0.5 99.5,0.5 99.5,99.5 0.5,99.5" class="card-bg-polygon" />
                 <polygon points="6,0.5 99.5,0.5 99.5,99.5 0.5,99.5" fill="none" stroke="rgba(200, 155, 60, 0.2)" stroke-width="1" vector-effect="non-scaling-stroke" class="card-border-polygon" />
               </svg>
               <!-- Faint background number -->
-              <div class="absolute right-8 top-4 text-7xl sm:text-[6rem] font-bold text-white/5 font-serif select-none pointer-events-none leading-none z-0">02</div>
+              <div class="absolute right-4 sm:right-8 top-2 sm:top-4 text-5xl sm:text-7xl font-bold text-white/[0.04] font-serif select-none pointer-events-none leading-none z-0">02</div>
               
-              <!-- Circular Badge overlapping border -->
-              <div class="cargo-badge-container absolute left-[-16px] sm:left-[-24px] top-1/2 -translate-y-1/2 w-14 h-14 sm:w-20 sm:h-20 shrink-0 z-20" id="c-badge-chemicals">
+              <!-- Circular Badge (Desktop: Overlapping Left; Mobile: Integrated Header) -->
+              <div class="cargo-badge-container hidden sm:flex absolute left-[-24px] top-1/2 -translate-y-1/2 w-20 h-20 shrink-0 z-20" id="c-badge-chemicals">
                 <div class="value-icon-glow"></div>
                 <!-- Detailed Beaker SVG Icon -->
-                <svg class="w-7 h-7 sm:w-10 sm:h-10 text-gold value-icon" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                <svg class="w-10 h-10 text-gold value-icon" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
                   <path d="M9 3h6M10 3v6.5L5.5 18c-.8 1.5.3 3.5 2 3.5h9c1.7 0 2.8-2 2-3.5L14 9.5V3" stroke-linecap="round" stroke-linejoin="round" />
                   <path d="M7.2 15h9.6" stroke-linecap="round" />
                   <circle cx="10" cy="18" r="0.5" fill="currentColor" />
@@ -869,53 +876,59 @@
               
               <!-- Content Wrapper -->
               <div class="w-full flex flex-col gap-3 relative z-10 text-left" id="card-content-chemicals">
-                <div>
-                  <h3 class="text-lg sm:text-xl font-medium tracking-widest text-gold font-serif uppercase" id="c-card-title-chemicals">Solid Bulk Chemicals & Fertilizers</h3>
+                <!-- Mobile Header with Icon -->
+                <div class="flex sm:hidden items-center gap-3">
+                  <div class="w-10 h-10 rounded-full border border-gold/40 bg-[#161618] flex items-center justify-center shrink-0 shadow-md">
+                    <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" stroke-width="1.3" viewBox="0 0 24 24">
+                      <path d="M9 3h6M10 3v6.5L5.5 18c-.8 1.5.3 3.5 2 3.5h9c1.7 0 2.8-2 2-3.5L14 9.5V3" stroke-linecap="round" stroke-linejoin="round" />
+                      <path d="M7.2 15h9.6" stroke-linecap="round" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-sm min-[380px]:text-base font-medium tracking-wider text-gold font-serif uppercase">Bulk Chemicals &amp; Fertilizers</h3>
+                    <div class="h-[1px] w-10 bg-gold/50 mt-0.5"></div>
+                  </div>
+                </div>
+
+                <!-- Desktop Title -->
+                <div class="hidden sm:block">
+                  <h3 class="text-xl font-medium tracking-widest text-gold font-serif uppercase" id="c-card-title-chemicals">Solid Bulk Chemicals &amp; Fertilizers</h3>
                   <div class="h-[1px] w-12 bg-gold/50 mt-1" id="c-card-line-chemicals"></div>
                 </div>
                 
-                <!-- 3-Column Cargo Items List -->
-                <div class="grid grid-cols-3 gap-x-4 sm:gap-x-8 gap-y-1 sm:gap-y-1.5" id="card-list-chemicals">
-                  <!-- Col 1 -->
-                  <ul class="flex flex-col gap-1 sm:gap-1.5 lg:gap-0.5">
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Urea</li>
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Compound NPK</li>
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Amm. Sulphate</li>
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Phosphates</li>
-                  </ul>
-                  <!-- Col 2 -->
-                  <ul class="flex flex-col gap-1 sm:gap-1.5 lg:gap-0.5">
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Potash</li>
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Sulfur</li>
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Silica Sand</li>
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Cement</li>
-                  </ul>
-                  <!-- Col 3 -->
-                  <ul class="flex flex-col gap-1 sm:gap-1.5 lg:gap-0.5">
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Gypsum</li>
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Salt</li>
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Clay</li>
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Limestone</li>
-                  </ul>
-                </div>
+                <!-- Responsive Cargo Items List -->
+                <ul class="grid grid-cols-2 sm:grid-cols-3 gap-x-4 sm:gap-x-8 gap-y-2 sm:gap-y-1.5 text-left w-full" id="card-list-chemicals">
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Urea</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Potash</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Compound NPK</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Sulfur</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Amm. Sulphate</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Silica Sand</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Phosphates</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Cement</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Gypsum</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Salt</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Clay</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Limestone</span></li>
+                </ul>
               </div>
             </div>
 
             <!-- Card 03 — Metallic & Mineral Cargoes -->
-            <div class="sloped-card relative py-5 pl-14 sm:pl-24 lg:pl-20 pr-4 sm:pr-8 lg:pr-6 rounded group flex flex-col justify-center" id="c-card-minerals">
+            <div class="sloped-card relative p-4 sm:py-6 sm:pl-24 sm:pr-8 lg:pl-20 lg:pr-6 rounded group flex flex-col justify-center" id="c-card-minerals">
               <!-- SVG Background and Border Overlay -->
               <svg class="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 100 100" preserveAspectRatio="none">
                 <polygon points="6,0.5 99.5,0.5 99.5,99.5 0.5,99.5" class="card-bg-polygon" />
                 <polygon points="6,0.5 99.5,0.5 99.5,99.5 0.5,99.5" fill="none" stroke="rgba(200, 155, 60, 0.2)" stroke-width="1" vector-effect="non-scaling-stroke" class="card-border-polygon" />
               </svg>
               <!-- Faint background number -->
-              <div class="absolute right-8 top-4 text-7xl sm:text-[6rem] font-bold text-white/5 font-serif select-none pointer-events-none leading-none z-0">03</div>
+              <div class="absolute right-4 sm:right-8 top-2 sm:top-4 text-5xl sm:text-7xl font-bold text-white/[0.04] font-serif select-none pointer-events-none leading-none z-0">03</div>
               
-              <!-- Circular Badge overlapping border -->
-              <div class="cargo-badge-container absolute left-[-16px] sm:left-[-24px] top-1/2 -translate-y-1/2 w-14 h-14 sm:w-20 sm:h-20 shrink-0 z-20" id="c-badge-minerals">
+              <!-- Circular Badge (Desktop: Overlapping Left; Mobile: Integrated Header) -->
+              <div class="cargo-badge-container hidden sm:flex absolute left-[-24px] top-1/2 -translate-y-1/2 w-20 h-20 shrink-0 z-20" id="c-badge-minerals">
                 <div class="value-icon-glow"></div>
                 <!-- Detailed Crystal SVG Icon -->
-                <svg class="w-7 h-7 sm:w-10 sm:h-10 text-gold value-icon" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                <svg class="w-10 h-10 text-gold value-icon" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
                   <path d="M6 3h12l4 6-10 12L2 9z" stroke-linecap="round" stroke-linejoin="round" />
                   <path d="M2 9h20M6 3l3 6 3-6 3 6 3-6M9 9l3 12 3-12" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
@@ -923,32 +936,38 @@
               
               <!-- Content Wrapper -->
               <div class="w-full flex flex-col gap-3 relative z-10 text-left" id="card-content-minerals">
-                <div>
-                  <h3 class="text-lg sm:text-xl font-medium tracking-widest text-gold font-serif uppercase" id="c-card-title-minerals">Metallic & Mineral Cargoes</h3>
+                <!-- Mobile Header with Icon -->
+                <div class="flex sm:hidden items-center gap-3">
+                  <div class="w-10 h-10 rounded-full border border-gold/40 bg-[#161618] flex items-center justify-center shrink-0 shadow-md">
+                    <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" stroke-width="1.3" viewBox="0 0 24 24">
+                      <path d="M6 3h12l4 6-10 12L2 9z" stroke-linecap="round" stroke-linejoin="round" />
+                      <path d="M2 9h20" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-sm min-[380px]:text-base font-medium tracking-wider text-gold font-serif uppercase">Metallic &amp; Mineral Cargoes</h3>
+                    <div class="h-[1px] w-10 bg-gold/50 mt-0.5"></div>
+                  </div>
+                </div>
+
+                <!-- Desktop Title -->
+                <div class="hidden sm:block">
+                  <h3 class="text-xl font-medium tracking-widest text-gold font-serif uppercase" id="c-card-title-minerals">Metallic &amp; Mineral Cargoes</h3>
                   <div class="h-[1px] w-12 bg-gold/50 mt-1" id="c-card-line-minerals"></div>
                 </div>
-                
-                <!-- 3-Column Cargo Items List -->
-                <div class="grid grid-cols-3 gap-x-4 sm:gap-x-8 gap-y-1 sm:gap-y-1.5" id="card-list-minerals">
-                  <!-- Col 1 -->
-                  <ul class="flex flex-col gap-1 sm:gap-1.5 lg:gap-0.5">
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Iron Ore</li>
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Steel Coils</li>
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Scrap Metal</li>
-                  </ul>
-                  <!-- Col 2 -->
-                  <ul class="flex flex-col gap-1 sm:gap-1.5 lg:gap-0.5">
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Pig Iron</li>
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Bauxite</li>
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Manganese</li>
-                  </ul>
-                  <!-- Col 3 -->
-                  <ul class="flex flex-col gap-1 sm:gap-1.5 lg:gap-0.5" id="min-col-3">
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Copper Conc</li>
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Zinc Conc</li>
-                    <li class="flex items-center gap-1.5 text-xs sm:text-sm lg:leading-normal text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>Nickel Ore</li>
-                  </ul>
-                </div>
+
+                <!-- Responsive Cargo Items List -->
+                <ul class="grid grid-cols-2 sm:grid-cols-3 gap-x-4 sm:gap-x-8 gap-y-2 sm:gap-y-1.5 text-left w-full" id="card-list-minerals">
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Iron Ore</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Pig Iron</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Copper Conc</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Steel Coils</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Bauxite</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Zinc Conc</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Scrap Metal</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Manganese</span></li>
+                  <li class="flex items-center gap-2 text-xs sm:text-xs lg:text-sm text-neutral-300 font-light"><span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span><span class="whitespace-nowrap">Nickel Ore</span></li>
+                </ul>
               </div>
             </div>
 

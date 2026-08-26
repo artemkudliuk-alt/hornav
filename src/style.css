@@ -330,22 +330,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .card-bg-polygon {
-  fill: rgba(52, 52, 50, 0.35);
+  fill: rgba(22, 22, 24, 0.75);
   transition: fill 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .sloped-card:hover .card-bg-polygon {
-  fill: rgba(52, 52, 50, 0.65);
+  fill: rgba(26, 26, 29, 0.95);
 }
 
 /* Cargo Card Badge Circle Container */
 .cargo-badge-container {
   border-radius: 9999px;
-  border: 1px solid rgba(200, 155, 60, 0.25);
-  background-color: rgba(62, 62, 62, 0.95);
-  display: flex;
+  border: 1px solid rgba(200, 155, 60, 0.35);
+  background-color: #161618;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
   transition: border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
