@@ -1028,57 +1028,61 @@ textarea:-webkit-autofill:focus {
 .contact-field {
   display: block !important;
   width: 100% !important;
-  background-color: #1a1a1c !important;
-  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  background-color: #141416 !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
   color: #ffffff !important;
-  padding: 0.875rem 1rem !important;
-  font-size: 0.8125rem !important;
+  padding: 0.875rem 1.125rem !important;
+  font-size: 0.875rem !important;
   border-radius: 0 !important;
   outline: none !important;
-  transition: border-color 0.25s, box-shadow 0.25s !important;
+  transition: border-color 0.25s, box-shadow 0.25s, background-color 0.25s !important;
 }
 
 .contact-field:focus {
   border-color: #c89b3c !important;
+  background-color: #18181c !important;
   box-shadow: 0 0 0 1px rgba(200, 155, 60, 0.35) !important;
 }
 
 .contact-field::placeholder {
-  color: #888888 !important;
+  color: #737373 !important;
 }
 
 .contact-field option {
-  background-color: #1a1a1c !important;
+  background-color: #141416 !important;
   color: #ffffff !important;
+  padding: 0.5rem !important;
 }
 
 .btn-contact-submit {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 0.5rem !important;
+  gap: 0.75rem !important;
   width: 100% !important;
-  padding: 1rem 2rem !important;
+  padding: 1.125rem 2rem !important;
   background: linear-gradient(135deg, #c89b3c 0%, #e6c36a 50%, #c89b3c 100%) !important;
-  color: #141416 !important;
-  font-size: 0.75rem !important;
+  color: #0b0b0d !important;
+  font-size: 0.8125rem !important;
   font-weight: 700 !important;
+  font-family: var(--font-sans), "Plus Jakarta Sans", sans-serif !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.2em !important;
+  letter-spacing: 0.18em !important;
   border: none !important;
   border-radius: 0 !important;
   cursor: pointer !important;
-  box-shadow: 0 4px 15px rgba(200, 155, 60, 0.25) !important;
-  transition: all 0.25s !important;
+  box-shadow: 0 4px 18px rgba(200, 155, 60, 0.28) !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .btn-contact-submit:hover {
-  filter: brightness(1.1) !important;
+  filter: brightness(1.08) !important;
+  box-shadow: 0 6px 24px rgba(200, 155, 60, 0.45) !important;
   transform: translateY(-1px) !important;
 }
 
 .btn-contact-submit:active {
-  transform: translateY(0) !important;
+  transform: translateY(0) scale(0.99) !important;
 }
 
 /* Compliance & Membership Logo Hover Gold Glow */
