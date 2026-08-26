@@ -1,4 +1,5 @@
-// src/mobile-menu.js - Universal Mobile Navigation Controller
+// src/mobile-menu.js - Universal Mobile Navigation & Scroll Transitions Controller
+
 export function initMobileMenu() {
   function setup() {
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -55,5 +56,87 @@ export function initMobileMenu() {
   }
 }
 
-// Auto-run on load
+// ── Universal Scroll Reveal & Swipe Transitions Engine (transitions-dev) ──
+export function initScrollTransitions() {
+  function setup() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('[data-reveal], [data-stagger-group]').forEach(el => {
+        el.classList.add('reveal-visible');
+      });
+      return;
+    }
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px 40px 0px',
+      threshold: 0.05
+    };
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const target = entry.target;
+          target.classList.add('reveal-visible');
+          
+          // Clean up will-change after transition
+          const onTransitionEnd = () => {
+            target.style.willChange = 'auto';
+            target.removeEventListener('transitionend', onTransitionEnd);
+          };
+          target.addEventListener('transitionend', onTransitionEnd, { once: true });
+          
+          observer.unobserve(target);
+        }
+      });
+    }, observerOptions);
+
+    function registerElements(root = document) {
+      const elements = root.querySelectorAll('[data-reveal], [data-stagger-group]');
+      const windowHeight = window.innerHeight;
+
+      elements.forEach(el => {
+        if (el.classList.contains('reveal-visible')) return;
+
+        const rect = el.getBoundingClientRect();
+        // Immediately reveal elements visible above the fold on initial load
+        if (rect.top < windowHeight * 0.95 && rect.bottom > 0) {
+          el.classList.add('reveal-visible');
+        } else {
+          el.style.willChange = 'transform, opacity, filter';
+          revealObserver.observe(el);
+        }
+      });
+    }
+
+    registerElements();
+
+    // Observe dynamically injected nodes (e.g. fleet cards, accordions)
+    const mutationObserver = new MutationObserver((mutations) => {
+      let shouldRegister = false;
+      mutations.forEach(mutation => {
+        if (mutation.addedNodes.length > 0) {
+          shouldRegister = true;
+        }
+      });
+      if (shouldRegister) {
+        registerElements();
+      }
+    });
+
+    mutationObserver.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setup);
+  } else {
+    setup();
+  }
+}
+
+// Auto-run on load across all 6 pages
 initMobileMenu();
+initScrollTransitions();
+

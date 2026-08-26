@@ -54,17 +54,133 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.01em;
 }
 
-/* Scroll Reveal (GPU Accelerated) */
-[data-reveal] {
+/* ── Transitions-Dev: Universal Motion Tokens & Scroll Reveal Engine ── */
+:root {
+  --t-dur-stagger: 60ms;
+  --t-dur-fast: 260ms;
+  --t-dur-medium: 380ms;
+  --t-dur-slow: 550ms;
+  --t-dur-very-slow: 750ms;
+  --t-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --t-ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --t-ease-in-out: ease-in-out;
+  --t-dist-sm: 14px;
+  --t-dist-md: 26px;
+  --t-dist-lg: 38px;
+  --t-blur-sm: 2px;
+  --t-blur-md: 4px;
+}
+
+/* 1. Default Upward Smooth Rise (data-reveal or data-reveal="up") */
+[data-reveal],
+[data-reveal="up"] {
   opacity: 0;
-  transform: translate3d(0, 40px, 0);
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate3d(0, var(--t-dist-md), 0);
+  filter: blur(var(--t-blur-sm));
+  transition: transform var(--t-dur-very-slow) var(--t-ease-out),
+              opacity var(--t-dur-very-slow) var(--t-ease-out),
+              filter var(--t-dur-very-slow) var(--t-ease-out);
   backface-visibility: hidden;
 }
 
-[data-reveal].reveal-visible {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
+/* 2. Slide from Left (data-reveal="left") */
+[data-reveal="left"] {
+  opacity: 0;
+  transform: translate3d(calc(-1 * var(--t-dist-lg)), 0, 0);
+  filter: blur(var(--t-blur-sm));
+  transition: transform var(--t-dur-very-slow) var(--t-ease-out),
+              opacity var(--t-dur-very-slow) var(--t-ease-out),
+              filter var(--t-dur-very-slow) var(--t-ease-out);
+  backface-visibility: hidden;
+}
+
+/* 3. Slide from Right (data-reveal="right") */
+[data-reveal="right"] {
+  opacity: 0;
+  transform: translate3d(var(--t-dist-lg), 0, 0);
+  filter: blur(var(--t-blur-sm));
+  transition: transform var(--t-dur-very-slow) var(--t-ease-out),
+              opacity var(--t-dur-very-slow) var(--t-ease-out),
+              filter var(--t-dur-very-slow) var(--t-ease-out);
+  backface-visibility: hidden;
+}
+
+/* 4. Luxury Scale & Micro-elevation (data-reveal="scale") */
+[data-reveal="scale"] {
+  opacity: 0;
+  transform: scale(0.95) translate3d(0, var(--t-dist-sm), 0);
+  filter: blur(var(--t-blur-md));
+  transition: transform var(--t-dur-very-slow) var(--t-ease-spring),
+              opacity var(--t-dur-very-slow) var(--t-ease-out),
+              filter var(--t-dur-very-slow) var(--t-ease-out);
+  backface-visibility: hidden;
+}
+
+/* 5. Soft Atmospheric Fade (data-reveal="fade") */
+[data-reveal="fade"] {
+  opacity: 0;
+  filter: blur(var(--t-blur-sm));
+  transition: opacity var(--t-dur-very-slow) var(--t-ease-out),
+              filter var(--t-dur-very-slow) var(--t-ease-out);
+  backface-visibility: hidden;
+}
+
+/* Universal Reveal Visible Trigger */
+[data-reveal].reveal-visible,
+[data-reveal="up"].reveal-visible,
+[data-reveal="left"].reveal-visible,
+[data-reveal="right"].reveal-visible,
+[data-reveal="scale"].reveal-visible,
+[data-reveal="fade"].reveal-visible {
+  opacity: 1 !important;
+  transform: translate3d(0, 0, 0) scale(1) !important;
+  filter: blur(0px) !important;
+}
+
+/* 6. Cascading Staggered Grid/List (data-stagger-group) */
+[data-stagger-group] > * {
+  opacity: 0;
+  transform: translate3d(0, var(--t-dist-md), 0);
+  filter: blur(var(--t-blur-sm));
+  transition: transform var(--t-dur-slow) var(--t-ease-out),
+              opacity var(--t-dur-slow) var(--t-ease-out),
+              filter var(--t-dur-slow) var(--t-ease-out);
+  backface-visibility: hidden;
+}
+
+[data-stagger-group].reveal-visible > * {
+  opacity: 1 !important;
+  transform: translate3d(0, 0, 0) scale(1) !important;
+  filter: blur(0px) !important;
+}
+
+[data-stagger-group].reveal-visible > *:nth-child(1) { transition-delay: 0ms; }
+[data-stagger-group].reveal-visible > *:nth-child(2) { transition-delay: 60ms; }
+[data-stagger-group].reveal-visible > *:nth-child(3) { transition-delay: 120ms; }
+[data-stagger-group].reveal-visible > *:nth-child(4) { transition-delay: 180ms; }
+[data-stagger-group].reveal-visible > *:nth-child(5) { transition-delay: 240ms; }
+[data-stagger-group].reveal-visible > *:nth-child(6) { transition-delay: 300ms; }
+[data-stagger-group].reveal-visible > *:nth-child(7) { transition-delay: 360ms; }
+[data-stagger-group].reveal-visible > *:nth-child(8) { transition-delay: 420ms; }
+[data-stagger-group].reveal-visible > *:nth-child(9) { transition-delay: 480ms; }
+[data-stagger-group].reveal-visible > *:nth-child(10) { transition-delay: 540ms; }
+[data-stagger-group].reveal-visible > *:nth-child(11) { transition-delay: 600ms; }
+[data-stagger-group].reveal-visible > *:nth-child(12) { transition-delay: 660ms; }
+
+/* Accessibility Guard for Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  [data-reveal="up"],
+  [data-reveal="left"],
+  [data-reveal="right"],
+  [data-reveal="scale"],
+  [data-reveal="fade"],
+  [data-stagger-group] > * {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
 }
 
 /* Magnetic Hover Effect (GPU Accelerated) */
