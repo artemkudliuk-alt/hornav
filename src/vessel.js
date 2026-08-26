@@ -10,14 +10,23 @@ vesselLayoutStyles.textContent = `
   .vessel-stage-box {
     position: relative !important;
     width: 100% !important;
-    height: 380px !important;
-    min-height: 380px !important;
+    height: 360px !important;
+    min-height: 360px !important;
     max-height: 480px !important;
     overflow: hidden !important;
     border-radius: 0 !important;
     background-color: #111113 !important;
     border: 1px solid rgba(255, 255, 255, 0.12) !important;
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5) !important;
+  }
+  @media (max-width: 639px) {
+    .vessel-stage-box {
+      width: calc(100% + 2rem) !important;
+      margin-left: -1rem !important;
+      margin-right: -1rem !important;
+      border-left: none !important;
+      border-right: none !important;
+    }
   }
   #gallery-stage-img {
     width: 100% !important;
@@ -28,6 +37,9 @@ vesselLayoutStyles.textContent = `
   }
   @media (min-width: 640px) {
     .vessel-stage-box {
+      width: 100% !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
       height: 440px !important;
       min-height: 440px !important;
     }
@@ -71,7 +83,6 @@ vesselLayoutStyles.textContent = `
     background-color: #17171a !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     border-radius: 0 !important;
-  }
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5) !important;
   }
   .vessel-avatar-circle {
