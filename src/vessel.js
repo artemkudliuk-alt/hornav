@@ -221,43 +221,42 @@ vesselLayoutStyles.textContent = `
   .vessel-kpi-box {
     display: flex !important;
     flex-direction: column !important;
-    justify-content: space-between !important;
-    padding: 1rem !important;
-    background-color: #141416 !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    justify-content: flex-start !important;
+    padding: 0.25rem 0 !important;
+    background-color: transparent !important;
+    border: none !important;
     border-radius: 0 !important;
     box-sizing: border-box !important;
-    transition: all 0.25s ease !important;
+    transition: all 0.2s ease !important;
     position: relative !important;
-    min-height: 110px !important;
+    min-height: auto !important;
   }
   @media (min-width: 640px) {
     .vessel-kpi-box {
-      padding: 1.125rem 1.25rem !important;
-      min-height: 120px !important;
+      padding: 0.5rem 0 !important;
+      min-height: auto !important;
     }
   }
   .vessel-kpi-box:hover {
-    border-color: rgba(200, 155, 60, 0.4) !important;
-    background-color: #17171a !important;
+    background-color: transparent !important;
   }
   .vessel-kpi-icon-box {
-    width: 2.25rem !important;
-    height: 2.25rem !important;
-    background-color: rgba(200, 155, 60, 0.1) !important;
-    border: 1px solid rgba(200, 155, 60, 0.3) !important;
+    width: auto !important;
+    height: auto !important;
+    background-color: transparent !important;
+    border: none !important;
     display: flex !important;
     align-items: center !important;
-    justify-content: center !important;
+    justify-content: flex-start !important;
     color: #c89b3c !important;
-    margin-bottom: 0.75rem !important;
+    margin-bottom: 0.5rem !important;
     flex-shrink: 0 !important;
-    transition: all 0.25s ease !important;
+    transition: all 0.2s ease !important;
   }
   .vessel-kpi-box:hover .vessel-kpi-icon-box {
-    background-color: rgba(200, 155, 60, 0.2) !important;
-    border-color: rgba(200, 155, 60, 0.5) !important;
-    transform: scale(1.05) !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    transform: scale(1.08) !important;
   }
   .vessel-kpi-content {
     display: flex !important;
@@ -620,22 +619,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     ];
 
     structuredContainer.innerHTML = `
-      <div class="border border-white/[0.08] bg-black/40 divide-y divide-white/[0.06] shadow-xl overflow-hidden" id="vessel-accordion-root">
+      <div class="space-y-0 divide-y divide-white/[0.08]" id="vessel-accordion-root">
         ${sectionsConfig.map(sec => {
           if (sec.isStatic) {
             return `
-              <div class="vessel-static-item overflow-hidden">
-                <div class="p-3.5 sm:p-4 bg-white/[0.02] flex items-center justify-between border-b border-white/[0.06]">
-                  <h3 class="text-xs sm:text-sm font-sans font-medium tracking-wider uppercase text-neutral-300">
+              <div class="vessel-static-item pb-4 text-left">
+                <div class="py-2.5 sm:py-3 flex items-center justify-between">
+                  <h3 class="text-xs sm:text-sm font-sans font-bold tracking-[0.12em] uppercase text-neutral-200">
                     ${sec.title}
                   </h3>
                 </div>
-                <div class="px-3.5 sm:px-4 pb-3.5 pt-1 bg-black/20">
-                  <div class="space-y-0.5">
+                <div class="pt-1">
+                  <div class="space-y-2">
                     ${(sec.data || []).map(item => `
-                      <div class="flex items-baseline justify-between py-1.5 border-b border-white/[0.04] text-xs sm:text-sm gap-3">
+                      <div class="flex items-baseline justify-between text-xs sm:text-sm gap-3">
                         <span class="text-neutral-400 font-sans text-xs sm:text-sm font-normal">${item.label}</span>
-                        <span class="text-neutral-100 font-sans text-xs sm:text-sm font-normal text-right tabular-nums">${item.value}</span>
+                        <span class="text-neutral-200 font-sans text-xs sm:text-sm font-normal text-right tabular-nums">${item.value}</span>
                       </div>
                     `).join('')}
                   </div>
@@ -645,9 +644,9 @@ document.addEventListener('DOMContentLoaded', async () => {
           }
 
           return `
-            <div class="vessel-accordion-item overflow-hidden transition-all duration-200 group">
-              <button type="button" class="vessel-accordion-trigger w-full p-3.5 sm:p-4 flex items-center justify-between gap-4 text-left cursor-pointer hover:bg-white/[0.03] transition-colors active:scale-[0.99]" data-accordion-id="${sec.id}" aria-expanded="${sec.defaultOpen ? 'true' : 'false'}">
-                <h3 class="text-xs sm:text-sm font-sans font-medium tracking-wider uppercase text-neutral-300 group-hover:text-gold transition-colors">
+            <div class="vessel-accordion-item transition-all duration-200 group text-left">
+              <button type="button" class="vessel-accordion-trigger w-full py-3.5 sm:py-4 flex items-center justify-between gap-4 text-left cursor-pointer hover:text-gold transition-colors active:scale-[0.99]" data-accordion-id="${sec.id}" aria-expanded="${sec.defaultOpen ? 'true' : 'false'}">
+                <h3 class="text-xs sm:text-sm font-sans font-medium tracking-[0.08em] uppercase text-neutral-300 group-hover:text-gold transition-colors">
                   ${sec.title}
                 </h3>
                 <div class="flex items-center shrink-0">
@@ -656,12 +655,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                   </svg>
                 </div>
               </button>
-              <div class="vessel-accordion-content ${sec.defaultOpen ? 'block' : 'hidden'} px-3.5 sm:px-4 pb-3.5 pt-1 bg-black/20 border-t border-white/[0.06]">
-                <div class="space-y-0.5">
+              <div class="vessel-accordion-content ${sec.defaultOpen ? 'block' : 'hidden'} pb-4 pt-1">
+                <div class="space-y-2">
                   ${(sec.data || []).map(item => `
-                    <div class="flex items-baseline justify-between py-1.5 border-b border-white/[0.04] text-xs sm:text-sm gap-3">
+                    <div class="flex items-baseline justify-between text-xs sm:text-sm gap-3">
                       <span class="text-neutral-400 font-sans text-xs sm:text-sm font-normal">${item.label}</span>
-                      <span class="text-neutral-100 font-sans text-xs sm:text-sm font-normal text-right tabular-nums">${item.value}</span>
+                      <span class="text-neutral-200 font-sans text-xs sm:text-sm font-normal text-right tabular-nums">${item.value}</span>
                     </div>
                   `).join('')}
                 </div>

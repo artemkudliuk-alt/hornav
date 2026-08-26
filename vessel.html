@@ -162,11 +162,11 @@
         </div>
       </div>
 
-      <!-- 2. MAIN 2-COLUMN COCKPIT GRID -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+      <!-- 2. MAIN 2-COLUMN COCKPIT GRID (Central Dividing Line) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-0 items-start">
         
         <!-- LEFT COLUMN: PHOTO GALLERY + 4 KPIS -->
-        <div class="lg:col-span-7 xl:col-span-7 space-y-6" id="vessel-main-left">
+        <div class="lg:col-span-7 xl:col-span-7 space-y-6 lg:pr-8 xl:pr-10 lg:border-r lg:border-white/[0.08]" id="vessel-main-left">
           
           <!-- PHOTO GALLERY -->
           <div class="space-y-4">
@@ -202,9 +202,9 @@
             <div id="gallery-thumbnails" class="grid grid-cols-5 gap-2.5 sm:gap-3.5 w-full"></div>
           </div>
 
-          <!-- 4 KEY METRICS (TELEMETRY STRIP) -->
-          <div class="bg-black/30 border border-white/[0.08] p-4 sm:p-5">
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4" data-stagger-group>
+          <!-- 4 KEY METRICS (CALM TELEMETRY ROW, ZERO EXTRA BOXES/BORDERS) -->
+          <div class="pt-2">
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6" data-stagger-group>
               
               <!-- Metric 1: Deadweight -->
               <div class="vessel-kpi-box group">
@@ -274,9 +274,9 @@
 
         </div>
 
-        <!-- RIGHT COLUMN: ACCORDION SPECIFICATIONS (Single Seamless List) -->
-        <div class="lg:col-span-5 xl:col-span-5" id="vessel-structured-specs-container">
-          <!-- Populated dynamically as unified console by vessel.js -->
+        <!-- RIGHT COLUMN: SPECIFICATIONS (Clean Editorial Minimal Accordion) -->
+        <div class="lg:col-span-5 xl:col-span-5 lg:pl-8 xl:pl-10" id="vessel-structured-specs-container">
+          <!-- Populated dynamically as unified editorial accordion by vessel.js -->
         </div>
 
       </div>
