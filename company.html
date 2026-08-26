@@ -454,61 +454,99 @@
   </main>
 
   <!-- CORPORATE LUXURY FOOTER (Unified Across All Pages) -->
-  <footer class="max-w-[1520px] mx-auto w-full mt-20 pt-16 pb-12 border-t border-white/10 relative overflow-hidden rounded-none min-h-[380px] flex flex-col justify-between" id="footer-container">
+  <footer class="max-w-[1520px] mx-auto w-full mt-20 pt-16 pb-12 border-t border-white/10 relative z-30 bg-[#111113] overflow-hidden rounded-none min-h-[380px] flex flex-col justify-between" id="footer-container">
     
+    <!-- Background Video of the Vessel (Aligned Right, Smoothly Faded to Dark on Left) -->
     <div class="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden" id="footer-bg-media">
-      <video class="absolute right-0 top-0 w-full h-full object-cover opacity-60 will-change-transform" 
+      <video class="absolute right-0 top-0 w-full h-full object-cover opacity-50 will-change-transform" 
              style="object-position: right center;"
-             src="/Banner_screen.mp4" 
+             src="/1_screen.mp4" 
              autoplay 
              muted 
              loop 
              playsinline 
-             id="footer-video">
+             id="footer-bg-video">
       </video>
-      <div class="absolute inset-0 bg-gradient-to-r from-bg-primary via-bg-primary/90 to-transparent z-10"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-bg-primary via-transparent to-transparent z-10"></div>
+      <!-- Gradient fades for high contrast readability -->
+      <div class="absolute inset-0 bg-gradient-to-r from-[#111113] via-[#111113]/95 via-[#111113]/70 to-transparent z-10"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-[#111113]/50 via-transparent to-[#111113] z-10"></div>
     </div>
 
-    <div class="relative z-20 px-8 lg:px-16 flex flex-col lg:flex-row justify-between gap-12" id="footer-content">
-      <div class="flex flex-col gap-6 max-w-md" id="footer-brand">
-        <div class="flex items-center gap-3" id="footer-logo">
-          <img src="/Danamira_logo_gold.png" alt="Danamira Shipping Ltd Emblem" class="h-12 w-auto" />
+    <!-- Foreground Content -->
+    <div class="relative z-20 w-full flex flex-col lg:flex-row items-start justify-between gap-12 px-6 sm:px-10 lg:px-16" id="footer-grid-content">
+      
+      <!-- Left Column: Brand Info & Direct Contacts -->
+      <div class="flex flex-col gap-6 max-w-xl text-left" id="footer-info-left">
+        <a href="/" class="flex items-center gap-3.5 group select-none" id="footer-brand-header">
+          <img src="/Danamira_logo_gold.png" alt="Danamira Shipping Ltd Emblem" class="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
           <div class="flex flex-col text-left leading-none">
-            <span class="text-lg font-extrabold tracking-[0.1em] text-white uppercase font-sans">Danamira</span>
-            <span class="text-[10px] tracking-[0.15em] text-gold uppercase mt-0.5 font-sans">Shipping Ltd</span>
+            <span class="text-xl font-serif font-medium tracking-[0.08em] text-white uppercase">Danamira</span>
+            <span class="text-[10px] tracking-[0.2em] text-gold uppercase mt-1 font-mono">Shipping Ltd</span>
+          </div>
+        </a>
+        
+        <p class="text-xs sm:text-sm text-neutral-300 font-sans font-light leading-relaxed max-w-md" id="footer-brand-desc">
+          Independent commercial and technical ship management operating under Greek Maritime Law 89/1967, managing dry bulk and general cargo carriers with uncompromising safety and regulatory compliance.
+        </p>
+
+        <!-- Quick Contacts Matrix -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-2 text-xs font-sans text-neutral-300" id="footer-quick-contacts">
+          <div class="flex flex-col gap-1.5">
+            <span class="text-[10px] font-bold text-gold uppercase tracking-widest font-mono">Chartering &amp; Operations</span>
+            <a href="mailto:chartering@danamira-shipping.com" class="text-neutral-300 hover:text-gold transition-colors font-mono text-xs truncate">chartering@danamira-shipping.com</a>
+            <a href="mailto:operations@danamira-shipping.com" class="text-neutral-300 hover:text-gold transition-colors font-mono text-xs truncate">operations@danamira-shipping.com</a>
+          </div>
+          <div class="flex flex-col gap-1.5">
+            <span class="text-[10px] font-bold text-gold uppercase tracking-widest font-mono">Greek Branch Office</span>
+            <span class="text-neutral-300 text-xs font-sans">Zeppou 33, 166 75 Glyfada, Greece</span>
+            <a href="tel:+302113456550" class="text-neutral-300 hover:text-gold transition-colors text-xs font-mono font-bold">+30 211 34 56 550</a>
           </div>
         </div>
-        <p class="text-xs text-neutral-400 leading-relaxed font-light" id="footer-description">
-          Professional commercial and technical ship management under the Greek maritime framework, operating bulk carriers and general cargo vessels with total compliance and reliability.
-        </p>
       </div>
 
-      <div class="flex flex-wrap gap-12 lg:gap-24" id="footer-links-group">
-        <div class="flex flex-col gap-4 text-xs tracking-wider" id="footer-navigation">
-          <span class="font-bold text-white uppercase text-[10px] tracking-[0.2em] font-mono">Navigation</span>
-          <a href="/" class="text-neutral-400 hover:text-gold transition-colors">Home</a>
-          <a href="/company.html" class="text-gold hover:text-gold transition-colors">About Us</a>
-          <a href="/accountability.html" class="text-neutral-400 hover:text-gold transition-colors">Accountability in Action</a>
-          <a href="/fleet.html" class="text-neutral-400 hover:text-gold transition-colors">Managed Fleet</a>
-          <a href="/contacts.html" class="text-neutral-400 hover:text-gold transition-colors">Contact</a>
+      <!-- Right Navigation & Framework Columns -->
+      <div class="flex flex-wrap gap-12 sm:gap-20 lg:gap-24 text-left" id="footer-links-group">
+        
+        <!-- Navigation Links -->
+        <div class="flex flex-col gap-3.5" id="footer-navigation">
+          <span class="font-mono font-bold text-gold uppercase text-[10px] tracking-[0.2em]">Navigation</span>
+          <div class="flex flex-col gap-2 text-xs font-sans text-neutral-300">
+            <a href="/" class="hover:text-gold transition-colors">Home</a>
+            <a href="/company.html" class="text-gold hover:text-gold transition-colors">About Us</a>
+            <a href="/accountability.html" class="hover:text-gold transition-colors">Accountability in Action</a>
+            <a href="/fleet.html" class="hover:text-gold transition-colors">Managed Fleet</a>
+            <a href="/contacts.html#careers" class="hover:text-gold transition-colors">Careers &amp; Crewing</a>
+            <a href="/contacts.html#contact-form-card" class="text-gold font-bold hover:underline inline-flex items-center gap-1 mt-1">
+              <span>Contact Desk</span> &rarr;
+            </a>
+          </div>
         </div>
-        <div class="flex flex-col gap-4 text-xs tracking-wider" id="footer-legal">
-          <span class="font-bold text-white uppercase text-[10px] tracking-[0.2em] font-mono">Framework</span>
-          <a href="http://publicrevenue.gr/elib/view?d=/gr/act/1967/89" target="_blank" rel="noopener noreferrer" class="text-neutral-400 hover:text-gold transition-colors">Greek Law 89/1967</a>
-          <a href="https://nee.gr/en/hellenic-chamber-of-shipping/" target="_blank" rel="noopener noreferrer" class="text-neutral-400 hover:text-gold transition-colors">Hellenic Chamber of Shipping</a>
-          <a href="https://www.imo.org" target="_blank" rel="noopener noreferrer" class="text-neutral-400 hover:text-gold transition-colors">IMO Regulations</a>
-          <a href="https://iacs.org.uk" target="_blank" rel="noopener noreferrer" class="text-neutral-400 hover:text-gold transition-colors">IACS Classification</a>
+
+        <!-- Regulatory Framework Links -->
+        <div class="flex flex-col gap-3.5" id="footer-legal">
+          <span class="font-mono font-bold text-gold uppercase text-[10px] tracking-[0.2em]">Framework &amp; Class</span>
+          <div class="flex flex-col gap-2 text-xs font-sans text-neutral-300">
+            <a href="http://publicrevenue.gr/elib/view?d=/gr/act/1967/89" target="_blank" rel="noopener noreferrer" class="hover:text-gold transition-colors">Greek Law 89/1967</a>
+            <a href="https://nee.gr/en/hellenic-chamber-of-shipping/" target="_blank" rel="noopener noreferrer" class="hover:text-gold transition-colors">HCS (Hellenic Chamber)</a>
+            <a href="https://www.imo.org" target="_blank" rel="noopener noreferrer" class="hover:text-gold transition-colors">IMO Conventions (SOLAS / MARPOL)</a>
+            <a href="https://www.ilo.org/global/standards/maritime-labour-convention/lang--en/index.htm" target="_blank" rel="noopener noreferrer" class="hover:text-gold transition-colors">ILO MLC 2006 Standards</a>
+            <a href="https://iacs.org.uk" target="_blank" rel="noopener noreferrer" class="hover:text-gold transition-colors">IACS Classification</a>
+            <a href="https://www.bimco.org" target="_blank" rel="noopener noreferrer" class="hover:text-gold transition-colors">BIMCO Due Diligence</a>
+          </div>
         </div>
+
       </div>
+
     </div>
 
-    <div class="relative z-20 px-8 lg:px-16 mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] text-neutral-400 font-mono" id="footer-bottom">
-      <div>&copy; 2026 Danamira Shipping Ltd. All rights reserved. Registered under Greek Law 89/1967.</div>
+    <!-- Bottom Copyright & Compliance Row -->
+    <div class="relative z-20 w-full border-t border-white/10 pt-6 mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 px-6 sm:px-10 lg:px-16 text-[11px] font-mono text-neutral-400 tracking-wide" id="footer-copyright-row">
+      <span>&copy; 2026 Danamira Shipping Ltd. All rights reserved. Registered under Greek Maritime Law 89/1967.</span>
       <div class="flex items-center gap-6">
-        <a href="/contacts.html" class="hover:text-gold transition-colors">Glyfada Office, Greece</a>
+        <a href="/contacts.html#contact-form-card" class="text-neutral-400 hover:text-gold transition-colors">Glyfada HQ, Athens, Greece</a>
       </div>
     </div>
+
   </footer>
 
   <script type="module" src="/src/company.js"></script>
