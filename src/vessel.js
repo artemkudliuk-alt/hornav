@@ -597,7 +597,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (specGrain) specGrain.textContent = vessel.grainCapacity ? vessel.grainCapacity.split('(')[0].trim() : '315,000 cu.ft';
 
   const specCranes = document.getElementById('spec-cranes');
-  if (specCranes) specCranes.textContent = vessel.deckGear || '2 x 30 MT Cranes';
+  if (specCranes) specCranes.textContent = (vessel.deckGear || '2 x 30 MT').replace(' Cranes', '');
 
   const specDraft = document.getElementById('spec-draft');
   if (specDraft) specDraft.textContent = vessel.draft ? vessel.draft.split('(')[0].trim() : '6.85 m';
