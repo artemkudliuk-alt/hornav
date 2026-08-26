@@ -87,8 +87,8 @@ vesselLayoutStyles.textContent = `
     background-color: #111113 !important;
     border: 1.5px solid rgba(200, 155, 60, 0.45) !important;
     flex-shrink: 0 !important;
-    font-family: serif !important;
-    font-weight: 700 !important;
+    font-family: var(--font-serif), "Clash Display", sans-serif !important;
+    font-weight: 500 !important;
     font-size: 0.875rem !important;
     color: #e6c36a !important;
     position: relative !important;
@@ -110,7 +110,7 @@ vesselLayoutStyles.textContent = `
     height: 44px !important;
     padding: 0.625rem 0.875rem !important;
     font-size: 0.75rem !important;
-    font-family: monospace !important;
+    font-family: var(--font-mono), "Space Mono", monospace !important;
     font-weight: 700 !important;
     text-transform: uppercase !important;
     letter-spacing: 0.05em !important;
@@ -136,7 +136,7 @@ vesselLayoutStyles.textContent = `
     height: 44px !important;
     padding: 0.625rem 0.875rem !important;
     font-size: 0.75rem !important;
-    font-family: monospace !important;
+    font-family: var(--font-mono), "Space Mono", monospace !important;
     font-weight: 700 !important;
     text-transform: uppercase !important;
     letter-spacing: 0.05em !important;
@@ -166,6 +166,7 @@ vesselLayoutStyles.textContent = `
     border-radius: 0 !important;
     outline: none !important;
     box-sizing: border-box !important;
+    font-family: var(--font-sans), "Plus Jakarta Sans", sans-serif !important;
   }
   .vessel-form-input:focus {
     border-color: #c89b3c !important;
@@ -184,10 +185,10 @@ vesselLayoutStyles.textContent = `
     height: 48px !important;
     padding: 0.75rem 1.25rem !important;
     font-size: 0.8125rem !important;
-    font-family: monospace !important;
+    font-family: var(--font-sans), "Plus Jakarta Sans", sans-serif !important;
     font-weight: 700 !important;
     text-transform: uppercase !important;
-    letter-spacing: 0.08em !important;
+    letter-spacing: 0.12em !important;
     border-radius: 0 !important;
     background-color: #c89b3c !important;
     color: #0b0b0d !important;
