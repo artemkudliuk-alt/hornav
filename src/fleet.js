@@ -27,10 +27,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Render Cards Grid
     container.innerHTML = filtered.map((v, idx) => `
-      <div class="bg-bg-secondary/70 border border-neutral-800/80 hover:border-gold/40 rounded-none p-6 sm:p-7 flex flex-col gap-6 transition-all duration-500 hover:-translate-y-1 group relative shadow-xl text-left overflow-hidden" id="f-card-${v.id}">
+      <div class="bg-bg-secondary/70 border border-neutral-800/80 hover:border-gold/40 rounded-none p-4 sm:p-6 lg:p-7 flex flex-col gap-5 sm:gap-6 transition-all duration-500 hover:-translate-y-1 group relative shadow-xl text-left overflow-hidden" id="f-card-${v.id}">
         
         <!-- Image Container (Sharp Corners & Safe Badge Placement) -->
-        <a href="/vessel.html?id=${v.id}" class="block w-full h-72 overflow-hidden rounded-none relative bg-neutral-900 group/img" title="View Full Particulars of ${v.name}">
+        <a href="/vessel.html?id=${v.id}" class="block w-full h-64 sm:h-72 overflow-hidden rounded-none relative bg-neutral-900 group/img" title="View Full Particulars of ${v.name}">
           <!-- High-Contrast Status Badge (Strictly inside image container) -->
           <div class="absolute top-3 right-3 z-20 bg-neutral-950/95 text-white border-2 border-emerald-500 text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1.5 rounded-none shadow-2xl flex items-center gap-1.5 backdrop-blur-md">
             <span class="w-2 h-2 rounded-none bg-emerald-400 shadow-[0_0_8px_#34d399] inline-block"></span>
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             <div class="h-[1px] w-12 bg-gold/30 mb-4"></div>
             
             <!-- Specifications Sheet (3 Columns x 2 Rows) -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-4 font-sans text-xs border-t border-white/10 pt-4 mt-3">
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-4 sm:gap-x-6 gap-y-3 sm:gap-y-4 font-sans text-xs border-t border-white/10 pt-4 mt-3">
               <div class="flex flex-col">
                 <span class="text-[9px] uppercase tracking-widest text-gold/70 mb-0.5">DWT</span>
                 <span class="text-white font-medium text-sm font-sans">${v.dwt}</span>

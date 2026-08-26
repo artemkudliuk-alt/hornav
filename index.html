@@ -1091,7 +1091,7 @@
     </section>
 
     <!-- SECTION 05 — FLEET -->
-    <section id="fleet" class="relative min-h-[100dvh] flex flex-col justify-center px-8 lg:px-16 pt-20 pb-24 lg:pt-28 lg:pb-44 lg:pb-60 border-b border-border-gold overflow-hidden bg-bg-primary premium-gradient-flow">
+    <section id="fleet" class="relative min-h-[100dvh] flex flex-col justify-center px-4 sm:px-8 lg:px-16 pt-20 pb-24 lg:pt-28 lg:pb-44 border-b border-border-gold overflow-hidden bg-bg-primary premium-gradient-flow">
       
       <!-- Decorative diagonal lines with pulsing dots -->
       <!-- Top-left diagonal line -->
@@ -1106,7 +1106,7 @@
       </svg>
 
       <!-- Background Video Banner Container -->
-      <div class="relative w-full max-w-[1440px] mx-auto min-h-[520px] rounded-lg overflow-hidden flex flex-col justify-between p-8 sm:p-12 select-none relative z-10 border border-neutral-800/80 mb-10" data-reveal id="fleet-banner-container">
+      <div class="relative w-full max-w-[1440px] mx-auto min-h-[520px] rounded-lg overflow-hidden flex flex-col justify-between p-6 sm:p-12 select-none relative z-10 border border-neutral-800/80 mb-10" data-reveal id="fleet-banner-container">
         <!-- Background Video Element -->
         <video class="absolute inset-0 w-full h-full object-cover opacity-75 z-0" 
                src="/Hornav_banner_screen 5.mp4" 
@@ -1127,7 +1127,7 @@
             <div class="h-[1px] w-12 bg-gold/50" id="fleet-kicker-line"></div>
           </div>
           
-          <h2 class="text-4xl sm:text-5xl lg:text-[4rem] font-medium tracking-[0.01em] text-white leading-[1.1] uppercase font-serif" id="fleet-title">
+          <h2 class="text-3xl sm:text-5xl lg:text-[4rem] font-medium tracking-[0.01em] text-white leading-[1.1] uppercase font-serif" id="fleet-title">
             Built for Performance.<br><span class="text-gold">Managed with Expertise.</span>
           </h2>
           
@@ -1161,55 +1161,54 @@
             </div>
             <div>
               <span class="block text-[9px] sm:text-[11px] font-bold tracking-wider text-gold uppercase" id="m-f-t-capacity">Total Capacity</span>
-              <span class="block text-xs sm:text-base lg:text-xl font-medium text-white font-serif" id="m-f-v-capacity">6,000–8,000 <span class="text-[10px] sm:text-xs uppercase">DWT</span></span>
+              <span class="block text-sm sm:text-base lg:text-xl font-medium text-white font-serif" id="m-f-v-capacity">13,608 DWT</span>
             </div>
           </div>
 
-          <!-- Metric 3: Vessel Types -->
+          <!-- Metric 3: Total Volume -->
+          <div class="flex items-center gap-2 sm:gap-3 text-left lg:pl-6" id="f-metric-volume">
+            <div class="w-7 h-7 sm:w-9 sm:h-9 flex items-center justify-center text-gold shrink-0">
+              <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <span class="block text-[9px] sm:text-[11px] font-bold tracking-wider text-gold uppercase" id="m-f-t-volume">Total Volume</span>
+              <span class="block text-sm sm:text-base lg:text-xl font-medium text-white font-serif" id="m-f-v-volume">667,000 cu.ft</span>
+            </div>
+          </div>
+
+          <!-- Metric 4: Vessel Types -->
           <div class="flex items-center gap-2 sm:gap-3 text-left lg:pl-6" id="f-metric-types">
             <div class="w-7 h-7 sm:w-9 sm:h-9 flex items-center justify-center text-gold shrink-0">
               <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
-                <rect x="4" y="4" width="16" height="16" rx="1" stroke-linecap="round" />
-                <path d="M4 9h16M9 4v16M15 4v16" stroke-linecap="round" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
               </svg>
             </div>
             <div>
               <span class="block text-[9px] sm:text-[11px] font-bold tracking-wider text-gold uppercase" id="m-f-t-types">Vessel Types</span>
-              <span class="block text-[11px] sm:text-xs font-medium text-white font-serif leading-tight" id="m-f-v-types">Bulk Carriers<br>General Cargo</span>
+              <span class="block text-sm sm:text-base lg:text-xl font-medium text-white font-serif" id="m-f-v-types">GC &amp; Bulk</span>
             </div>
           </div>
 
-          <!-- Metric 4: Flag -->
-          <div class="flex items-center gap-2 sm:gap-3 text-left lg:pl-6" id="f-metric-flag">
+          <!-- Metric 5: Deck Cranes -->
+          <div class="flex items-center gap-2 sm:gap-3 text-left lg:pl-6" id="f-metric-cranes">
             <div class="w-7 h-7 sm:w-9 sm:h-9 flex items-center justify-center text-gold shrink-0">
               <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
-                <path d="M4 15c4.5-1.5 9-4.5 12-9M4 22V4m0 4c5-1 8 2 12 1V5c-4 1-7-2-12-1" stroke-linecap="round" stroke-linejoin="round" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18M5 21V7l8-4v18M13 7l6 4v10" />
               </svg>
             </div>
             <div>
-              <span class="block text-[9px] sm:text-[11px] font-bold tracking-wider text-gold uppercase" id="m-f-t-flag">Flag</span>
-              <span class="block text-sm sm:text-base lg:text-xl font-medium text-white font-serif" id="m-f-v-flag">Greek</span>
+              <span class="block text-[9px] sm:text-[11px] font-bold tracking-wider text-gold uppercase" id="m-f-t-cranes">Deck Cranes</span>
+              <span class="block text-sm sm:text-base lg:text-xl font-medium text-white font-serif" id="m-f-v-cranes">4 &times; 30 MT</span>
             </div>
           </div>
 
-          <!-- Metric 5: Crew Welfare -->
-          <div class="flex items-center gap-2 sm:gap-3 text-left lg:pl-6" id="f-metric-welfare">
-            <div class="w-7 h-7 sm:w-9 sm:h-9 flex items-center justify-center text-gold shrink-0">
-              <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
-                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2m16-10a4 4 0 11-8 0 4 4 0 018 0zm4 10v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </div>
-            <div>
-              <span class="block text-[9px] sm:text-[11px] font-bold tracking-wider text-gold uppercase" id="m-f-t-welfare">Crew Welfare</span>
-              <span class="block text-xs sm:text-base lg:text-xl font-medium text-white font-serif" id="m-f-v-welfare">Our Priority</span>
-            </div>
-          </div>
-
-          <!-- Metric 6: Safety First -->
+          <!-- Metric 6: Compliance -->
           <div class="flex items-center gap-2 sm:gap-3 text-left lg:pl-6" id="f-metric-safety">
             <div class="w-7 h-7 sm:w-9 sm:h-9 flex items-center justify-center text-gold shrink-0">
               <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
-                <path d="M9 12l2 2 4-4M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
               </svg>
             </div>
             <div>
@@ -1228,12 +1227,12 @@
       </div>
 
       <!-- Fleet Cards Grid (Dynamic & Responsive Grid) -->
-      <div class="max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10 mb-16" id="fleet-cards-grid" data-stagger-group>
+      <div class="max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 relative z-10 mb-16" id="fleet-cards-grid" data-stagger-group>
         
         <!-- Card 1: MV MOLPADIA -->
-        <div class="bg-bg-secondary/70 border border-neutral-800/80 hover:border-gold/40 rounded-none p-6 sm:p-7 flex flex-col gap-6 transition-all duration-500 hover:-translate-y-1 group relative shadow-xl overflow-hidden" data-reveal id="f-card-molpadia">
+        <div class="bg-bg-secondary/70 border border-neutral-800/80 hover:border-gold/40 rounded-none p-4 sm:p-6 lg:p-7 flex flex-col gap-5 sm:gap-6 transition-all duration-500 hover:-translate-y-1 group relative shadow-xl overflow-hidden" data-reveal id="f-card-molpadia">
           <!-- Image Container (100% width, top aligned with safe badge containment) -->
-          <a href="/vessel.html?id=vessel-molpadia" class="block w-full h-72 overflow-hidden rounded-none relative bg-neutral-900 group/img" id="f-card-img-container-1" title="View Full Particulars of MV MOLPADIA">
+          <a href="/vessel.html?id=vessel-molpadia" class="block w-full h-64 sm:h-72 overflow-hidden rounded-none relative bg-neutral-900 group/img" id="f-card-img-container-1" title="View Full Particulars of MV MOLPADIA">
             <!-- High-Contrast Status Badge (Strictly inside image) -->
             <div class="absolute top-3 right-3 z-20 bg-neutral-950/95 text-white border-2 border-emerald-500 text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1.5 rounded-none shadow-2xl flex items-center gap-1.5 backdrop-blur-md">
               <span class="w-2 h-2 rounded-none bg-emerald-400 shadow-[0_0_8px_#34d399] inline-block"></span>
@@ -1265,14 +1264,14 @@
               <div class="h-[1px] w-12 bg-gold/30 mb-4"></div>
               
               <!-- Specifications Sheet -->
-              <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-4 font-sans text-xs border-t border-white/10 pt-4 mt-3" id="f-card-table-1">
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-4 sm:gap-x-6 gap-y-3 sm:gap-y-4 font-sans text-xs border-t border-white/10 pt-4 mt-3" id="f-card-table-1">
                 <div class="flex flex-col">
                   <span class="text-[9px] uppercase tracking-widest text-gold/70 mb-0.5">DWT</span>
                   <span class="text-white font-medium text-sm">6,408 MT</span>
                 </div>
                 <div class="flex flex-col">
                   <span class="text-[9px] uppercase tracking-widest text-gold/70 mb-0.5">Flag</span>
-                  <span class="text-white font-medium text-sm">Antigua & Barbuda</span>
+                  <span class="text-white font-medium text-sm">Antigua &amp; Barbuda</span>
                 </div>
                 <div class="flex flex-col">
                   <span class="text-[9px] uppercase tracking-widest text-gold/70 mb-0.5">Year Built</span>
@@ -1332,9 +1331,9 @@
         </div>
 
         <!-- Card 2: MV METANIRA -->
-        <div class="bg-bg-secondary/70 border border-neutral-800/80 hover:border-gold/40 rounded-none p-6 sm:p-7 flex flex-col gap-6 transition-all duration-500 hover:-translate-y-1 group relative shadow-xl overflow-hidden" data-reveal id="f-card-metanira">
+        <div class="bg-bg-secondary/70 border border-neutral-800/80 hover:border-gold/40 rounded-none p-4 sm:p-6 lg:p-7 flex flex-col gap-5 sm:gap-6 transition-all duration-500 hover:-translate-y-1 group relative shadow-xl overflow-hidden" data-reveal id="f-card-metanira">
           <!-- Image Container (100% width, top aligned with safe badge containment) -->
-          <a href="/vessel.html?id=vessel-metanira" class="block w-full h-72 overflow-hidden rounded-none relative bg-neutral-900 group/img" id="f-card-img-container-2" title="View Full Particulars of MV METANIRA">
+          <a href="/vessel.html?id=vessel-metanira" class="block w-full h-64 sm:h-72 overflow-hidden rounded-none relative bg-neutral-900 group/img" id="f-card-img-container-2" title="View Full Particulars of MV METANIRA">
             <!-- High-Contrast Status Badge (Strictly inside image) -->
             <div class="absolute top-3 right-3 z-20 bg-neutral-950/95 text-white border-2 border-emerald-500 text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1.5 rounded-none shadow-2xl flex items-center gap-1.5 backdrop-blur-md">
               <span class="w-2 h-2 rounded-none bg-emerald-400 shadow-[0_0_8px_#34d399] inline-block"></span>
@@ -1366,14 +1365,14 @@
               <div class="h-[1px] w-12 bg-gold/30 mb-4"></div>
               
               <!-- Specifications Sheet -->
-              <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-4 font-sans text-xs border-t border-white/10 pt-4 mt-3" id="f-card-table-2">
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-4 sm:gap-x-6 gap-y-3 sm:gap-y-4 font-sans text-xs border-t border-white/10 pt-4 mt-3" id="f-card-table-2">
                 <div class="flex flex-col">
                   <span class="text-[9px] uppercase tracking-widest text-gold/70 mb-0.5">DWT</span>
                   <span class="text-white font-medium text-sm">7,200 MT</span>
                 </div>
                 <div class="flex flex-col">
                   <span class="text-[9px] uppercase tracking-widest text-gold/70 mb-0.5">Flag</span>
-                  <span class="text-white font-medium text-sm">Liberia</span>
+                  <span class="text-white font-medium text-sm">Antigua &amp; Barbuda</span>
                 </div>
                 <div class="flex flex-col">
                   <span class="text-[9px] uppercase tracking-widest text-gold/70 mb-0.5">Year Built</span>
@@ -1397,7 +1396,7 @@
             <!-- Buttons & Actions Row -->
             <div class="flex flex-wrap items-center justify-between gap-3 pt-5 mt-4 border-t border-white/5">
               <div class="flex items-center gap-2">
-                <button type="button" data-pdf-url="/fleet/metanira/1_GA_PLAN.pdf" data-vessel="MV METANIRA" class="btn-open-pdf group inline-flex items-center gap-2 px-3 py-2 rounded-none bg-[#141416] hover:bg-[#1a1a1d] text-white border border-white/20 hover:border-red-500/60 text-xs font-mono uppercase tracking-wider transition-all duration-200 cursor-pointer active:scale-95 shadow-sm whitespace-nowrap shrink-0">
+                <button type="button" data-pdf-url="/fleet/metanira/3_GA-PLAN.pdf" data-vessel="MV METANIRA" class="btn-open-pdf group inline-flex items-center gap-2 px-3 py-2 rounded-none bg-[#141416] hover:bg-[#1a1a1d] text-white border border-white/20 hover:border-red-500/60 text-xs font-mono uppercase tracking-wider transition-all duration-200 cursor-pointer active:scale-95 shadow-sm whitespace-nowrap shrink-0">
                   <!-- Classic Red PDF Document Badge Icon -->
                   <svg viewBox="0 0 32 36" class="w-4 h-4.5 shrink-0 transition-transform duration-200 group-hover:scale-105" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7 2C5.34315 2 4 3.34315 4 5V31C4 32.6569 5.34315 34 7 34H25C26.6569 34 28 32.6569 28 31V12L18 2H7Z" stroke="#EF4444" stroke-width="2.2" stroke-linejoin="round" fill="none"/>
