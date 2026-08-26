@@ -83,7 +83,7 @@ function initContacts() {
             </p>
             <div class="pt-4">
               <span class="text-[10px] font-mono uppercase tracking-widest text-gold/80 block">Direct Emergency Operations Line:</span>
-              <a href="tel:+302113456550" class="text-sm font-mono text-white hover:text-gold transition-colors font-bold">+30 211 34 56 550</a>
+              <a href="tel:+302113456550" class="text-sm font-mono text-white hover:text-gold transition-colors font-bold whitespace-nowrap">+30 211 34 56 550</a>
             </div>
           </div>
         `;
