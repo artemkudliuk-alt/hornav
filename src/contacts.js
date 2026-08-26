@@ -111,6 +111,47 @@ function initContacts() {
       }, 700);
     });
   }
+
+  // 4. Smooth Anchor Scroll to Contact Form
+  function scrollToContactForm(smooth = true) {
+    const targetElement = document.getElementById('contact-form-card') || document.getElementById('contact-page-form');
+    if (targetElement) {
+      const header = document.querySelector('header');
+      const headerHeight = header ? header.offsetHeight : 90;
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - (headerHeight + 20);
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: smooth ? 'smooth' : 'auto'
+      });
+
+      // Highlight / focus first field
+      setTimeout(() => {
+        const nameInput = document.getElementById('c-name');
+        if (nameInput) {
+          nameInput.focus({ preventScroll: true });
+        }
+      }, smooth ? 600 : 150);
+    }
+  }
+
+  // Auto-scroll on initial load if hash is #contact-form-card or #contact or from get-in-touch
+  const currentHash = window.location.hash;
+  if (currentHash === '#contact-form-card' || currentHash === '#contact' || currentHash === '#contact-page-form' || currentHash === '#contact-form') {
+    setTimeout(() => {
+      scrollToContactForm(true);
+    }, 250);
+  }
+
+  // Intercept click on any menu "Contact" or "Get In Touch" links on the contacts page itself
+  document.querySelectorAll('a[href*="#contact-form-card"], #link-contact, #btn-get-in-touch, #m-link-contact').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      history.pushState(null, '', '#contact-form-card');
+      scrollToContactForm(true);
+    });
+  });
 }
 
 if (document.readyState === 'loading') {
