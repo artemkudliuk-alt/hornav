@@ -44,13 +44,17 @@
           </a>
           <!-- Dropdown Submenu -->
           <div class="nav-dropdown-menu">
-            <a href="/company.html" class="nav-dropdown-item">
+            <a href="/company.html" class="nav-dropdown-item group">
               <span>About Us</span>
-              <span class="text-[10px] opacity-40">&rarr;</span>
+              <svg class="w-2.5 h-2.5 opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
             </a>
-            <a href="/accountability.html" class="nav-dropdown-item">
+            <a href="/accountability.html" class="nav-dropdown-item group">
               <span>Accountability in Action</span>
-              <span class="text-[10px] opacity-40">&rarr;</span>
+              <svg class="w-2.5 h-2.5 opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
             </a>
           </div>
         </div>
@@ -62,8 +66,11 @@
 
       <!-- Action Button (Right) & Hamburger -->
       <div class="flex items-center gap-2 sm:gap-4" id="nav-actions">
-        <a href="/contacts.html" class="inline-flex items-center gap-1.5 lg:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 lg:px-6 lg:py-3 text-[10px] sm:text-[11px] lg:text-xs font-semibold uppercase tracking-[0.1em] sm:tracking-[0.15em] lg:tracking-[0.2em] border border-gold hover:bg-gold hover:text-neutral-950 transition-colors duration-300 text-white rounded-none whitespace-nowrap" id="btn-get-in-touch">
-          Get In Touch &rarr;
+        <a href="/contacts.html" class="inline-flex items-center gap-1.5 lg:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 lg:px-6 lg:py-3 text-[10px] sm:text-[11px] lg:text-xs font-semibold uppercase tracking-[0.1em] sm:tracking-[0.15em] lg:tracking-[0.2em] border border-gold hover:bg-gold hover:text-neutral-950 transition-colors duration-300 text-white rounded-none whitespace-nowrap group" id="btn-get-in-touch">
+          <span>Get In Touch</span>
+          <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
         </a>
         
         <!-- Hamburger Button (Mobile Only) -->
@@ -200,8 +207,11 @@
         <div class="p-8 lg:p-10 bg-black/40 border border-neutral-800 backdrop-blur-sm flex flex-col flex-1 h-full gap-5 relative group hover:border-gold/40 transition-all duration-300">
           <div class="flex items-center justify-between shrink-0">
             <span class="text-xs font-mono font-bold uppercase tracking-widest text-gold">Office Location &bull; Glyfada</span>
-            <a href="https://maps.google.com/?q=Zeppou+33,+Glyfada+166+75,+Greece" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-neutral-400 hover:text-gold underline flex items-center gap-1">
-              <span>Open in Google Maps</span> &nearr;
+            <a href="https://maps.google.com/?q=Zeppou+33,+Glyfada+166+75,+Greece" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-neutral-400 hover:text-gold underline inline-flex items-center gap-1.5 group/link">
+              <span>Open in Google Maps</span>
+              <svg class="w-3 h-3 shrink-0 transition-transform duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 17L17 7M7 7h10v10"/>
+              </svg>
             </a>
           </div>
           <div class="w-full flex-1 min-h-[300px] border border-white/10 relative bg-[#1c1c1c] overflow-hidden shadow-inner">
@@ -378,9 +388,11 @@
             </div>
 
             <!-- Submit Button -->
-            <button id="contact-submit-btn" type="submit" class="btn-contact-submit mt-4 flex items-center justify-center gap-3">
+            <button id="contact-submit-btn" type="submit" class="btn-contact-submit mt-4 inline-flex items-center justify-center gap-3 w-full group">
               <span>Send Message to Management</span>
-              <span class="text-base font-bold transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+              <svg class="w-4 h-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
             </button>
 
           </form>
@@ -455,8 +467,11 @@
             <a href="/accountability.html" class="hover:text-gold transition-colors">Accountability in Action</a>
             <a href="/fleet.html" class="hover:text-gold transition-colors">Managed Fleet</a>
             <a href="/contacts.html#careers" class="hover:text-gold transition-colors">Careers &amp; Crewing</a>
-            <a href="/contacts.html" class="text-gold font-bold hover:underline inline-flex items-center gap-1 mt-1">
-              <span>Contact Desk</span> &rarr;
+            <a href="/contacts.html" class="text-gold font-bold hover:underline inline-flex items-center gap-1.5 mt-1 group">
+              <span>Contact Desk</span>
+              <svg class="w-3 h-3 shrink-0 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
             </a>
           </div>
         </div>
