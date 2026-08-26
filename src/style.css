@@ -607,20 +607,28 @@ textarea:-webkit-autofill:focus {
   color: #FFFFFF !important;
 }
 
-/* Stacking scroll parallax sections (Desktop & Mobile) */
-.stacking-section {
-  position: sticky !important;
-  top: 0 !important;
-  overflow: hidden !important;
-  padding-top: 7rem !important; /* 112px to clear header */
-  will-change: transform, opacity;
+/* Stacking scroll parallax sections (Desktop ONLY >= 1024px) */
+@media (min-width: 1024px) {
+  .stacking-section {
+    position: sticky !important;
+    top: 0 !important;
+    overflow: hidden !important;
+    padding-top: 7rem !important; /* 112px to clear header */
+    will-change: transform, opacity;
+  }
 }
 
 @media (max-width: 1023px) {
-  /* Let mobile stacking sections size to their content naturally, avoiding 100vh stretch spaces */
   .stacking-section {
+    position: relative !important;
+    top: auto !important;
+    overflow: visible !important;
+    padding-top: 0 !important;
     min-height: 0 !important;
     height: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 }
 

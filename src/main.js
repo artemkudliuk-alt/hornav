@@ -715,6 +715,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const setupStackingScroll = () => {
+    const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
     const sections = [
       document.getElementById('hero-sec'),
       document.getElementById('company'),
@@ -724,7 +725,21 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('compliance')
     ].filter(Boolean);
 
-    // Ensure all sections have the stacking class so padding-top is active
+    if (!isDesktop) {
+      // Mobile / Tablet: Clean up any stacking parallax styles and let native layout scroll cleanly
+      sections.forEach(sec => {
+        sec.classList.remove('stacking-section');
+        sec.style.removeProperty('position');
+        sec.style.removeProperty('z-index');
+        sec.style.removeProperty('transform');
+        sec.style.removeProperty('opacity');
+        sec.style.removeProperty('visibility');
+      });
+      sectionData = [];
+      return;
+    }
+
+    // Ensure all sections have the stacking class on desktop so padding-top is active
     sections.forEach(sec => {
       sec.classList.add('stacking-section');
     });
@@ -746,9 +761,8 @@ document.addEventListener('DOMContentLoaded', () => {
         height: sec.offsetHeight
       };
     });
-    console.log("Measured sections:", sectionData.map(s => `${s.el.id}: offset=${s.offsetTop}, height=${s.height}`).join(" | "));
     
-     // Restore sticky layout and apply proper z-indices
+    // Restore sticky layout and apply proper z-indices
     sections.forEach((sec, idx) => {
       sec.style.removeProperty('position');
       sec.style.zIndex = idx + 1;
@@ -761,7 +775,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!isScrollListenerRegistered) {
       window.addEventListener('scroll', () => {
-        requestAnimationFrame(handleStickyTransitions);
+        if (window.matchMedia('(min-width: 1024px)').matches) {
+          requestAnimationFrame(handleStickyTransitions);
+        }
         requestAnimationFrame(updateActiveNav);
       }, { passive: true });
       isScrollListenerRegistered = true;
