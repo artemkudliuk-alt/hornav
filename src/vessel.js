@@ -178,14 +178,14 @@ vesselLayoutStyles.textContent = `
     height: auto !important;
   }
   .vessel-btn-submit {
-    display: flex !important;
+    display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    gap: 0.5rem !important;
-    width: 100% !important;
+    gap: 0.625rem !important;
+    width: auto !important;
+    min-width: 180px !important;
     min-height: 48px !important;
-    height: 48px !important;
-    padding: 0.75rem 1.25rem !important;
+    padding: 0.85rem 2rem !important;
     font-size: 0.8125rem !important;
     font-family: var(--font-sans), "Plus Jakarta Sans", sans-serif !important;
     font-weight: 700 !important;
@@ -199,7 +199,16 @@ vesselLayoutStyles.textContent = `
     cursor: pointer !important;
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
     box-sizing: border-box !important;
-    margin-top: 0.625rem !important;
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+  }
+  @media (max-width: 767px) {
+    .vessel-btn-submit {
+      width: 100% !important;
+    }
+  }
+  .vessel-modal-submit-btn {
+    width: 100% !important;
   }
   .vessel-btn-submit:hover {
     background-color: #d9ab4c !important;
