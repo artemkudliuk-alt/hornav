@@ -620,17 +620,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     ];
 
     structuredContainer.innerHTML = `
-      <div class="space-y-3" id="vessel-accordion-root">
+      <div class="border border-white/[0.08] bg-black/40 divide-y divide-white/[0.06] shadow-xl overflow-hidden" id="vessel-accordion-root">
         ${sectionsConfig.map(sec => {
           if (sec.isStatic) {
             return `
-              <div class="vessel-static-item bg-[#17171a] border border-white/[0.08] shadow-xl overflow-hidden">
-                <div class="p-4 sm:p-5 flex items-center justify-between border-b border-white/[0.06]">
+              <div class="vessel-static-item overflow-hidden">
+                <div class="p-3.5 sm:p-4 bg-white/[0.02] flex items-center justify-between border-b border-white/[0.06]">
                   <h3 class="text-xs sm:text-sm font-sans font-medium tracking-wider uppercase text-neutral-300">
                     ${sec.title}
                   </h3>
                 </div>
-                <div class="px-4 sm:px-5 pb-4 pt-1">
+                <div class="px-3.5 sm:px-4 pb-3.5 pt-1 bg-black/20">
                   <div class="space-y-0.5">
                     ${(sec.data || []).map(item => `
                       <div class="flex items-baseline justify-between py-1.5 border-b border-white/[0.04] text-xs sm:text-sm gap-3">
@@ -645,8 +645,8 @@ document.addEventListener('DOMContentLoaded', async () => {
           }
 
           return `
-            <div class="vessel-accordion-item bg-[#17171a] border border-white/[0.08] shadow-xl overflow-hidden transition-all duration-200 group">
-              <button type="button" class="vessel-accordion-trigger w-full p-4 sm:p-5 flex items-center justify-between gap-4 text-left cursor-pointer hover:bg-white/[0.03] transition-colors active:scale-[0.99]" data-accordion-id="${sec.id}" aria-expanded="${sec.defaultOpen ? 'true' : 'false'}">
+            <div class="vessel-accordion-item overflow-hidden transition-all duration-200 group">
+              <button type="button" class="vessel-accordion-trigger w-full p-3.5 sm:p-4 flex items-center justify-between gap-4 text-left cursor-pointer hover:bg-white/[0.03] transition-colors active:scale-[0.99]" data-accordion-id="${sec.id}" aria-expanded="${sec.defaultOpen ? 'true' : 'false'}">
                 <h3 class="text-xs sm:text-sm font-sans font-medium tracking-wider uppercase text-neutral-300 group-hover:text-gold transition-colors">
                   ${sec.title}
                 </h3>
@@ -656,7 +656,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                   </svg>
                 </div>
               </button>
-              <div class="vessel-accordion-content ${sec.defaultOpen ? 'block' : 'hidden'} px-4 sm:px-5 pb-4 pt-1 border-t border-white/[0.06]">
+              <div class="vessel-accordion-content ${sec.defaultOpen ? 'block' : 'hidden'} px-3.5 sm:px-4 pb-3.5 pt-1 bg-black/20 border-t border-white/[0.06]">
                 <div class="space-y-0.5">
                   ${(sec.data || []).map(item => `
                     <div class="flex items-baseline justify-between py-1.5 border-b border-white/[0.04] text-xs sm:text-sm gap-3">
