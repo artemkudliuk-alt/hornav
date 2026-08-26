@@ -671,10 +671,15 @@ textarea:-webkit-autofill:focus {
   }
 }
 
-/* Mobile Hamburger Menu button transitions */
+/* Mobile Hamburger Menu button transitions & Header Stacking */
+header {
+  z-index: 100 !important;
+}
+
 #mobile-menu-btn {
   position: relative;
-  z-index: 105;
+  z-index: 110 !important;
+  touch-action: manipulation;
 }
 #mobile-menu-btn #hamburger-line-1 {
   transform-origin: center;
@@ -707,7 +712,7 @@ textarea:-webkit-autofill:focus {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  z-index: 95;
+  z-index: 95 !important;
   transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s;
 }
 
