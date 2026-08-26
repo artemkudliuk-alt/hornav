@@ -1,5 +1,6 @@
 import './style.css';
 import { FLEET_DATABASE } from './vessel-data.js';
+import { initPdfModal, openPdfModal } from './pdf-viewer.js';
 
 // Inject Swiss Maritime Minimal layout styles
 const vesselLayoutStyles = document.createElement('style');
@@ -631,6 +632,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     pdfDownloadHero.setAttribute('download', `${vessel.name.replace(/\s+/g, '_')}_GA_Plan.pdf`);
   }
 
+  ['btn-open-pdf-hero', 'btn-tab-pdf-trigger', 'btn-view-ga-plan-tab'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.setAttribute('data-pdf', vessel.pdfGaPlanUrl);
+      el.setAttribute('data-vessel', vessel.name);
+    }
+  });
+
   // Photo Gallery & Lightbox Logic
   let currentPhotoIndex = 0;
   const photos = vessel.photos || [{ url: vessel.coverImageUrl, title: 'Main Exterior at Sea', category: 'hull' }];
@@ -916,83 +925,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // Modal PDF Viewer Handler
-  const pdfModal = document.getElementById('pdf-modal');
-  const pdfModalContainer = document.getElementById('pdf-modal-container');
-  const pdfIframe = document.getElementById('pdf-modal-iframe');
-  const pdfTitle = document.getElementById('pdf-modal-title');
-  const pdfModalDownload = document.getElementById('pdf-modal-download');
-  const pdfCloseBtn = document.getElementById('pdf-modal-close');
-  const pdfExpandBtn = document.getElementById('pdf-modal-expand');
-  const expandBtnText = document.getElementById('expand-btn-text');
-  const pdfBackdrop = document.getElementById('pdf-modal-backdrop');
+  // Initialize High-Precision PDF Viewer Engine
+  initPdfModal();
 
-  let isPdfFullscreen = false;
-
-  function togglePdfFullscreen(forceState) {
-    if (!pdfModalContainer) return;
-    isPdfFullscreen = typeof forceState === 'boolean' ? forceState : !isPdfFullscreen;
-    
-    if (isPdfFullscreen) {
-      pdfModalContainer.classList.remove('max-w-6xl', 'h-[94vh]', 'sm:h-[90vh]', 'rounded-xl');
-      pdfModalContainer.classList.add('max-w-none', 'w-screen', 'h-screen', 'rounded-none', 'border-0');
-      if (pdfModal) pdfModal.classList.remove('p-2', 'sm:p-4', 'md:p-6');
-      if (expandBtnText) expandBtnText.textContent = 'Exit Fullscreen';
-    } else {
-      pdfModalContainer.classList.remove('max-w-none', 'w-screen', 'h-screen', 'rounded-none', 'border-0');
-      pdfModalContainer.classList.add('max-w-6xl', 'h-[94vh]', 'sm:h-[90vh]', 'rounded-xl');
-      if (pdfModal) pdfModal.classList.add('p-2', 'sm:p-4', 'md:p-6');
-      if (expandBtnText) expandBtnText.textContent = 'Full Width';
-    }
-  }
-
-  function openPdfModal(title, url) {
-    if (!pdfModal || !pdfIframe) return;
-    if (pdfTitle) pdfTitle.textContent = title;
-    if (pdfModalDownload) {
-      pdfModalDownload.href = url;
-      pdfModalDownload.setAttribute('download', `${title.replace(/\s+/g, '_')}.pdf`);
-    }
-    pdfIframe.src = `${url}#toolbar=1&navpanes=0&scrollbar=1&view=FitH`;
-    pdfModal.classList.remove('opacity-0', 'pointer-events-none');
-    pdfModal.classList.add('opacity-100', 'pointer-events-auto');
-    document.body.classList.add('overflow-hidden');
-  }
-
-  function closePdfModal() {
-    if (!pdfModal || !pdfIframe) return;
-    pdfModal.classList.add('opacity-0', 'pointer-events-none');
-    pdfModal.classList.remove('opacity-100', 'pointer-events-auto');
-    document.body.classList.remove('overflow-hidden');
-    setTimeout(() => {
-      pdfIframe.src = 'about:blank';
-    }, 300);
-    if (isPdfFullscreen && pdfModalContainer) {
-      togglePdfFullscreen(false);
-    }
-  }
-
-  if (pdfExpandBtn) pdfExpandBtn.addEventListener('click', () => togglePdfFullscreen());
-
-  document.getElementById('btn-open-pdf-hero')?.addEventListener('click', () => {
-    openPdfModal(`${vessel.name} — General Arrangement Plan`, vessel.pdfGaPlanUrl);
+  document.getElementById('btn-open-pdf-hero')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    openPdfModal(vessel.pdfGaPlanUrl, `${vessel.name} — General Arrangement Plan`, 'Official Technical Blueprint • Danamira Managed Fleet', `${vessel.name.replace(/\s+/g, '_')}_GA_Plan.pdf`);
   });
 
-  document.getElementById('btn-tab-pdf-trigger')?.addEventListener('click', () => {
-    openPdfModal(`${vessel.name} — General Arrangement Plan`, vessel.pdfGaPlanUrl);
+  document.getElementById('btn-tab-pdf-trigger')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    openPdfModal(vessel.pdfGaPlanUrl, `${vessel.name} — General Arrangement Plan`, 'Official Technical Blueprint • Danamira Managed Fleet', `${vessel.name.replace(/\s+/g, '_')}_GA_Plan.pdf`);
   });
 
-  document.getElementById('btn-view-ga-plan-tab')?.addEventListener('click', () => {
-    openPdfModal(`${vessel.name} — General Arrangement Plan`, vessel.pdfGaPlanUrl);
-  });
-
-  if (pdfCloseBtn) pdfCloseBtn.addEventListener('click', closePdfModal);
-  if (pdfBackdrop) pdfBackdrop.addEventListener('click', closePdfModal);
-
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && pdfModal && !pdfModal.classList.contains('pointer-events-none')) {
-      closePdfModal();
-    }
+  document.getElementById('btn-view-ga-plan-tab')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    openPdfModal(vessel.pdfGaPlanUrl, `${vessel.name} — General Arrangement Plan`, 'Official Technical Blueprint • Danamira Managed Fleet', `${vessel.name.replace(/\s+/g, '_')}_GA_Plan.pdf`);
   });
 
   // Mobile Fullscreen Menu Toggle

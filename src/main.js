@@ -1,3 +1,5 @@
+import { initPdfModal } from './pdf-viewer.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Scroll Reveal (IntersectionObserver)
   const observerOptions = {
@@ -918,70 +920,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // PDF Modal Viewer Controller
-  const pdfModal = document.getElementById('pdf-modal');
-  const pdfModalIframe = document.getElementById('pdf-modal-iframe');
-  const pdfModalTitle = document.getElementById('pdf-modal-title');
-  const pdfModalDownload = document.getElementById('pdf-modal-download');
-  const pdfModalClose = document.getElementById('pdf-modal-close');
-  const pdfModalBackdrop = document.getElementById('pdf-modal-backdrop');
-
-  function openPdfModal(pdfUrl, vesselName) {
-    if (!pdfModal || !pdfModalIframe) return;
-
-    if (pdfModalTitle) {
-      pdfModalTitle.textContent = `${vesselName || 'Vessel'} — General Arrangement (GA-Plan)`;
-    }
-    if (pdfModalDownload) {
-      pdfModalDownload.href = pdfUrl;
-      pdfModalDownload.setAttribute('download', `${(vesselName || 'Vessel').replace(/\s+/g, '_')}_GA_Plan.pdf`);
-    }
-
-    // Set PDF src with embedded toolbar options
-    pdfModalIframe.src = `${pdfUrl}#toolbar=1&navpanes=0&scrollbar=1&view=FitH`;
-
-    // Show modal smoothly
-    pdfModal.classList.remove('opacity-0', 'pointer-events-none');
-    pdfModal.classList.add('opacity-100', 'pointer-events-auto');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closePdfModal() {
-    if (!pdfModal || !pdfModalIframe) return;
-
-    // Hide modal
-    pdfModal.classList.remove('opacity-100', 'pointer-events-auto');
-    pdfModal.classList.add('opacity-0', 'pointer-events-none');
-    document.body.style.overflow = '';
-
-    // Clear iframe after transition to save memory
-    setTimeout(() => {
-      pdfModalIframe.src = 'about:blank';
-    }, 200);
-  }
-
-  // Delegated click handler for any .btn-open-pdf button on the page
-  document.addEventListener('click', (e) => {
-    const btn = e.target.closest('.btn-open-pdf');
-    if (btn) {
-      e.preventDefault();
-      const pdfUrl = btn.getAttribute('data-pdf-url') || '/fleet/molpadia/2_GA-PLAN.pdf';
-      const vessel = btn.getAttribute('data-vessel') || 'Vessel';
-      openPdfModal(pdfUrl, vessel);
-    }
-  });
-
-  if (pdfModalClose) {
-    pdfModalClose.addEventListener('click', closePdfModal);
-  }
-  if (pdfModalBackdrop) {
-    pdfModalBackdrop.addEventListener('click', closePdfModal);
-  }
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && pdfModal && !pdfModal.classList.contains('opacity-0')) {
-      closePdfModal();
-    }
-  });
+  // Initialize High-Precision PDF Viewer Engine
+  initPdfModal();
 
   syncFleetFromCMS();
 

@@ -1,5 +1,6 @@
 import './style.css';
 import { FLEET_DATABASE } from './vessel-data.js';
+import { initPdfModal } from './pdf-viewer.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   const fleetList = Object.values(FLEET_DATABASE);
@@ -126,27 +127,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         </div>
 
       </div>
-    `).join('');
-
-    // Attach PDF modal triggers on all .btn-ga-plan
-    document.querySelectorAll('.btn-ga-plan').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const url = btn.getAttribute('data-pdf');
-        const name = btn.getAttribute('data-vessel');
-        openPdfModal(url, name);
-      });
-    });
+    `).join(''); // PDF triggers are handled automatically by initPdfModal via event delegation
   }
 
   // Filter Buttons
   filterButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       filterButtons.forEach(b => {
-        b.classList.remove('bg-gold', 'text-neutral-950');
+        b.classList.remove('bg-gold', 'text-black', 'font-bold');
         b.classList.add('bg-white/5', 'text-neutral-300');
       });
-      btn.classList.add('bg-gold', 'text-neutral-950');
+
+      btn.classList.add('bg-gold', 'text-black', 'font-bold');
       btn.classList.remove('bg-white/5', 'text-neutral-300');
 
       const filter = btn.getAttribute('data-filter') || 'all';
@@ -156,68 +148,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   renderVessels('all');
 
-  // PDF Modal
-  const modal = document.getElementById('pdf-modal');
-  const modalContainer = document.getElementById('pdf-modal-container');
-  const iframe = document.getElementById('pdf-modal-iframe');
-  const title = document.getElementById('pdf-modal-title');
-  const downloadBtn = document.getElementById('pdf-modal-download');
-  const closeBtn = document.getElementById('pdf-modal-close');
-  const expandBtn = document.getElementById('pdf-modal-expand');
-  const expandBtnText = document.getElementById('expand-btn-text');
-  const backdrop = document.getElementById('pdf-modal-backdrop');
-
-  let isFullscreen = false;
-
-  function toggleFullscreen(forceState) {
-    if (!modalContainer) return;
-    isFullscreen = typeof forceState === 'boolean' ? forceState : !isFullscreen;
-    
-    if (isFullscreen) {
-      modalContainer.classList.remove('max-w-6xl', 'h-[94vh]', 'sm:h-[90vh]', 'rounded-xl');
-      modalContainer.classList.add('max-w-none', 'w-screen', 'h-screen', 'rounded-none', 'border-0');
-      if (modal) modal.classList.remove('p-2', 'sm:p-4', 'md:p-6');
-      if (expandBtnText) expandBtnText.textContent = 'Exit Fullscreen';
-    } else {
-      modalContainer.classList.remove('max-w-none', 'w-screen', 'h-screen', 'rounded-none', 'border-0');
-      modalContainer.classList.add('max-w-6xl', 'h-[94vh]', 'sm:h-[90vh]', 'rounded-xl');
-      if (modal) modal.classList.add('p-2', 'sm:p-4', 'md:p-6');
-      if (expandBtnText) expandBtnText.textContent = 'Full Width';
-    }
-  }
-
-  function openPdfModal(pdfUrl, vesselName) {
-    if (!modal || !iframe) return;
-    if (title) title.textContent = `${vesselName} — General Arrangement Plan (GA-Plan)`;
-    if (downloadBtn) {
-      downloadBtn.href = pdfUrl;
-      downloadBtn.setAttribute('download', `${vesselName.replace(/\s+/g, '_')}_GA_Plan.pdf`);
-    }
-    iframe.src = `${pdfUrl}#toolbar=1&navpanes=0&scrollbar=1&view=FitH`;
-    modal.classList.remove('opacity-0', 'pointer-events-none');
-    modal.classList.add('opacity-100', 'pointer-events-auto');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closePdfModal() {
-    if (!modal || !iframe) return;
-    modal.classList.remove('opacity-100', 'pointer-events-auto');
-    modal.classList.add('opacity-0', 'pointer-events-none');
-    document.body.style.overflow = '';
-    setTimeout(() => { iframe.src = 'about:blank'; }, 200);
-    if (isFullscreen && modalContainer) {
-      toggleFullscreen(false);
-    }
-  }
-
-  if (expandBtn) expandBtn.addEventListener('click', () => toggleFullscreen());
-  if (closeBtn) closeBtn.addEventListener('click', closePdfModal);
-  if (backdrop) backdrop.addEventListener('click', closePdfModal);
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal && !modal.classList.contains('opacity-0')) {
-      closePdfModal();
-    }
-  });
+  // Initialize High-Precision PDF Viewer Engine
+  initPdfModal();
 
   // Mobile Fullscreen Menu Toggle
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
