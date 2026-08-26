@@ -619,17 +619,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     ];
 
     structuredContainer.innerHTML = `
-      <div class="space-y-0 divide-y divide-white/[0.08]" id="vessel-accordion-root">
+      <div class="space-y-1 sm:space-y-1.5" id="vessel-accordion-root">
         ${sectionsConfig.map(sec => {
           if (sec.isStatic) {
             return `
-              <div class="vessel-static-item pb-4 text-left">
-                <div class="py-2.5 sm:py-3 flex items-center justify-between">
+              <div class="vessel-static-item pb-3 text-left">
+                <div class="px-4 sm:px-5 py-2.5 sm:py-3 flex items-center justify-between">
                   <h3 class="text-xs sm:text-sm font-sans font-bold tracking-[0.12em] uppercase text-neutral-200">
                     ${sec.title}
                   </h3>
                 </div>
-                <div class="pt-1">
+                <div class="px-4 sm:px-5 pt-1 pb-2">
                   <div class="space-y-2">
                     ${(sec.data || []).map(item => `
                       <div class="flex items-baseline justify-between text-xs sm:text-sm gap-3">
@@ -645,7 +645,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
           return `
             <div class="vessel-accordion-item transition-all duration-200 group text-left">
-              <button type="button" class="vessel-accordion-trigger w-full py-3.5 sm:py-4 flex items-center justify-between gap-4 text-left cursor-pointer hover:text-gold transition-colors active:scale-[0.99]" data-accordion-id="${sec.id}" aria-expanded="${sec.defaultOpen ? 'true' : 'false'}">
+              <button type="button" class="vessel-accordion-trigger w-full px-4 sm:px-5 py-3 sm:py-3.5 flex items-center justify-between gap-4 text-left cursor-pointer hover:bg-white/[0.03] transition-colors rounded-none active:scale-[0.99]" data-accordion-id="${sec.id}" aria-expanded="${sec.defaultOpen ? 'true' : 'false'}">
                 <h3 class="text-xs sm:text-sm font-sans font-medium tracking-[0.08em] uppercase text-neutral-300 group-hover:text-gold transition-colors">
                   ${sec.title}
                 </h3>
@@ -655,7 +655,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                   </svg>
                 </div>
               </button>
-              <div class="vessel-accordion-content ${sec.defaultOpen ? 'block' : 'hidden'} pb-4 pt-1">
+              <div class="vessel-accordion-content ${sec.defaultOpen ? 'block' : 'hidden'} px-4 sm:px-5 pb-3.5 pt-1">
                 <div class="space-y-2">
                   ${(sec.data || []).map(item => `
                     <div class="flex items-baseline justify-between text-xs sm:text-sm gap-3">
