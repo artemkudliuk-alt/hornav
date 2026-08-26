@@ -1,6 +1,7 @@
 import './style.css';
 import { FLEET_DATABASE } from './vessel-data.js';
 import { initPdfModal, openPdfModal } from './pdf-viewer.js';
+import { initMobileMenu } from './mobile-menu.js';
 
 // Inject Swiss Maritime Minimal layout styles
 const vesselLayoutStyles = document.createElement('style');
@@ -963,32 +964,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   // Mobile Fullscreen Menu Toggle
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-  if (mobileMenuBtn && mobileMenuOverlay) {
-    let isMenuOpen = false;
-    mobileMenuBtn.addEventListener('click', () => {
-      isMenuOpen = !isMenuOpen;
-      if (isMenuOpen) {
-        mobileMenuOverlay.classList.remove('opacity-0', 'pointer-events-none');
-        mobileMenuOverlay.classList.add('opacity-100', 'pointer-events-auto');
-        document.body.style.overflow = 'hidden';
-      } else {
-        mobileMenuOverlay.classList.add('opacity-0', 'pointer-events-none');
-        mobileMenuOverlay.classList.remove('opacity-100', 'pointer-events-auto');
-        document.body.style.overflow = '';
-      }
-    });
-
-    mobileMenuOverlay.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        isMenuOpen = false;
-        mobileMenuOverlay.classList.add('opacity-0', 'pointer-events-none');
-        mobileMenuOverlay.classList.remove('opacity-100', 'pointer-events-auto');
-        document.body.style.overflow = '';
-      });
-    });
-  }
+  initMobileMenu();
 
   // Exact height synchronization between left photo stage and right inquiry form on desktop
 });

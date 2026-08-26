@@ -448,59 +448,59 @@
       </div>
 
       <!-- Bottom: Statistics Row & Scroll Indicator -->
-      <div class="max-w-[1440px] mx-auto w-full relative z-10 mt-28" id="hero-bottom-area">
+      <div class="max-w-[1440px] mx-auto w-full relative z-10 mt-12 sm:mt-20 lg:mt-28" id="hero-bottom-area">
         
-        <!-- Stats Grid with vertical borders -->
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 py-8 border-t border-border-gold/50" id="hero-stats-grid" data-reveal>
-                 <!-- Stat 1: Established -->
-          <div class="flex flex-col gap-2 pl-4 border-l border-border-gold/60" id="stat-est">
-            <div class="flex items-center gap-3" id="stat-est-header">
-              <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+        <!-- Stats Grid with vertical borders (Compact on Mobile) -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 py-6 sm:py-8 border-t border-border-gold/50" id="hero-stats-grid" data-reveal>
+          <!-- Stat 1: Established -->
+          <div class="flex flex-col gap-1.5 pl-3 sm:pl-4 border-l border-border-gold/60" id="stat-est">
+            <div class="flex items-center gap-2 sm:gap-3" id="stat-est-header">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gold shrink-0" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18M3 18h18M3 9h18M4 9v9M10 9v9M14 9v9M20 9v9M12 3L3 9h18L12 3z" />
               </svg>
-              <span class="text-xs font-bold tracking-[0.25em] text-gold uppercase">Established</span>
+              <span class="text-[10px] sm:text-xs font-bold tracking-[0.18em] sm:tracking-[0.25em] text-gold uppercase">Established</span>
             </div>
-            <span class="text-3xl font-light text-white tracking-[0.1em]"><span id="stat-est-val" data-target="2026">0</span></span>
+            <span class="text-xl sm:text-3xl font-light text-white tracking-[0.05em]"><span id="stat-est-val" data-target="2026">0</span></span>
           </div>
 
           <!-- Stat 2: Fleet Capacity -->
-          <div class="flex flex-col gap-2 pl-4 border-l border-border-gold/60" id="stat-capacity">
-            <div class="flex items-center gap-3" id="stat-capacity-header">
-              <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+          <div class="flex flex-col gap-1.5 pl-3 sm:pl-4 border-l border-border-gold/60" id="stat-capacity">
+            <div class="flex items-center gap-2 sm:gap-3" id="stat-capacity-header">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gold shrink-0" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M2 17l2-2h16l2 2v2H2v-2zM4 15l1-5h14l1 5M8 10V6h2v4M14 10V5h2v5" />
               </svg>
-              <span class="text-xs font-bold tracking-[0.25em] text-gold uppercase">Fleet Capacity</span>
+              <span class="text-[10px] sm:text-xs font-bold tracking-[0.18em] sm:tracking-[0.25em] text-gold uppercase">Fleet Capacity</span>
             </div>
-            <span class="text-3xl font-light text-white tracking-[0.05em]"><span id="stat-capacity-min" data-target="6000">0</span>–<span id="stat-capacity-max" data-target="8000">0</span> <span class="text-sm text-neutral-400 font-sans">DWT</span></span>
+            <span class="text-lg sm:text-2xl lg:text-3xl font-light text-white tracking-[0.02em] whitespace-nowrap"><span id="stat-capacity-min" data-target="6000">0</span>–<span id="stat-capacity-max" data-target="8000">0</span> <span class="text-xs sm:text-sm text-neutral-400 font-sans">DWT</span></span>
           </div>
 
           <!-- Stat 3: Market Presence -->
-          <div class="flex flex-col gap-2 pl-4 border-l border-border-gold/60" id="stat-market">
-            <div class="flex items-center gap-3" id="stat-market-header">
-              <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+          <div class="flex flex-col gap-1.5 pl-3 sm:pl-4 border-l border-border-gold/60" id="stat-market">
+            <div class="flex items-center gap-2 sm:gap-3" id="stat-market-header">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gold shrink-0" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="10" stroke-linecap="round" stroke-linejoin="round" />
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10M12 2a15.3 15.3 0 00-4 10 15.3 15.3 0 004 10M2 12h20" />
               </svg>
-              <span class="text-xs font-bold tracking-[0.25em] text-gold uppercase">Market Presence</span>
+              <span class="text-[10px] sm:text-xs font-bold tracking-[0.18em] sm:tracking-[0.25em] text-gold uppercase">Market Presence</span>
             </div>
-            <span class="text-sm font-light text-white tracking-[0.05em] leading-relaxed" id="stat-market-val">Black Sea • Mediterranean • Baltic</span>
+            <span class="text-xs sm:text-sm font-light text-white tracking-[0.02em] leading-snug" id="stat-market-val">Black Sea • Mediterranean • Baltic</span>
           </div>
 
           <!-- Stat 4: Operations -->
-          <div class="flex flex-col gap-2 pl-4 border-l border-border-gold/60" id="stat-ops">
-            <div class="flex items-center gap-3" id="stat-ops-header">
-              <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+          <div class="flex flex-col gap-1.5 pl-3 sm:pl-4 border-l border-border-gold/60" id="stat-ops">
+            <div class="flex items-center gap-2 sm:gap-3" id="stat-ops-header">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gold shrink-0" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                 <circle cx="12" cy="12" r="3" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
-              <span class="text-xs font-bold tracking-[0.25em] text-gold uppercase">Operations</span>
+              <span class="text-[10px] sm:text-xs font-bold tracking-[0.18em] sm:tracking-[0.25em] text-gold uppercase">Operations</span>
             </div>
-            <span class="text-sm font-light text-white tracking-[0.05em] leading-relaxed" id="stat-ops-val">Commercial & Technical Management</span>
+            <span class="text-xs sm:text-sm font-light text-white tracking-[0.02em] leading-snug" id="stat-ops-val">Commercial & Technical Management</span>
           </div>
         </div>
 
-        <!-- Scroll Indicator -->
-        <div class="flex flex-col items-center gap-2 mt-4 text-xs tracking-[0.3em] text-gold/60 uppercase" id="scroll-discover">
+        <!-- Scroll Indicator (Hidden on Mobile) -->
+        <div class="hidden md:flex flex-col items-center gap-2 mt-4 text-xs tracking-[0.3em] text-gold/60 uppercase" id="scroll-discover">
           <span>Scroll to Discover</span>
           <div class="scroll-mouse-indicator">
             <div class="scroll-mouse-wheel"></div>
@@ -1080,11 +1080,11 @@
 
         </div>
 
-        <!-- Centered bottom slogan and lines -->
-        <div class="w-full max-w-[1440px] mx-auto mt-16 flex items-center gap-6 relative z-10" data-reveal id="markets-footer">
-          <div class="h-[1px] flex-1 bg-gold-dark/30" id="m-foot-line-left"></div>
-          <span class="text-xs font-bold tracking-[0.3em] uppercase whitespace-nowrap text-gold-dark" id="markets-foot-text">Global Reach. Reliable Operations.</span>
-          <div class="h-[1px] flex-1 bg-gold-dark/30" id="m-foot-line-right"></div>
+        <!-- Centered bottom slogan and lines (Responsive & Overflow-Safe) -->
+        <div class="w-full max-w-[1440px] mx-auto mt-12 sm:mt-16 flex items-center gap-3 sm:gap-6 relative z-10 px-2" data-reveal id="markets-footer">
+          <div class="h-[1px] flex-1 bg-gold-dark/30 hidden sm:block" id="m-foot-line-left"></div>
+          <span class="text-[10px] sm:text-xs font-bold tracking-[0.15em] sm:tracking-[0.3em] uppercase text-center w-full sm:w-auto text-gold-dark block" id="markets-foot-text">Global Reach • Reliable Operations</span>
+          <div class="h-[1px] flex-1 bg-gold-dark/30 hidden sm:block" id="m-foot-line-right"></div>
         </div>
 
       </div>
@@ -1136,85 +1136,85 @@
           </p>
         </div>
         
-        <!-- Lower Content: 6 Metric Items Row -->
-        <div class="relative z-20 w-full border-t border-border-gold/30 pt-4 mt-12 lg:mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 lg:divide-x lg:divide-border-gold/20" id="fleet-metrics">
+        <!-- Lower Content: 6 Metric Items Row (Compact & Well-Proportioned on Mobile) -->
+        <div class="relative z-20 w-full border-t border-border-gold/30 pt-4 mt-8 sm:mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-6 lg:divide-x lg:divide-border-gold/20" id="fleet-metrics">
           
           <!-- Metric 1: Total Vessels -->
-          <div class="flex items-center gap-3 text-left pl-0" id="f-metric-vessels">
-            <div class="w-10 h-10 flex items-center justify-center text-gold shrink-0">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+          <div class="flex items-center gap-2 sm:gap-3 text-left pl-0" id="f-metric-vessels">
+            <div class="w-7 h-7 sm:w-9 sm:h-9 flex items-center justify-center text-gold shrink-0">
+              <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M2 17l1.5-3.5h17L22 17v3H2v-3zM4 13.5L5.5 8h13l1.5 5.5M8 8V5h3v3M13 8V4h3v4" />
               </svg>
             </div>
             <div>
-              <span class="block text-[10px] sm:text-[11px] font-bold tracking-wider text-gold uppercase" id="m-f-t-vessels">Total Vessels</span>
-              <span class="block text-xl sm:text-2xl font-medium text-white font-serif" id="m-f-v-vessels">2</span>
+              <span class="block text-[9px] sm:text-[11px] font-bold tracking-wider text-gold uppercase" id="m-f-t-vessels">Total Vessels</span>
+              <span class="block text-sm sm:text-base lg:text-xl font-medium text-white font-serif" id="m-f-v-vessels">2</span>
             </div>
           </div>
 
           <!-- Metric 2: Total Capacity -->
-          <div class="flex items-center gap-3 text-left lg:pl-6" id="f-metric-capacity">
-            <div class="w-10 h-10 flex items-center justify-center text-gold shrink-0">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+          <div class="flex items-center gap-2 sm:gap-3 text-left lg:pl-6" id="f-metric-capacity">
+            <div class="w-7 h-7 sm:w-9 sm:h-9 flex items-center justify-center text-gold shrink-0">
+              <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
                 <path d="M3 6h18M12 6v14m-7 0a3 3 0 106 0m4 0a3 3 0 106 0" stroke-linecap="round" />
               </svg>
             </div>
             <div>
-              <span class="block text-[10px] sm:text-[11px] font-bold tracking-wider text-gold uppercase" id="m-f-t-capacity">Total Capacity</span>
-              <span class="block text-xl sm:text-2xl font-medium text-white font-serif" id="m-f-v-capacity">6,000–8,000 <span class="text-xs uppercase">DWT</span></span>
+              <span class="block text-[9px] sm:text-[11px] font-bold tracking-wider text-gold uppercase" id="m-f-t-capacity">Total Capacity</span>
+              <span class="block text-xs sm:text-base lg:text-xl font-medium text-white font-serif" id="m-f-v-capacity">6,000–8,000 <span class="text-[10px] sm:text-xs uppercase">DWT</span></span>
             </div>
           </div>
 
           <!-- Metric 3: Vessel Types -->
-          <div class="flex items-center gap-3 text-left lg:pl-6" id="f-metric-types">
-            <div class="w-10 h-10 flex items-center justify-center text-gold shrink-0">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+          <div class="flex items-center gap-2 sm:gap-3 text-left lg:pl-6" id="f-metric-types">
+            <div class="w-7 h-7 sm:w-9 sm:h-9 flex items-center justify-center text-gold shrink-0">
+              <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
                 <rect x="4" y="4" width="16" height="16" rx="1" stroke-linecap="round" />
                 <path d="M4 9h16M9 4v16M15 4v16" stroke-linecap="round" />
               </svg>
             </div>
             <div>
-              <span class="block text-[10px] sm:text-[11px] font-bold tracking-wider text-gold uppercase" id="m-f-t-types">Vessel Types</span>
-              <span class="block text-xs font-medium text-white font-serif leading-tight" id="m-f-v-types">Bulk Carriers<br>General Cargo</span>
+              <span class="block text-[9px] sm:text-[11px] font-bold tracking-wider text-gold uppercase" id="m-f-t-types">Vessel Types</span>
+              <span class="block text-[11px] sm:text-xs font-medium text-white font-serif leading-tight" id="m-f-v-types">Bulk Carriers<br>General Cargo</span>
             </div>
           </div>
 
           <!-- Metric 4: Flag -->
-          <div class="flex items-center gap-3 text-left lg:pl-6" id="f-metric-flag">
-            <div class="w-10 h-10 flex items-center justify-center text-gold shrink-0">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+          <div class="flex items-center gap-2 sm:gap-3 text-left lg:pl-6" id="f-metric-flag">
+            <div class="w-7 h-7 sm:w-9 sm:h-9 flex items-center justify-center text-gold shrink-0">
+              <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
                 <path d="M4 15c4.5-1.5 9-4.5 12-9M4 22V4m0 4c5-1 8 2 12 1V5c-4 1-7-2-12-1" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
             </div>
             <div>
-              <span class="block text-[10px] sm:text-[11px] font-bold tracking-wider text-gold uppercase" id="m-f-t-flag">Flag</span>
-              <span class="block text-xl sm:text-2xl font-medium text-white font-serif" id="m-f-v-flag">Greek</span>
+              <span class="block text-[9px] sm:text-[11px] font-bold tracking-wider text-gold uppercase" id="m-f-t-flag">Flag</span>
+              <span class="block text-sm sm:text-base lg:text-xl font-medium text-white font-serif" id="m-f-v-flag">Greek</span>
             </div>
           </div>
 
           <!-- Metric 5: Crew Welfare -->
-          <div class="flex items-center gap-3 text-left lg:pl-6" id="f-metric-welfare">
-            <div class="w-10 h-10 flex items-center justify-center text-gold shrink-0">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+          <div class="flex items-center gap-2 sm:gap-3 text-left lg:pl-6" id="f-metric-welfare">
+            <div class="w-7 h-7 sm:w-9 sm:h-9 flex items-center justify-center text-gold shrink-0">
+              <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
                 <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2m16-10a4 4 0 11-8 0 4 4 0 018 0zm4 10v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
             </div>
             <div>
-              <span class="block text-[10px] sm:text-[11px] font-bold tracking-wider text-gold uppercase" id="m-f-t-welfare">Crew Welfare</span>
-              <span class="block text-xl sm:text-2xl font-medium text-white font-serif" id="m-f-v-welfare">Our Priority</span>
+              <span class="block text-[9px] sm:text-[11px] font-bold tracking-wider text-gold uppercase" id="m-f-t-welfare">Crew Welfare</span>
+              <span class="block text-xs sm:text-base lg:text-xl font-medium text-white font-serif" id="m-f-v-welfare">Our Priority</span>
             </div>
           </div>
 
           <!-- Metric 6: Safety First -->
-          <div class="flex items-center gap-3 text-left lg:pl-6" id="f-metric-safety">
-            <div class="w-10 h-10 flex items-center justify-center text-gold shrink-0">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+          <div class="flex items-center gap-2 sm:gap-3 text-left lg:pl-6" id="f-metric-safety">
+            <div class="w-7 h-7 sm:w-9 sm:h-9 flex items-center justify-center text-gold shrink-0">
+              <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
                 <path d="M9 12l2 2 4-4M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
             </div>
             <div>
-              <span class="block text-[10px] sm:text-[11px] font-bold tracking-wider text-gold uppercase" id="m-f-t-safety">Safety First</span>
-              <span class="block text-xl sm:text-2xl font-medium text-white font-serif" id="m-f-v-safety">Always</span>
+              <span class="block text-[9px] sm:text-[11px] font-bold tracking-wider text-gold uppercase" id="m-f-t-safety">Safety First</span>
+              <span class="block text-sm sm:text-base lg:text-xl font-medium text-white font-serif" id="m-f-v-safety">Always</span>
             </div>
           </div>
 

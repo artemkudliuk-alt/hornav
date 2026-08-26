@@ -1,6 +1,7 @@
 // src/company.js - Interactivity for Company Profile & Framework page
 import './style.css';
 import { initPdfModal } from './pdf-viewer.js';
+import { initMobileMenu } from './mobile-menu.js';
 
 function initCompany() {
   // 0. Make all reveal elements visible with smooth trigger
@@ -20,29 +21,7 @@ function initCompany() {
   }
 
   // 1. Mobile Menu Toggle
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-
-  if (mobileMenuBtn && mobileMenuOverlay) {
-    mobileMenuBtn.addEventListener('click', () => {
-      const isOpen = mobileMenuBtn.classList.toggle('active');
-      mobileMenuOverlay.classList.toggle('active', isOpen);
-      
-      if (isOpen) {
-        document.body.style.overflow = 'hidden';
-      } else {
-        document.body.style.overflow = '';
-      }
-    });
-
-    mobileMenuOverlay.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenuBtn.classList.remove('active');
-        mobileMenuOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-    });
-  }
+  initMobileMenu();
 
   // 2. Interactive Cargo Matrix Tabs
   const cargoTabs = document.querySelectorAll('.cargo-tab-btn');

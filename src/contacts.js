@@ -1,4 +1,5 @@
 import './style.css';
+import { initMobileMenu } from './mobile-menu.js';
 
 /**
  * Danamira Shipping Ltd - Contacts Page Logic
@@ -6,29 +7,7 @@ import './style.css';
 
 function initContacts() {
   // 1. Mobile Menu Toggle
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-
-  if (mobileMenuBtn && mobileMenuOverlay) {
-    mobileMenuBtn.addEventListener('click', () => {
-      const isOpen = mobileMenuBtn.classList.toggle('active');
-      mobileMenuOverlay.classList.toggle('active', isOpen);
-      
-      if (isOpen) {
-        document.body.style.overflow = 'hidden';
-      } else {
-        document.body.style.overflow = '';
-      }
-    });
-
-    mobileMenuOverlay.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenuBtn.classList.remove('active');
-        mobileMenuOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-    });
-  }
+  initMobileMenu();
 
   // 2. Email Copy Buttons
   document.querySelectorAll('.btn-copy-email').forEach(btn => {

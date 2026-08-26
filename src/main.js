@@ -1,4 +1,5 @@
 import { initPdfModal } from './pdf-viewer.js';
+import { initMobileMenu } from './mobile-menu.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Scroll Reveal (IntersectionObserver)
@@ -690,31 +691,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // 12. Mobile menu toggle and navigation logic
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-  
-  if (mobileMenuBtn && mobileMenuOverlay) {
-    mobileMenuBtn.addEventListener('click', () => {
-      const isOpen = mobileMenuBtn.classList.toggle('active');
-      mobileMenuOverlay.classList.toggle('active', isOpen);
-      
-      if (isOpen) {
-        document.body.style.overflow = 'hidden';
-      } else {
-        document.body.style.overflow = '';
-      }
-    });
-    
-    // Close mobile menu and smooth-scroll on link click
-    const mobileLinks = mobileMenuOverlay.querySelectorAll('a');
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenuBtn.classList.remove('active');
-        mobileMenuOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-    });
-  }
+  initMobileMenu();
 
   const setupStackingScroll = () => {
     const isDesktop = window.matchMedia('(min-width: 1024px)').matches;

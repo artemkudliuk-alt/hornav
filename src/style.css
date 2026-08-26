@@ -672,27 +672,34 @@ textarea:-webkit-autofill:focus {
 }
 
 /* Mobile Hamburger Menu button transitions */
+#mobile-menu-btn {
+  position: relative;
+  z-index: 105;
+}
 #mobile-menu-btn #hamburger-line-1 {
   transform-origin: center;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 #mobile-menu-btn #hamburger-line-2 {
   transform-origin: center;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 #mobile-menu-btn #hamburger-line-3 {
   transform-origin: center;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 #mobile-menu-btn.active #hamburger-line-1 {
-  transform: rotate(45deg) translate(5px, 5px);
-  background-color: var(--color-gold);
+  transform: translateY(8px) rotate(45deg);
+  background-color: var(--color-gold, #c89b3c);
 }
 #mobile-menu-btn.active #hamburger-line-2 {
   opacity: 0;
   transform: scaleX(0);
 }
 #mobile-menu-btn.active #hamburger-line-3 {
-  transform: rotate(-45deg) translate(5px, -5px);
-  background-color: var(--color-gold);
+  transform: translateY(-8px) rotate(-45deg);
+  background-color: var(--color-gold, #c89b3c);
 }
 
 /* Mobile Menu Fullscreen Overlay and Stagger Reveal */
@@ -700,13 +707,14 @@ textarea:-webkit-autofill:focus {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s;
+  z-index: 95;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s;
 }
 
 #mobile-menu-overlay.active {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
 }
 
 #mobile-menu-overlay #mobile-menu-links a {
@@ -1039,11 +1047,21 @@ textarea:-webkit-autofill:focus {
   background-color: #141416 !important;
   border: 1px solid rgba(255, 255, 255, 0.14) !important;
   color: #ffffff !important;
-  padding: 0.875rem 1.125rem !important;
+  padding: 0.95rem 1.25rem !important;
   font-size: 0.875rem !important;
   border-radius: 0 !important;
   outline: none !important;
   transition: border-color 0.25s, box-shadow 0.25s, background-color 0.25s !important;
+}
+
+select.contact-field {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23c89b3c' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 1.25rem center !important;
+  background-size: 1.1rem 1.1rem !important;
+  padding-right: 3.25rem !important;
 }
 
 .contact-field:focus {
@@ -1059,7 +1077,7 @@ textarea:-webkit-autofill:focus {
 .contact-field option {
   background-color: #141416 !important;
   color: #ffffff !important;
-  padding: 0.5rem !important;
+  padding: 0.75rem 1rem !important;
 }
 
 .btn-contact-submit {
