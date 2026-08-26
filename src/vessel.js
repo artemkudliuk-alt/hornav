@@ -742,13 +742,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         <button type="button" id="btn-open-gallery-more" class="vessel-thumb-more relative w-full aspect-[4/3] sm:aspect-[16/10] overflow-hidden border border-gold/40 hover:border-gold transition-all cursor-pointer bg-black/80 group flex flex-col items-center justify-center" title="View all ${photos.length} photos">
           <img src="${fifthPhoto.url}" alt="All Inspection Photos" class="w-full h-full object-cover opacity-50 blur-[1.5px] group-hover:scale-105 group-hover:opacity-60 transition-all duration-300 pointer-events-none">
           
-          <!-- Mobile: Clean centered arrow on blurred background -->
-          <div class="sm:hidden absolute inset-0 bg-black/30 flex items-center justify-center pointer-events-none">
-            <div class="w-7 h-7 rounded-full bg-black/75 border border-gold/70 flex items-center justify-center text-gold group-hover:scale-110 group-hover:bg-gold group-hover:text-neutral-950 transition-all duration-300 shadow-lg">
-              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </div>
+          <!-- Mobile: Clean centered pure arrow, no frame / no circle -->
+          <div class="sm:hidden absolute inset-0 bg-black/40 flex items-center justify-center pointer-events-none">
+            <svg class="w-6 h-6 text-gold drop-shadow-md group-hover:scale-115 group-hover:text-white transition-all duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
           </div>
 
           <!-- Desktop: +N All Photos with arrow -->
