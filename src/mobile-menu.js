@@ -136,7 +136,68 @@ export function initScrollTransitions() {
   }
 }
 
+// ── Universal Swipeable / Draggable Row Controller ──
+export function initSwipeableRows() {
+  function setup() {
+    const containers = document.querySelectorAll('.swipeable-tabs-row, [data-swipeable]');
+    containers.forEach(container => {
+      if (container.dataset.swipeInitialized === 'true') return;
+      container.dataset.swipeInitialized = 'true';
+
+      let isDown = false;
+      let startX = 0;
+      let scrollLeft = 0;
+      let hasMoved = false;
+
+      container.addEventListener('pointerdown', (e) => {
+        isDown = true;
+        hasMoved = false;
+        startX = e.pageX - container.offsetLeft;
+        scrollLeft = container.scrollLeft;
+        container.style.scrollBehavior = 'auto';
+        container.style.scrollSnapType = 'none';
+      });
+
+      window.addEventListener('pointermove', (e) => {
+        if (!isDown) return;
+        const x = e.pageX - container.offsetLeft;
+        const walk = (x - startX);
+        if (Math.abs(walk) > 4) {
+          hasMoved = true;
+        }
+        container.scrollLeft = scrollLeft - walk;
+      });
+
+      const endHandler = () => {
+        if (!isDown) return;
+        isDown = false;
+        container.style.scrollBehavior = 'smooth';
+        container.style.scrollSnapType = 'x proximity';
+      };
+
+      window.addEventListener('pointerup', endHandler);
+      window.addEventListener('pointercancel', endHandler);
+
+      // Prevent button click if the user was swiping/dragging
+      container.addEventListener('click', (e) => {
+        if (hasMoved) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }, true);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setup);
+  } else {
+    setup();
+  }
+}
+
 // Auto-run on load across all 6 pages
 initMobileMenu();
 initScrollTransitions();
+initSwipeableRows();
+
 
