@@ -515,6 +515,47 @@ vesselLayoutStyles.textContent = `
     display: block !important;
     pointer-events: none !important;
   }
+  @media (max-width: 767px) {
+    #lightbox-modal {
+      padding: 0.25rem !important;
+    }
+    .lightbox-card-window {
+      width: 98vw !important;
+      height: 96dvh !important;
+      max-height: 98dvh !important;
+    }
+    .lightbox-header-bar {
+      padding: 0.5rem 0.75rem !important;
+    }
+    .lightbox-stage-container {
+      padding: 0.25rem !important;
+    }
+    #lightbox-img {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      object-fit: contain !important;
+    }
+    .lightbox-nav-btn {
+      width: 38px !important;
+      height: 38px !important;
+      background-color: rgba(0, 0, 0, 0.7) !important;
+    }
+    .lightbox-nav-btn.prev {
+      left: 0.25rem !important;
+    }
+    .lightbox-nav-btn.next {
+      right: 0.25rem !important;
+    }
+    .lightbox-footer-bar {
+      padding: 0.4rem 0.6rem !important;
+    }
+    .lb-thumb-btn {
+      width: 58px !important;
+      height: 42px !important;
+    }
+  }
 `;
 document.head.appendChild(vesselLayoutStyles);
 
