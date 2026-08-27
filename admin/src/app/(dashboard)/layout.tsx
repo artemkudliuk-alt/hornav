@@ -19,9 +19,9 @@ export default async function DashboardLayout({
   return (
     <div className="min-h-[100dvh] flex bg-[#18181b] text-neutral-100">
       {/* Desktop Sidebar */}
-      <div className="hidden lg:block shrink-0">
+      <aside className="hidden lg:block shrink-0 sticky top-0 h-[100dvh] z-30">
         <Sidebar userRole={user.role} />
-      </div>
+      </aside>
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col min-w-0">

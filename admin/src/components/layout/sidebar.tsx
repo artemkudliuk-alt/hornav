@@ -72,7 +72,7 @@ export function Sidebar({ userRole = "editor" }: SidebarProps) {
   );
 
   return (
-    <aside className="w-64 bg-[#141416] border-r border-white/5 flex flex-col shrink-0 min-h-[100dvh]">
+    <div className="w-64 bg-[#141416] border-r border-white/5 flex flex-col shrink-0 h-full">
       {/* Brand Header */}
       <div className="h-16 px-6 flex items-center gap-3 border-b border-white/5">
         <div className="w-8 h-8 relative shrink-0">
@@ -129,6 +129,6 @@ export function Sidebar({ userRole = "editor" }: SidebarProps) {
           <span>v1.0</span>
         </div>
       </div>
-    </aside>
+    </div>
   );
 }
