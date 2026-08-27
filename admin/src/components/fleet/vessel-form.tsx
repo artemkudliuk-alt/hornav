@@ -15,9 +15,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { MediaGallery } from "./media-gallery";
-import { Loader2, Save, ArrowLeft, Globe, ExternalLink } from "lucide-react";
+import { Loader2, Save, ArrowLeft, Ship, ExternalLink } from "lucide-react";
 import Link from "next/link";
 
 interface VesselFormProps {
@@ -30,17 +30,10 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Active language for multilingual inputs
-  const [activeLang, setActiveLang] = useState<"en" | "ua" | "ru">("en");
-
-  // Form State
+  // Form State (Clean English)
   const [formData, setFormData] = useState({
     imoNumber: initialData?.imoNumber || "",
-    name: {
-      en: initialData?.name?.en || "",
-      ua: initialData?.name?.ua || "",
-      ru: initialData?.name?.ru || "",
-    },
+    name: typeof initialData?.name === "string" ? initialData?.name : (initialData?.name?.en || ""),
     type: initialData?.type || "bulk_carrier",
     status: initialData?.status || "available",
     charterRateUsd: initialData?.charterRateUsd || "",
@@ -62,17 +55,9 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
     ecoSpeed: initialData?.ecoSpeed || "",
     classSociety: initialData?.classSociety || "",
 
-    // Multilingual Texts
-    description: {
-      en: initialData?.description?.en || "",
-      ua: initialData?.description?.ua || "",
-      ru: initialData?.description?.ru || "",
-    },
-    deckEquipment: {
-      en: initialData?.deckEquipment?.en || "",
-      ua: initialData?.deckEquipment?.ua || "",
-      ru: initialData?.deckEquipment?.ru || "",
-    },
+    // Content & Particulars (English)
+    description: typeof initialData?.description === "string" ? initialData?.description : (initialData?.description?.en || ""),
+    deckEquipment: typeof initialData?.deckEquipment === "string" ? initialData?.deckEquipment : (initialData?.deckEquipment?.en || ""),
     coverImageUrl: initialData?.coverImageUrl || "",
   });
 
@@ -83,6 +68,9 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
 
     const payload = {
       ...formData,
+      name: { en: formData.name, ua: "", ru: "" },
+      description: { en: formData.description, ua: "", ru: "" },
+      deckEquipment: { en: formData.deckEquipment, ua: "", ru: "" },
       charterRateUsd: formData.charterRateUsd ? Number(formData.charterRateUsd) : null,
       salePriceUsd: formData.salePriceUsd ? Number(formData.salePriceUsd) : null,
       dwt: formData.dwt ? Number(formData.dwt) : null,
@@ -146,11 +134,11 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
           <div>
             <h1 className="text-xl sm:text-2xl font-semibold text-white tracking-tight">
               {isEditing
-                ? `Edit: ${formData.name.en || "Vessel"}`
+                ? `Edit: ${formData.name || "Vessel"}`
                 : "Add New Vessel to Fleet"}
             </h1>
             <p className="text-xs text-neutral-400">
-              Fill in basic particulars, technical specs, multilingual copy, and media assets.
+              Manage vessel technical particulars, cargo specifications, charter terms, and media assets.
             </p>
           </div>
         </div>
@@ -158,7 +146,7 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
         <div className="flex items-center gap-2">
           {isEditing && (
             <a
-              href="http://localhost:5174/#fleet"
+              href={`/vessel.html?id=${initialData?.id}`}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -203,7 +191,7 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
             2. Technical Specs
           </TabsTrigger>
           <TabsTrigger value="content" className="text-xs uppercase tracking-wider">
-            3. Descriptions (i18n)
+            3. Descriptions & Particulars
           </TabsTrigger>
           {isEditing && (
             <TabsTrigger value="media" className="text-xs uppercase tracking-wider">
@@ -215,47 +203,20 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
         {/* ─── TAB 1: Base Details ──────────────────────────────── */}
         <TabsContent value="base" className="space-y-6">
           <Card className="bg-[#202023]/70 border-white/5 p-6 space-y-6">
-            {/* Multilingual Vessel Name Box */}
-            <div className="space-y-3 p-4 rounded-lg bg-[#18181b] border border-white/5">
-              <div className="flex items-center justify-between">
-                <Label className="text-xs font-semibold text-white uppercase tracking-wider flex items-center gap-2">
-                  <Globe className="w-4 h-4 text-[#c89b3c]" />
-                  Vessel Name (Multilingual)
-                </Label>
-                {/* Language Switcher Tabs */}
-                <div className="flex gap-1 bg-[#202023] p-0.5 rounded border border-white/5">
-                  {(["en", "ua", "ru"] as const).map((lang) => (
-                    <button
-                      key={lang}
-                      type="button"
-                      onClick={() => setActiveLang(lang)}
-                      className={`px-2.5 py-1 text-[10px] font-bold uppercase rounded transition-colors ${
-                        activeLang === lang
-                          ? "bg-[#c89b3c] text-[#141416]"
-                          : "text-neutral-400 hover:text-white"
-                      }`}
-                    >
-                      {lang}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
+            {/* Vessel Name */}
+            <div className="space-y-2">
+              <Label htmlFor="vesselName" className="text-xs font-semibold text-white uppercase tracking-wider flex items-center gap-2">
+                <Ship className="w-4 h-4 text-[#c89b3c]" />
+                Vessel Name
+              </Label>
               <Input
-                placeholder={`Vessel Name in ${activeLang.toUpperCase()} (e.g. MV Danamira Pioneer)`}
-                value={formData.name[activeLang]}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    name: { ...formData.name, [activeLang]: e.target.value },
-                  })
-                }
-                required={activeLang === "en"}
-                className="bg-[#202023] border-white/10 text-white text-sm"
+                id="vesselName"
+                placeholder="e.g. MV METANIRA"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                required
+                className="bg-[#18181b] border-white/10 text-white text-sm focus-visible:ring-[#c89b3c]"
               />
-              <p className="text-[11px] text-neutral-500">
-                Active tab: <span className="text-[#c89b3c] font-bold uppercase">{activeLang}</span>. Switch tabs above to provide names in English, Ukrainian, and Russian.
-              </p>
             </div>
 
             {/* Grid of basic fields */}
@@ -284,12 +245,12 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
                     <SelectValue placeholder="Select type" />
                   </SelectTrigger>
                   <SelectContent className="bg-[#202023] border-white/10 text-white">
-                    <SelectItem value="bulk_carrier">Bulk Carrier / Сухогруз</SelectItem>
-                    <SelectItem value="container">Container Ship / Контейнеровоз</SelectItem>
-                    <SelectItem value="tanker">Tanker / Танкер</SelectItem>
-                    <SelectItem value="roro">Ro-Ro Vessel / Ро-ро</SelectItem>
-                    <SelectItem value="barge">Barge / Баржа</SelectItem>
-                    <SelectItem value="tug">Tugboat / Буксир</SelectItem>
+                    <SelectItem value="bulk_carrier">Bulk Carrier</SelectItem>
+                    <SelectItem value="container">Container Ship</SelectItem>
+                    <SelectItem value="tanker">Tanker</SelectItem>
+                    <SelectItem value="roro">Ro-Ro Vessel</SelectItem>
+                    <SelectItem value="barge">Barge</SelectItem>
+                    <SelectItem value="tug">Tugboat</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -306,10 +267,10 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
                     <SelectValue placeholder="Select status" />
                   </SelectTrigger>
                   <SelectContent className="bg-[#202023] border-white/10 text-white">
-                    <SelectItem value="available">Available (Доступно)</SelectItem>
-                    <SelectItem value="in_transit">In Transit (В рейсе)</SelectItem>
-                    <SelectItem value="chartered">Chartered (В зафрахтовании)</SelectItem>
-                    <SelectItem value="maintenance">Maintenance (На обслуживании)</SelectItem>
+                    <SelectItem value="available">Available</SelectItem>
+                    <SelectItem value="in_transit">In Transit</SelectItem>
+                    <SelectItem value="chartered">Chartered</SelectItem>
+                    <SelectItem value="maintenance">Maintenance</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -350,7 +311,7 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
                     }
                     className="rounded border-white/20 text-[#c89b3c] focus:ring-[#c89b3c]"
                   />
-                  <span>Price on Request (Цена по запросу)</span>
+                  <span>Price on Request</span>
                 </label>
               </div>
 
@@ -534,74 +495,42 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
           </Card>
         </TabsContent>
 
-        {/* ─── TAB 3: Multilingual Copy (Descriptions) ──────────── */}
+        {/* ─── TAB 3: Descriptions & Particulars ────────────────── */}
         <TabsContent value="content" className="space-y-6">
           <Card className="bg-[#202023]/70 border-white/5 p-6 space-y-6">
-            <div className="flex items-center justify-between border-b border-white/5 pb-4">
-              <div>
-                <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
-                  Localized Vessel Particulars
-                </h3>
-                <p className="text-xs text-neutral-400">
-                  Switch the language toggle to enter copy for English, Ukrainian, and Russian.
-                </p>
-              </div>
-
-              <div className="flex gap-1 bg-[#18181b] p-0.5 rounded border border-white/5">
-                {(["en", "ua", "ru"] as const).map((lang) => (
-                  <button
-                    key={lang}
-                    type="button"
-                    onClick={() => setActiveLang(lang)}
-                    className={`px-3 py-1.5 text-xs font-bold uppercase rounded transition-colors ${
-                      activeLang === lang
-                        ? "bg-[#c89b3c] text-[#141416]"
-                        : "text-neutral-400 hover:text-white"
-                    }`}
-                  >
-                    {lang}
-                  </button>
-                ))}
-              </div>
+            <div>
+              <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
+                Vessel Particulars & Commercial Description
+              </h3>
+              <p className="text-xs text-neutral-400 mt-1">
+                Provide detailed cargo capabilities, hold specifications, gear, and commercial terms in English.
+              </p>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-5">
               <div className="space-y-2">
                 <Label className="text-xs text-neutral-300">
-                  Detailed Description & Cargo Capabilities ({activeLang.toUpperCase()})
+                  Detailed Description & Cargo Capabilities
                 </Label>
                 <RichTextEditor
-                  key={`vessel-desc-${activeLang}`}
-                  content={formData.description[activeLang] || ""}
+                  content={formData.description || ""}
                   onChange={(html) =>
-                    setFormData({
-                      ...formData,
-                      description: {
-                        ...formData.description,
-                        [activeLang]: html,
-                      },
-                    })
+                    setFormData({ ...formData, description: html })
                   }
-                  placeholder={`Detailed vessel cargo capabilities, hold cubics, certifications in ${activeLang.toUpperCase()}...`}
+                  placeholder="Detailed vessel cargo capabilities, hold cubics, certifications..."
                 />
               </div>
 
               <div className="space-y-2">
                 <Label className="text-xs text-neutral-300">
-                  Deck Equipment & Cargo Gear ({activeLang.toUpperCase()})
+                  Deck Equipment & Cargo Gear
                 </Label>
                 <Textarea
-                  rows={3}
-                  placeholder={`Cranes, derricks, hatch covers, grabbers in ${activeLang.toUpperCase()}...`}
-                  value={formData.deckEquipment[activeLang]}
+                  rows={4}
+                  placeholder="Cranes, derricks, hatch covers, grabbers, out-reaches..."
+                  value={formData.deckEquipment}
                   onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      deckEquipment: {
-                        ...formData.deckEquipment,
-                        [activeLang]: e.target.value,
-                      },
-                    })
+                    setFormData({ ...formData, deckEquipment: e.target.value })
                   }
                   className="bg-[#18181b] border-white/10 text-xs text-white"
                 />

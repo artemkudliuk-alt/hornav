@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { db } from "@/lib/db";
+import { db, isDbConnected } from "@/lib/db";
 import { vessels, vesselMedia } from "@/lib/db/schema";
 import { vesselFormSchema } from "@/lib/validators";
 import { eq } from "drizzle-orm";
+import { sampleVessels } from "@/lib/db/mock-data";
 
 // ─── GET /api/vessels/[id] ────────────────────────────────────
 export async function GET(
@@ -18,21 +19,41 @@ export async function GET(
   const { id } = await params;
 
   try {
-    const [vessel] = await db
-      .select()
-      .from(vessels)
-      .where(eq(vessels.id, id))
-      .limit(1);
+    let vessel: any = null;
+    let media: any[] = [];
+
+    if (isDbConnected) {
+      try {
+        const [dbVessel] = await db
+          .select()
+          .from(vessels)
+          .where(eq(vessels.id, id))
+          .limit(1);
+
+        if (dbVessel) {
+          vessel = dbVessel;
+          media = await db
+            .select()
+            .from(vesselMedia)
+            .where(eq(vesselMedia.vesselId, id))
+            .orderBy(vesselMedia.sortOrder);
+        }
+      } catch (dbErr) {
+        console.warn("DB query failed, fallback to sampleVessels:", dbErr);
+      }
+    }
+
+    if (!vessel) {
+      const mock = sampleVessels.find((v) => v.id === id);
+      if (mock) {
+        vessel = mock;
+        media = (mock as any).media || [];
+      }
+    }
 
     if (!vessel) {
       return NextResponse.json({ error: "Vessel not found" }, { status: 404 });
     }
-
-    const media = await db
-      .select()
-      .from(vesselMedia)
-      .where(eq(vesselMedia.vesselId, id))
-      .orderBy(vesselMedia.sortOrder);
 
     return NextResponse.json({ ...vessel, media });
   } catch (error) {
@@ -100,9 +121,50 @@ export async function PUT(
       coverImageUrl,
     } = parsed.data;
 
-    const [updated] = await db
-      .update(vessels)
-      .set({
+    if (isDbConnected) {
+      try {
+        const [updated] = await db
+          .update(vessels)
+          .set({
+            imoNumber: imoNumber || null,
+            name,
+            type,
+            status,
+            charterRateUsd: charterRateUsd ? charterRateUsd.toString() : null,
+            salePriceUsd: salePriceUsd ? salePriceUsd.toString() : null,
+            priceOnRequest,
+            currentLocation: currentLocation || null,
+            tradingArea: tradingArea || null,
+            dwt: dwt || null,
+            teu: teu || null,
+            cubicCapacity: cubicCapacity ? cubicCapacity.toString() : null,
+            yearBuilt: yearBuilt || null,
+            flag: flag || null,
+            loa: loa ? loa.toString() : null,
+            beam: beam ? beam.toString() : null,
+            draft: draft ? draft.toString() : null,
+            maxSpeed: maxSpeed ? maxSpeed.toString() : null,
+            ecoSpeed: ecoSpeed ? ecoSpeed.toString() : null,
+            classSociety: classSociety || null,
+            description: description || null,
+            deckEquipment: deckEquipment || null,
+            coverImageUrl: coverImageUrl || null,
+            updatedAt: new Date(),
+          })
+          .where(eq(vessels.id, id))
+          .returning();
+
+        if (updated) return NextResponse.json(updated);
+      } catch (dbErr) {
+        console.warn("DB update failed, fallback to in-memory:", dbErr);
+      }
+    }
+
+    // In-memory fallback
+    const idx = sampleVessels.findIndex((v) => v.id === id);
+    if (idx !== -1) {
+      sampleVessels[idx] = {
+        ...sampleVessels[idx],
         imoNumber: imoNumber || null,
         name,
         type,
@@ -125,17 +187,13 @@ export async function PUT(
         classSociety: classSociety || null,
         description: description || null,
         deckEquipment: deckEquipment || null,
-        coverImageUrl: coverImageUrl || null,
+        coverImageUrl: coverImageUrl || sampleVessels[idx].coverImageUrl,
         updatedAt: new Date(),
-      })
-      .where(eq(vessels.id, id))
-      .returning();
-
-    if (!updated) {
-      return NextResponse.json({ error: "Vessel not found" }, { status: 404 });
+      } as any;
+      return NextResponse.json(sampleVessels[idx]);
     }
 
-    return NextResponse.json(updated);
+    return NextResponse.json({ error: "Vessel not found" }, { status: 404 });
   } catch (error: any) {
     console.error("PUT /api/vessels/[id] error:", error);
     return NextResponse.json(
@@ -165,16 +223,20 @@ export async function DELETE(
   const { id } = await params;
 
   try {
-    const [deleted] = await db
-      .delete(vessels)
-      .where(eq(vessels.id, id))
-      .returning();
-
-    if (!deleted) {
-      return NextResponse.json({ error: "Vessel not found" }, { status: 404 });
+    if (isDbConnected) {
+      try {
+        await db.delete(vessels).where(eq(vessels.id, id));
+      } catch (dbErr) {
+        console.warn("DB delete failed, fallback to in-memory:", dbErr);
+      }
     }
 
-    return NextResponse.json({ success: true, id: deleted.id });
+    const idx = sampleVessels.findIndex((v) => v.id === id);
+    if (idx !== -1) {
+      sampleVessels.splice(idx, 1);
+    }
+
+    return NextResponse.json({ success: true });
   } catch (error) {
     console.error("DELETE /api/vessels/[id] error:", error);
     return NextResponse.json(

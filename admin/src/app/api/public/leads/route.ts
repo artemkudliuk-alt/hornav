@@ -5,6 +5,7 @@ import { leadCreateSchema } from "@/lib/validators";
 import { notifyNewLead } from "@/lib/telegram";
 import { sendLeadEmailNotification } from "@/lib/email";
 import { eq } from "drizzle-orm";
+import { sampleLeads } from "@/lib/db/mock-data";
 
 export async function OPTIONS() {
   return new NextResponse(null, {
@@ -35,7 +36,9 @@ export async function POST(req: Request) {
     const {
       clientName,
       clientPhone,
+      phone,
       clientEmail,
+      email,
       clientWhatsapp,
       clientTelegram,
       loadingPort,
@@ -44,8 +47,13 @@ export async function POST(req: Request) {
       cargoVolume,
       vesselId,
       comment,
+      message,
       sourcePage,
     } = parsed.data;
+
+    const normalizedPhone = clientPhone || phone || null;
+    const normalizedEmail = clientEmail || email || null;
+    const normalizedComment = comment || message || null;
 
     let leadId = `lead-${Date.now()}`;
     let vesselName: string | null = null;
@@ -56,8 +64,8 @@ export async function POST(req: Request) {
           .insert(leads)
           .values({
             clientName,
-            clientPhone: clientPhone || null,
-            clientEmail: clientEmail || null,
+            clientPhone: normalizedPhone,
+            clientEmail: normalizedEmail,
             clientWhatsapp: clientWhatsapp || null,
             clientTelegram: clientTelegram || null,
             loadingPort: loadingPort || null,
@@ -65,7 +73,7 @@ export async function POST(req: Request) {
             cargoType: cargoType || null,
             cargoVolume: cargoVolume || null,
             vesselId: vesselId || null,
-            comment: comment || null,
+            comment: normalizedComment,
             sourcePage: sourcePage || null,
             status: "new",
           })
@@ -86,6 +94,25 @@ export async function POST(req: Request) {
       } catch (dbErr) {
         console.warn("Could not insert lead to DB, continuing notification dispatch:", dbErr);
       }
+    } else {
+      const mockLead = {
+        id: leadId,
+        status: "new",
+        clientName,
+        clientPhone: normalizedPhone,
+        clientEmail: normalizedEmail,
+        clientWhatsapp: clientWhatsapp || null,
+        clientTelegram: clientTelegram || null,
+        loadingPort: loadingPort || null,
+        dischargePort: dischargePort || null,
+        cargoType: cargoType || null,
+        cargoVolume: cargoVolume || null,
+        vesselId: vesselId || null,
+        comment: normalizedComment,
+        sourcePage: sourcePage || null,
+        createdAt: new Date().toISOString(),
+      };
+      sampleLeads.unshift(mockLead);
     }
 
     // Trigger asynchronous notifications (Telegram + Email)

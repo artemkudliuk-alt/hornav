@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
-import { db } from "@/lib/db";
+import { db, isDbConnected } from "@/lib/db";
 import { vessels, vesselMedia } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
+import { sampleVessels } from "@/lib/db/mock-data";
 
 export async function GET(
   req: Request,
@@ -12,21 +13,41 @@ export async function GET(
   const lang = (searchParams.get("lang") as "en" | "ua" | "ru") || "en";
 
   try {
-    const [vessel] = await db
-      .select()
-      .from(vessels)
-      .where(eq(vessels.id, id))
-      .limit(1);
+    let vessel: any = null;
+    let media: any[] = [];
+
+    if (isDbConnected) {
+      try {
+        const [dbVessel] = await db
+          .select()
+          .from(vessels)
+          .where(eq(vessels.id, id))
+          .limit(1);
+
+        if (dbVessel) {
+          vessel = dbVessel;
+          media = await db
+            .select()
+            .from(vesselMedia)
+            .where(eq(vesselMedia.vesselId, id))
+            .orderBy(vesselMedia.sortOrder);
+        }
+      } catch (dbErr) {
+        console.warn("DB query failed, fallback to mock data:", dbErr);
+      }
+    }
+
+    if (!vessel) {
+      const mock = sampleVessels.find((v) => v.id === id);
+      if (mock) {
+        vessel = mock;
+        media = mock.media || [];
+      }
+    }
 
     if (!vessel) {
       return NextResponse.json({ error: "Vessel not found" }, { status: 404 });
     }
-
-    const media = await db
-      .select()
-      .from(vesselMedia)
-      .where(eq(vesselMedia.vesselId, id))
-      .orderBy(vesselMedia.sortOrder);
 
     const nameObj = vessel.name as unknown as Record<string, string> | null;
     const descObj = vessel.description as unknown as Record<string, string> | null;
@@ -40,8 +61,8 @@ export async function GET(
       descriptionI18n: vessel.description,
       deckEquipment: deckObj?.[lang] || deckObj?.en || "",
       deckEquipmentI18n: vessel.deckEquipment,
-      photos: media.filter((m) => m.type === "photo"),
-      documents: media.filter((m) => m.type === "pdf"),
+      photos: media.filter((m: any) => m.type === "photo"),
+      documents: media.filter((m: any) => m.type === "pdf"),
     };
 
     return NextResponse.json(responseData, {

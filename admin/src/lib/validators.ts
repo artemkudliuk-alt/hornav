@@ -49,7 +49,7 @@ export const vesselStatusEnumSchema = z.enum([
 ]);
 
 export const vesselFormSchema = z.object({
-  imoNumber: z.string().min(3, "IMO number is required").max(20).optional().nullable(),
+  imoNumber: z.string().max(20).optional().nullable().or(z.literal("")),
   name: i18nStringSchema.refine((val) => val.en.trim().length > 0, {
     message: "English vessel name is required",
     path: ["en"],
@@ -59,26 +59,26 @@ export const vesselFormSchema = z.object({
   charterRateUsd: z.coerce.number().min(0).optional().nullable(),
   salePriceUsd: z.coerce.number().min(0).optional().nullable(),
   priceOnRequest: z.boolean().default(false),
-  currentLocation: z.string().max(255).optional().nullable(),
-  tradingArea: z.string().max(255).optional().nullable(),
+  currentLocation: z.string().max(255).optional().nullable().or(z.literal("")),
+  tradingArea: z.string().max(255).optional().nullable().or(z.literal("")),
 
   // Technical specifications
   dwt: z.coerce.number().int().min(0).optional().nullable(),
   teu: z.coerce.number().int().min(0).optional().nullable(),
   cubicCapacity: z.coerce.number().min(0).optional().nullable(),
   yearBuilt: z.coerce.number().int().min(1900).max(2100).optional().nullable(),
-  flag: z.string().max(100).optional().nullable(),
+  flag: z.string().max(100).optional().nullable().or(z.literal("")),
   loa: z.coerce.number().min(0).optional().nullable(),
   beam: z.coerce.number().min(0).optional().nullable(),
   draft: z.coerce.number().min(0).optional().nullable(),
   maxSpeed: z.coerce.number().min(0).optional().nullable(),
   ecoSpeed: z.coerce.number().min(0).optional().nullable(),
-  classSociety: z.string().max(100).optional().nullable(),
+  classSociety: z.string().max(100).optional().nullable().or(z.literal("")),
 
   // Content
   description: i18nStringSchema.optional().nullable(),
   deckEquipment: i18nStringSchema.optional().nullable(),
-  coverImageUrl: z.string().url().optional().nullable(),
+  coverImageUrl: z.string().optional().nullable().or(z.literal("")),
 });
 
 export type VesselFormData = z.infer<typeof vesselFormSchema>;
@@ -100,17 +100,20 @@ export const cargoTypeEnumSchema = z.enum([
 
 export const leadCreateSchema = z.object({
   clientName: z.string().min(2, "Client name is required"),
-  clientPhone: z.string().max(64).optional().nullable(),
-  clientEmail: z.string().email("Valid email required").optional().nullable(),
-  clientWhatsapp: z.string().max(64).optional().nullable(),
-  clientTelegram: z.string().max(64).optional().nullable(),
-  loadingPort: z.string().max(255).optional().nullable(),
-  dischargePort: z.string().max(255).optional().nullable(),
+  clientPhone: z.string().max(64).optional().nullable().or(z.literal("")),
+  phone: z.string().max(64).optional().nullable().or(z.literal("")),
+  clientEmail: z.string().email("Valid email required").optional().nullable().or(z.literal("")),
+  email: z.string().email("Valid email required").optional().nullable().or(z.literal("")),
+  clientWhatsapp: z.string().max(64).optional().nullable().or(z.literal("")),
+  clientTelegram: z.string().max(64).optional().nullable().or(z.literal("")),
+  loadingPort: z.string().max(255).optional().nullable().or(z.literal("")),
+  dischargePort: z.string().max(255).optional().nullable().or(z.literal("")),
   cargoType: cargoTypeEnumSchema.optional().nullable(),
-  cargoVolume: z.string().max(128).optional().nullable(),
-  vesselId: z.string().uuid().optional().nullable(),
-  comment: z.string().optional().nullable(),
-  sourcePage: z.string().max(512).optional().nullable(),
+  cargoVolume: z.string().max(128).optional().nullable().or(z.literal("")),
+  vesselId: z.string().optional().nullable().or(z.literal("")),
+  comment: z.string().optional().nullable().or(z.literal("")),
+  message: z.string().optional().nullable().or(z.literal("")),
+  sourcePage: z.string().max(512).optional().nullable().or(z.literal("")),
 });
 
 export const leadUpdateStatusSchema = z.object({

@@ -10,9 +10,10 @@ import { Button } from "@/components/ui/button";
 import { Anchor, Edit3, Plus, Ship } from "lucide-react";
 
 export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function FleetPage() {
-  let fleetList: any[] = sampleVessels;
+  let fleetList: any[] = [...sampleVessels];
 
   if (isDbConnected) {
     try {

@@ -15,8 +15,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, Globe, Loader2, Save, Sparkles, ExternalLink } from "lucide-react";
+import { Card } from "@/components/ui/card";
+import { ArrowLeft, Loader2, Save, FileText } from "lucide-react";
 
 interface PageFormProps {
   initialData?: any;
@@ -28,43 +28,20 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Active language for multilingual inputs
-  const [activeLang, setActiveLang] = useState<"en" | "ua" | "ru">("en");
-
-  // Form state
+  // Form state (Clean English)
   const [formData, setFormData] = useState({
     slug: initialData?.slug || "",
     status: initialData?.status || "draft",
-    title: {
-      en: initialData?.title?.en || "",
-      ua: initialData?.title?.ua || "",
-      ru: initialData?.title?.ru || "",
-    },
-    metaDescription: {
-      en: initialData?.metaDescription?.en || "",
-      ua: initialData?.metaDescription?.ua || "",
-      ru: initialData?.metaDescription?.ru || "",
-    },
-    ogImage: {
-      en: initialData?.ogImage?.en || "",
-      ua: initialData?.ogImage?.ua || "",
-      ru: initialData?.ogImage?.ru || "",
-    },
-    content: {
-      en: initialData?.content?.en || "",
-      ua: initialData?.content?.ua || "",
-      ru: initialData?.content?.ru || "",
-    },
+    title: typeof initialData?.title === "string" ? initialData.title : (initialData?.title?.en || ""),
+    metaDescription: typeof initialData?.metaDescription === "string" ? initialData.metaDescription : (initialData?.metaDescription?.en || ""),
+    content: typeof initialData?.content === "string" ? initialData.content : (initialData?.content?.en || ""),
   });
 
   // Auto slug generation from English title
   function handleTitleChange(val: string) {
     setFormData((prev) => {
-      const updated = {
-        ...prev,
-        title: { ...prev.title, [activeLang]: val },
-      };
-      if (!isEditing && activeLang === "en" && !prev.slug) {
+      const updated = { ...prev, title: val };
+      if (!isEditing && !prev.slug) {
         updated.slug = val
           .toLowerCase()
           .replace(/[^a-z0-9]+/g, "-")
@@ -79,6 +56,15 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
     setIsSaving(true);
     setError(null);
 
+    const payload = {
+      slug: formData.slug,
+      status: formData.status,
+      title: { en: formData.title, ua: "", ru: "" },
+      metaDescription: { en: formData.metaDescription, ua: "", ru: "" },
+      ogImage: { en: "", ua: "", ru: "" },
+      content: { en: formData.content, ua: "", ru: "" },
+    };
+
     try {
       const url = isEditing ? `/api/pages/${initialData.id}` : `/api/pages`;
       const method = isEditing ? "PUT" : "POST";
@@ -86,7 +72,7 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
       const res = await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       });
 
       if (!res.ok) {
@@ -187,73 +173,47 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
                 <SelectValue />
               </SelectTrigger>
               <SelectContent className="bg-[#202023] border-white/10 text-white text-xs">
-                <SelectItem value="draft">🟡 Draft (Черновик)</SelectItem>
-                <SelectItem value="published">🟢 Published (Опубликовано)</SelectItem>
+                <SelectItem value="draft">Draft</SelectItem>
+                <SelectItem value="published">Published</SelectItem>
               </SelectContent>
             </Select>
           </div>
         </div>
       </Card>
 
-      {/* Multilingual SEO & Content Block */}
+      {/* SEO & Page Content Block */}
       <Card className="bg-[#202023]/70 border-white/5 p-6 space-y-6">
-        <div className="flex items-center justify-between border-b border-white/5 pb-4">
-          <div className="flex items-center gap-2">
-            <Globe className="w-4 h-4 text-[#c89b3c]" />
-            <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
-              Multilingual SEO & Page Content
-            </h3>
-          </div>
-
-          {/* Language Switcher Tabs */}
-          <div className="flex gap-1 bg-[#18181b] p-0.5 rounded border border-white/5">
-            {(["en", "ua", "ru"] as const).map((lang) => (
-              <button
-                key={lang}
-                type="button"
-                onClick={() => setActiveLang(lang)}
-                className={`px-3 py-1.5 text-xs font-bold uppercase rounded transition-colors ${
-                  activeLang === lang
-                    ? "bg-[#c89b3c] text-[#141416]"
-                    : "text-neutral-400 hover:text-white"
-                }`}
-              >
-                {lang}
-              </button>
-            ))}
-          </div>
+        <div className="flex items-center gap-2 border-b border-white/5 pb-4">
+          <FileText className="w-4 h-4 text-[#c89b3c]" />
+          <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
+            SEO Metadata & Page Content
+          </h3>
         </div>
 
         <div className="space-y-4">
           <div className="space-y-2">
             <Label className="text-xs text-neutral-300">
-              Page Title ({activeLang.toUpperCase()})
+              Page Title
             </Label>
             <Input
-              placeholder={`e.g. Black Sea Grain & Dry Bulk Freight | Danamira (${activeLang.toUpperCase()})`}
-              value={formData.title[activeLang]}
+              placeholder="e.g. Black Sea Grain & Dry Bulk Freight | Danamira Shipping"
+              value={formData.title}
               onChange={(e) => handleTitleChange(e.target.value)}
-              required={activeLang === "en"}
+              required
               className="bg-[#18181b] border-white/10 text-xs text-white"
             />
           </div>
 
           <div className="space-y-2">
             <Label className="text-xs text-neutral-300">
-              Meta Description & OpenGraph ({activeLang.toUpperCase()})
+              Meta Description & Search Snippet
             </Label>
             <Textarea
               rows={2}
-              placeholder={`Search engine summary snippet in ${activeLang.toUpperCase()} (150-160 chars recommended)...`}
-              value={formData.metaDescription[activeLang]}
+              placeholder="Search engine summary snippet (150-160 chars recommended)..."
+              value={formData.metaDescription}
               onChange={(e) =>
-                setFormData({
-                  ...formData,
-                  metaDescription: {
-                    ...formData.metaDescription,
-                    [activeLang]: e.target.value,
-                  },
-                })
+                setFormData({ ...formData, metaDescription: e.target.value })
               }
               className="bg-[#18181b] border-white/10 text-xs text-white"
             />
@@ -261,24 +221,17 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
 
           <div className="space-y-2">
             <Label className="text-xs text-neutral-300">
-              Visual & Rich Content ({activeLang.toUpperCase()})
+              Visual & Rich Content
             </Label>
             <RichTextEditor
-              key={`editor-${activeLang}`}
-              content={formData.content[activeLang] || ""}
+              content={formData.content || ""}
               onChange={(html) =>
-                setFormData({
-                  ...formData,
-                  content: {
-                    ...formData.content,
-                    [activeLang]: html,
-                  },
-                })
+                setFormData({ ...formData, content: html })
               }
-              placeholder={`Write content for ${activeLang.toUpperCase()}... Add headings, images, YouTube video embeds, or custom layouts...`}
+              placeholder="Write page content... Add headings, images, YouTube video embeds, or custom layouts..."
             />
             <p className="text-[11px] text-neutral-500">
-              WordPress/Notion-style visual editor: format headings (H1-H4), bold/italic/underline, align text, insert images, YouTube video embeds, and view live client preview.
+              Format headings (H1-H4), bold/italic/underline, lists, links, images, and embedded video components.
             </p>
           </div>
         </div>

@@ -5,9 +5,10 @@ import { sampleLeads } from "@/lib/db/mock-data";
 import { LeadsTable } from "@/components/leads/leads-table";
 
 export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function LeadsPage() {
-  let leadsList: any[] = sampleLeads;
+  let leadsList: any[] = [...sampleLeads];
 
   if (isDbConnected) {
     try {
@@ -27,19 +28,23 @@ export default async function LeadsPage() {
     }
   }
 
+  const formatted = leadsList.map((item) =>
+    item.lead ? item : { lead: item, vessel: item.vessel || null, assignedUser: null }
+  );
+
   return (
     <div className="space-y-6">
       {/* Header */}
       <div>
         <h1 className="text-xl sm:text-2xl font-semibold text-white tracking-tight">
-          Inbound Leads & Freight Inquiries ({leadsList.length})
+          Inbound Leads & Freight Inquiries ({formatted.length})
         </h1>
         <p className="text-xs text-neutral-400 mt-1">
           Review, assign, and process cargo transportation and vessel charter inquiries in real time.
         </p>
       </div>
 
-      <LeadsTable initialLeads={leadsList} />
+      <LeadsTable initialLeads={formatted} />
     </div>
   );
 }

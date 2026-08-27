@@ -1,4 +1,11 @@
-export const sampleVessels = [
+const globalForData = globalThis as unknown as {
+  _sampleVessels?: any[];
+  _sampleLeads?: any[];
+  _samplePages?: any[];
+  _sampleBranches?: any[];
+};
+
+const initialSampleVessels = [
   {
     id: "vessel-molpadia",
     imoNumber: "9613616",
@@ -211,7 +218,11 @@ export const sampleVessels = [
   },
 ];
 
-export const sampleLeads = [
+export const sampleVessels: any[] =
+  globalForData._sampleVessels ||
+  (globalForData._sampleVessels = initialSampleVessels);
+
+const initialSampleLeads = [
   {
     id: "lead-001",
     status: "new",
@@ -261,6 +272,10 @@ export const sampleLeads = [
     createdAt: new Date(Date.now() - 3600000 * 72).toISOString(),
   },
 ];
+
+export const sampleLeads: any[] =
+  globalForData._sampleLeads ||
+  (globalForData._sampleLeads = initialSampleLeads);
 
 export const samplePages = [
   {
