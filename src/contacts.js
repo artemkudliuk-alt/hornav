@@ -90,6 +90,77 @@ function initContacts() {
       }, 700);
     });
   }
+  // 4. Sync Branch Offices & Regional Agencies from Danamira CMS
+  async function syncBranchesFromCMS() {
+    const grid = document.getElementById('branches-cards-grid');
+    const countBadge = document.getElementById('branches-count-badge');
+    if (!grid) return;
+
+    try {
+      const apiBase = window.location.hostname === 'localhost'
+        ? 'http://localhost:3000'
+        : 'https://danamiratest.vercel.app';
+      const res = await fetch(`${apiBase}/api/public/contacts`).catch(() => fetch('/api/public/contacts'));
+      if (!res || !res.ok) return;
+
+      const data = await res.json();
+      const offices = data.offices || [];
+      if (!Array.isArray(offices) || offices.length === 0) return;
+
+      if (countBadge) {
+        countBadge.textContent = `${offices.length} Active Stations`;
+      }
+
+      grid.innerHTML = offices.map((office, idx) => {
+        const num = String(idx + 1).padStart(2, '0');
+        return `
+          <div class="p-6 sm:p-7 bg-[#141416]/95 border border-neutral-800 hover:border-gold/50 transition-all duration-300 flex flex-col justify-between gap-5 relative group shadow-xl text-left backdrop-blur-md rounded-none">
+            <div>
+              <div class="flex items-start justify-between gap-2 mb-3">
+                <span class="text-[10px] font-mono font-bold tracking-[0.2em] text-gold uppercase">
+                  ${office.country || 'Port Agency'} &bull; ${office.portCity || ''}
+                </span>
+                <span class="text-sm font-serif text-gold/40 select-none font-bold">${num}</span>
+              </div>
+              <h3 class="text-lg sm:text-xl font-serif text-white font-medium group-hover:text-gold transition-colors">
+                ${office.name}
+              </h3>
+              <p class="text-xs text-neutral-400 font-light mt-1.5 leading-relaxed">
+                ${office.address || 'Port Terminal & Agency Desk'}
+              </p>
+            </div>
+
+            <div class="border-t border-white/10 pt-4 flex flex-col gap-2.5 font-sans text-xs">
+              ${office.agentName ? `
+                <div class="flex items-center justify-between text-neutral-300">
+                  <span class="text-[10px] font-mono uppercase text-neutral-500">Representative:</span>
+                  <span class="font-medium text-white">${office.agentName}</span>
+                </div>
+              ` : ''}
+              ${office.phone ? `
+                <div class="flex items-center justify-between text-neutral-300">
+                  <span class="text-[10px] font-mono uppercase text-neutral-500">Telephone:</span>
+                  <a href="tel:${office.phone.replace(/[^+\d]/g, '')}" class="font-mono text-white hover:text-gold transition-colors font-medium">${office.phone}</a>
+                </div>
+              ` : ''}
+              ${office.email ? `
+                <div class="flex items-center justify-between text-neutral-300 pt-1">
+                  <span class="text-[10px] font-mono uppercase text-neutral-500">Email:</span>
+                  <button type="button" class="btn-copy-email font-mono text-xs text-gold hover:underline transition-colors truncate text-right cursor-pointer" data-email="${office.email}">
+                    ${office.email}
+                  </button>
+                </div>
+              ` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+    } catch (e) {
+      console.log('Branches sync skipped:', e);
+    }
+  }
+
+  syncBranchesFromCMS();
 }
 
 if (document.readyState === 'loading') {

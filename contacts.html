@@ -421,6 +421,34 @@
 
     </div>
 
+    <!-- 3. REGIONAL BRANCH OFFICES & PORT AGENCIES DIRECTORY -->
+    <section class="mt-16 sm:mt-24 pt-12 sm:pt-16 border-t border-white/10 flex flex-col gap-8 sm:gap-10 w-full" id="branches-section">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-2 h-2 bg-gold"></span>
+            <span class="text-xs font-mono font-bold tracking-[0.25em] text-gold uppercase">
+              Global Operations &bull; Regional Network
+            </span>
+          </div>
+          <h2 class="text-2xl sm:text-4xl font-serif text-white font-medium uppercase">
+            Branch Offices &amp; Port Agencies
+          </h2>
+          <p class="text-sm text-neutral-300 font-light max-w-2xl mt-1">
+            Physical agency stations, local representatives, and registered regional maritime representations across Mediterranean and European hubs.
+          </p>
+        </div>
+        <div class="text-xs font-mono text-gold px-3.5 py-1.5 bg-black/40 border border-border-gold/30 shrink-0 self-start sm:self-auto">
+          <span id="branches-count-badge">Active Stations</span>
+        </div>
+      </div>
+
+      <!-- Dynamic Grid of Branch Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="branches-cards-grid">
+        <!-- Rendered dynamically from CMS via src/contacts.js -->
+      </div>
+    </section>
+
   </main>
 
   <!-- CORPORATE LUXURY FOOTER (Unified Across All Pages) -->
