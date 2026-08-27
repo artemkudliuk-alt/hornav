@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { signOut } from "next-auth/react";
 import { UserNav } from "./user-nav";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Sidebar } from "./sidebar";
-import { Menu, Plus, Ship } from "lucide-react";
+import { LogOut, Menu, Plus, Ship } from "lucide-react";
 import Link from "next/link";
 
 interface HeaderProps {
@@ -73,8 +74,19 @@ export function Header({ user }: HeaderProps) {
       </div>
 
       {/* User Actions */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-3">
         <UserNav user={user} />
+        <div className="h-6 w-[1px] bg-white/10 hidden sm:block"></div>
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => signOut({ callbackUrl: "/login" })}
+          title="Sign out of Danamira CMS"
+          className="text-neutral-400 hover:text-red-400 hover:bg-red-500/10 text-xs gap-1.5 cursor-pointer px-2.5 h-8 rounded-none border border-transparent hover:border-red-500/20"
+        >
+          <LogOut className="w-3.5 h-3.5" />
+          <span className="hidden sm:inline font-mono uppercase text-[10px] tracking-wider">Sign out</span>
+        </Button>
       </div>
     </header>
   );

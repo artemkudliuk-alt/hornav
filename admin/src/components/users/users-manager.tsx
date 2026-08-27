@@ -334,37 +334,90 @@ export function UsersManager({
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
-              <div className="space-y-2">
-                <Label className="text-xs text-neutral-300">Access Role</Label>
-                <Select
-                  value={formData.role}
-                  onValueChange={(val) =>
-                    setFormData({ ...formData, role: val || "editor" })
-                  }
+            <div className="space-y-2">
+              <Label className="text-xs text-neutral-300">Access Role &amp; Module Permissions</Label>
+              <div className="grid grid-cols-1 gap-2.5">
+                {/* 1. Admin Card */}
+                <div
+                  onClick={() => setFormData({ ...formData, role: "admin" })}
+                  className={`p-3 border rounded-none cursor-pointer transition-all ${
+                    formData.role === "admin"
+                      ? "bg-red-500/10 border-red-500/60 shadow-md"
+                      : "bg-[#18181b] border-white/10 hover:border-white/20"
+                  }`}
                 >
-                  <SelectTrigger className="bg-[#18181b] border-white/10 text-xs text-white">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent className="bg-[#202023] border-white/10 text-white text-xs">
-                    <SelectItem value="admin">🔴 Admin (Full Access)</SelectItem>
-                    <SelectItem value="manager">🟡 Manager (Leads + Fleet)</SelectItem>
-                    <SelectItem value="editor">🔵 Editor (Pages + Contacts)</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-red-400"></span>
+                      <span className="text-xs font-semibold text-white uppercase tracking-wider">Admin</span>
+                    </div>
+                    <span className="text-[10px] font-mono text-red-400 uppercase tracking-widest font-bold">Full Access</span>
+                  </div>
+                  <p className="text-[11px] text-neutral-400 mt-1 leading-relaxed">
+                    Full control over all modules: Fleet, Leads, Pages, Contacts, User Accounts &amp; System Settings.
+                  </p>
+                </div>
 
-              <div className="space-y-2">
-                <Label className="text-xs text-neutral-300">Telegram Chat ID</Label>
-                <Input
-                  placeholder="e.g. 123456789"
-                  value={formData.telegramChatId}
-                  onChange={(e) =>
-                    setFormData({ ...formData, telegramChatId: e.target.value })
-                  }
-                  className="bg-[#18181b] border-white/10 text-xs text-white font-mono"
-                />
+                {/* 2. Manager Card */}
+                <div
+                  onClick={() => setFormData({ ...formData, role: "manager" })}
+                  className={`p-3 border rounded-none cursor-pointer transition-all ${
+                    formData.role === "manager"
+                      ? "bg-amber-500/10 border-amber-500/60 shadow-md"
+                      : "bg-[#18181b] border-white/10 hover:border-white/20"
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                      <span className="text-xs font-semibold text-white uppercase tracking-wider">Manager</span>
+                    </div>
+                    <span className="text-[10px] font-mono text-amber-400 uppercase tracking-widest font-bold">Fleet + Leads</span>
+                  </div>
+                  <p className="text-[11px] text-neutral-400 mt-1 leading-relaxed">
+                    Commercial &amp; Fleet Operations. Can manage vessels (GA Plans, specs) and customer leads. Users &amp; Settings are locked.
+                  </p>
+                </div>
+
+                {/* 3. Editor Card */}
+                <div
+                  onClick={() => setFormData({ ...formData, role: "editor" })}
+                  className={`p-3 border rounded-none cursor-pointer transition-all ${
+                    formData.role === "editor"
+                      ? "bg-blue-500/10 border-blue-500/60 shadow-md"
+                      : "bg-[#18181b] border-white/10 hover:border-white/20"
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
+                      <span className="text-xs font-semibold text-white uppercase tracking-wider">Editor</span>
+                    </div>
+                    <span className="text-[10px] font-mono text-blue-400 uppercase tracking-widest font-bold">Content Only</span>
+                  </div>
+                  <p className="text-[11px] text-neutral-400 mt-1 leading-relaxed">
+                    Website content &amp; publications. Can edit custom Pages and Branch Offices. Fleet &amp; Leads are locked.
+                  </p>
+                </div>
               </div>
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label className="text-xs text-neutral-300">Telegram Chat ID (Instant Alerts)</Label>
+                <span className="text-[10px] text-neutral-500 font-mono">Optional</span>
+              </div>
+              <Input
+                placeholder="e.g. 987654321"
+                value={formData.telegramChatId}
+                onChange={(e) =>
+                  setFormData({ ...formData, telegramChatId: e.target.value })
+                }
+                className="bg-[#18181b] border-white/10 text-xs text-white font-mono"
+              />
+              <p className="text-[10px] text-neutral-500">
+                User receives instant push notifications in Telegram when a client submits a form on the website.
+              </p>
             </div>
 
             <DialogFooter className="pt-2">

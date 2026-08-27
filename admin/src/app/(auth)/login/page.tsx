@@ -135,7 +135,45 @@ function LoginForm() {
           </Button>
         </form>
 
-        <div className="mt-8 text-center border-t border-white/5 pt-4 text-[11px] text-neutral-500 font-mono">
+        {/* Quick Demo Switcher */}
+        <div className="mt-6 pt-5 border-t border-white/10 space-y-2.5">
+          <span className="text-[10px] uppercase font-mono tracking-widest text-neutral-400 block text-center">
+            Quick 1-Click Role Login:
+          </span>
+          <div className="grid grid-cols-2 gap-2">
+            <button
+              type="button"
+              onClick={() => {
+                setEmail("admin@danamirashipping.com");
+                setPassword("AdminPassword123!");
+              }}
+              className="p-2.5 bg-[#18181b] border border-red-500/30 hover:border-red-500/60 rounded-none text-left transition-all cursor-pointer group"
+            >
+              <div className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-red-400"></span>
+                <span className="text-[11px] font-semibold text-white">SuperAdmin</span>
+              </div>
+              <span className="text-[9px] text-neutral-400 font-mono block mt-0.5">Full System Access</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                setEmail("manager@danamirashipping.com");
+                setPassword("ManagerPassword123!");
+              }}
+              className="p-2.5 bg-[#18181b] border border-amber-500/30 hover:border-amber-500/60 rounded-none text-left transition-all cursor-pointer group"
+            >
+              <div className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-amber-400"></span>
+                <span className="text-[11px] font-semibold text-white">Fleet Manager</span>
+              </div>
+              <span className="text-[9px] text-neutral-400 font-mono block mt-0.5">Fleet + Leads Desk</span>
+            </button>
+          </div>
+        </div>
+
+        <div className="mt-6 text-center border-t border-white/5 pt-4 text-[11px] text-neutral-500 font-mono">
           SYS // DANAMIRA.CMS.V1.0
         </div>
       </CardContent>
