@@ -51,7 +51,7 @@ export default async function PagesListPage() {
       </div>
 
       {/* Pages Table */}
-      <div className="rounded-lg border border-white/5 bg-[#202023]/60 overflow-hidden">
+      <div className="rounded-none border border-white/5 bg-[#202023]/60 overflow-hidden shadow-xl">
         <Table>
           <TableHeader className="bg-[#18181b] border-b border-white/5">
             <TableRow className="border-none hover:bg-transparent">
@@ -64,7 +64,7 @@ export default async function PagesListPage() {
               <TableHead className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider text-right">
                 Created
               </TableHead>
-              <TableHead className="w-24 text-right"></TableHead>
+              <TableHead className="w-28 text-right"></TableHead>
             </TableRow>
           </TableHeader>
 
@@ -76,25 +76,30 @@ export default async function PagesListPage() {
               return (
                 <TableRow
                   key={p.id}
-                  className="border-b border-white/5 hover:bg-white/[0.02] transition-colors"
+                  className="border-b border-white/5 hover:bg-white/[0.03] transition-colors"
                 >
                   <TableCell>
-                    <Badge
-                      className={`text-[9px] uppercase font-mono px-2 py-0.5 ${
+                    <div
+                      className={`text-[9px] uppercase font-mono px-2 py-0.5 rounded-none font-bold tracking-wider inline-flex items-center gap-1.5 border ${
                         isPublished
-                          ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
-                          : "bg-amber-500/10 text-amber-400 border-amber-500/20"
+                          ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/30"
+                          : "bg-amber-500/10 text-amber-400 border-amber-500/30"
                       }`}
                     >
-                      {p.status}
-                    </Badge>
+                      <span
+                        className={`w-1.5 h-1.5 rounded-full ${
+                          isPublished ? "bg-emerald-400" : "bg-amber-400"
+                        }`}
+                      />
+                      <span>{p.status}</span>
+                    </div>
                   </TableCell>
 
                   <TableCell>
                     <span className="font-semibold text-xs text-white block">
                       {title}
                     </span>
-                    <span className="text-[11px] text-neutral-500 font-mono mt-0.5 block">
+                    <span className="text-[11px] text-[#c89b3c] font-mono mt-0.5 block">
                       /routes/{p.slug}
                     </span>
                   </TableCell>
@@ -107,8 +112,8 @@ export default async function PagesListPage() {
                     <Link href={`/pages/${p.id}`}>
                       <Button
                         size="sm"
-                        variant="ghost"
-                        className="text-xs text-neutral-400 hover:text-white gap-1.5 h-8"
+                        variant="secondary"
+                        className="rounded-none text-xs bg-[#18181b] hover:bg-[#c89b3c] hover:text-[#141416] text-white gap-1.5 h-8 font-semibold uppercase tracking-wider cursor-pointer border border-white/10"
                       >
                         <Edit3 className="w-3.5 h-3.5" /> Edit
                       </Button>

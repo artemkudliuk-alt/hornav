@@ -100,7 +100,7 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
               type="button"
               variant="ghost"
               size="icon"
-              className="text-neutral-400 hover:text-white"
+              className="rounded-none text-neutral-400 hover:text-white"
             >
               <ArrowLeft className="w-5 h-5" />
             </Button>
@@ -119,7 +119,7 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
           <Button
             type="submit"
             disabled={isSaving}
-            className="bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer"
+            className="rounded-none bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer h-9 shadow-md"
           >
             {isSaving ? (
               <Loader2 className="w-4 h-4 animate-spin" />
@@ -132,17 +132,17 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
       </div>
 
       {error && (
-        <div className="p-3 bg-red-500/10 border border-red-500/30 text-red-400 rounded text-xs">
+        <div className="p-3 bg-red-500/10 border border-red-500/30 text-red-400 rounded-none text-xs">
           {error}
         </div>
       )}
 
       {/* Basic URL and Status Settings */}
-      <Card className="bg-[#202023]/70 border-white/5 p-6">
+      <Card className="rounded-none bg-[#202023]/70 border-white/5 p-6 shadow-xl">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="sm:col-span-2 space-y-2">
             <Label className="text-xs text-neutral-300">URL Route Slug</Label>
-            <div className="flex items-center rounded-md bg-[#18181b] border border-white/10 overflow-hidden">
+            <div className="flex items-center rounded-none bg-[#18181b] border border-white/10 overflow-hidden">
               <span className="px-3 text-xs text-neutral-500 font-mono select-none">
                 danamirashipping.com/routes/
               </span>
@@ -156,7 +156,7 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
                   })
                 }
                 required
-                className="bg-transparent border-none text-xs font-mono text-white focus-visible:ring-0"
+                className="rounded-none bg-transparent border-none text-xs font-mono text-white focus-visible:ring-0"
               />
             </div>
           </div>
@@ -169,10 +169,10 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
                 setFormData({ ...formData, status: val || "draft" })
               }
             >
-              <SelectTrigger className="bg-[#18181b] border-white/10 text-xs text-white">
+              <SelectTrigger className="rounded-none bg-[#18181b] border-white/10 text-xs text-white">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="bg-[#202023] border-white/10 text-white text-xs">
+              <SelectContent className="rounded-none bg-[#202023] border-white/10 text-white text-xs">
                 <SelectItem value="draft">Draft</SelectItem>
                 <SelectItem value="published">Published</SelectItem>
               </SelectContent>
@@ -182,7 +182,7 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
       </Card>
 
       {/* SEO & Page Content Block */}
-      <Card className="bg-[#202023]/70 border-white/5 p-6 space-y-6">
+      <Card className="rounded-none bg-[#202023]/70 border-white/5 p-6 space-y-6 shadow-xl">
         <div className="flex items-center gap-2 border-b border-white/5 pb-4">
           <FileText className="w-4 h-4 text-[#c89b3c]" />
           <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
@@ -200,7 +200,7 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
               value={formData.title}
               onChange={(e) => handleTitleChange(e.target.value)}
               required
-              className="bg-[#18181b] border-white/10 text-xs text-white"
+              className="rounded-none bg-[#18181b] border-white/10 text-xs text-white"
             />
           </div>
 
@@ -215,7 +215,7 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
               onChange={(e) =>
                 setFormData({ ...formData, metaDescription: e.target.value })
               }
-              className="bg-[#18181b] border-white/10 text-xs text-white"
+              className="rounded-none bg-[#18181b] border-white/10 text-xs text-white"
             />
           </div>
 
