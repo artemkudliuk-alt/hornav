@@ -23,16 +23,15 @@ export async function GET(
     );
 
     if (isDbConnected) {
-      const [dbPage] = await db
-        .select()
-        .from(pages)
-        .where(
-          and(
-            eq(pages.status, "published")
-          )
-        )
-        .limit(50);
-      const matched = dbPage ? [dbPage].find(p => p.slug === slug || p.slug === normalizedSlug || p.id === slug) : null;
+      const allDbPages = await db.select().from(pages);
+      const matched = allDbPages.find(
+        (p: any) =>
+          p.slug === slug ||
+          p.slug === normalizedSlug ||
+          p.slug === `${normalizedSlug}.html` ||
+          p.slug?.replace(/\.html$/, "") === normalizedSlug ||
+          p.id === slug
+      );
       if (matched) page = matched;
     }
 
