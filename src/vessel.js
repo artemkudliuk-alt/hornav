@@ -635,7 +635,16 @@ document.addEventListener('DOMContentLoaded', async () => {
           charterRateUsd: apiVessel.charterRateUsd || null,
           salePriceUsd: apiVessel.salePriceUsd || null,
           pdfGaPlanUrl: null,
-          photos: (apiVessel.media || []).filter(m => m.type === 'photo').map(m => m.url),
+          photos: (apiVessel.photos || apiVessel.media || [])
+            .filter((m) => m && (m.type === "photo" || typeof m === "string" || !m.type))
+            .map((m, idx) => {
+              const rawUrl = typeof m === "string" ? m : m.url || "";
+              return {
+                url: rawUrl,
+                title: (typeof m === "object" && m.filename) ? m.filename : `Photo #${idx + 1}`,
+                category: "inspection",
+              };
+            }),
           specSections: {
             information: [
               { label: 'Vessel Name', value: typeof apiVessel.name === 'object' ? apiVessel.name.en : apiVessel.name },
@@ -824,7 +833,24 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Photo Gallery & Lightbox Logic
   let currentPhotoIndex = 0;
-  const photos = vessel.photos || [{ url: vessel.coverImageUrl, title: 'Main Exterior at Sea', category: 'hull' }];
+  const rawPhotos = (vessel.photos && vessel.photos.length > 0)
+    ? vessel.photos
+    : (vessel.coverImageUrl ? [{ url: vessel.coverImageUrl, title: 'Main Inspection Photo', category: 'hull' }] : []);
+
+  const photos = rawPhotos.map((p, idx) => {
+    if (typeof p === 'string') {
+      return { url: p, title: `Photo #${idx + 1}`, category: 'inspection' };
+    }
+    return {
+      url: p.url || vessel.coverImageUrl || '/placeholder-ship.jpg',
+      title: p.title || p.filename || `Photo #${idx + 1}`,
+      category: p.category || 'inspection',
+    };
+  });
+
+  if (photos.length === 0) {
+    photos.push({ url: '/placeholder-ship.jpg', title: 'Vessel Photo', category: 'hull' });
+  }
 
   const stageImg = document.getElementById('gallery-stage-img');
   const stageTitle = document.getElementById('gallery-stage-title');
