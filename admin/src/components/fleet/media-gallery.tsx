@@ -20,12 +20,14 @@ interface MediaGalleryProps {
   vesselId: string;
   initialMedia?: MediaItem[];
   onCoverChange?: (url: string) => void;
+  onMediaChange?: (list: MediaItem[]) => void;
 }
 
 export function MediaGallery({
   vesselId,
   initialMedia = [],
   onCoverChange,
+  onMediaChange,
 }: MediaGalleryProps) {
   const [mediaList, setMediaList] = useState<MediaItem[]>(initialMedia);
   const [isUploading, setIsUploading] = useState(false);
@@ -42,32 +44,58 @@ export function MediaGallery({
     if (!files || files.length === 0) return;
 
     setIsUploading(true);
-    setUploadProgress(`Uploading ${files.length} file(s)...`);
+    setUploadProgress(`Processing ${files.length} file(s)...`);
 
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("type", type);
-      formData.append("isCover", String(photos.length === 0 && type === "photo"));
+      const isFirst = photos.length === 0 && i === 0 && type === "photo";
+      let uploadedMedia: MediaItem | null = null;
 
-      try {
-        const res = await fetch(`/api/vessels/${vesselId}/media`, {
-          method: "POST",
-          body: formData,
+      if (vesselId && vesselId !== "new-vessel") {
+        try {
+          const formData = new FormData();
+          formData.append("file", file);
+          formData.append("type", type);
+          formData.append("isCover", String(isFirst));
+
+          const res = await fetch(`/api/vessels/${vesselId}/media`, {
+            method: "POST",
+            body: formData,
+          });
+
+          if (res.ok) {
+            uploadedMedia = await res.json();
+          }
+        } catch (err) {
+          console.warn("Server upload fallback:", err);
+        }
+      }
+
+      if (!uploadedMedia) {
+        const dataUrl = await new Promise<string>((resolve) => {
+          const reader = new FileReader();
+          reader.onload = (ev) => resolve(ev.target?.result as string);
+          reader.readAsDataURL(file);
         });
 
-        if (res.ok) {
-          const newMedia: MediaItem = await res.json();
-          setMediaList((prev) => [...prev, newMedia]);
-          if (newMedia.isCover && onCoverChange) {
-            onCoverChange(newMedia.url);
-          }
-        } else {
-          console.error("Failed to upload file:", file.name);
-        }
-      } catch (err) {
-        console.error("Upload error:", err);
+        uploadedMedia = {
+          id: "media-" + Date.now() + "-" + i,
+          url: dataUrl,
+          type,
+          filename: file.name,
+          sortOrder: mediaList.length + i + 1,
+          isCover: isFirst,
+        };
+      }
+
+      setMediaList((prev) => {
+        const updated = [...prev, uploadedMedia!];
+        if (onMediaChange) onMediaChange(updated);
+        return updated;
+      });
+
+      if (uploadedMedia.isCover && onCoverChange) {
+        onCoverChange(uploadedMedia.url);
       }
     }
 
@@ -77,43 +105,49 @@ export function MediaGallery({
   }
 
   async function handleSetCover(mediaId: string) {
-    try {
-      const res = await fetch(`/api/vessels/${vesselId}/media/${mediaId}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ isCover: true }),
-      });
-
-      if (res.ok) {
-        setMediaList((prev) =>
-          prev.map((item) => {
-            const isTarget = item.id === mediaId;
-            if (isTarget && onCoverChange) {
-              onCoverChange(item.url);
-            }
-            return { ...item, isCover: isTarget };
-          })
-        );
+    if (vesselId && vesselId !== "new-vessel") {
+      try {
+        await fetch(`/api/vessels/${vesselId}/media/${mediaId}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ isCover: true }),
+        });
+      } catch (err) {
+        console.warn("Failed to patch cover on server:", err);
       }
-    } catch (err) {
-      console.error("Failed to set cover:", err);
     }
+
+    setMediaList((prev) => {
+      const updated = prev.map((item) => {
+        const isTarget = item.id === mediaId;
+        if (isTarget && onCoverChange) {
+          onCoverChange(item.url);
+        }
+        return { ...item, isCover: isTarget };
+      });
+      if (onMediaChange) onMediaChange(updated);
+      return updated;
+    });
   }
 
   async function handleDelete(mediaId: string) {
     if (!confirm("Are you sure you want to delete this media item?")) return;
 
-    try {
-      const res = await fetch(`/api/vessels/${vesselId}/media/${mediaId}`, {
-        method: "DELETE",
-      });
-
-      if (res.ok) {
-        setMediaList((prev) => prev.filter((m) => m.id !== mediaId));
+    if (vesselId && vesselId !== "new-vessel") {
+      try {
+        await fetch(`/api/vessels/${vesselId}/media/${mediaId}`, {
+          method: "DELETE",
+        });
+      } catch (err) {
+        console.warn("Failed to delete media on server:", err);
       }
-    } catch (err) {
-      console.error("Failed to delete media:", err);
     }
+
+    setMediaList((prev) => {
+      const updated = prev.filter((m) => m.id !== mediaId);
+      if (onMediaChange) onMediaChange(updated);
+      return updated;
+    });
   }
 
   return (

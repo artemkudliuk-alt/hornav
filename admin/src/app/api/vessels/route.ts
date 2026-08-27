@@ -158,9 +158,9 @@ export async function POST(req: Request) {
       classSociety: classSociety || null,
       description: description || null,
       deckEquipment: deckEquipment || null,
-      coverImageUrl: coverImageUrl || "/placeholder-ship.jpg",
+      coverImageUrl: coverImageUrl || (body.media?.find((m: any) => m.isCover)?.url || body.media?.[0]?.url || "/placeholder-ship.jpg"),
       createdAt: new Date().toISOString(),
-      media: [],
+      media: body.media || [],
     };
     sampleVessels.unshift(newVessel as any);
 

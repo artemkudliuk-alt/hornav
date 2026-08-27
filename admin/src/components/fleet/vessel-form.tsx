@@ -76,6 +76,7 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
     description: typeof initialData?.description === "string" ? initialData?.description : (initialData?.description?.en || ""),
     deckEquipment: typeof initialData?.deckEquipment === "string" ? initialData?.deckEquipment : (initialData?.deckEquipment?.en || ""),
     coverImageUrl: initialData?.coverImageUrl || "",
+    media: initialData?.media || [],
   });
 
   async function handleSubmit(e: React.FormEvent) {
@@ -83,8 +84,21 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
     setIsSaving(true);
     setError(null);
 
+    // Ensure cover image is set if media has a cover
+    let finalCoverUrl = formData.coverImageUrl;
+    if (formData.media && formData.media.length > 0) {
+      const coverItem = formData.media.find((m: any) => m.isCover && m.type === "photo");
+      if (coverItem) {
+        finalCoverUrl = coverItem.url;
+      } else {
+        const firstPhoto = formData.media.find((m: any) => m.type === "photo");
+        if (firstPhoto) finalCoverUrl = firstPhoto.url;
+      }
+    }
+
     const payload = {
       ...formData,
+      coverImageUrl: finalCoverUrl,
       name: { en: formData.name, ua: "", ru: "" },
       description: { en: formData.description, ua: "", ru: "" },
       deckEquipment: { en: formData.deckEquipment, ua: "", ru: "" },
@@ -137,6 +151,8 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
   const liveSiteUrl = typeof window !== "undefined" && window.location.hostname === "localhost"
     ? `http://localhost:5173/vessel.html?id=${initialData?.id || "vessel-molpadia"}`
     : `https://danamiratest.vercel.app/vessel.html?id=${initialData?.id || "vessel-molpadia"}`;
+
+  const [activeTab, setActiveTab] = useState("base");
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -204,7 +220,7 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
       )}
 
       {/* Main Tabs Structure */}
-      <Tabs defaultValue="base" className="space-y-6">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
         <TabsList className="rounded-none bg-[#202023] border border-white/5 p-1 w-full justify-start overflow-x-auto">
           <TabsTrigger value="base" className="rounded-none text-xs uppercase tracking-wider">
             1. Base Details
@@ -213,13 +229,11 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
             2. Technical Specs
           </TabsTrigger>
           <TabsTrigger value="content" className="rounded-none text-xs uppercase tracking-wider">
-            3. Descriptions & Particulars
+            3. Descriptions &amp; Particulars
           </TabsTrigger>
-          {isEditing && (
-            <TabsTrigger value="media" className="rounded-none text-xs uppercase tracking-wider">
-              4. Media & PDF Docs
-            </TabsTrigger>
-          )}
+          <TabsTrigger value="media" className="rounded-none text-xs uppercase tracking-wider">
+            4. Photos &amp; PDF Specs
+          </TabsTrigger>
         </TabsList>
 
         {/* ─── TAB 1: Base Details ──────────────────────────────── */}
@@ -767,20 +781,36 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
           </Card>
         </TabsContent>
 
-        {/* ─── TAB 4: Media Gallery & Documents (Only in Edit) ─── */}
-        {isEditing && (
-          <TabsContent value="media">
-            <Card className="rounded-none bg-[#202023]/70 border-white/5 p-6 shadow-xl">
-              <MediaGallery
-                vesselId={initialData.id}
-                initialMedia={initialData.media || []}
-                onCoverChange={(url) =>
-                  setFormData((prev) => ({ ...prev, coverImageUrl: url }))
-                }
-              />
-            </Card>
-          </TabsContent>
-        )}
+        {/* ─── TAB 4: Media Gallery & Documents ───────────────── */}
+        <TabsContent value="media" className="space-y-6">
+          <Card className="rounded-none bg-[#202023]/70 border-white/5 p-6 shadow-xl">
+            <MediaGallery
+              vesselId={initialData?.id || "new-vessel"}
+              initialMedia={
+                formData.media && formData.media.length > 0
+                  ? formData.media
+                  : (formData.coverImageUrl
+                      ? [
+                          {
+                            id: "cover-init",
+                            url: formData.coverImageUrl,
+                            type: "photo",
+                            isCover: true,
+                            filename: "cover.jpg",
+                            sortOrder: 1,
+                          },
+                        ]
+                      : [])
+              }
+              onCoverChange={(url) =>
+                setFormData((prev) => ({ ...prev, coverImageUrl: url }))
+              }
+              onMediaChange={(list) =>
+                setFormData((prev) => ({ ...prev, media: list }))
+              }
+            />
+          </Card>
+        </TabsContent>
       </Tabs>
     </form>
   );

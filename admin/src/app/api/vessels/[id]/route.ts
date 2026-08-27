@@ -186,8 +186,8 @@ export async function PUT(
         ecoSpeed: ecoSpeed ? ecoSpeed.toString() : null,
         classSociety: classSociety || null,
         description: description || null,
-        deckEquipment: deckEquipment || null,
-        coverImageUrl: coverImageUrl || sampleVessels[idx].coverImageUrl,
+        coverImageUrl: coverImageUrl || (body.media?.find((m: any) => m.isCover)?.url || sampleVessels[idx].coverImageUrl),
+        media: body.media || sampleVessels[idx].media || [],
         updatedAt: new Date(),
       } as any;
       return NextResponse.json(sampleVessels[idx]);
