@@ -48,7 +48,7 @@ export function Sidebar({ userRole = "editor" }: SidebarProps) {
       roles: ["admin", "editor"],
     },
     {
-      title: "Branch Offices",
+      title: "Contacts & Offices",
       href: "/contacts",
       icon: MapPin,
       roles: ["admin", "editor"],

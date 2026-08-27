@@ -183,10 +183,10 @@ export function ContactsManager({
         <CardHeader className="p-0 pb-4">
           <CardTitle className="text-base font-semibold text-white flex items-center gap-2">
             <Globe className="w-4 h-4 text-[#c89b3c]" />
-            Corporate Headquarters & Global Channels
+            Main Website Contacts (Header &amp; Footer Channels)
           </CardTitle>
           <p className="text-xs text-neutral-400">
-            These contact channels appear across the website header, footer, and inquiry response views.
+            Primary hotline, email, Telegram, and WhatsApp displayed across the website header and footer.
           </p>
         </CardHeader>
 
@@ -195,7 +195,7 @@ export function ContactsManager({
             <div className="space-y-2">
               <Label className="text-xs text-neutral-300">Hotline Phone (24/7)</Label>
               <Input
-                placeholder="+30 210 1234567"
+                placeholder="+30 211 34 56 550"
                 value={contacts.hotlinePhone}
                 onChange={(e) =>
                   setContacts({ ...contacts, hotlinePhone: e.target.value })
@@ -208,7 +208,7 @@ export function ContactsManager({
               <Label className="text-xs text-neutral-300">General Operations Email</Label>
               <Input
                 type="email"
-                placeholder="snp@danamirashipping.com"
+                placeholder="chartering@danamira-shipping.com"
                 value={contacts.generalEmail}
                 onChange={(e) =>
                   setContacts({ ...contacts, generalEmail: e.target.value })
@@ -232,7 +232,7 @@ export function ContactsManager({
             <div className="space-y-2">
               <Label className="text-xs text-neutral-300">WhatsApp Dispatch</Label>
               <Input
-                placeholder="+30 210 1234567"
+                placeholder="+30 211 34 56 550"
                 value={contacts.whatsapp}
                 onChange={(e) =>
                   setContacts({ ...contacts, whatsapp: e.target.value })
@@ -271,7 +271,7 @@ export function ContactsManager({
           <div>
             <h3 className="text-base font-semibold text-white flex items-center gap-2">
               <Building2 className="w-4 h-4 text-[#c89b3c]" />
-              Port Agencies & Regional Offices ({offices.length})
+              Branch Offices &amp; Regional Agencies ({offices.length})
             </h3>
             <p className="text-xs text-neutral-400">
               Manage physical agency locations, addresses, local contact numbers, and lead agents.

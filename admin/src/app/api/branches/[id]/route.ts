@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { db } from "@/lib/db";
+import { db, isDbConnected } from "@/lib/db";
 import { branchOffices } from "@/lib/db/schema";
 import { branchOfficeFormSchema } from "@/lib/validators";
+import { sampleBranches } from "@/lib/db/mock-data";
 import { eq } from "drizzle-orm";
 
 // ─── PUT /api/branches/[id] ───────────────────────────────────
@@ -28,29 +29,42 @@ export async function PUT(
       );
     }
 
-    const { name, portCity, country, address, phone, email, agentName, sortOrder } = parsed.data;
+    const data = parsed.data;
 
-    const [updated] = await db
-      .update(branchOffices)
-      .set({
-        name,
-        portCity,
-        country,
-        address: address || null,
-        phone: phone || null,
-        email: email || null,
-        agentName: agentName || null,
-        sortOrder: sortOrder || 0,
-        updatedAt: new Date(),
-      })
-      .where(eq(branchOffices.id, id))
-      .returning();
+    if (isDbConnected) {
+      try {
+        const [updated] = await db
+          .update(branchOffices)
+          .set({
+            name: data.name,
+            portCity: data.portCity,
+            country: data.country,
+            address: data.address || null,
+            phone: data.phone || null,
+            email: data.email || null,
+            agentName: data.agentName || null,
+            sortOrder: data.sortOrder || 0,
+            updatedAt: new Date(),
+          })
+          .where(eq(branchOffices.id, id))
+          .returning();
 
-    if (!updated) {
-      return NextResponse.json({ error: "Office not found" }, { status: 404 });
+        if (updated) return NextResponse.json(updated);
+      } catch (dbErr: any) {
+        console.warn("DB update error, falling back to mock:", dbErr.message);
+      }
     }
 
-    return NextResponse.json(updated);
+    const idx = sampleBranches.findIndex((b) => b.id === id);
+    if (idx !== -1) {
+      sampleBranches[idx] = {
+        ...sampleBranches[idx],
+        ...data,
+      };
+      return NextResponse.json(sampleBranches[idx]);
+    }
+
+    return NextResponse.json({ error: "Office not found" }, { status: 404 });
   } catch (error) {
     console.error("PUT /api/branches/[id] error:", error);
     return NextResponse.json(
@@ -73,16 +87,26 @@ export async function DELETE(
   const { id } = await params;
 
   try {
-    const [deleted] = await db
-      .delete(branchOffices)
-      .where(eq(branchOffices.id, id))
-      .returning();
+    if (isDbConnected) {
+      try {
+        const [deleted] = await db
+          .delete(branchOffices)
+          .where(eq(branchOffices.id, id))
+          .returning();
 
-    if (!deleted) {
-      return NextResponse.json({ error: "Office not found" }, { status: 404 });
+        if (deleted) return NextResponse.json({ success: true, id: deleted.id });
+      } catch (dbErr) {
+        console.warn("DB delete error, falling back to mock");
+      }
     }
 
-    return NextResponse.json({ success: true, id: deleted.id });
+    const idx = sampleBranches.findIndex((b) => b.id === id);
+    if (idx !== -1) {
+      sampleBranches.splice(idx, 1);
+      return NextResponse.json({ success: true, id });
+    }
+
+    return NextResponse.json({ success: true, id });
   } catch (error) {
     console.error("DELETE /api/branches/[id] error:", error);
     return NextResponse.json(

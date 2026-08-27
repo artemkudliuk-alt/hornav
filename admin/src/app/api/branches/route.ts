@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { db } from "@/lib/db";
+import { db, isDbConnected } from "@/lib/db";
 import { branchOffices } from "@/lib/db/schema";
 import { branchOfficeFormSchema } from "@/lib/validators";
+import { sampleBranches } from "@/lib/db/mock-data";
 import { asc } from "drizzle-orm";
 
 // ─── GET /api/branches ────────────────────────────────────────
@@ -12,19 +13,19 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  try {
-    const list = await db
-      .select()
-      .from(branchOffices)
-      .orderBy(asc(branchOffices.sortOrder));
-    return NextResponse.json(list);
-  } catch (error) {
-    console.error("GET /api/branches error:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch branch offices" },
-      { status: 500 }
-    );
+  if (isDbConnected) {
+    try {
+      const list = await db
+        .select()
+        .from(branchOffices)
+        .orderBy(asc(branchOffices.sortOrder));
+      return NextResponse.json(list);
+    } catch (error) {
+      console.warn("DB offline, using sampleBranches fallback");
+    }
   }
+
+  return NextResponse.json(sampleBranches);
 }
 
 // ─── POST /api/branches ───────────────────────────────────────
@@ -45,23 +46,44 @@ export async function POST(req: Request) {
       );
     }
 
-    const { name, portCity, country, address, phone, email, agentName, sortOrder } = parsed.data;
+    const data = parsed.data;
 
-    const [created] = await db
-      .insert(branchOffices)
-      .values({
-        name,
-        portCity,
-        country,
-        address: address || null,
-        phone: phone || null,
-        email: email || null,
-        agentName: agentName || null,
-        sortOrder: sortOrder || 0,
-      })
-      .returning();
+    if (isDbConnected) {
+      try {
+        const [created] = await db
+          .insert(branchOffices)
+          .values({
+            name: data.name,
+            portCity: data.portCity,
+            country: data.country,
+            address: data.address || null,
+            phone: data.phone || null,
+            email: data.email || null,
+            agentName: data.agentName || null,
+            sortOrder: data.sortOrder || 0,
+          })
+          .returning();
 
-    return NextResponse.json(created, { status: 201 });
+        return NextResponse.json(created, { status: 201 });
+      } catch (dbErr: any) {
+        console.warn("DB insert error, falling back to mock:", dbErr.message);
+      }
+    }
+
+    const newBranch = {
+      id: "branch-" + Date.now(),
+      name: data.name,
+      portCity: data.portCity,
+      country: data.country,
+      address: data.address || "",
+      phone: data.phone || "",
+      email: data.email || "",
+      agentName: data.agentName || "",
+      sortOrder: data.sortOrder || sampleBranches.length + 1,
+    };
+
+    sampleBranches.push(newBranch);
+    return NextResponse.json(newBranch, { status: 201 });
   } catch (error) {
     console.error("POST /api/branches error:", error);
     return NextResponse.json(

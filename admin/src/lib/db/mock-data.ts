@@ -3,6 +3,7 @@ const globalForData = globalThis as unknown as {
   _sampleLeads?: any[];
   _samplePages?: any[];
   _sampleBranches?: any[];
+  _sampleCompanyContacts?: any;
 };
 
 const initialSampleVessels = [
@@ -284,7 +285,7 @@ const initialSamplePages: any[] = [];
 export const samplePages: any[] =
   globalForData._samplePages = initialSamplePages;
 
-export const sampleBranches = [
+const initialSampleBranches = [
   {
     id: "branch-001",
     name: "Operational Head Office (Greek Branch)",
@@ -296,37 +297,16 @@ export const sampleBranches = [
     agentName: "Capt. Operations / Law 89/1967",
     sortOrder: 1,
   },
-  {
-    id: "branch-002",
-    name: "Black Sea Agency Office",
-    portCity: "Odesa",
-    country: "Ukraine",
-    address: "Prymorska St 6, Odesa 65000",
-    phone: "+380 48 7001234",
-    email: "odesa@danamira-shipping.com",
-    agentName: "Dmitry Kovalenko",
-    sortOrder: 2,
-  },
-  {
-    id: "branch-003",
-    name: "North Europe Commercial Office",
-    portCity: "Rotterdam",
-    country: "Netherlands",
-    address: "Wilhelminakade 123, 3072 AP Rotterdam",
-    phone: "+31 10 9876543",
-    email: "rotterdam@danamira-shipping.com",
-    agentName: "Jan van den Berg",
-    sortOrder: 3,
-  },
-  {
-    id: "branch-004",
-    name: "Middle East Logistics Agency",
-    portCity: "Dubai",
-    country: "UAE",
-    address: "JAFZA One, Jebel Ali Free Zone, Dubai",
-    phone: "+971 4 8812345",
-    email: "dubai@danamira-shipping.com",
-    agentName: "Tariq Al-Mansoor",
-    sortOrder: 4,
-  },
 ];
+
+export const sampleBranches: any[] =
+  globalForData._sampleBranches = initialSampleBranches;
+
+export const sampleCompanyContacts =
+  globalForData._sampleCompanyContacts ||
+  (globalForData._sampleCompanyContacts = {
+    hotlinePhone: "+30 211 34 56 550",
+    generalEmail: "chartering@danamira-shipping.com",
+    telegram: "@danamira_ops",
+    whatsapp: "+30 211 34 56 550",
+  });

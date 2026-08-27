@@ -1,18 +1,13 @@
 import { db, isDbConnected } from "@/lib/db";
 import { companyContacts, branchOffices } from "@/lib/db/schema";
 import { asc } from "drizzle-orm";
-import { sampleBranches } from "@/lib/db/mock-data";
+import { sampleBranches, sampleCompanyContacts } from "@/lib/db/mock-data";
 import { ContactsManager } from "@/components/contacts/contacts-manager";
 
 export const dynamic = "force-dynamic";
 
 export default async function ContactsPage() {
-  let contactsData: any = {
-    hotlinePhone: "+30 210 1234567",
-    generalEmail: "snp@danamirashipping.com",
-    telegram: "@danamira_ops",
-    whatsapp: "+30 210 1234567",
-  };
+  let contactsData: any = sampleCompanyContacts;
   let officesList: any[] = sampleBranches;
 
   if (isDbConnected) {
@@ -34,10 +29,10 @@ export default async function ContactsPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-xl sm:text-2xl font-semibold text-white tracking-tight">
-          Company Contacts & Branch Offices
+          Contacts & Offices
         </h1>
         <p className="text-xs text-neutral-400 mt-1">
-          Manage operational phone lines, emergency dispatch channels, and regional port agency offices.
+          Manage company global contact lines (header &amp; footer) and regional branch offices.
         </p>
       </div>
 
