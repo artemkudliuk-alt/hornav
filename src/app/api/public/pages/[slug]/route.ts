@@ -3,6 +3,7 @@ import { db, isDbConnected } from "@/lib/db";
 import { pages } from "@/lib/db/schema";
 import { eq, and } from "drizzle-orm";
 import { samplePages } from "@/lib/db/mock-data";
+import { ensureDatabaseInitialized } from "@/lib/db/init-db";
 
 export const dynamic = "force-dynamic";
 
@@ -11,6 +12,7 @@ export async function GET(
   { params }: { params: Promise<{ slug: string }> | { slug: string } }
 ) {
   try {
+    await ensureDatabaseInitialized();
     const resolvedParams = params instanceof Promise ? await params : (await Promise.resolve(params));
     const rawSlug = resolvedParams?.slug || "";
     const slug = decodeURIComponent(rawSlug);

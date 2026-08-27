@@ -3,11 +3,13 @@ import { db, isDbConnected } from "@/lib/db";
 import { pages } from "@/lib/db/schema";
 import { eq, desc } from "drizzle-orm";
 import { samplePages } from "@/lib/db/mock-data";
+import { ensureDatabaseInitialized } from "@/lib/db/init-db";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
+    await ensureDatabaseInitialized();
     let list: any[] = samplePages.filter((p: any) => p.status === "published" || !p.status);
 
     if (isDbConnected) {
