@@ -104,20 +104,24 @@ export const cargoTypeEnumSchema = z.enum([
 ]);
 
 export const leadCreateSchema = z.object({
-  clientName: z.string().min(2, "Client name is required"),
+  clientName: z.string().optional().nullable().or(z.literal("")),
+  name: z.string().optional().nullable().or(z.literal("")),
+  company: z.string().optional().nullable().or(z.literal("")),
   clientPhone: z.string().max(64).optional().nullable().or(z.literal("")),
   phone: z.string().max(64).optional().nullable().or(z.literal("")),
-  clientEmail: z.string().email("Valid email required").optional().nullable().or(z.literal("")),
-  email: z.string().email("Valid email required").optional().nullable().or(z.literal("")),
+  clientEmail: z.string().optional().nullable().or(z.literal("")),
+  email: z.string().optional().nullable().or(z.literal("")),
   clientWhatsapp: z.string().max(64).optional().nullable().or(z.literal("")),
   clientTelegram: z.string().max(64).optional().nullable().or(z.literal("")),
   loadingPort: z.string().max(255).optional().nullable().or(z.literal("")),
   dischargePort: z.string().max(255).optional().nullable().or(z.literal("")),
-  cargoType: cargoTypeEnumSchema.optional().nullable(),
+  cargoType: z.any().optional().nullable(),
   cargoVolume: z.string().max(128).optional().nullable().or(z.literal("")),
   vesselId: z.string().optional().nullable().or(z.literal("")),
   comment: z.string().optional().nullable().or(z.literal("")),
   message: z.string().optional().nullable().or(z.literal("")),
+  notes: z.string().optional().nullable().or(z.literal("")),
+  source: z.string().optional().nullable().or(z.literal("")),
   sourcePage: z.string().max(512).optional().nullable().or(z.literal("")),
 });
 

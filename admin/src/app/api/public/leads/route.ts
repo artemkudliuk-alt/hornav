@@ -33,27 +33,12 @@ export async function POST(req: Request) {
       );
     }
 
-    const {
-      clientName,
-      clientPhone,
-      phone,
-      clientEmail,
-      email,
-      clientWhatsapp,
-      clientTelegram,
-      loadingPort,
-      dischargePort,
-      cargoType,
-      cargoVolume,
-      vesselId,
-      comment,
-      message,
-      sourcePage,
-    } = parsed.data;
-
-    const normalizedPhone = clientPhone || phone || null;
-    const normalizedEmail = clientEmail || email || null;
-    const normalizedComment = comment || message || null;
+    const data = parsed.data;
+    const normalizedName = data.clientName || data.name || "Prospective Client";
+    const normalizedPhone = data.clientPhone || data.phone || null;
+    const normalizedEmail = data.clientEmail || data.email || null;
+    const normalizedComment = data.comment || data.message || data.notes || (data.company ? `Company: ${data.company}` : null);
+    const normalizedSource = data.sourcePage || data.source || "Website Direct Form";
 
     let leadId = `lead-${Date.now()}`;
     let vesselName: string | null = null;
@@ -63,29 +48,29 @@ export async function POST(req: Request) {
         const [newLead] = await db
           .insert(leads)
           .values({
-            clientName,
+            clientName: normalizedName,
             clientPhone: normalizedPhone,
             clientEmail: normalizedEmail,
-            clientWhatsapp: clientWhatsapp || null,
-            clientTelegram: clientTelegram || null,
-            loadingPort: loadingPort || null,
-            dischargePort: dischargePort || null,
-            cargoType: cargoType || null,
-            cargoVolume: cargoVolume || null,
-            vesselId: vesselId || null,
+            clientWhatsapp: data.clientWhatsapp || null,
+            clientTelegram: data.clientTelegram || null,
+            loadingPort: data.loadingPort || null,
+            dischargePort: data.dischargePort || null,
+            cargoType: data.cargoType || null,
+            cargoVolume: data.cargoVolume || null,
+            vesselId: data.vesselId || null,
             comment: normalizedComment,
-            sourcePage: sourcePage || null,
+            sourcePage: normalizedSource,
             status: "new",
           })
           .returning();
 
         leadId = newLead.id;
 
-        if (vesselId) {
+        if (data.vesselId) {
           const [v] = await db
             .select({ name: vessels.name })
             .from(vessels)
-            .where(eq(vessels.id, vesselId))
+            .where(eq(vessels.id, data.vesselId))
             .limit(1);
           if (v) {
             vesselName = (v.name as any)?.en || null;
@@ -98,18 +83,18 @@ export async function POST(req: Request) {
       const mockLead = {
         id: leadId,
         status: "new",
-        clientName,
+        clientName: normalizedName,
         clientPhone: normalizedPhone,
         clientEmail: normalizedEmail,
-        clientWhatsapp: clientWhatsapp || null,
-        clientTelegram: clientTelegram || null,
-        loadingPort: loadingPort || null,
-        dischargePort: dischargePort || null,
-        cargoType: cargoType || null,
-        cargoVolume: cargoVolume || null,
-        vesselId: vesselId || null,
+        clientWhatsapp: data.clientWhatsapp || null,
+        clientTelegram: data.clientTelegram || null,
+        loadingPort: data.loadingPort || null,
+        dischargePort: data.dischargePort || null,
+        cargoType: data.cargoType || null,
+        cargoVolume: data.cargoVolume || null,
+        vesselId: data.vesselId || null,
         comment: normalizedComment,
-        sourcePage: sourcePage || null,
+        sourcePage: normalizedSource,
         createdAt: new Date().toISOString(),
       };
       sampleLeads.unshift(mockLead);
@@ -118,17 +103,17 @@ export async function POST(req: Request) {
     // Trigger asynchronous notifications (Telegram + Email)
     const notificationPayload = {
       id: leadId,
-      clientName,
-      clientEmail,
-      clientPhone,
-      clientWhatsapp,
-      clientTelegram,
-      loadingPort,
-      dischargePort,
-      cargoType,
-      cargoVolume,
-      comment,
-      sourcePage,
+      clientName: normalizedName,
+      clientEmail: normalizedEmail,
+      clientPhone: normalizedPhone,
+      clientWhatsapp: data.clientWhatsapp,
+      clientTelegram: data.clientTelegram,
+      loadingPort: data.loadingPort,
+      dischargePort: data.dischargePort,
+      cargoType: data.cargoType,
+      cargoVolume: data.cargoVolume,
+      comment: normalizedComment,
+      sourcePage: normalizedSource,
       vesselName,
     };
 
