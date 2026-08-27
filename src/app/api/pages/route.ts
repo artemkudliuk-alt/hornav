@@ -56,8 +56,7 @@ export async function POST(req: Request) {
             status: data.status,
             title: typeof data.title === "object" ? data.title : { en: data.title || data.pageName || data.slug, ua: "", ru: "" },
             metaDescription: typeof data.metaDescription === "object" ? data.metaDescription : { en: data.metaDescription || "", ua: "", ru: "" },
-            content: typeof data.content === "object" ? data.content : { en: data.content || "", ua: "", ru: "" },
-            createdBy: user.id,
+            createdBy: (user.id && user.id.includes("-") && user.id.length === 36) ? user.id : null,
             publishedAt: data.status === "published" ? new Date() : null,
           })
           .returning();

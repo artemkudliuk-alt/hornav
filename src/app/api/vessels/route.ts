@@ -117,7 +117,7 @@ export async function POST(req: Request) {
             description: description || null,
             deckEquipment: deckEquipment || null,
             coverImageUrl: coverImageUrl || null,
-            createdBy: user.id,
+            createdBy: (user.id && user.id.includes("-") && user.id.length === 36) ? user.id : null,
           })
           .returning();
 
