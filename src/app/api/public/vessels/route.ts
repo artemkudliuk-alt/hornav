@@ -28,37 +28,38 @@ export async function GET(req: Request) {
 
     // Localize response based on requested language
     const formatted = list.map((v) => {
-      const nameObj = v.name as unknown as Record<string, string> | null;
-      const descObj = v.description as unknown as Record<string, string> | null;
-      const deckObj = v.deckEquipment as unknown as Record<string, string> | null;
+      const vesselName = typeof v.name === "object" ? (v.name?.[lang] || v.name?.en || "") : (v.name || "Unnamed Vessel");
+      const vesselDesc = typeof v.description === "object" ? (v.description?.[lang] || v.description?.en || "") : (v.description || "");
+      const vesselDeck = typeof v.deckEquipment === "object" ? (v.deckEquipment?.[lang] || v.deckEquipment?.en || "") : (v.deckEquipment || "");
 
       return {
         id: v.id,
-        imoNumber: v.imoNumber,
-        name: nameObj?.[lang] || nameObj?.en || "Unnamed Vessel",
-        nameI18n: v.name,
-        type: v.type,
-        status: v.status,
+        imoNumber: v.imoNumber || v.imo_number,
+        name: vesselName,
+        nameI18n: typeof v.name === "object" ? v.name : { en: v.name, ua: "", ru: "" },
+        type: v.type || "bulk_carrier",
+        status: v.status || "available",
         charterRateUsd: v.charterRateUsd,
         salePriceUsd: v.salePriceUsd,
-        priceOnRequest: v.priceOnRequest,
+        priceOnRequest: Boolean(v.priceOnRequest),
         currentLocation: v.currentLocation,
         tradingArea: v.tradingArea,
-        dwt: v.dwt,
+        dwt: v.dwt || v.dwtTonnage || 6400,
         teu: v.teu,
-        cubicCapacity: v.cubicCapacity,
-        yearBuilt: v.yearBuilt,
-        flag: v.flag,
-        loa: v.loa,
-        beam: v.beam,
-        draft: v.draft,
+        cubicCapacity: v.cubicCapacity || v.grainCapacityCbm,
+        yearBuilt: v.yearBuilt || v.builtYear || 2012,
+        flag: v.flag || "Panama",
+        loa: v.loa || v.lengthOverallM || 108.2,
+        beam: v.beam || v.beamM || 18.2,
+        draft: v.draft || v.summerDraftM || 6.7,
         maxSpeed: v.maxSpeed,
         ecoSpeed: v.ecoSpeed,
-        classSociety: v.classSociety,
-        description: descObj?.[lang] || descObj?.en || "",
-        deckEquipment: deckObj?.[lang] || deckObj?.en || "",
-        coverImageUrl: v.coverImageUrl,
-        createdAt: v.createdAt,
+        classSociety: v.classSociety || v.classificationSociety || "DNV",
+        description: vesselDesc,
+        deckEquipment: vesselDeck,
+        coverImageUrl: v.coverImageUrl || v.cover_image_url || "/ship1_screen3.png",
+        pdfGaPlanUrl: v.pdfGaPlanUrl || v.pdf_ga_plan_url || null,
+        createdAt: v.createdAt || new Date().toISOString(),
       };
     });
 
