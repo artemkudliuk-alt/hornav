@@ -46,9 +46,11 @@ export function MediaGallery({
     setIsUploading(true);
     setUploadProgress(`Processing ${files.length} file(s)...`);
 
+    const newItems: MediaItem[] = [];
+
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
-      const isFirst = photos.length === 0 && i === 0 && type === "photo";
+      const isFirst = photos.length === 0 && newItems.length === 0 && type === "photo";
       let uploadedMedia: MediaItem | null = null;
 
       if (vesselId && vesselId !== "new-vessel") {
@@ -83,24 +85,24 @@ export function MediaGallery({
           url: dataUrl,
           type,
           filename: file.name,
-          sortOrder: mediaList.length + i + 1,
+          sortOrder: mediaList.length + newItems.length + 1,
           isCover: isFirst,
         };
       }
 
-      let currentMedia: MediaItem[] = [];
-      setMediaList((prev) => {
-        currentMedia = [...prev, uploadedMedia!];
-        return currentMedia;
-      });
+      newItems.push(uploadedMedia);
+    }
 
-      if (onMediaChange) {
-        onMediaChange(currentMedia);
-      }
+    const nextMediaList = [...mediaList, ...newItems];
+    setMediaList(nextMediaList);
 
-      if (uploadedMedia.isCover && onCoverChange) {
-        onCoverChange(uploadedMedia.url);
-      }
+    if (onMediaChange) {
+      onMediaChange(nextMediaList);
+    }
+
+    const coverItem = newItems.find((m) => m.isCover);
+    if (coverItem && onCoverChange) {
+      onCoverChange(coverItem.url);
     }
 
     setIsUploading(false);
@@ -121,20 +123,19 @@ export function MediaGallery({
       }
     }
 
-    let updatedList: MediaItem[] = [];
-    setMediaList((prev) => {
-      updatedList = prev.map((item) => {
-        const isTarget = item.id === mediaId;
-        if (isTarget && onCoverChange) {
-          onCoverChange(item.url);
-        }
-        return { ...item, isCover: isTarget };
-      });
-      return updatedList;
-    });
+    const target = mediaList.find((m) => m.id === mediaId);
+    const nextList = mediaList.map((item) => ({
+      ...item,
+      isCover: item.id === mediaId,
+    }));
 
+    setMediaList(nextList);
+
+    if (target && onCoverChange) {
+      onCoverChange(target.url);
+    }
     if (onMediaChange) {
-      onMediaChange(updatedList);
+      onMediaChange(nextList);
     }
   }
 
@@ -151,14 +152,22 @@ export function MediaGallery({
       }
     }
 
-    let updatedList: MediaItem[] = [];
-    setMediaList((prev) => {
-      updatedList = prev.filter((m) => m.id !== mediaId);
-      return updatedList;
-    });
+    const nextList = mediaList.filter((m) => m.id !== mediaId);
+    setMediaList(nextList);
 
     if (onMediaChange) {
-      onMediaChange(updatedList);
+      onMediaChange(nextList);
+    }
+
+    const deletedWasCover = mediaList.find((m) => m.id === mediaId)?.isCover;
+    if (deletedWasCover) {
+      const newCover = nextList.find((m) => m.type === "photo");
+      if (newCover) {
+        newCover.isCover = true;
+        if (onCoverChange) onCoverChange(newCover.url);
+      } else if (onCoverChange) {
+        onCoverChange("");
+      }
     }
   }
 
