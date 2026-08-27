@@ -39,6 +39,18 @@ export default defineConfig(({ mode }) => {
         }
       }
     ],
+    server: {
+      proxy: {
+        '/api': {
+          target: 'http://localhost:3000',
+          changeOrigin: true,
+        },
+        '/uploads': {
+          target: 'http://localhost:3000',
+          changeOrigin: true,
+        }
+      }
+    },
     css: {
       postcss: './postcss.config.mjs'
     },
@@ -87,15 +99,6 @@ export default defineConfig(({ mode }) => {
           }
         }
       }
-    },
-    server: {
-      port: 5173,
-      proxy: {
-        '/uploads': {
-          target: 'http://localhost:3000',
-          changeOrigin: true,
-        },
-      },
     }
   };
 });

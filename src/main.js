@@ -372,24 +372,28 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
       contactSubmitBtn.classList.add('bg-gold', 'text-neutral-950');
 
+      const apiBase = window.location.hostname === 'localhost'
+        ? 'http://localhost:3000'
+        : 'https://danamiratest.vercel.app';
+
       try {
-        // Post directly to Danamira CMS Public Leads Intake API
         const payload = {
           clientName: companyName ? `${clientName} (${companyName})` : clientName,
+          name: clientName,
+          company: companyName,
           clientEmail: clientEmail || null,
+          email: clientEmail || null,
           comment: clientMessage || null,
-          sourcePage: window.location.pathname || "landing-page",
+          notes: clientMessage || null,
+          source: 'landing_page',
+          sourcePage: window.location.pathname || "/",
         };
 
-        // Try posting to local/production CMS endpoint
-        await fetch('/api/public/leads', {
+        await fetch(`${apiBase}/api/public/leads`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
-        }).catch(() => {
-          // If CMS is on separate host or offline during dev, continue gracefully
-          console.log('Inquiry recorded locally (CMS offline/remote fallback).');
-        });
+        }).catch(() => null);
       } catch (err) {
         console.warn('Inquiry dispatch note:', err);
       }

@@ -52,21 +52,29 @@ function initContacts() {
         <span>TRANSMITTING MESSAGE...</span>
       `;
 
-      // Simulating API dispatch
+      // Direct API dispatch to Danamira CMS
+      const apiBase = window.location.hostname === 'localhost'
+        ? 'http://localhost:3000'
+        : 'https://danamiratest.vercel.app';
+
       try {
-        await fetch('/api/public/leads', {
+        await fetch(`${apiBase}/api/public/leads`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            name,
-            company,
-            email,
+            clientName: name,
+            name: name,
+            company: company,
+            clientEmail: email,
+            email: email,
+            comment: `[Department: ${department}] ${message}`,
             notes: `[Department: ${department}] ${message}`,
-            source: 'contacts_page'
+            source: 'contacts_page',
+            sourcePage: '/contacts.html'
           })
         }).catch(() => null);
       } catch (err) {
-        // Fallback gracefully
+        console.error('Lead submission dispatch error:', err);
       }
 
       setTimeout(() => {
