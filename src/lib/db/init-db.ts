@@ -77,14 +77,6 @@ export async function ensureDatabaseInitialized() {
         updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
       );
     `;
-        description JSONB,
-        deck_equipment JSONB,
-        cover_image_url TEXT,
-        created_by UUID,
-        created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-        updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-      );
-    `;
 
     await sql`
       CREATE TABLE IF NOT EXISTS vessel_media (
