@@ -103,11 +103,8 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
 
       const saved = await res.json();
 
-      if (!isEditing) {
-        router.push(`/pages/${saved.id}`);
-      } else {
-        router.refresh();
-      }
+      router.push("/pages");
+      router.refresh();
     } catch (err: any) {
       console.error(err);
       setError(err.message || "An unexpected error occurred");

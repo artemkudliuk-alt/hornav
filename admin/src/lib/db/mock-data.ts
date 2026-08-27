@@ -282,10 +282,48 @@ export const sampleLeads: any[] =
   globalForData._sampleLeads ||
   (globalForData._sampleLeads = initialSampleLeads);
 
-const initialSamplePages: any[] = [];
+const initialSamplePages: any[] = [
+  {
+    id: "page-about",
+    slug: "company.html",
+    pageName: "About Company",
+    status: "published",
+    includeInNav: true,
+    includeInFooter: true,
+    title: { en: "About Danamira Shipping Ltd", ua: "", ru: "" },
+    metaDescription: { en: "Integrated ship management services under Greek Law 89/1967", ua: "", ru: "" },
+    content: { en: "<p>Company overview and management details</p>", ua: "", ru: "" },
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: "page-fleet",
+    slug: "fleet.html",
+    pageName: "Fleet Catalog",
+    status: "published",
+    includeInNav: true,
+    includeInFooter: true,
+    title: { en: "Commercial Managed Fleet", ua: "", ru: "" },
+    metaDescription: { en: "Modern geared general cargo and dry bulk vessels", ua: "", ru: "" },
+    content: { en: "<p>Active fleet catalog and vessel particulars</p>", ua: "", ru: "" },
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: "page-contacts",
+    slug: "contacts.html",
+    pageName: "Contact & Desks",
+    status: "published",
+    includeInNav: true,
+    includeInFooter: true,
+    title: { en: "Contact Information", ua: "", ru: "" },
+    metaDescription: { en: "Reach Danamira operational and chartering desks", ua: "", ru: "" },
+    content: { en: "<p>Contact directory and headquarters</p>", ua: "", ru: "" },
+    createdAt: new Date().toISOString(),
+  },
+];
 
 export const samplePages: any[] =
-  globalForData._samplePages = initialSamplePages;
+  globalForData._samplePages ||
+  (globalForData._samplePages = initialSamplePages);
 
 const initialSampleBranches = [
   {
