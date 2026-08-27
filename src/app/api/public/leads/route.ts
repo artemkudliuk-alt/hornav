@@ -43,6 +43,18 @@ export async function POST(req: Request) {
     let leadId = `lead-${Date.now()}`;
     let vesselName: string | null = null;
 
+    // Resolve UUID for vessel safely
+    let targetVesselUuid: string | null = null;
+    if (data.vesselId === "vessel-molpadia" || data.vesselId === "11111111-1111-1111-1111-111111111111") {
+      targetVesselUuid = "11111111-1111-1111-1111-111111111111";
+      vesselName = "MV MOLPADIA";
+    } else if (data.vesselId === "vessel-metanira" || data.vesselId === "22222222-2222-2222-2222-222222222222") {
+      targetVesselUuid = "22222222-2222-2222-2222-222222222222";
+      vesselName = "MV METANIRA";
+    } else if (data.vesselId && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(data.vesselId)) {
+      targetVesselUuid = data.vesselId;
+    }
+
     if (isDbConnected) {
       try {
         const [newLead] = await db
@@ -57,7 +69,7 @@ export async function POST(req: Request) {
             dischargePort: data.dischargePort || null,
             cargoType: data.cargoType || null,
             cargoVolume: data.cargoVolume || null,
-            vesselId: data.vesselId || null,
+            vesselId: targetVesselUuid,
             comment: normalizedComment,
             sourcePage: normalizedSource,
             status: "new",
@@ -66,18 +78,18 @@ export async function POST(req: Request) {
 
         leadId = newLead.id;
 
-        if (data.vesselId) {
+        if (targetVesselUuid && !vesselName) {
           const [v] = await db
             .select({ name: vessels.name })
             .from(vessels)
-            .where(eq(vessels.id, data.vesselId))
+            .where(eq(vessels.id, targetVesselUuid))
             .limit(1);
           if (v) {
-            vesselName = (v.name as any)?.en || null;
+            vesselName = typeof v.name === "object" ? (v.name as any)?.en : String(v.name);
           }
         }
       } catch (dbErr) {
-        console.warn("Could not insert lead to DB, continuing notification dispatch:", dbErr);
+        console.error("Could not insert lead to PostgreSQL DB:", dbErr);
       }
     } else {
       const mockLead = {

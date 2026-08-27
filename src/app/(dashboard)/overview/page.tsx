@@ -20,44 +20,55 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function DashboardPage() {
-  let totalVessels = sampleVessels.length;
-  let availableVessels = sampleVessels.filter((v) => v.status === "available").length;
-  let totalLeads = sampleLeads.length;
-  let newLeadsCount = sampleLeads.filter((l) => l.status === "new").length;
-  let totalBranches = sampleBranches.length;
-  let recentLeads: any[] = [...sampleLeads];
-  let recentVessels: any[] = [...sampleVessels].slice(0, 4);
+  let totalVessels = 0;
+  let availableVessels = 0;
+  let totalLeads = 0;
+  let newLeadsCount = 0;
+  let totalBranches = 0;
+  let recentLeads: any[] = [];
+  let recentVessels: any[] = [];
 
   if (isDbConnected) {
     try {
       const allVessels = await db.select().from(vessels);
-      if (allVessels.length > 0) {
-        totalVessels = allVessels.length;
-        availableVessels = allVessels.filter((v) => v.status === "available").length;
-        recentVessels = allVessels.slice(0, 4);
-      }
+      totalVessels = allVessels.length;
+      availableVessels = allVessels.filter((v: any) => v.status === "available").length;
+      recentVessels = allVessels.slice(0, 4);
 
       const allLeads = await db
         .select()
         .from(leads)
         .orderBy(desc(leads.createdAt))
         .limit(5);
-      if (allLeads.length > 0) {
-        recentLeads = allLeads;
-        totalLeads = (await db.select({ value: count() }).from(leads))[0]?.value || 0;
-        newLeadsCount = (
-          await db
-            .select({ value: count() })
-            .from(leads)
-            .where(eq(leads.status, "new"))
-        )[0]?.value || 0;
-      }
+      recentLeads = allLeads;
+      totalLeads = (await db.select({ value: count() }).from(leads))[0]?.value || 0;
+      newLeadsCount = (
+        await db
+          .select({ value: count() })
+          .from(leads)
+          .where(eq(leads.status, "new"))
+      )[0]?.value || 0;
 
       const branchCount = (await db.select({ value: count() }).from(branchOffices))[0]?.value || 0;
-      if (branchCount > 0) totalBranches = branchCount;
+      totalBranches = branchCount;
     } catch (err) {
       console.warn("DB offline, rendered with sample metrics.");
+      totalVessels = sampleVessels.length;
+      availableVessels = sampleVessels.filter((v) => v.status === "available").length;
+      totalLeads = sampleLeads.length;
+      newLeadsCount = sampleLeads.filter((l) => l.status === "new").length;
+      totalBranches = sampleBranches.length;
+      recentLeads = [...sampleLeads];
+      recentVessels = [...sampleVessels].slice(0, 4);
     }
+  } else {
+    totalVessels = sampleVessels.length;
+    availableVessels = sampleVessels.filter((v) => v.status === "available").length;
+    totalLeads = sampleLeads.length;
+    newLeadsCount = sampleLeads.filter((l) => l.status === "new").length;
+    totalBranches = sampleBranches.length;
+    recentLeads = [...sampleLeads];
+    recentVessels = [...sampleVessels].slice(0, 4);
   }
 
   const vesselStatusBadge: Record<string, string> = {

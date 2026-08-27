@@ -210,9 +210,7 @@ export function initSwipeableRows() {
 // ── Universal CMS Dynamic Pages Menu & Footer Sync Engine ──
 export async function syncHeaderFooterPages() {
   try {
-    const apiBase = window.location.hostname === 'localhost'
-      ? 'http://localhost:3000'
-      : 'https://danamiratest.vercel.app';
+    const apiBase = window.location.origin;
     const res = await fetch(`${apiBase}/api/public/pages`).catch(() => fetch('/api/public/pages'));
     if (!res || !res.ok) return;
 

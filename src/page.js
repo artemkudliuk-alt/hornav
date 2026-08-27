@@ -28,9 +28,7 @@ async function loadDynamicPage() {
   const metaDesc = document.getElementById('meta-desc');
 
   try {
-    const apiBase = window.location.hostname === 'localhost'
-      ? 'http://localhost:3000'
-      : 'https://danamiratest.vercel.app';
+    const apiBase = window.location.origin;
     
     const res = await fetch(`${apiBase}/api/public/pages/${slug}`).catch(() => fetch(`/api/public/pages/${slug}`));
     

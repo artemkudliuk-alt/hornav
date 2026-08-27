@@ -1229,21 +1229,29 @@ document.addEventListener('DOMContentLoaded', async () => {
       const payload = {
         vesselName: vessel.name,
         imo: vessel.imoNumber,
-        clientName: document.getElementById('form-name')?.value,
-        phone: document.getElementById('form-phone')?.value,
-        email: document.getElementById('form-email')?.value,
-        message: document.getElementById('form-message')?.value,
+        vesselId: vessel.id,
+        clientName: document.getElementById('form-name')?.value?.trim() || 'Charter Client',
+        name: document.getElementById('form-name')?.value?.trim() || 'Charter Client',
+        clientPhone: document.getElementById('form-phone')?.value?.trim() || '',
+        phone: document.getElementById('form-phone')?.value?.trim() || '',
+        clientEmail: document.getElementById('form-email')?.value?.trim() || '',
+        email: document.getElementById('form-email')?.value?.trim() || '',
+        comment: document.getElementById('form-message')?.value?.trim() || '',
+        notes: document.getElementById('form-message')?.value?.trim() || '',
+        source: 'vessel_modal',
+        sourcePage: window.location.pathname + window.location.search,
         submittedAt: new Date().toISOString()
       };
 
       try {
-        await fetch('http://localhost:3000/api/leads', {
+        const apiBase = window.location.origin;
+        await fetch(`${apiBase}/api/public/leads`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
       } catch (err) {
-        console.warn('CMS Leads API offline, continuing in demo mode:', err);
+        console.warn('CMS Leads API dispatch error:', err);
       }
 
       setTimeout(() => {

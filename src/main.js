@@ -372,9 +372,7 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
       contactSubmitBtn.classList.add('bg-gold', 'text-neutral-950');
 
-      const apiBase = window.location.hostname === 'localhost'
-        ? 'http://localhost:3000'
-        : 'https://danamiratest.vercel.app';
+      const apiBase = window.location.origin;
 
       try {
         const payload = {
@@ -773,9 +771,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!grid) return;
 
     try {
-      const apiBase = window.location.hostname === 'localhost'
-        ? 'http://localhost:3000'
-        : 'https://danamiratest.vercel.app';
+      const apiBase = window.location.origin;
       const res = await fetch(`${apiBase}/api/public/vessels`).catch(() => fetch('/api/public/vessels'));
       if (!res || !res.ok) return;
 

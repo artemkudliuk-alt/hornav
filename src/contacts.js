@@ -53,9 +53,7 @@ function initContacts() {
       `;
 
       // Direct API dispatch to Danamira CMS
-      const apiBase = window.location.hostname === 'localhost'
-        ? 'http://localhost:3000'
-        : 'https://danamiratest.vercel.app';
+      const apiBase = window.location.origin;
 
       try {
         await fetch(`${apiBase}/api/public/leads`, {
@@ -98,6 +96,7 @@ function initContacts() {
       }, 700);
     });
   }
+
   // 4. Sync Branch Offices & Regional Agencies from Danamira CMS
   async function syncBranchesFromCMS() {
     const grid = document.getElementById('branches-cards-grid');
@@ -105,9 +104,7 @@ function initContacts() {
     if (!grid) return;
 
     try {
-      const apiBase = window.location.hostname === 'localhost'
-        ? 'http://localhost:3000'
-        : 'https://danamiratest.vercel.app';
+      const apiBase = window.location.origin;
       const res = await fetch(`${apiBase}/api/public/contacts`).catch(() => fetch('/api/public/contacts'));
       if (!res || !res.ok) return;
 

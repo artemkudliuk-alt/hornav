@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function LeadsPage() {
-  let leadsList: any[] = [...sampleLeads];
+  let leadsList: any[] = [];
 
   if (isDbConnected) {
     try {
@@ -22,10 +22,13 @@ export default async function LeadsPage() {
         .leftJoin(vessels, eq(leads.vesselId, vessels.id))
         .leftJoin(users, eq(leads.assignedTo, users.id))
         .orderBy(desc(leads.createdAt));
-      if (data.length > 0) leadsList = data;
+      leadsList = data;
     } catch (err) {
       console.warn("DB offline, using sample leads list.");
+      leadsList = [...sampleLeads];
     }
+  } else {
+    leadsList = [...sampleLeads];
   }
 
   const formatted = leadsList.map((item) =>

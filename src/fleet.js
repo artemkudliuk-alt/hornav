@@ -7,9 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   let fleetList = Object.values(FLEET_DATABASE);
 
   try {
-    const apiBase = window.location.hostname === 'localhost'
-      ? 'http://localhost:3000'
-      : 'https://danamiratest.vercel.app';
+    const apiBase = window.location.origin;
     const res = await fetch(`${apiBase}/api/public/vessels`);
     if (res.ok) {
       const apiVessels = await res.json();
