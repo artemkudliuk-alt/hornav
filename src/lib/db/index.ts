@@ -3,13 +3,19 @@ import { drizzle } from "drizzle-orm/neon-http";
 import * as schema from "./schema";
 import { ensureDatabaseInitialized } from "./init-db";
 
-const dbUrl = process.env.DATABASE_URL || "";
+const dbUrl =
+  process.env.DATABASE_URL ||
+  process.env.POSTGRES_URL ||
+  process.env.STORAGE_DATABASE_URL ||
+  process.env.STORAGE_URL ||
+  process.env.NEON_DATABASE_URL ||
+  "";
 
 export const isDbConnected = Boolean(
   dbUrl &&
   !dbUrl.includes("user:password") &&
   !dbUrl.includes("localhost/danamira") &&
-  dbUrl.startsWith("postgresql://")
+  (dbUrl.startsWith("postgresql://") || dbUrl.startsWith("postgres://"))
 );
 
 const sql = isDbConnected ? neon(dbUrl) : neon("postgresql://mock:mock@mock.neon.tech/mock?sslmode=require");
