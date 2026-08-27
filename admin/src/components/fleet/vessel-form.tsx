@@ -17,7 +17,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
 import { MediaGallery } from "./media-gallery";
-import { Loader2, Save, ArrowLeft, Ship, ExternalLink, Star } from "lucide-react";
+import { Loader2, Save, ArrowLeft, Ship, ExternalLink, Star, Trash2, AlertTriangle } from "lucide-react";
 import Link from "next/link";
 
 interface VesselFormProps {
@@ -28,6 +28,8 @@ interface VesselFormProps {
 export function VesselForm({ initialData, isEditing = false }: VesselFormProps) {
   const router = useRouter();
   const [isSaving, setIsSaving] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   // Form State (Clean English)
@@ -154,6 +156,27 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
 
   const [activeTab, setActiveTab] = useState("base");
 
+  async function handleDeleteVessel() {
+    if (!initialData?.id) return;
+    setIsDeleting(true);
+    try {
+      const res = await fetch(`/api/vessels/${initialData.id}`, {
+        method: "DELETE",
+      });
+      if (res.ok) {
+        router.push("/fleet");
+        router.refresh();
+      } else {
+        alert("Failed to delete vessel.");
+        setIsDeleting(false);
+      }
+    } catch (err) {
+      console.error("Delete error:", err);
+      alert("Error deleting vessel.");
+      setIsDeleting(false);
+    }
+  }
+
   const handleCoverChange = (url: string) => {
     setFormData((prev) => ({ ...prev, coverImageUrl: url }));
   };
@@ -163,69 +186,83 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      {/* Top Action Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <Link href="/fleet">
+    <>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Top Action Header */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <Link href="/fleet">
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="rounded-none text-neutral-400 hover:text-white"
+              >
+                <ArrowLeft className="w-5 h-5" />
+              </Button>
+            </Link>
+            <div>
+              <h1 className="text-xl sm:text-2xl font-semibold text-white tracking-tight">
+                {isEditing
+                  ? `Edit: ${formData.name || "Vessel"}`
+                  : "Add New Vessel to Fleet"}
+              </h1>
+              <p className="text-xs text-neutral-400">
+                Manage vessel technical particulars, cargo specifications, charter terms, and media assets.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            {isEditing && (
+              <>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setShowDeleteConfirm(true)}
+                  className="rounded-none bg-red-600/10 hover:bg-red-600 border-red-500/30 hover:border-red-600 text-red-400 hover:text-white text-xs font-semibold uppercase tracking-wider gap-1.5 h-9 cursor-pointer transition-colors"
+                >
+                  <Trash2 className="w-3.5 h-3.5" />
+                  Delete Vessel
+                </Button>
+
+                <a
+                  href={liveSiteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="rounded-none bg-[#202023] border-white/10 hover:bg-white/5 text-neutral-300 hover:text-white text-xs font-semibold uppercase tracking-wider gap-1.5 h-9 cursor-pointer"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5 text-[#c89b3c]" />
+                    View on Site
+                  </Button>
+                </a>
+              </>
+            )}
             <Button
-              type="button"
-              variant="ghost"
-              size="icon"
-              className="rounded-none text-neutral-400 hover:text-white"
+              type="submit"
+              disabled={isSaving}
+              className="rounded-none bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer h-9 shadow-md"
             >
-              <ArrowLeft className="w-5 h-5" />
+              {isSaving ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <Save className="w-4 h-4" />
+              )}
+              {isEditing ? "Save Changes" : "Create Vessel"}
             </Button>
-          </Link>
-          <div>
-            <h1 className="text-xl sm:text-2xl font-semibold text-white tracking-tight">
-              {isEditing
-                ? `Edit: ${formData.name || "Vessel"}`
-                : "Add New Vessel to Fleet"}
-            </h1>
-            <p className="text-xs text-neutral-400">
-              Manage vessel technical particulars, cargo specifications, charter terms, and media assets.
-            </p>
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
-          {isEditing && (
-            <a
-              href={liveSiteUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button
-                type="button"
-                variant="outline"
-                className="rounded-none bg-[#202023] border-white/10 hover:bg-white/5 text-neutral-300 hover:text-white text-xs font-semibold uppercase tracking-wider gap-1.5 h-9 cursor-pointer"
-              >
-                <ExternalLink className="w-3.5 h-3.5 text-[#c89b3c]" />
-                View on Site
-              </Button>
-            </a>
-          )}
-          <Button
-            type="submit"
-            disabled={isSaving}
-            className="rounded-none bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer h-9 shadow-md"
-          >
-            {isSaving ? (
-              <Loader2 className="w-4 h-4 animate-spin" />
-            ) : (
-              <Save className="w-4 h-4" />
-            )}
-            {isEditing ? "Save Changes" : "Create Vessel"}
-          </Button>
-        </div>
-      </div>
-
-      {error && (
-        <div className="p-3 bg-red-500/10 border border-red-500/30 text-red-400 rounded-none text-xs">
-          {error}
-        </div>
-      )}
+        {error && (
+          <div className="p-3 bg-red-500/10 border border-red-500/30 text-red-400 rounded-none text-xs">
+            {error}
+          </div>
+        )}
 
       {/* Main Tabs Structure */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
@@ -817,5 +854,63 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
         </TabsContent>
       </Tabs>
     </form>
+
+    {/* ─── Delete Confirmation Modal ─────────────────────────────── */}
+    {showDeleteConfirm && (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-in fade-in">
+        <div className="bg-[#1c1c1f] border border-white/10 max-w-md w-full p-6 space-y-4 shadow-2xl">
+          <div className="flex items-center gap-3 text-red-400">
+            <div className="w-10 h-10 bg-red-500/10 border border-red-500/20 flex items-center justify-center shrink-0">
+              <AlertTriangle className="w-5 h-5 text-red-400" />
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
+                Permanently Delete Vessel?
+              </h3>
+              <p className="text-xs text-neutral-400">
+                This vessel and all associated data will be permanently removed from the fleet.
+              </p>
+            </div>
+          </div>
+
+          <div className="p-3 bg-[#141416] border border-white/5 space-y-1 text-xs">
+            <div className="font-semibold text-white">
+              {formData.name || "Unnamed Vessel"}
+            </div>
+            <div className="text-neutral-400 font-mono text-[11px]">
+              IMO: {formData.imoNumber || "N/A"} • Type: {formData.type}
+            </div>
+          </div>
+
+          <div className="flex items-center justify-end gap-2 pt-2">
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              disabled={isDeleting}
+              onClick={() => setShowDeleteConfirm(false)}
+              className="rounded-none bg-[#141416] border-white/10 text-neutral-300 text-xs uppercase tracking-wider cursor-pointer"
+            >
+              Cancel
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              disabled={isDeleting}
+              onClick={handleDeleteVessel}
+              className="rounded-none bg-red-600 hover:bg-red-700 text-white text-xs font-semibold uppercase tracking-wider gap-1.5 cursor-pointer shadow-md"
+            >
+              {isDeleting ? (
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              ) : (
+                <Trash2 className="w-3.5 h-3.5" />
+              )}
+              Confirm Delete
+            </Button>
+          </div>
+        </div>
+      </div>
+    )}
+  </>
   );
 }
