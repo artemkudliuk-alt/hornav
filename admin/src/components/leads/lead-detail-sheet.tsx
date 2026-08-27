@@ -104,11 +104,11 @@ export function LeadDetailSheet({
               <SelectTrigger className="w-44 bg-[#202023] border-white/10 text-xs text-white h-8">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="bg-[#202023] border-white/10 text-white">
-                <SelectItem value="new">🟢 New (Новая)</SelectItem>
-                <SelectItem value="in_progress">🟡 In Progress (В работе)</SelectItem>
-                <SelectItem value="completed">🔵 Completed (Завершено)</SelectItem>
-                <SelectItem value="declined">⚪ Declined (Отклонено)</SelectItem>
+              <SelectContent className="rounded-none bg-[#202023] border-white/10 text-white text-xs">
+                <SelectItem value="new">🟢 New</SelectItem>
+                <SelectItem value="in_progress">🟡 In Progress</SelectItem>
+                <SelectItem value="completed">🔵 Completed</SelectItem>
+                <SelectItem value="declined">⚪ Declined</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -121,7 +121,7 @@ export function LeadDetailSheet({
               <User className="w-3.5 h-3.5" />
               Client Contact Info
             </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 rounded-lg bg-[#202023]/70 border border-white/5 text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 rounded-none bg-[#202023]/70 border border-white/5 text-xs">
               <div>
                 <span className="text-neutral-500 block text-[10px] uppercase">Email</span>
                 {leadData.clientEmail ? (
@@ -174,7 +174,7 @@ export function LeadDetailSheet({
               <Package className="w-3.5 h-3.5" />
               Freight & Route Parameters
             </h4>
-            <div className="p-4 rounded-lg bg-[#202023]/70 border border-white/5 space-y-3 text-xs">
+            <div className="p-4 rounded-none bg-[#202023]/70 border border-white/5 space-y-3 text-xs">
               <div className="grid grid-cols-2 gap-4 pb-3 border-b border-white/5">
                 <div>
                   <span className="text-neutral-500 block text-[10px] uppercase flex items-center gap-1">
@@ -220,16 +220,16 @@ export function LeadDetailSheet({
                 <Ship className="w-3.5 h-3.5" />
                 Target Vessel
               </h4>
-              <div className="p-4 rounded-lg bg-[#202023]/70 border border-white/5 flex items-center justify-between text-xs">
+              <div className="p-4 rounded-none bg-[#202023]/70 border border-white/5 flex items-center justify-between text-xs">
                 <div>
                   <span className="font-semibold text-white block">
-                    {(vesselData.name as any)?.en || "Target Vessel"}
+                    {typeof vesselData.name === "string" ? vesselData.name : ((vesselData.name as any)?.en || "Target Vessel")}
                   </span>
                   <span className="text-[10px] text-neutral-400 font-mono">
                     IMO: {vesselData.imoNumber || "N/A"} • {vesselData.dwt ? `${vesselData.dwt} DWT` : vesselData.type}
                   </span>
                 </div>
-                <Badge variant="outline" className="text-[9px] uppercase font-mono">
+                <Badge variant="outline" className="text-[9px] uppercase font-mono rounded-none">
                   {vesselData.status}
                 </Badge>
               </div>
@@ -243,7 +243,7 @@ export function LeadDetailSheet({
                 <MessageSquare className="w-3.5 h-3.5" />
                 Client Remarks
               </h4>
-              <div className="p-4 rounded-lg bg-[#202023]/70 border border-white/5 text-xs text-neutral-300 leading-relaxed whitespace-pre-wrap">
+              <div className="p-4 rounded-none bg-[#202023]/70 border border-white/5 text-xs text-neutral-300 leading-relaxed whitespace-pre-wrap">
                 {leadData.comment}
               </div>
             </div>

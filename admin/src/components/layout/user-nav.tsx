@@ -53,8 +53,8 @@ export function UserNav({ user }: UserNavProps) {
           </div>
         </div>
 
-        <Avatar className="w-9 h-9 border border-white/10 bg-[#27272a] text-neutral-200">
-          <AvatarFallback className="text-xs font-bold text-[#c89b3c] bg-[#202023]">
+        <Avatar className="w-9 h-9 rounded-none border border-white/10 bg-[#27272a] text-neutral-200">
+          <AvatarFallback className="rounded-none text-xs font-bold text-[#c89b3c] bg-[#202023]">
             {initials}
           </AvatarFallback>
         </Avatar>
@@ -62,7 +62,7 @@ export function UserNav({ user }: UserNavProps) {
 
       <DropdownMenuContent
         align="end"
-        className="w-56 bg-[#202023] border-white/10 text-white shadow-xl"
+        className="w-56 rounded-none bg-[#202023] border-white/10 text-white shadow-xl"
       >
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">

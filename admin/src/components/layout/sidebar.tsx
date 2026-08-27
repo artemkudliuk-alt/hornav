@@ -109,7 +109,7 @@ export function Sidebar({ userRole = "editor" }: SidebarProps) {
               key={item.href}
               href={item.href}
               className={cn(
-                "flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-medium transition-colors",
+                "flex items-center gap-3 px-3 py-2.5 rounded-none text-xs font-medium transition-colors",
                 isActive
                   ? "bg-[#202023] text-[#c89b3c] font-semibold border-l-2 border-[#c89b3c]"
                   : "text-neutral-400 hover:text-white hover:bg-white/5"
@@ -124,9 +124,9 @@ export function Sidebar({ userRole = "editor" }: SidebarProps) {
 
       {/* Bottom Status Indicator */}
       <div className="p-4 border-t border-white/5">
-        <div className="p-3 rounded bg-[#202023]/60 border border-white/5 flex items-center justify-between">
+        <div className="p-3 rounded-none bg-[#202023]/60 border border-white/5 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="w-2 h-2 rounded-none bg-emerald-500 shadow-[0_0_6px_#10b981] animate-pulse" />
             <span className="text-[10px] text-neutral-400 font-mono uppercase tracking-wider">
               API Active
             </span>
