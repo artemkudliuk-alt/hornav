@@ -769,8 +769,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!grid) return;
 
     try {
-      // Try local/production CMS public fleet API
-      const res = await fetch('http://localhost:3000/api/public/vessels').catch(() => fetch('/api/public/vessels'));
+      const apiBase = window.location.hostname === 'localhost'
+        ? 'http://localhost:3000'
+        : 'https://danamiratest.vercel.app';
+      const res = await fetch(`${apiBase}/api/public/vessels`).catch(() => fetch('/api/public/vessels'));
       if (!res || !res.ok) return;
 
       const vessels = await res.json();
@@ -782,27 +784,40 @@ document.addEventListener('DOMContentLoaded', () => {
         vesselsCountEl.textContent = String(vessels.length);
       }
 
-      // Render up to 4-6 vessels seamlessly into responsive grid
-      grid.innerHTML = vessels.slice(0, 6).map((v, index) => {
-        const coverImg = v.coverImageUrl || '/fleet/molpadia/MV_MOLPADIA__PHOTO.jpg';
+      // Update CTA button text with total count
+      const ctaBtn = document.querySelector('a[href="/fleet.html"]');
+      if (ctaBtn) {
+        const spanText = ctaBtn.querySelector('span');
+        if (spanText && spanText.textContent.includes('Vessels')) {
+          spanText.textContent = `View Full Fleet List (${vessels.length} Vessels)`;
+        }
+      }
+
+      // Render all vessels dynamically into clean responsive grid with generous spacing
+      grid.innerHTML = vessels.map((v, index) => {
+        const rawCover = v.coverImageUrl || (v.photos?.[0]?.url || v.photos?.[0] || '/fleet/molpadia/MV_MOLPADIA__PHOTO.jpg');
+        const coverImg = (rawCover.startsWith('/') && !rawCover.startsWith('http') && !rawCover.startsWith('//') && window.location.hostname === 'localhost')
+          ? `http://localhost:3000${rawCover}`
+          : rawCover;
         const num = String(index + 1).padStart(2, '0');
         const pdfLink = v.id.includes('meta') 
-          ? '/fleet/metanira/1_GA_PLAN.pdf'
+          ? '/fleet/metanira/3_GA-PLAN.pdf'
           : '/fleet/molpadia/2_GA-PLAN.pdf';
+        const vesselName = typeof v.name === 'object' ? (v.name.en || 'Unnamed') : v.name;
 
         return `
-          <div class="bg-bg-secondary/70 border border-neutral-800/80 hover:border-gold/40 rounded-lg p-6 sm:p-7 flex flex-col gap-6 transition-all duration-500 hover:-translate-y-1 group relative shadow-xl text-left" data-reveal id="f-card-${v.id}">
+          <div class="bg-bg-secondary/70 border border-neutral-800/80 hover:border-gold/40 rounded-none p-5 sm:p-7 lg:p-8 flex flex-col gap-6 sm:gap-7 transition-all duration-500 hover:-translate-y-1 group relative shadow-xl text-left overflow-hidden" data-reveal id="f-card-${v.id}">
             <!-- High-Contrast Status Badge -->
-            <div class="absolute top-9 right-9 z-20 bg-neutral-950/95 text-white border-2 border-emerald-500 text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1.5 rounded shadow-2xl flex items-center gap-1.5 backdrop-blur-md">
-              <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399] inline-block"></span>
+            <div class="absolute top-4 right-4 z-20 bg-neutral-950/95 text-white border-2 border-emerald-500 text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1.5 rounded-none shadow-2xl flex items-center gap-1.5 backdrop-blur-md">
+              <span class="w-2 h-2 rounded-none bg-emerald-400 shadow-[0_0_8px_#34d399] inline-block"></span>
               <span class="text-white font-bold tracking-wider">${(v.status || 'AVAILABLE').toUpperCase()}</span>
             </div>
 
             <!-- Image Container -->
-            <a href="/vessel.html?id=${v.id}" class="block w-full h-72 overflow-hidden rounded relative bg-neutral-900 group/img" title="View Full Particulars of ${v.name}">
-              <img src="${coverImg}" alt="${v.name} Danamira Shipping" class="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105">
+            <a href="/vessel.html?id=${v.id}" class="block w-full h-64 sm:h-72 overflow-hidden rounded-none relative bg-neutral-900 group/img" title="View Full Particulars of ${vesselName}">
+              <img src="${coverImg}" alt="${vesselName} Danamira Shipping" class="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105" loading="lazy">
               <div class="absolute inset-0 bg-gradient-to-t from-[#141416]/80 via-transparent to-transparent pointer-events-none"></div>
-              <span class="absolute bottom-3 left-3 bg-black/70 backdrop-blur-sm text-white/90 text-[10px] font-mono px-2.5 py-1 rounded border border-white/10 opacity-0 group-hover/img:opacity-100 transition-opacity inline-flex items-center gap-1.5">
+              <span class="absolute bottom-3 left-3 bg-black/70 backdrop-blur-sm text-white/90 text-[10px] font-mono px-2.5 py-1 rounded-none border border-white/10 opacity-0 group-hover/img:opacity-100 transition-opacity inline-flex items-center gap-1.5">
                 <span>👁️ View Full Profile</span>
                 <svg class="w-3 h-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </span>
@@ -815,7 +830,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   <div>
                     <a href="/vessel.html?id=${v.id}" class="hover:text-gold transition-colors">
                       <h3 class="text-2xl sm:text-3xl font-serif font-medium text-white flex items-center gap-2">
-                        ${v.name}
+                        ${vesselName}
                       </h3>
                     </a>
                     <span class="text-[11px] font-mono text-neutral-400 mt-0.5 block">IMO: ${v.imoNumber || '—'} • Built ${v.yearBuilt || '—'}</span>
@@ -825,38 +840,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="h-[1px] w-12 bg-gold/30 mb-4"></div>
                 
                 <!-- Specifications Sheet -->
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-4 font-sans text-xs border-t border-white/10 pt-4 mt-3">
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-4 sm:gap-x-6 gap-y-3 sm:gap-y-4 font-sans text-xs border-t border-white/10 pt-4 mt-3">
                   <div class="flex flex-col">
                     <span class="text-[9px] uppercase tracking-widest text-gold/70 mb-0.5">DWT</span>
-                    <span class="text-white font-medium text-sm">${v.dwt ? Number(v.dwt).toLocaleString() + ' MT' : '6,000–8,000'}</span>
+                    <span class="text-white font-medium text-sm">${v.dwt ? Number(v.dwt).toLocaleString() + ' MT' : '6,408 MT'}</span>
                   </div>
                   <div class="flex flex-col">
                     <span class="text-[9px] uppercase tracking-widest text-gold/70 mb-0.5">Flag</span>
-                    <span class="text-white font-medium text-sm">${v.flag || 'Greece'}</span>
+                    <span class="text-white font-medium text-sm">${v.flag || 'Antigua & Barbuda'}</span>
                   </div>
                   <div class="flex flex-col">
                     <span class="text-[9px] uppercase tracking-widest text-gold/70 mb-0.5">Year Built</span>
-                    <span class="text-white font-medium text-sm">${v.yearBuilt || '2020+'}</span>
+                    <span class="text-white font-medium text-sm">${v.yearBuilt || '2014'}</span>
                   </div>
                   <div class="flex flex-col">
                     <span class="text-[9px] uppercase tracking-widest text-gold/70 mb-0.5">Vessel Type</span>
-                    <span class="text-white font-medium text-sm">${v.type === 'bulk_carrier' ? 'Bulk Carrier' : 'General Cargo'}</span>
+                    <span class="text-white font-medium text-sm">${v.type === 'bulk_carrier' ? 'Bulk Carrier' : (v.type || 'General Cargo')}</span>
                   </div>
                   <div class="flex flex-col">
                     <span class="text-[9px] uppercase tracking-widest text-gold/70 mb-0.5">Holds / Hatches</span>
-                    <span class="text-white font-medium text-sm">2HO / 2HA</span>
+                    <span class="text-white font-medium text-sm">${v.holdsCount || '2HO / 2HA'}</span>
                   </div>
                   <div class="flex flex-col">
                     <span class="text-[9px] uppercase tracking-widest text-gold/70 mb-0.5">Deck Gear</span>
-                    <span class="text-white font-medium text-sm">2 x 30 MT Cranes</span>
+                    <span class="text-white font-medium text-sm">${v.deckEquipment ? (typeof v.deckEquipment === 'object' ? v.deckEquipment.en : v.deckEquipment) : '2 x 30 MT Cranes'}</span>
                   </div>
                 </div>
               </div>
               
               <!-- Buttons & Actions Row (Sharp Corners: GA-Plan Left, Details Right) -->
               <div class="flex items-center justify-between gap-3 pt-5 mt-4 border-t border-white/5 w-full">
-                <button type="button" data-pdf-url="${pdfLink}" data-vessel="${v.name}" class="btn-open-pdf group inline-flex items-center gap-2 px-3 py-2 rounded-none bg-[#141416] hover:bg-[#1a1a1d] text-white border border-white/20 hover:border-red-500/60 text-xs font-mono uppercase tracking-wider transition-all duration-200 cursor-pointer active:scale-95 shadow-sm whitespace-nowrap shrink-0">
-                  <!-- Classic Red PDF Document Badge Icon -->
+                <button type="button" data-pdf-url="${pdfLink}" data-vessel="${vesselName}" class="btn-open-pdf group inline-flex items-center gap-2 px-3 py-2 rounded-none bg-[#141416] hover:bg-[#1a1a1d] text-white border border-white/20 hover:border-red-500/60 text-xs font-mono uppercase tracking-wider transition-all duration-200 cursor-pointer active:scale-95 shadow-sm whitespace-nowrap shrink-0">
                   <svg viewBox="0 0 32 36" class="w-4 h-4.5 shrink-0 transition-transform duration-200 group-hover:scale-105" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7 2C5.34315 2 4 3.34315 4 5V31C4 32.6569 5.34315 34 7 34H25C26.6569 34 28 32.6569 28 31V12L18 2H7Z" stroke="#EF4444" stroke-width="2.2" stroke-linejoin="round" fill="none"/>
                     <path d="M18 2V12H28" stroke="#EF4444" stroke-width="2.2" stroke-linejoin="round"/>
@@ -883,6 +897,11 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         `;
       }).join('');
+
+      // Recalculate stacking scroll coordinates so all cards are completely visible before next section slides up
+      setTimeout(() => {
+        setupStackingScroll();
+      }, 50);
     } catch (e) {
       console.log('Using static pre-rendered fleet cards.');
     }
@@ -891,14 +910,26 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize High-Precision PDF Viewer Engine
   initPdfModal();
 
-  syncFleetFromCMS();
+  // Load dynamic fleet from CMS and calculate stacking scroll
+  syncFleetFromCMS().then(() => {
+    setupStackingScroll();
+  });
 
-  // Run on initial load
-  setupStackingScroll();
+  // Observe section height changes (e.g. images loading, dynamic cards) to auto-recalculate
+  if (window.ResizeObserver) {
+    const fleetSec = document.getElementById('fleet');
+    if (fleetSec) {
+      const resizeObserver = new ResizeObserver(() => {
+        requestAnimationFrame(setupStackingScroll);
+      });
+      resizeObserver.observe(fleetSec);
+    }
+  }
 
   // Run on resize to recalculate coordinates and toggle stacking
   window.addEventListener('resize', () => {
     setupStackingScroll();
   });
 });
+
 
