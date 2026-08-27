@@ -42,7 +42,7 @@ export function Sidebar({ userRole = "editor" }: SidebarProps) {
       roles: ["admin", "manager"],
     },
     {
-      title: "Site Pages & SEO",
+      title: "Pages",
       href: "/pages",
       icon: FileText,
       roles: ["admin", "editor"],

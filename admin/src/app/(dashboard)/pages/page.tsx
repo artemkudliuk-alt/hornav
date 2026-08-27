@@ -27,10 +27,10 @@ export default async function PagesListPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-xl sm:text-2xl font-semibold text-white tracking-tight">
-            Site Pages & Navigation ({pagesList.length})
+            Pages ({pagesList.length})
           </h1>
           <p className="text-xs text-neutral-400 mt-1">
-            Manage SEO metadata, header navigation menus, and content for all public website pages.
+            Create, edit, and manage custom website pages, header navigation, and footer links.
           </p>
         </div>
 
