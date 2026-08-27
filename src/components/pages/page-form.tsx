@@ -77,11 +77,13 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
     setIsSaving(true);
     setError(null);
 
+    const pageTitle = formData.title || formData.pageName || formData.slug || "New Page";
     const payload = {
       ...formData,
-      title: { en: formData.title, ua: "", ru: "" },
-      metaDescription: { en: formData.metaDescription, ua: "", ru: "" },
-      content: { en: formData.content, ua: "", ru: "" },
+      pageName: formData.pageName || pageTitle,
+      title: { en: pageTitle, ua: "", ru: "" },
+      metaDescription: { en: formData.metaDescription || "", ua: "", ru: "" },
+      content: { en: formData.content || "", ua: "", ru: "" },
     };
 
     try {
