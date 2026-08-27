@@ -8,13 +8,15 @@ export const dynamic = "force-dynamic";
 
 export async function GET(
   req: Request,
-  { params }: { params: Promise<{ slug: string }> }
+  { params }: { params: Promise<{ slug: string }> | { slug: string } }
 ) {
-  const { slug } = await params;
-  const { searchParams } = new URL(req.url);
-  const lang = (searchParams.get("lang") as "en" | "ua" | "ru") || "en";
-
   try {
+    const resolvedParams = params instanceof Promise ? await params : (await Promise.resolve(params));
+    const rawSlug = resolvedParams?.slug || "";
+    const slug = decodeURIComponent(rawSlug);
+    const { searchParams } = new URL(req.url);
+    const lang = (searchParams.get("lang") as "en" | "ua" | "ru") || "en";
+
     const normalizedSlug = slug.replace(/\.html$/, "");
     let page: any = samplePages.find(
       (p: any) =>
@@ -25,43 +27,47 @@ export async function GET(
     );
 
     if (isDbConnected) {
-      const allDbPages = await db.select().from(pages);
-      const matched = allDbPages.find(
-        (p: any) =>
-          p.slug === slug ||
-          p.slug === normalizedSlug ||
-          p.slug === `${normalizedSlug}.html` ||
-          p.slug?.replace(/\.html$/, "") === normalizedSlug ||
-          p.id === slug
-      );
-      if (matched) page = matched;
+      try {
+        const allDbPages = await db.select().from(pages);
+        const matched = allDbPages.find(
+          (p: any) =>
+            p.slug === slug ||
+            p.slug === normalizedSlug ||
+            p.slug === `${normalizedSlug}.html` ||
+            p.slug?.replace(/\.html$/, "") === normalizedSlug ||
+            p.id === slug
+        );
+        if (matched) page = matched;
+      } catch (dbErr) {
+        console.warn("DB lookup error in public pages slug:", dbErr);
+      }
     }
 
     if (!page) {
       return NextResponse.json({ error: "Page not found" }, { status: 404 });
     }
 
-    const titleObj = page.title as unknown as Record<string, string> | null;
-    const metaDescObj = page.metaDescription as unknown as Record<string, string> | null;
-    const ogObj = page.ogImage as unknown as Record<string, string> | null;
-    const contentObj = page.content as unknown as Record<string, string> | null;
+    const pageTitle = typeof page.title === "object" ? (page.title?.[lang] || page.title?.en || page.slug) : (page.title || page.slug);
+    const pageDesc = typeof page.metaDescription === "object" ? (page.metaDescription?.[lang] || page.metaDescription?.en || "") : (page.metaDescription || "");
+    const pageContent = typeof page.content === "object" ? (page.content?.[lang] || page.content?.en || "") : (page.content || "");
+    const pageOg = typeof page.ogImage === "object" ? (page.ogImage?.[lang] || page.ogImage?.en || "") : (page.ogImage || "");
 
     return NextResponse.json(
       {
         slug: page.slug,
-        title: titleObj?.[lang] || titleObj?.en || "",
-        titleI18n: page.title,
-        metaDescription: metaDescObj?.[lang] || metaDescObj?.en || "",
-        ogImage: ogObj?.[lang] || ogObj?.en || "",
-        content: contentObj?.[lang] || contentObj?.en || "",
-        contentI18n: page.content,
-        publishedAt: page.publishedAt || page.createdAt,
+        title: pageTitle,
+        titleI18n: typeof page.title === "object" ? page.title : { en: page.title, ua: "", ru: "" },
+        metaDescription: pageDesc,
+        ogImage: pageOg,
+        content: pageContent,
+        contentI18n: typeof page.content === "object" ? page.content : { en: page.content, ua: "", ru: "" },
+        publishedAt: page.publishedAt || page.createdAt || new Date().toISOString(),
       },
       {
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "GET, OPTIONS",
-          "Cache-Control": "public, s-maxage=120, stale-while-revalidate=600",
+          "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300",
         },
       }
     );
