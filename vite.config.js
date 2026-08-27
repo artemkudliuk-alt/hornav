@@ -59,29 +59,8 @@ export default defineConfig(({ mode }) => {
         }
       }
     },
-
-    // ─── Dev Server ───────────────────────────────────────────────
-    // Vite runs on :3000 (main entry point for everything)
-    // Admin Next.js runs on :3001
-    // All /admin/* and /_next/* traffic is proxied to Next.js
     server: {
-      port: 3000,
-      proxy: {
-        '/admin': {
-          target: 'http://localhost:3001',
-          changeOrigin: true,
-          ws: true,
-        },
-        '/_next': {
-          target: 'http://localhost:3001',
-          changeOrigin: true,
-          ws: true,
-        },
-        '/api': {
-          target: 'http://localhost:3001',
-          changeOrigin: true,
-        },
-      }
+      port: 5173,
     }
   };
 });

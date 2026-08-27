@@ -4,7 +4,41 @@ import { initPdfModal } from './pdf-viewer.js';
 import { initMobileMenu } from './mobile-menu.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-  const fleetList = Object.values(FLEET_DATABASE);
+  let fleetList = Object.values(FLEET_DATABASE);
+
+  try {
+    const apiBase = window.location.hostname === 'localhost'
+      ? 'http://localhost:3000'
+      : 'https://danamiratest.vercel.app';
+    const res = await fetch(`${apiBase}/api/public/vessels`);
+    if (res.ok) {
+      const apiVessels = await res.json();
+      if (Array.isArray(apiVessels) && apiVessels.length > 0) {
+        fleetList = apiVessels.map((av) => {
+          const local = FLEET_DATABASE[av.id];
+          const name = typeof av.name === 'object' ? (av.name.en || 'Unnamed') : av.name;
+          return {
+            id: av.id,
+            name: name,
+            type: av.type ? (av.type === 'bulk_carrier' ? 'General Cargo' : av.type) : (local?.type || 'General Cargo'),
+            status: av.status === 'available' ? 'Available for Charter' : av.status,
+            yearBuilt: av.yearBuilt || local?.yearBuilt || 'N/A',
+            flag: av.flag || local?.flag || 'N/A',
+            imoNumber: av.imoNumber || local?.imoNumber || 'N/A',
+            dwt: av.dwt ? `${Number(av.dwt).toLocaleString()} MT` : (local?.dwt || 'N/A'),
+            holdsCount: av.holdsCount || local?.holdsCount || '2HO / 2HA',
+            deckGear: av.deckEquipment ? (typeof av.deckEquipment === 'object' ? av.deckEquipment.en : av.deckEquipment) : (local?.deckGear || '2 x 30 MT Cranes'),
+            coverImageUrl: av.coverImageUrl || local?.coverImageUrl || '/placeholder-ship.jpg',
+            pdfGaPlanUrl: local?.pdfGaPlanUrl || null,
+            photos: av.photos || local?.photos || [],
+          };
+        });
+      }
+    }
+  } catch (err) {
+    console.warn('[Danamira] Using local fleet data:', err.message);
+  }
+
   const container = document.getElementById('fleet-cards-container');
   const countIndicator = document.getElementById('fleet-count-indicator');
   const filterButtons = document.querySelectorAll('.fleet-filter-btn');
