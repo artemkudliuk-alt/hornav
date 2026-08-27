@@ -14,6 +14,8 @@ const loginSchema = z.object({
 });
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  secret: process.env.AUTH_SECRET || "danamira-production-jwt-auth-secret-key-2026-secure",
+  trustHost: true,
   pages: {
     signIn: "/login",
     error: "/login",
