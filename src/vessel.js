@@ -580,8 +580,103 @@ document.addEventListener('DOMContentLoaded', async () => {
   const params = new URLSearchParams(window.location.search);
   const vesselId = params.get('id') || 'vessel-molpadia';
 
-  let vessel = FLEET_DATABASE[vesselId];
+  let vessel = null;
 
+  // 1. Try to fetch from Admin CMS API (dynamic vessels created in admin)
+  try {
+    const apiBase = window.location.hostname === 'localhost'
+      ? 'http://localhost:3000'
+      : 'https://danamiratest.vercel.app';
+    const resp = await fetch(`${apiBase}/api/public/vessels/${vesselId}`, {
+      headers: { 'Accept': 'application/json' }
+    });
+    if (resp.ok) {
+      const apiVessel = await resp.json();
+      if (apiVessel && apiVessel.id) {
+        // Normalize API response to frontend format
+        vessel = {
+          id: apiVessel.id,
+          name: typeof apiVessel.name === 'object' ? (apiVessel.name.en || 'Unnamed') : apiVessel.name,
+          type: (() => {
+            const t = apiVessel.type || 'bulk_carrier';
+            const map = { bulk_carrier: 'General Cargo', container: 'Container', tanker: 'Tanker', roro: 'RoRo', barge: 'Barge', tug: 'Tug' };
+            return map[t] || t;
+          })(),
+          status: apiVessel.status === 'available' ? 'Available for Charter' : apiVessel.status,
+          flag: apiVessel.flag || '',
+          imoNumber: apiVessel.imoNumber || '',
+          yearBuilt: apiVessel.yearBuilt || '',
+          classSociety: apiVessel.classSociety || '',
+          callSign: apiVessel.callSign || '',
+          officialNumber: apiVessel.officialNumber || '',
+          dwt: apiVessel.dwt ? `${Number(apiVessel.dwt).toLocaleString()} MT` : '',
+          gt: apiVessel.gt || '',
+          nt: apiVessel.nt || '',
+          loa: apiVessel.loa ? `${apiVessel.loa} m` : '',
+          beam: apiVessel.beam ? `${apiVessel.beam} m` : '',
+          draft: apiVessel.draft ? `${apiVessel.draft} m` : '',
+          depthMoulded: apiVessel.depthMoulded ? `${apiVessel.depthMoulded} m` : '',
+          grainCapacity: apiVessel.grainCapacity || '',
+          baleCapacity: apiVessel.baleCapacity || '',
+          holdsCount: apiVessel.holdsCount || '',
+          tankTopStrength: apiVessel.tankTopStrength || '',
+          maxSpeed: apiVessel.maxSpeed ? `${apiVessel.maxSpeed} knots` : '',
+          ecoSpeed: apiVessel.ecoSpeed ? `${apiVessel.ecoSpeed} knots` : '',
+          fuelConsumption: apiVessel.fuelConsumption || '',
+          mainEngine: apiVessel.mainEngine || '',
+          bowThruster: apiVessel.bowThruster || '',
+          deckGear: apiVessel.deckEquipment
+            ? (typeof apiVessel.deckEquipment === 'object' ? apiVessel.deckEquipment.en : apiVessel.deckEquipment)
+            : '',
+          description: apiVessel.description
+            ? (typeof apiVessel.description === 'object' ? apiVessel.description.en : apiVessel.description)
+            : '',
+          coverImageUrl: apiVessel.coverImageUrl || '',
+          charterRateUsd: apiVessel.charterRateUsd || null,
+          salePriceUsd: apiVessel.salePriceUsd || null,
+          pdfGaPlanUrl: null,
+          photos: (apiVessel.media || []).filter(m => m.type === 'photo').map(m => m.url),
+          specSections: {
+            information: [
+              { label: 'Vessel Name', value: typeof apiVessel.name === 'object' ? apiVessel.name.en : apiVessel.name },
+              { label: 'IMO No.', value: apiVessel.imoNumber || 'N/A' },
+              { label: 'Vessel Type', value: (() => { const t = apiVessel.type || 'bulk_carrier'; const map = { bulk_carrier: 'General Cargo', container: 'Container', tanker: 'Tanker', roro: 'RoRo', barge: 'Barge', tug: 'Tug' }; return map[t] || t; })() },
+              { label: 'BLT (Year Built)', value: String(apiVessel.yearBuilt || 'N/A') },
+              { label: 'Flag', value: apiVessel.flag || 'N/A' },
+              { label: 'Class Society', value: apiVessel.classSociety || 'N/A' },
+              { label: 'Call Sign', value: apiVessel.callSign || 'N/A' },
+              { label: 'Official Number', value: apiVessel.officialNumber || 'N/A' }
+            ],
+            particulars: [
+              { label: 'DWT', value: apiVessel.dwt ? `${Number(apiVessel.dwt).toLocaleString()} MT` : 'N/A' },
+              { label: 'GT / NT', value: (apiVessel.gt && apiVessel.nt) ? `${apiVessel.gt} / ${apiVessel.nt}` : 'N/A' },
+              { label: 'LOA', value: apiVessel.loa ? `${apiVessel.loa} m` : 'N/A' },
+              { label: 'Beam', value: apiVessel.beam ? `${apiVessel.beam} m` : 'N/A' },
+              { label: 'Draft', value: apiVessel.draft ? `${apiVessel.draft} m` : 'N/A' },
+            ],
+            holds: apiVessel.holdsCount ? [{ label: 'Holds / Hatches', value: apiVessel.holdsCount }] : [],
+            ballast: [],
+            speeds: [
+              { label: 'Max Speed', value: apiVessel.maxSpeed ? `${apiVessel.maxSpeed} knots` : 'N/A' },
+              { label: 'Eco Speed', value: apiVessel.ecoSpeed ? `${apiVessel.ecoSpeed} knots` : 'N/A' },
+            ],
+            tanks: [],
+            machinery: apiVessel.mainEngine ? [{ label: 'Main Engine', value: apiVessel.mainEngine }] : [],
+            loads: []
+          }
+        };
+      }
+    }
+  } catch (err) {
+    console.warn('[Danamira] API fetch failed, using local data:', err.message);
+  }
+
+  // 2. Fallback to local hardcoded fleet database
+  if (!vessel) {
+    vessel = FLEET_DATABASE[vesselId];
+  }
+
+  // 3. Ultimate fallback
   if (!vessel) {
     vessel = FLEET_DATABASE['vessel-molpadia'];
   }
