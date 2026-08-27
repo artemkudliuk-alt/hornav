@@ -13,15 +13,27 @@ export async function GET(
   const lang = (searchParams.get("lang") as "en" | "ua" | "ru") || "en";
 
   try {
-    let page: any = samplePages.find((p) => p.slug === slug);
+    const normalizedSlug = slug.replace(/\.html$/, "");
+    let page: any = samplePages.find(
+      (p: any) =>
+        p.slug === slug ||
+        p.slug === normalizedSlug ||
+        p.slug === `${normalizedSlug}.html` ||
+        p.id === slug
+    );
 
     if (isDbConnected) {
       const [dbPage] = await db
         .select()
         .from(pages)
-        .where(and(eq(pages.slug, slug), eq(pages.status, "published")))
-        .limit(1);
-      if (dbPage) page = dbPage;
+        .where(
+          and(
+            eq(pages.status, "published")
+          )
+        )
+        .limit(50);
+      const matched = dbPage ? [dbPage].find(p => p.slug === slug || p.slug === normalizedSlug || p.id === slug) : null;
+      if (matched) page = matched;
     }
 
     if (!page) {

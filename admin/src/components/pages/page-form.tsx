@@ -113,9 +113,12 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
     }
   }
 
+  const cleanSlug = formData.slug ? formData.slug.replace(/^\/+/, "") : "";
+  const isStaticPage = ["company.html", "fleet.html", "contacts.html", "accountability.html", "vessel.html"].includes(cleanSlug);
+  const targetPath = isStaticPage ? `/${cleanSlug}` : `/page.html?slug=${cleanSlug}`;
   const livePageUrl = typeof window !== "undefined" && window.location.hostname === "localhost"
-    ? `http://localhost:5173/${formData.slug}`
-    : `https://danamiratest.vercel.app/${formData.slug}`;
+    ? `http://localhost:5173${targetPath}`
+    : `https://danamiratest.vercel.app${targetPath}`;
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">

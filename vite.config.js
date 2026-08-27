@@ -42,7 +42,8 @@ export default defineConfig(({ mode }) => {
           accountability: path.resolve(__dirname, 'accountability.html'),
           vessel: path.resolve(__dirname, 'vessel.html'),
           fleet: path.resolve(__dirname, 'fleet.html'),
-          contacts: path.resolve(__dirname, 'contacts.html')
+          contacts: path.resolve(__dirname, 'contacts.html'),
+          page: path.resolve(__dirname, 'page.html')
         },
         output: {
           chunkFileNames: 'assets/js/[name]-[hash].js',
