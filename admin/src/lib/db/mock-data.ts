@@ -5,6 +5,7 @@ const globalForData = globalThis as unknown as {
   _sampleBranches?: any[];
   _sampleCompanyContacts?: any;
   _sampleUsers?: any[];
+  _sampleSettings?: any;
 };
 
 const initialSampleVessels = [
@@ -334,3 +335,18 @@ const initialSampleUsers = [
 export const sampleUsers: any[] =
   globalForData._sampleUsers ||
   (globalForData._sampleUsers = initialSampleUsers);
+
+export const sampleSettings =
+  globalForData._sampleSettings ||
+  (globalForData._sampleSettings = {
+    userName: "Danamira SuperAdmin",
+    userEmail: "admin@danamirashipping.com",
+    leadNotificationEmails: "chartering@danamirashipping.com, ops@danamirashipping.com",
+    emailSenderName: "Danamira Shipping Freight Desk",
+    autoReplySubject: "Inquiry Received — Danamira Shipping Ltd",
+    autoReplyMessage: "Thank you for contacting Danamira Shipping. Our commercial chartering desk has received your freight / vessel inquiry and will respond promptly with particulars and rate indications.",
+    companyName: "DANAMIRA SHIPPING LTD",
+    defaultCurrency: "USD",
+    timezone: "Europe/Athens",
+    defaultLanguage: "en",
+  });
