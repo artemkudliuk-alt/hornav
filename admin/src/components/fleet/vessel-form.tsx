@@ -17,7 +17,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
 import { MediaGallery } from "./media-gallery";
-import { Loader2, Save, ArrowLeft, Ship, ExternalLink } from "lucide-react";
+import { Loader2, Save, ArrowLeft, Ship, ExternalLink, Star } from "lucide-react";
 import Link from "next/link";
 
 interface VesselFormProps {
@@ -39,6 +39,7 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
     charterRateUsd: initialData?.charterRateUsd || "",
     salePriceUsd: initialData?.salePriceUsd || "",
     priceOnRequest: initialData?.priceOnRequest ?? false,
+    isFeatured: initialData?.isFeatured ?? true,
     currentLocation: initialData?.currentLocation || "",
     tradingArea: initialData?.tradingArea || "",
 
@@ -322,20 +323,6 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
                 />
               </div>
 
-              <div className="space-y-2 flex flex-col justify-end">
-                <label className="flex items-center gap-2 text-xs text-neutral-300 p-2.5 rounded-none bg-[#18181b] border border-white/5 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={formData.priceOnRequest}
-                    onChange={(e) =>
-                      setFormData({ ...formData, priceOnRequest: e.target.checked })
-                    }
-                    className="rounded-none border-white/20 text-[#c89b3c] focus:ring-[#c89b3c]"
-                  />
-                  <span>Price on Request</span>
-                </label>
-              </div>
-
               <div className="space-y-2">
                 <Label className="text-xs text-neutral-300">Current Location / Port</Label>
                 <Input
@@ -359,6 +346,42 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
                   className="rounded-none bg-[#18181b] border-white/10 text-xs text-white"
                 />
               </div>
+            </div>
+
+            {/* Visibility & Pricing Options */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-white/5">
+              <label className="flex items-center gap-3 p-3.5 rounded-none bg-[#18181b] border border-white/10 hover:border-[#c89b3c]/50 transition-colors cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  checked={formData.priceOnRequest}
+                  onChange={(e) =>
+                    setFormData({ ...formData, priceOnRequest: e.target.checked })
+                  }
+                  className="w-4 h-4 rounded-none border-white/20 text-[#c89b3c] focus:ring-[#c89b3c] cursor-pointer"
+                />
+                <div>
+                  <span className="text-xs font-semibold text-white block">Price on Request</span>
+                  <span className="text-[11px] text-neutral-400 block">Hide public day rate / sale price</span>
+                </div>
+              </label>
+
+              <label className="flex items-center gap-3 p-3.5 rounded-none bg-[#18181b] border border-[#c89b3c]/30 hover:border-[#c89b3c] transition-colors cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  checked={formData.isFeatured}
+                  onChange={(e) =>
+                    setFormData({ ...formData, isFeatured: e.target.checked })
+                  }
+                  className="w-4 h-4 rounded-none border-white/20 text-[#c89b3c] focus:ring-[#c89b3c] cursor-pointer"
+                />
+                <div>
+                  <span className="text-xs font-semibold text-[#c89b3c] flex items-center gap-1.5">
+                    <Star className="w-3.5 h-3.5 fill-[#c89b3c]" />
+                    Featured on Homepage
+                  </span>
+                  <span className="text-[11px] text-neutral-400 block">Display in Hero Showcase on main page</span>
+                </div>
+              </label>
             </div>
           </Card>
         </TabsContent>

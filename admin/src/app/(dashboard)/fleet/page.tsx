@@ -7,7 +7,7 @@ import { sampleVessels } from "@/lib/db/mock-data";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Anchor, Edit3, Plus, Ship } from "lucide-react";
+import { Anchor, Edit3, Plus, Ship, Star } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -122,6 +122,22 @@ export default async function FleetPage() {
                   ) : (
                     <div className="w-full h-full flex items-center justify-center bg-[#18181b] text-neutral-600">
                       <Ship className="w-10 h-10" />
+                    </div>
+                  )}
+
+                  {/* Featured on Homepage Badge */}
+                  {v.isFeatured && (
+                    <div className="absolute top-3 left-3 z-10">
+                      <div
+                        className="text-[9px] font-mono font-bold tracking-wider uppercase px-2 py-0.5 rounded-none border border-[#c89b3c]/50 text-[#c89b3c] shadow-2xl flex items-center gap-1"
+                        style={{
+                          backgroundColor: "rgba(10, 10, 12, 0.92)",
+                          backdropFilter: "blur(8px)",
+                        }}
+                      >
+                        <Star className="w-3 h-3 fill-[#c89b3c]" />
+                        <span>FEATURED</span>
+                      </div>
                     </div>
                   )}
 

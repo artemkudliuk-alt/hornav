@@ -43,6 +43,7 @@ const initialSampleVessels = [
       ru: "2x 30MT электрогидравлические краны, гидравлические люковые закрытия (2HO/2HA)",
     },
     coverImageUrl: "/fleet/molpadia/MV_MOLPADIA__PHOTO.jpg",
+    isFeatured: true,
     createdAt: new Date().toISOString(),
     media: [
       {
@@ -148,6 +149,7 @@ const initialSampleVessels = [
       ru: "2x 30MT краны, гидравлические люковые закрытия",
     },
     coverImageUrl: "/fleet/metanira/PHOTO__MV_METANIRA.JPG",
+    isFeatured: true,
     createdAt: new Date().toISOString(),
     media: [
       {
