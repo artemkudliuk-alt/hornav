@@ -285,6 +285,7 @@ export const samplePages = [
     slug: "index.html",
     pageName: "Home Page",
     status: "published",
+    includeInNav: true,
     title: {
       en: "Danamira Shipping Ltd | International Maritime Logistics & Managed Fleet",
       ua: "Danamira Shipping Ltd | Міжнародна морська логістика та флот",
@@ -307,6 +308,7 @@ export const samplePages = [
     slug: "fleet.html",
     pageName: "Managed Fleet",
     status: "published",
+    includeInNav: true,
     title: {
       en: "Managed Fleet & Technical Specifications | Danamira Shipping",
       ua: "Флот в управлінні та технічні специфікації | Danamira",
@@ -329,6 +331,7 @@ export const samplePages = [
     slug: "company.html",
     pageName: "About Company",
     status: "published",
+    includeInNav: true,
     title: {
       en: "About Company & Maritime Framework | Danamira Shipping",
       ua: "Про компанію та морські стандарти | Danamira",
@@ -351,6 +354,7 @@ export const samplePages = [
     slug: "careers.html",
     pageName: "Careers & Crewing",
     status: "published",
+    includeInNav: true,
     title: {
       en: "Careers, Seafarer Recruitment & Crewing | Danamira Shipping",
       ua: "Кар'єра, працевлаштування моряків та крюїнг | Danamira",
@@ -373,6 +377,7 @@ export const samplePages = [
     slug: "contact.html",
     pageName: "Global Offices & Contact",
     status: "published",
+    includeInNav: true,
     title: {
       en: "Global Offices & Direct Chartering Inquiries | Danamira Shipping",
       ua: "Офіси у світі та прямі контакти чартерингу | Danamira",
@@ -395,6 +400,7 @@ export const samplePages = [
     slug: "privacy.html",
     pageName: "Privacy Policy",
     status: "published",
+    includeInNav: false,
     title: {
       en: "Privacy Policy & Data Protection | Danamira Shipping",
       ua: "Політика конфіденційності | Danamira",
@@ -417,6 +423,7 @@ export const samplePages = [
     slug: "terms.html",
     pageName: "Terms & Conditions",
     status: "published",
+    includeInNav: false,
     title: {
       en: "Terms & Conditions of Service | Danamira Shipping",
       ua: "Умови використання та надання послуг | Danamira",

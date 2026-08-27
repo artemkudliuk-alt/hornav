@@ -16,7 +16,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, ExternalLink, Loader2, Save, FileText } from "lucide-react";
+import { ArrowLeft, ExternalLink, Loader2, Save, FileText, Compass } from "lucide-react";
 
 interface PageFormProps {
   initialData?: any;
@@ -30,8 +30,9 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
 
   // Form state (Clean English)
   const [formData, setFormData] = useState({
-    slug: initialData?.slug || "index.html",
+    slug: initialData?.slug || "",
     status: initialData?.status || "published",
+    includeInNav: initialData?.includeInNav ?? true,
     pageName: initialData?.pageName || "",
     title: typeof initialData?.title === "string" ? initialData.title : (initialData?.title?.en || ""),
     metaDescription: typeof initialData?.metaDescription === "string" ? initialData.metaDescription : (initialData?.metaDescription?.en || ""),
@@ -42,6 +43,12 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
   function handleTitleChange(val: string) {
     setFormData((prev) => {
       const updated = { ...prev, title: val };
+      if (!isEditing && !prev.slug) {
+        updated.slug = val
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-+|-+$/g, "");
+      }
       return updated;
     });
   }
@@ -111,10 +118,10 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
           </Link>
           <div>
             <h1 className="text-xl sm:text-2xl font-semibold text-white tracking-tight">
-              {isEditing ? `Edit: ${formData.pageName || formData.slug}` : "Create Custom Page"}
+              {isEditing ? `Edit: ${formData.pageName || formData.slug}` : "Create New Site Page"}
             </h1>
             <p className="text-xs text-neutral-400">
-              Manage SEO metadata, search engine snippets, and page rich content.
+              Manage SEO metadata, search engine snippets, and page content.
             </p>
           </div>
         </div>
@@ -158,16 +165,28 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
       )}
 
       {/* Basic URL and Status Settings */}
-      <Card className="rounded-none bg-[#202023]/70 border-white/5 p-6 shadow-xl">
+      <Card className="rounded-none bg-[#202023]/70 border-white/5 p-6 space-y-5 shadow-xl">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="sm:col-span-2 space-y-2">
+          <div className="space-y-2">
+            <Label className="text-xs text-neutral-300">Page Internal Name</Label>
+            <Input
+              placeholder="e.g. Careers & Crewing"
+              value={formData.pageName}
+              onChange={(e) =>
+                setFormData({ ...formData, pageName: e.target.value })
+              }
+              className="rounded-none bg-[#18181b] border-white/10 text-xs text-white"
+            />
+          </div>
+
+          <div className="space-y-2">
             <Label className="text-xs text-neutral-300">Public Page URL</Label>
             <div className="flex items-center rounded-none bg-[#18181b] border border-white/10 overflow-hidden">
               <span className="px-3 text-xs text-neutral-500 font-mono select-none">
                 danamirashipping.com/
               </span>
               <Input
-                placeholder="index.html"
+                placeholder="page.html"
                 value={formData.slug}
                 onChange={(e) =>
                   setFormData({
@@ -198,6 +217,29 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
               </SelectContent>
             </Select>
           </div>
+        </div>
+
+        {/* Menu Integration Toggle */}
+        <div className="pt-3 border-t border-white/5">
+          <label className="flex items-center gap-3 p-3.5 rounded-none bg-[#18181b] border border-[#c89b3c]/30 hover:border-[#c89b3c] transition-colors cursor-pointer select-none">
+            <input
+              type="checkbox"
+              checked={formData.includeInNav}
+              onChange={(e) =>
+                setFormData({ ...formData, includeInNav: e.target.checked })
+              }
+              className="w-4 h-4 rounded-none border-white/20 text-[#c89b3c] focus:ring-[#c89b3c] cursor-pointer"
+            />
+            <div>
+              <span className="text-xs font-semibold text-[#c89b3c] flex items-center gap-1.5">
+                <Compass className="w-3.5 h-3.5" />
+                Include in Main Navigation Menu
+              </span>
+              <span className="text-[11px] text-neutral-400 block">
+                Display this page in the top header navigation bar across the website
+              </span>
+            </div>
+          </label>
         </div>
       </Card>
 
