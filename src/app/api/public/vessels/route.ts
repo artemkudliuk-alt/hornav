@@ -4,6 +4,8 @@ import { vessels } from "@/lib/db/schema";
 import { eq, and, desc } from "drizzle-orm";
 import { sampleVessels } from "@/lib/db/mock-data";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const type = searchParams.get("type") as any;

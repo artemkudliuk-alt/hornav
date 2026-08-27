@@ -4,6 +4,8 @@ import { pages } from "@/lib/db/schema";
 import { eq, and } from "drizzle-orm";
 import { samplePages } from "@/lib/db/mock-data";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(
   req: Request,
   { params }: { params: Promise<{ slug: string }> }
