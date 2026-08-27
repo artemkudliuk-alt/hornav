@@ -1,4 +1,4 @@
-﻿import { neon } from "@neondatabase/serverless";
+import { neon } from "@neondatabase/serverless";
 import bcrypt from "bcryptjs";
 import { sampleVessels, sampleLeads, sampleBranches } from "./mock-data";
 
@@ -20,6 +20,17 @@ export async function ensureDatabaseInitialized() {
 
   try {
     const sql = neon(dbUrl);
+
+    // 0. Auto-upgrade schema if existing table has legacy column names
+    const columnCheck = await sql`
+      SELECT column_name FROM information_schema.columns 
+      WHERE table_name = 'vessels' AND column_name = 'loa'
+    `;
+    const needsMigration = (await sql`SELECT to_regclass('public.vessels')`)[0]?.to_regclass && columnCheck.length === 0;
+    if (needsMigration) {
+      console.log("🔄 Upgrading legacy PostgreSQL schema to latest Drizzle models...");
+      await sql`DROP TABLE IF EXISTS vessel_media, leads, vessels, pages, branch_offices, system_settings CASCADE;`;
+    }
 
     // 1. Create tables with exact schema
     await sql`
@@ -58,6 +69,14 @@ export async function ensureDatabaseInitialized() {
         max_speed NUMERIC(6,2),
         eco_speed NUMERIC(6,2),
         class_society VARCHAR(100),
+        description JSONB,
+        deck_equipment JSONB,
+        cover_image_url TEXT,
+        created_by UUID,
+        created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+        updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+      );
+    `;
         description JSONB,
         deck_equipment JSONB,
         cover_image_url TEXT,
