@@ -243,59 +243,28 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
         </div>
       </Card>
 
-      {/* SEO & Page Content Block */}
-      <Card className="rounded-none bg-[#202023]/70 border-white/5 p-6 space-y-6 shadow-xl">
-        <div className="flex items-center gap-2 border-b border-white/5 pb-4">
-          <FileText className="w-4 h-4 text-[#c89b3c]" />
-          <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
-            SEO Metadata & Page Content
-          </h3>
+      {/* Page Content & Visual Editor Block */}
+      <Card className="rounded-none bg-[#202023]/70 border-white/5 p-6 space-y-4 shadow-xl">
+        <div className="flex items-center justify-between border-b border-white/5 pb-3">
+          <div className="flex items-center gap-2">
+            <FileText className="w-4 h-4 text-[#c89b3c]" />
+            <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
+              Page Content &amp; Media
+            </h3>
+          </div>
+          <span className="text-[11px] text-neutral-400 font-mono hidden sm:inline-block">
+            Visual Editor &bull; Headings, Lists, Photos &amp; Embeds
+          </span>
         </div>
 
-        <div className="space-y-4">
-          <div className="space-y-2">
-            <Label className="text-xs text-neutral-300">
-              Page Title
-            </Label>
-            <Input
-              placeholder="e.g. Black Sea Grain & Dry Bulk Freight | Danamira Shipping"
-              value={formData.title}
-              onChange={(e) => handleTitleChange(e.target.value)}
-              required
-              className="rounded-none bg-[#18181b] border-white/10 text-xs text-white"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label className="text-xs text-neutral-300">
-              Meta Description & Search Snippet
-            </Label>
-            <Textarea
-              rows={2}
-              placeholder="Search engine summary snippet (150-160 chars recommended)..."
-              value={formData.metaDescription}
-              onChange={(e) =>
-                setFormData({ ...formData, metaDescription: e.target.value })
-              }
-              className="rounded-none bg-[#18181b] border-white/10 text-xs text-white"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label className="text-xs text-neutral-300">
-              Visual & Rich Content
-            </Label>
-            <RichTextEditor
-              content={formData.content || ""}
-              onChange={(html) =>
-                setFormData({ ...formData, content: html })
-              }
-              placeholder="Write page content... Add headings, images, YouTube video embeds, or custom layouts..."
-            />
-            <p className="text-[11px] text-neutral-500">
-              Format headings (H1-H4), bold/italic/underline, lists, links, images, and embedded video components.
-            </p>
-          </div>
+        <div className="space-y-2">
+          <RichTextEditor
+            content={formData.content || ""}
+            onChange={(html) =>
+              setFormData({ ...formData, content: html })
+            }
+            placeholder="Write page content... Add headings, images, lists, or custom media..."
+          />
         </div>
       </Card>
     </form>

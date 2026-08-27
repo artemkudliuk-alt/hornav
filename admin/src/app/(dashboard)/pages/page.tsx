@@ -89,7 +89,7 @@ export default async function PagesListPage() {
                   )}
                 </div>
 
-                {/* Page Title & Slug */}
+                {/* Page Title, Slug & Content Preview */}
                 <div>
                   <div className="flex items-baseline gap-2">
                     <span className="font-semibold text-sm sm:text-base text-white">
@@ -99,14 +99,12 @@ export default async function PagesListPage() {
                       /{p.slug}
                     </span>
                   </div>
-                  <p className="text-xs text-neutral-300 font-medium mt-0.5 line-clamp-1">
-                    {title}
+                  <p className="text-xs text-neutral-300 font-medium mt-1 line-clamp-2 leading-relaxed">
+                    {(typeof p.content === "string" ? p.content : (p.content?.en || ""))
+                      .replace(/<[^>]*>?/gm, " ")
+                      .replace(/\s+/g, " ")
+                      .trim()}
                   </p>
-                  {metaDesc && (
-                    <p className="text-[11px] text-neutral-400 font-mono mt-0.5 line-clamp-1">
-                      {metaDesc}
-                    </p>
-                  )}
                 </div>
               </div>
 

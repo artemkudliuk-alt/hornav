@@ -297,7 +297,7 @@ export const samplePages = [
       ru: "Danamira Shipping Ltd — международный морской перевозчик и технический менеджмент флота. Сухогрузы и чартеринг.",
     },
     content: {
-      en: "<h1>Integrated Maritime Logistics & Fleet Operations</h1><p>Commercial chartering, technical management, crewing, and global sea freight transportation.</p>",
+      en: "<h1>Integrated Maritime Logistics &amp; Fleet Operations</h1><p><strong>DANAMIRA SHIPPING LTD</strong> is an independent international ship-management carrier and freight operator. We provide geared dry bulk and general cargo transportation across the Mediterranean Sea, Black Sea, European Continent, and West Africa.</p><h2>Direct Fleet Chartering &amp; Fixtures</h2><p>Our modern geared general cargo carriers (<strong>MV MOLPADIA</strong>, <strong>MV METANIRA</strong>) are equipped with 2x 30MT electro-hydraulic cranes and box-shaped holds, perfectly suited for grain exports, bulk fertilizers, steel products, and heavy project cargoes.</p><h2>Key Operational Strengths</h2><ul><li><strong>24/7 Operational Support:</strong> Continuous chartering desk and live technical vessel monitoring.</li><li><strong>Port &amp; Route Versatility:</strong> Direct access to shallow drafts and regional grain river/sea terminals.</li><li><strong>Strict Safety Framework:</strong> Full compliance with IMO, ISM Code, and ISPS maritime security regulations.</li></ul>",
       ua: "",
       ru: "",
     },
@@ -320,7 +320,7 @@ export const samplePages = [
       ru: "Коммерческий флот Danamira — современные сухогрузные суда с кранами 2x30MT.",
     },
     content: {
-      en: "<h1>Commercial Fleet & Vessel Specifications</h1><p>Geared multi-purpose carriers available for worldwide charter fixtures.</p>",
+      en: "<h1>Commercial Managed Fleet &amp; Technical Specifications</h1><p>Explore our active fleet of geared general cargo and dry bulk carriers available for worldwide voyage and time charter employment.</p><h2>Fleet Standards &amp; Capabilities</h2><ul><li><strong>Geared Versatility:</strong> High-capacity electro-hydraulic cranes (2x 30MT SWL) for self-sustained loading and discharging at unequipped berths.</li><li><strong>Box-Shaped Cargo Holds:</strong> Optimized for steel products, large timber packages, bulk minerals, and project equipment.</li><li><strong>Classification &amp; Flag:</strong> Top-tier IACS Classification (Lloyd's Register) and reputable Flag State administration.</li></ul>",
       ua: "",
       ru: "",
     },
@@ -343,7 +343,7 @@ export const samplePages = [
       ru: "Морские традиции, техническое совершенство и безопасность ISM/ISPS.",
     },
     content: {
-      en: "<h1>About Danamira Shipping</h1><p>Founded on principles of operational integrity, precision engineering, and maritime safety.</p>",
+      en: "<h1>Integrated Ship Management &amp; Maritime Excellence</h1><p><strong>DANAMIRA SHIPPING LTD</strong> is an independent ship-management company registered in Liberia with its official Greek Branch established in Glyfada, Greece, operating under the Greek maritime framework of <strong>Law 89/1967</strong>.</p><p>We provide integrated ship management services covering commercial management, sale &amp; purchase (S&amp;P), chartering, vessel operations, technical management, ISM &amp; safety management, as well as comprehensive financial support.</p><h2>Mission Statement: Focused Dry Bulk Management</h2><p>Danamira Shipping focuses on the dry cargo market, primarily managing and operating general cargo and bulk carrier vessels. Our commercial team actively evaluates voyage and time charter opportunities across international trading areas, while our operation and technical departments provide continuous 24/7 support throughout each vessel's employment.</p><h2>Corporate Vision &amp; Strategic Growth</h2><p>Long-term development through strategic fleet expansion and continuous growth of the Company’s maritime operations. Future plans include the active consideration of newbuilding projects, energy-efficient hull designs, and advanced green construction standards.</p><h2>Operating Trade Basins</h2><ul><li>Black Sea &amp; Sea of Azov</li><li>Mediterranean Sea &amp; Adriatic Sea</li><li>Baltic Sea &amp; North Sea</li><li>European Continent &amp; Scandinavian Ports</li><li>West Africa, USA Gulf &amp; Caribbean Sea</li></ul><h2>Dry Bulk Cargo Portfolio</h2><ul><li><strong>Agribulk Cargoes:</strong> Wheat, Corn, Barley, Soybeans, Sunflower Seeds &amp; Meals.</li><li><strong>Solid Bulk Chemicals:</strong> Urea, Ammonium Nitrate, Phosphates, Potash &amp; Compound Fertilizers.</li><li><strong>Metallic &amp; Mineral Cargoes:</strong> Pig Iron, Hot Briquetted Iron (HBI), Scrap Steel, Steel Coils, Billets, Rebars &amp; Clinker.</li></ul>",
       ua: "",
       ru: "",
     },
@@ -366,7 +366,7 @@ export const samplePages = [
       ru: "Вакансии для моряков и береговых специалистов во флоте Danamira.",
     },
     content: {
-      en: "<h1>Careers & Seafarer Placement</h1><p>Join a forward-thinking maritime fleet with competitive contracts and career development.</p>",
+      en: "<h1>Maritime Careers &amp; Seafarer Recruitment</h1><p>Join the <strong>DANAMIRA SHIPPING LTD</strong> maritime team. We offer long-term sea careers on modern geared general cargo carriers and shore-based technical positions at our Greek and international offices.</p><h2>Vessel Crew Opportunities</h2><ul><li><strong>Deck Officers:</strong> Master Mariner, Chief Officer, Second &amp; Third Officers.</li><li><strong>Engine Officers:</strong> Chief Engineer, Second Engineer, Electrical Engineer.</li><li><strong>Deck &amp; Engine Ratings:</strong> Bosun, Able Seaman (AB), Motorman, Fitter/Welder, Cook.</li></ul><h2>Crew Welfare &amp; Employment Benefits</h2><ul><li>Competitive salary packages in USD according to ITF international standards.</li><li>Regular contract rotations with reliable on-time crew changes.</li><li>Full P&amp;I medical and emergency health insurance coverage.</li><li>Modern vessel accommodations, onboard satellite communications, and safety gear.</li></ul>",
       ua: "",
       ru: "",
     },
@@ -389,7 +389,7 @@ export const samplePages = [
       ru: "Контакты отдела чартеринга и офисов в Дубае, Стамбуле, Одессе и Афинах.",
     },
     content: {
-      en: "<h1>Contact Danamira Global Offices</h1><p>24/7 commercial chartering desk, technical inquiries, and branch agency network.</p>",
+      en: "<h1>Global Offices &amp; Commercial Inquiries</h1><p>Contact the <strong>DANAMIRA SHIPPING LTD</strong> chartering desk, vessel operations, and branch office network for prompt vessel fixtures and freight rate indications.</p><h2>Operational Head Office (Greek Branch)</h2><p><strong>Address:</strong> Zeppou 33, 166 75 Glyfada, Athens, Greece (Law 89/1967)<br /><strong>Telephone:</strong> +30 211 34 56 550<br /><strong>Email:</strong> chartering@danamira-shipping.com</p><h2>24/7 Emergency &amp; Operational Response</h2><p>Our dedicated operations team monitors vessel traffic, weather routing, and port agents 24 hours a day, 7 days a week.</p>",
       ua: "",
       ru: "",
     },
@@ -412,7 +412,7 @@ export const samplePages = [
       ru: "Защита персональных данных и конфиденциальность информации клиентов.",
     },
     content: {
-      en: "<h1>Privacy Policy</h1><p>We are dedicated to safeguarding client information and respecting international data protection standards.</p>",
+      en: "<h1>Privacy Policy &amp; Data Protection</h1><p><strong>DANAMIRA SHIPPING LTD</strong> is committed to protecting the privacy, confidentiality, and security of all personal and commercial information collected through our website and chartering communication channels.</p><h2>Information We Collect</h2><p>We only collect information necessary to process sea freight inquiries, vessel charter applications, and crew recruitment submissions (such as company name, contact person, email, telephone number, and cargo details).</p><h2>Data Security &amp; Confidentiality</h2><p>All data is processed strictly in accordance with GDPR principles and international maritime data security standards. We never sell, rent, or disclose client or applicant data to third parties.</p>",
       ua: "",
       ru: "",
     },
@@ -435,7 +435,7 @@ export const samplePages = [
       ru: "Условия пользования сервисами и сайтом Danamira Shipping.",
     },
     content: {
-      en: "<h1>Terms & Conditions</h1><p>Standard terms and conditions for maritime freight inquiries and website usage.</p>",
+      en: "<h1>Terms &amp; Conditions of Service</h1><p>These terms govern the use of the <strong>DANAMIRA SHIPPING LTD</strong> website, vessel particulars information, and charter rate inquiry services.</p><h2>Chartering Inquiries &amp; Fixture Terms</h2><p>All vessel availability, cargo freight indications, and vessel specifications provided on this website are for preliminary guidance only and are subject to final contract negotiation and fixture confirmation via official charter party agreements (e.g. GENCON / NYPE).</p><h2>Intellectual Property &amp; Particulars Accuracy</h2><p>Vessel particulars, GA-plans, technical drawings, and company trademarks remain the exclusive property of Danamira Shipping Ltd.</p>",
       ua: "",
       ru: "",
     },
