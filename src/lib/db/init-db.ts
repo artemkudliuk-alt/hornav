@@ -1,6 +1,6 @@
 ﻿import { neon } from "@neondatabase/serverless";
 import bcrypt from "bcryptjs";
-import { initialSampleVessels, sampleBranches } from "./mock-data";
+import { sampleVessels, sampleBranches } from "./mock-data";
 
 let isInitialized = false;
 
@@ -203,7 +203,7 @@ export async function ensureDatabaseInitialized() {
     }
 
     // 4. Seed Vessel 1: MV MOLPADIA with all photos & PDF
-    const molpadia = initialSampleVessels[0];
+    const molpadia = sampleVessels[0];
     if (molpadia) {
       await sql`
         INSERT INTO vessels (
@@ -243,14 +243,19 @@ export async function ensureDatabaseInitialized() {
             ) VALUES (
               ${mediaUuid}, ${MOLPADIA_ID}, ${m.url}, ${m.type || 'photo'},
               ${m.filename || 'photo.jpg'}, ${m.sortOrder ?? i}, ${Boolean(m.isCover)}
-            ) ON CONFLICT (id) DO NOTHING;
+            ) ON CONFLICT (id) DO UPDATE SET
+              url = EXCLUDED.url,
+              type = EXCLUDED.type,
+              filename = EXCLUDED.filename,
+              sort_order = EXCLUDED.sort_order,
+              is_cover = EXCLUDED.is_cover;
           `;
         }
       }
     }
 
     // 5. Seed Vessel 2: MV METANIRA with all photos & PDF
-    const metanira = initialSampleVessels[1];
+    const metanira = sampleVessels[1];
     if (metanira) {
       await sql`
         INSERT INTO vessels (
@@ -290,7 +295,12 @@ export async function ensureDatabaseInitialized() {
             ) VALUES (
               ${mediaUuid}, ${METANIRA_ID}, ${m.url}, ${m.type || 'photo'},
               ${m.filename || 'photo.jpg'}, ${m.sortOrder ?? i}, ${Boolean(m.isCover)}
-            ) ON CONFLICT (id) DO NOTHING;
+            ) ON CONFLICT (id) DO UPDATE SET
+              url = EXCLUDED.url,
+              type = EXCLUDED.type,
+              filename = EXCLUDED.filename,
+              sort_order = EXCLUDED.sort_order,
+              is_cover = EXCLUDED.is_cover;
           `;
         }
       }
