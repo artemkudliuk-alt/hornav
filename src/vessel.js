@@ -578,21 +578,20 @@ document.head.appendChild(vesselLayoutStyles);
 
 document.addEventListener('DOMContentLoaded', async () => {
   const params = new URLSearchParams(window.location.search);
-  const vesselId = params.get('id') || 'vessel-molpadia';
+  const vesselId = params.get('id') || params.get('imo') || '11111111-1111-1111-1111-111111111111';
 
   let vessel = null;
 
   // 1. Try to fetch from Admin CMS API (dynamic vessels created in admin)
   try {
-    const apiBase = window.location.hostname === 'localhost'
-      ? 'http://localhost:3000'
-      : 'https://danamiratest.vercel.app';
-    const resp = await fetch(`${apiBase}/api/public/vessels/${vesselId}`, {
+    const apiBase = window.location.origin;
+    const resp = await fetch(`${apiBase}/api/public/vessels/${encodeURIComponent(vesselId)}`, {
       headers: { 'Accept': 'application/json' }
     });
     if (resp.ok) {
       const apiVessel = await resp.json();
       if (apiVessel && apiVessel.id) {
+        const pdfDoc = (apiVessel.media || []).find((m) => m && (m.type === "pdf" || m.url?.toLowerCase().endsWith(".pdf")));
         // Normalize API response to frontend format
         vessel = {
           id: apiVessel.id,
@@ -604,9 +603,9 @@ document.addEventListener('DOMContentLoaded', async () => {
           })(),
           status: apiVessel.status === 'available' ? 'Available for Charter' : apiVessel.status,
           flag: apiVessel.flag || '',
-          imoNumber: apiVessel.imoNumber || '',
-          yearBuilt: apiVessel.yearBuilt || '',
-          classSociety: apiVessel.classSociety || '',
+          imoNumber: apiVessel.imoNumber || apiVessel.imo_number || '',
+          yearBuilt: apiVessel.yearBuilt || apiVessel.year_built || '',
+          classSociety: apiVessel.classSociety || apiVessel.class_society || '',
           callSign: apiVessel.callSign || '',
           officialNumber: apiVessel.officialNumber || '',
           dwt: apiVessel.dwt ? `${Number(apiVessel.dwt).toLocaleString()} MT` : '',
@@ -634,7 +633,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           coverImageUrl: apiVessel.coverImageUrl || '',
           charterRateUsd: apiVessel.charterRateUsd || null,
           salePriceUsd: apiVessel.salePriceUsd || null,
-          pdfGaPlanUrl: null,
+          pdfGaPlanUrl: pdfDoc ? pdfDoc.url : (apiVessel.pdfGaPlanUrl || null),
           photos: (apiVessel.photos || apiVessel.media || [])
             .filter((m) => m && (m.type === "photo" || typeof m === "string" || !m.type))
             .map((m, idx) => {
@@ -648,11 +647,11 @@ document.addEventListener('DOMContentLoaded', async () => {
           specSections: {
             information: [
               { label: 'Vessel Name', value: typeof apiVessel.name === 'object' ? apiVessel.name.en : apiVessel.name },
-              { label: 'IMO No.', value: apiVessel.imoNumber || 'N/A' },
+              { label: 'IMO No.', value: apiVessel.imoNumber || apiVessel.imo_number || 'N/A' },
               { label: 'Vessel Type', value: (() => { const t = apiVessel.type || 'bulk_carrier'; const map = { bulk_carrier: 'General Cargo', container: 'Container', tanker: 'Tanker', roro: 'RoRo', barge: 'Barge', tug: 'Tug' }; return map[t] || t; })() },
-              { label: 'BLT (Year Built)', value: String(apiVessel.yearBuilt || 'N/A') },
+              { label: 'BLT (Year Built)', value: String(apiVessel.yearBuilt || apiVessel.year_built || 'N/A') },
               { label: 'Flag', value: apiVessel.flag || 'N/A' },
-              { label: 'Class Society', value: apiVessel.classSociety || 'N/A' },
+              { label: 'Class Society', value: apiVessel.classSociety || apiVessel.class_society || 'N/A' },
               { label: 'Call Sign', value: apiVessel.callSign || 'N/A' },
               { label: 'Official Number', value: apiVessel.officialNumber || 'N/A' }
             ],
@@ -682,7 +681,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // 2. Fallback to local hardcoded fleet database
   if (!vessel) {
-    vessel = FLEET_DATABASE[vesselId];
+    vessel = FLEET_DATABASE[vesselId] ||
+      Object.values(FLEET_DATABASE).find((v) =>
+        v.id === vesselId ||
+        v.imoNumber === vesselId ||
+        (vesselId.includes('metanira') && v.id.includes('metanira')) ||
+        (vesselId.includes('molpadia') && v.id.includes('molpadia')) ||
+        (vesselId === '22222222-2222-2222-2222-222222222222' && v.id.includes('metanira')) ||
+        (vesselId === '11111111-1111-1111-1111-111111111111' && v.id.includes('molpadia'))
+      );
   }
 
   // 3. Ultimate fallback
