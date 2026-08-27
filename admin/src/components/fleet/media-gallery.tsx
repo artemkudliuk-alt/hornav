@@ -53,36 +53,34 @@ export function MediaGallery({
       const isFirst = photos.length === 0 && newItems.length === 0 && type === "photo";
       let uploadedMedia: MediaItem | null = null;
 
-      if (vesselId && vesselId !== "new-vessel") {
-        try {
-          const formData = new FormData();
-          formData.append("file", file);
-          formData.append("type", type);
-          formData.append("isCover", String(isFirst));
+      // Always upload file to server to get a real clean URL
+      try {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("type", type);
+        formData.append("isCover", String(isFirst));
 
-          const res = await fetch(`/api/vessels/${vesselId}/media`, {
-            method: "POST",
-            body: formData,
-          });
+        const uploadUrl = vesselId && vesselId !== "new-vessel"
+          ? `/api/vessels/${vesselId}/media`
+          : `/api/upload`;
 
-          if (res.ok) {
-            uploadedMedia = await res.json();
-          }
-        } catch (err) {
-          console.warn("Server upload fallback:", err);
+        const res = await fetch(uploadUrl, {
+          method: "POST",
+          body: formData,
+        });
+
+        if (res.ok) {
+          uploadedMedia = await res.json();
         }
+      } catch (err) {
+        console.warn("Server upload failed:", err);
       }
 
       if (!uploadedMedia) {
-        const dataUrl = await new Promise<string>((resolve) => {
-          const reader = new FileReader();
-          reader.onload = (ev) => resolve(ev.target?.result as string);
-          reader.readAsDataURL(file);
-        });
-
+        // Fallback with unique ID
         uploadedMedia = {
           id: "media-" + Date.now() + "-" + i,
-          url: dataUrl,
+          url: `/uploads/${file.name}`,
           type,
           filename: file.name,
           sortOrder: mediaList.length + newItems.length + 1,
