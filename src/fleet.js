@@ -3,7 +3,7 @@ import { FLEET_DATABASE } from './vessel-data.js';
 import { initPdfModal } from './pdf-viewer.js';
 import { initMobileMenu } from './mobile-menu.js';
 
-document.addEventListener('DOMContentLoaded', async () => {
+async function initFleetCatalog() {
   let fleetList = Object.values(FLEET_DATABASE);
 
   try {
@@ -352,4 +352,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       showToast(`✓ Email copied: ${email}`);
     });
   });
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initFleetCatalog);
+} else {
+  initFleetCatalog();
+}
