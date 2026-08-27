@@ -164,10 +164,10 @@ export function UsersManager({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-xl sm:text-2xl font-semibold text-white tracking-tight">
-            User Accounts & RBAC Access ({usersList.length})
+            Users &amp; Permissions ({usersList.length})
           </h1>
           <p className="text-xs text-neutral-400 mt-1">
-            Manage system access roles (Admin, Manager, Editor) and Telegram notification pairing.
+            Manage team access roles (Admin, Manager, Editor) and Telegram instant lead notification alerts.
           </p>
         </div>
 

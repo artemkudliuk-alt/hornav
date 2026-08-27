@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { db, isDbConnected } from "@/lib/db";
 import { users } from "@/lib/db/schema";
 import { desc } from "drizzle-orm";
+import { sampleUsers } from "@/lib/db/mock-data";
 import { UsersManager } from "@/components/users/users-manager";
 
 export const dynamic = "force-dynamic";
@@ -13,24 +14,7 @@ export default async function UsersPage() {
     redirect("/");
   }
 
-  let usersList: any[] = [
-    {
-      id: session.user.id || "00000000-0000-0000-0000-000000000001",
-      name: session.user.name || "Danamira SuperAdmin",
-      email: session.user.email || "admin@danamirashipping.com",
-      role: "admin",
-      telegramChatId: null,
-      createdAt: new Date().toISOString(),
-    },
-    {
-      id: "00000000-0000-0000-0000-000000000002",
-      name: "Fleet Operations Manager",
-      email: "manager@danamirashipping.com",
-      role: "manager",
-      telegramChatId: "987654321",
-      createdAt: new Date().toISOString(),
-    },
-  ];
+  let usersList: any[] = sampleUsers;
 
   if (isDbConnected) {
     try {

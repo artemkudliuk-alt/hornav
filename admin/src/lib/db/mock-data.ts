@@ -4,6 +4,7 @@ const globalForData = globalThis as unknown as {
   _samplePages?: any[];
   _sampleBranches?: any[];
   _sampleCompanyContacts?: any;
+  _sampleUsers?: any[];
 };
 
 const initialSampleVessels = [
@@ -310,3 +311,26 @@ export const sampleCompanyContacts =
     telegram: "@danamira_ops",
     whatsapp: "+30 211 34 56 550",
   });
+
+const initialSampleUsers = [
+  {
+    id: "00000000-0000-0000-0000-000000000001",
+    name: "Danamira SuperAdmin",
+    email: "admin@danamirashipping.com",
+    role: "admin",
+    telegramChatId: null,
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: "00000000-0000-0000-0000-000000000002",
+    name: "Fleet Operations Manager",
+    email: "manager@danamirashipping.com",
+    role: "manager",
+    telegramChatId: "987654321",
+    createdAt: new Date().toISOString(),
+  },
+];
+
+export const sampleUsers: any[] =
+  globalForData._sampleUsers ||
+  (globalForData._sampleUsers = initialSampleUsers);
