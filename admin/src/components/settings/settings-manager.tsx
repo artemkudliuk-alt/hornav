@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -16,7 +16,7 @@ import {
 import {
   User,
   Mail,
-  Building,
+  Building2,
   KeyRound,
   Save,
   Loader2,
@@ -121,7 +121,7 @@ export function SettingsManager({
       });
 
       if (res.ok) {
-        setEmailFeedback("✅ Lead email settings saved successfully");
+        setEmailFeedback("✅ Lead email routing settings saved successfully");
         setTimeout(() => setEmailFeedback(null), 3000);
       } else {
         setEmailFeedback("❌ Failed to save email settings");
@@ -146,13 +146,13 @@ export function SettingsManager({
       });
 
       if (res.ok) {
-        setGeneralFeedback("✅ Company preferences saved successfully");
+        setGeneralFeedback("✅ Company defaults saved successfully");
         setTimeout(() => setGeneralFeedback(null), 3000);
       } else {
-        setGeneralFeedback("❌ Failed to save preferences");
+        setGeneralFeedback("❌ Failed to save defaults");
       }
     } catch {
-      setGeneralFeedback("❌ Error saving preferences");
+      setGeneralFeedback("❌ Error saving defaults");
     } finally {
       setIsSavingGeneral(false);
     }
@@ -161,9 +161,9 @@ export function SettingsManager({
   return (
     <div className="space-y-6">
       {/* ─── 1. Account & Security Card ────────────────────────── */}
-      <Card className="rounded-none bg-[#202023]/70 border-white/5 p-6 shadow-xl space-y-5">
-        <div className="border-b border-white/5 pb-3">
-          <h2 className="text-sm font-semibold text-white uppercase tracking-wider flex items-center gap-2">
+      <Card className="rounded-none bg-[#202023]/70 border border-white/10 p-6 space-y-5">
+        <div className="border-b border-white/5 pb-4">
+          <h2 className="text-sm font-semibold text-white uppercase tracking-wider flex items-center gap-2.5">
             <User className="w-4 h-4 text-[#c89b3c]" />
             1. My Account &amp; Password
           </h2>
@@ -182,7 +182,7 @@ export function SettingsManager({
                   setAccountForm({ ...accountForm, name: e.target.value })
                 }
                 required
-                className="rounded-none bg-[#18181b] border-white/10 text-xs text-white"
+                className="h-10 rounded-none bg-[#18181b] border-white/10 text-xs text-white"
               />
             </div>
 
@@ -195,7 +195,7 @@ export function SettingsManager({
                   setAccountForm({ ...accountForm, email: e.target.value })
                 }
                 required
-                className="rounded-none bg-[#18181b] border-white/10 text-xs text-white"
+                className="h-10 rounded-none bg-[#18181b] border-white/10 text-xs text-white"
               />
             </div>
 
@@ -211,7 +211,7 @@ export function SettingsManager({
                 onChange={(e) =>
                   setAccountForm({ ...accountForm, newPassword: e.target.value })
                 }
-                className="rounded-none bg-[#18181b] border-white/10 text-xs text-white"
+                className="h-10 rounded-none bg-[#18181b] border-white/10 text-xs text-white"
               />
             </div>
 
@@ -227,12 +227,12 @@ export function SettingsManager({
                     confirmPassword: e.target.value,
                   })
                 }
-                className="rounded-none bg-[#18181b] border-white/10 text-xs text-white"
+                className="h-10 rounded-none bg-[#18181b] border-white/10 text-xs text-white"
               />
             </div>
           </div>
 
-          <div className="flex items-center justify-between pt-2 border-t border-white/5">
+          <div className="flex items-center justify-between pt-3 border-t border-white/5">
             {accountFeedback ? (
               <span className="text-xs font-medium text-amber-300">
                 {accountFeedback}
@@ -244,7 +244,7 @@ export function SettingsManager({
             <Button
               type="submit"
               disabled={isSavingAccount}
-              className="rounded-none bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer h-9 shadow-md"
+              className="rounded-none bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer h-9 px-4"
             >
               {isSavingAccount ? (
                 <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -258,9 +258,9 @@ export function SettingsManager({
       </Card>
 
       {/* ─── 2. Lead Inquiries & Email Routing Card ────────────── */}
-      <Card className="rounded-none bg-[#202023]/70 border-white/5 p-6 shadow-xl space-y-5">
-        <div className="border-b border-white/5 pb-3">
-          <h2 className="text-sm font-semibold text-white uppercase tracking-wider flex items-center gap-2">
+      <Card className="rounded-none bg-[#202023]/70 border border-white/10 p-6 space-y-5">
+        <div className="border-b border-white/5 pb-4">
+          <h2 className="text-sm font-semibold text-white uppercase tracking-wider flex items-center gap-2.5">
             <Mail className="w-4 h-4 text-[#c89b3c]" />
             2. Lead Inquiries &amp; Email Routing
           </h2>
@@ -284,7 +284,7 @@ export function SettingsManager({
                 })
               }
               required
-              className="rounded-none bg-[#18181b] border-white/10 text-xs text-white font-mono"
+              className="h-10 rounded-none bg-[#18181b] border-white/10 text-xs text-white font-mono"
             />
             <p className="text-[11px] text-neutral-500">
               When a client submits a freight or vessel charter request on the website, instant notifications with full cargo details will be delivered to these addresses.
@@ -300,7 +300,7 @@ export function SettingsManager({
                 onChange={(e) =>
                   setEmailForm({ ...emailForm, emailSenderName: e.target.value })
                 }
-                className="rounded-none bg-[#18181b] border-white/10 text-xs text-white"
+                className="h-10 rounded-none bg-[#18181b] border-white/10 text-xs text-white"
               />
             </div>
 
@@ -315,7 +315,7 @@ export function SettingsManager({
                     autoReplySubject: e.target.value,
                   })
                 }
-                className="rounded-none bg-[#18181b] border-white/10 text-xs text-white"
+                className="h-10 rounded-none bg-[#18181b] border-white/10 text-xs text-white"
               />
             </div>
           </div>
@@ -334,11 +334,11 @@ export function SettingsManager({
                   autoReplyMessage: e.target.value,
                 })
               }
-              className="rounded-none bg-[#18181b] border-white/10 text-xs text-white leading-relaxed"
+              className="rounded-none bg-[#18181b] border-white/10 text-xs text-white leading-relaxed p-3"
             />
           </div>
 
-          <div className="flex items-center justify-between pt-2 border-t border-white/5">
+          <div className="flex items-center justify-between pt-3 border-t border-white/5">
             {emailFeedback ? (
               <span className="text-xs font-medium text-amber-300">
                 {emailFeedback}
@@ -350,7 +350,7 @@ export function SettingsManager({
             <Button
               type="submit"
               disabled={isSavingEmail}
-              className="rounded-none bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer h-9 shadow-md"
+              className="rounded-none bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer h-9 px-4"
             >
               {isSavingEmail ? (
                 <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -364,10 +364,10 @@ export function SettingsManager({
       </Card>
 
       {/* ─── 3. Website & Company Defaults Card ─────────────────── */}
-      <Card className="rounded-none bg-[#202023]/70 border-white/5 p-6 shadow-xl space-y-5">
-        <div className="border-b border-white/5 pb-3">
-          <h2 className="text-sm font-semibold text-white uppercase tracking-wider flex items-center gap-2">
-            <Building className="w-4 h-4 text-[#c89b3c]" />
+      <Card className="rounded-none bg-[#202023]/70 border border-white/10 p-6 space-y-5">
+        <div className="border-b border-white/5 pb-4">
+          <h2 className="text-sm font-semibold text-white uppercase tracking-wider flex items-center gap-2.5">
+            <Building2 className="w-4 h-4 text-[#c89b3c]" />
             3. Website &amp; Company Defaults
           </h2>
           <p className="text-xs text-neutral-400 mt-1">
@@ -385,7 +385,7 @@ export function SettingsManager({
                   setGeneralForm({ ...generalForm, companyName: e.target.value })
                 }
                 required
-                className="rounded-none bg-[#18181b] border-white/10 text-xs text-white"
+                className="h-10 rounded-none bg-[#18181b] border-white/10 text-xs text-white"
               />
             </div>
 
@@ -397,7 +397,7 @@ export function SettingsManager({
                   setGeneralForm({ ...generalForm, defaultCurrency: val || "USD" })
                 }
               >
-                <SelectTrigger className="rounded-none bg-[#18181b] border-white/10 text-xs text-white">
+                <SelectTrigger className="h-10 rounded-none bg-[#18181b] border-white/10 text-xs text-white">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="rounded-none bg-[#202023] border-white/10 text-white text-xs">
@@ -416,7 +416,7 @@ export function SettingsManager({
                   setGeneralForm({ ...generalForm, timezone: val || "Europe/Athens" })
                 }
               >
-                <SelectTrigger className="rounded-none bg-[#18181b] border-white/10 text-xs text-white">
+                <SelectTrigger className="h-10 rounded-none bg-[#18181b] border-white/10 text-xs text-white">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="rounded-none bg-[#202023] border-white/10 text-white text-xs">
@@ -430,7 +430,7 @@ export function SettingsManager({
             </div>
           </div>
 
-          <div className="flex items-center justify-between pt-2 border-t border-white/5">
+          <div className="flex items-center justify-between pt-3 border-t border-white/5">
             {generalFeedback ? (
               <span className="text-xs font-medium text-amber-300">
                 {generalFeedback}
@@ -442,7 +442,7 @@ export function SettingsManager({
             <Button
               type="submit"
               disabled={isSavingGeneral}
-              className="rounded-none bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer h-9 shadow-md"
+              className="rounded-none bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer h-9 px-4"
             >
               {isSavingGeneral ? (
                 <Loader2 className="w-3.5 h-3.5 animate-spin" />

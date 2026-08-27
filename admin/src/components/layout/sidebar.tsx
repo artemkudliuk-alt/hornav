@@ -122,16 +122,11 @@ export function Sidebar({ userRole = "editor" }: SidebarProps) {
         })}
       </nav>
 
-      {/* Bottom Status Indicator */}
+      {/* Bottom Copyright */}
       <div className="p-4 border-t border-white/5">
-        <div className="p-3 rounded-none bg-[#202023]/60 border border-white/5 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-none bg-emerald-500 shadow-[0_0_6px_#10b981] animate-pulse" />
-            <span className="text-[10px] text-neutral-400 font-mono uppercase tracking-wider">
-              API Active
-            </span>
-          </div>
-          <span className="text-[9px] text-neutral-600 font-mono">v1.0</span>
+        <div className="text-[11px] text-neutral-500 font-mono flex items-center justify-between">
+          <span>Danamira CMS</span>
+          <span>v1.0</span>
         </div>
       </div>
     </aside>
