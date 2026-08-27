@@ -154,6 +154,14 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
 
   const [activeTab, setActiveTab] = useState("base");
 
+  const handleCoverChange = (url: string) => {
+    setFormData((prev) => ({ ...prev, coverImageUrl: url }));
+  };
+
+  const handleMediaListChange = (list: any[]) => {
+    setFormData((prev) => ({ ...prev, media: list }));
+  };
+
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Top Action Header */}
@@ -802,12 +810,8 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
                         ]
                       : [])
               }
-              onCoverChange={(url) =>
-                setFormData((prev) => ({ ...prev, coverImageUrl: url }))
-              }
-              onMediaChange={(list) =>
-                setFormData((prev) => ({ ...prev, media: list }))
-              }
+              onCoverChange={handleCoverChange}
+              onMediaChange={handleMediaListChange}
             />
           </Card>
         </TabsContent>

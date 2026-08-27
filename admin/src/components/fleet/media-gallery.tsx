@@ -88,11 +88,15 @@ export function MediaGallery({
         };
       }
 
+      let currentMedia: MediaItem[] = [];
       setMediaList((prev) => {
-        const updated = [...prev, uploadedMedia!];
-        if (onMediaChange) onMediaChange(updated);
-        return updated;
+        currentMedia = [...prev, uploadedMedia!];
+        return currentMedia;
       });
+
+      if (onMediaChange) {
+        onMediaChange(currentMedia);
+      }
 
       if (uploadedMedia.isCover && onCoverChange) {
         onCoverChange(uploadedMedia.url);
@@ -117,17 +121,21 @@ export function MediaGallery({
       }
     }
 
+    let updatedList: MediaItem[] = [];
     setMediaList((prev) => {
-      const updated = prev.map((item) => {
+      updatedList = prev.map((item) => {
         const isTarget = item.id === mediaId;
         if (isTarget && onCoverChange) {
           onCoverChange(item.url);
         }
         return { ...item, isCover: isTarget };
       });
-      if (onMediaChange) onMediaChange(updated);
-      return updated;
+      return updatedList;
     });
+
+    if (onMediaChange) {
+      onMediaChange(updatedList);
+    }
   }
 
   async function handleDelete(mediaId: string) {
@@ -143,11 +151,15 @@ export function MediaGallery({
       }
     }
 
+    let updatedList: MediaItem[] = [];
     setMediaList((prev) => {
-      const updated = prev.filter((m) => m.id !== mediaId);
-      if (onMediaChange) onMediaChange(updated);
-      return updated;
+      updatedList = prev.filter((m) => m.id !== mediaId);
+      return updatedList;
     });
+
+    if (onMediaChange) {
+      onMediaChange(updatedList);
+    }
   }
 
   return (
