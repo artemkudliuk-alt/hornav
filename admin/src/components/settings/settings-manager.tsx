@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -68,7 +68,6 @@ export function SettingsManager({
     companyName: initialSettings?.companyName || "DANAMIRA SHIPPING LTD",
     defaultCurrency: initialSettings?.defaultCurrency || "USD",
     timezone: initialSettings?.timezone || "Europe/Athens",
-    defaultLanguage: initialSettings?.defaultLanguage || "en",
   });
   const [isSavingGeneral, setIsSavingGeneral] = useState(false);
   const [generalFeedback, setGeneralFeedback] = useState<string | null>(null);
@@ -377,7 +376,7 @@ export function SettingsManager({
         </div>
 
         <form onSubmit={handleSaveGeneralSettings} className="space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="space-y-1.5">
               <Label className="text-xs text-neutral-300">Official Legal Name</Label>
               <Input
@@ -410,7 +409,7 @@ export function SettingsManager({
             </div>
 
             <div className="space-y-1.5">
-              <Label className="text-xs text-neutral-300">Timezone</Label>
+              <Label className="text-xs text-neutral-300">System Timezone</Label>
               <Select
                 value={generalForm.timezone}
                 onValueChange={(val) =>
@@ -426,25 +425,6 @@ export function SettingsManager({
                   <SelectItem value="Europe/London">Europe/London (UTC+0 / +1)</SelectItem>
                   <SelectItem value="Asia/Dubai">Asia/Dubai (UTC+4)</SelectItem>
                   <SelectItem value="UTC">UTC / GMT Universal</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div className="space-y-1.5">
-              <Label className="text-xs text-neutral-300">Default Language</Label>
-              <Select
-                value={generalForm.defaultLanguage}
-                onValueChange={(val) =>
-                  setGeneralForm({ ...generalForm, defaultLanguage: val || "en" })
-                }
-              >
-                <SelectTrigger className="rounded-none bg-[#18181b] border-white/10 text-xs text-white">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent className="rounded-none bg-[#202023] border-white/10 text-white text-xs">
-                  <SelectItem value="en">English (UK/US)</SelectItem>
-                  <SelectItem value="ua">Ukrainian (Українська)</SelectItem>
-                  <SelectItem value="ru">Russian (Русский)</SelectItem>
                 </SelectContent>
               </Select>
             </div>

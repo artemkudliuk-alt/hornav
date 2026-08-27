@@ -348,5 +348,4 @@ export const sampleSettings =
     companyName: "DANAMIRA SHIPPING LTD",
     defaultCurrency: "USD",
     timezone: "Europe/Athens",
-    defaultLanguage: "en",
   });
