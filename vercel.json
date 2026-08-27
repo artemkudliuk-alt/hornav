@@ -1,1 +1,3 @@
-{"cleanUrls": true, "rewrites": [{"source": "/company", "destination": "/company.html"}, {"source": "/fleet", "destination": "/fleet.html"}, {"source": "/vessel", "destination": "/vessel.html"}, {"source": "/contacts", "destination": "/contacts.html"}]}
+{
+  "framework": "nextjs"
+}
