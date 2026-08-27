@@ -1,4 +1,4 @@
-import { neon } from "@neondatabase/serverless";
+﻿import { neon } from "@neondatabase/serverless";
 import bcrypt from "bcryptjs";
 import { sampleVessels, sampleLeads, sampleBranches } from "./mock-data";
 
@@ -21,18 +21,7 @@ export async function ensureDatabaseInitialized() {
   try {
     const sql = neon(dbUrl);
 
-    // 0. Auto-upgrade schema if existing table has legacy column names
-    const columnCheck = await sql`
-      SELECT column_name FROM information_schema.columns 
-      WHERE table_name = 'vessels' AND column_name = 'loa'
-    `;
-    const needsMigration = (await sql`SELECT to_regclass('public.vessels')`)[0]?.to_regclass && columnCheck.length === 0;
-    if (needsMigration) {
-      console.log("🔄 Upgrading legacy PostgreSQL schema to latest Drizzle models...");
-      await sql`DROP TABLE IF EXISTS vessel_media, leads, vessels, pages, branch_offices, system_settings CASCADE;`;
-    }
-
-    // 1. Create tables with exact schema
+    // 1. Create tables if not exist
     await sql`
       CREATE TABLE IF NOT EXISTS users (
         id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -50,7 +39,7 @@ export async function ensureDatabaseInitialized() {
       CREATE TABLE IF NOT EXISTS vessels (
         id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
         imo_number VARCHAR(20) UNIQUE,
-        name JSONB NOT NULL,
+        name JSONB NOT NULL DEFAULT '{"en":"Vessel"}',
         type VARCHAR(64) NOT NULL DEFAULT 'bulk_carrier',
         status VARCHAR(64) NOT NULL DEFAULT 'available',
         charter_rate_usd NUMERIC(12,2),
@@ -119,10 +108,10 @@ export async function ensureDatabaseInitialized() {
         id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
         slug VARCHAR(512) NOT NULL UNIQUE,
         status VARCHAR(32) NOT NULL DEFAULT 'published',
-        title JSONB NOT NULL,
+        title JSONB NOT NULL DEFAULT '{"en":"Page"}',
         meta_description JSONB,
         og_image JSONB,
-        content JSONB NOT NULL,
+        content JSONB NOT NULL DEFAULT '{"en":""}',
         created_by UUID,
         created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
         updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
@@ -158,16 +147,38 @@ export async function ensureDatabaseInitialized() {
       );
     `;
 
-    // 2. Safe Alter columns in case table was created with older schema
-    await sql`ALTER TABLE pages ADD COLUMN IF NOT EXISTS og_image JSONB;`;
-    await sql`ALTER TABLE pages ADD COLUMN IF NOT EXISTS created_by UUID;`;
+    // 2. Comprehensive ALTER TABLE to ensure all columns exist
+    await sql`ALTER TABLE vessels ADD COLUMN IF NOT EXISTS loa NUMERIC(8,2);`;
+    await sql`ALTER TABLE vessels ADD COLUMN IF NOT EXISTS beam NUMERIC(8,2);`;
+    await sql`ALTER TABLE vessels ADD COLUMN IF NOT EXISTS draft NUMERIC(8,2);`;
+    await sql`ALTER TABLE vessels ADD COLUMN IF NOT EXISTS dwt INTEGER;`;
+    await sql`ALTER TABLE vessels ADD COLUMN IF NOT EXISTS teu INTEGER;`;
+    await sql`ALTER TABLE vessels ADD COLUMN IF NOT EXISTS cubic_capacity NUMERIC(10,2);`;
+    await sql`ALTER TABLE vessels ADD COLUMN IF NOT EXISTS year_built INTEGER;`;
+    await sql`ALTER TABLE vessels ADD COLUMN IF NOT EXISTS flag VARCHAR(100);`;
+    await sql`ALTER TABLE vessels ADD COLUMN IF NOT EXISTS max_speed NUMERIC(6,2);`;
+    await sql`ALTER TABLE vessels ADD COLUMN IF NOT EXISTS eco_speed NUMERIC(6,2);`;
+    await sql`ALTER TABLE vessels ADD COLUMN IF NOT EXISTS class_society VARCHAR(100);`;
+    await sql`ALTER TABLE vessels ADD COLUMN IF NOT EXISTS description JSONB;`;
+    await sql`ALTER TABLE vessels ADD COLUMN IF NOT EXISTS deck_equipment JSONB;`;
+    await sql`ALTER TABLE vessels ADD COLUMN IF NOT EXISTS cover_image_url TEXT;`;
     await sql`ALTER TABLE vessels ADD COLUMN IF NOT EXISTS created_by UUID;`;
+    await sql`ALTER TABLE vessels ADD COLUMN IF NOT EXISTS current_location VARCHAR(255);`;
+    await sql`ALTER TABLE vessels ADD COLUMN IF NOT EXISTS trading_area VARCHAR(255);`;
+    await sql`ALTER TABLE vessels ADD COLUMN IF NOT EXISTS charter_rate_usd NUMERIC(12,2);`;
+    await sql`ALTER TABLE vessels ADD COLUMN IF NOT EXISTS sale_price_usd NUMERIC(14,2);`;
+    await sql`ALTER TABLE vessels ADD COLUMN IF NOT EXISTS price_on_request BOOLEAN DEFAULT FALSE;`;
+
+    await sql`ALTER TABLE pages ADD COLUMN IF NOT EXISTS og_image JSONB;`;
+    await sql`ALTER TABLE pages ADD COLUMN IF NOT EXISTS meta_description JSONB;`;
+    await sql`ALTER TABLE pages ADD COLUMN IF NOT EXISTS created_by UUID;`;
+
     await sql`ALTER TABLE vessel_media ADD COLUMN IF NOT EXISTS is_cover BOOLEAN DEFAULT FALSE;`;
     await sql`ALTER TABLE vessel_media ADD COLUMN IF NOT EXISTS blob_key TEXT;`;
     await sql`ALTER TABLE vessel_media ADD COLUMN IF NOT EXISTS filename VARCHAR(512);`;
     await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS source_page VARCHAR(512);`;
 
-    // 3. Check if admin user exists, if not seed defaults
+    // 3. Seed SuperAdmin if not exists
     const existingUsers = await sql`SELECT id FROM users LIMIT 1`;
     if (existingUsers.length === 0) {
       const adminHash = await bcrypt.hash("AdminPassword123!", 10);
@@ -186,7 +197,7 @@ export async function ensureDatabaseInitialized() {
       `;
     }
 
-    // 4. Check if vessels exist, if not seed default vessels
+    // 4. Seed sample vessels if empty
     const existingVessels = await sql`SELECT id FROM vessels LIMIT 1`;
     if (existingVessels.length === 0) {
       for (const v of sampleVessels) {
