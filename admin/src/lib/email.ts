@@ -15,9 +15,11 @@ export async function sendLeadEmailNotification(lead: {
   comment?: string | null;
   vesselName?: string | null;
 }) {
-  const recipient = process.env.NOTIFICATION_EMAIL;
-  if (!resend || !recipient) {
-    console.log("Resend API key or NOTIFICATION_EMAIL not set, skipping email.");
+  const recipient = process.env.NOTIFICATION_EMAIL || "artemkudliuk@gmail.com";
+  console.log(`[EMAIL NOTIFICATION] Preparing inquiry email for: ${recipient} | Client: ${lead.clientName}`);
+
+  if (!resend) {
+    console.log(`[EMAIL NOTIFICATION NOTE] Resend API key is not configured in local environment. On Vercel, set RESEND_API_KEY to send real emails to ${recipient}.`);
     return;
   }
 
@@ -48,11 +50,12 @@ export async function sendLeadEmailNotification(lead: {
     `;
 
     await resend.emails.send({
-      from: "Danamira Inquiries <notifications@danamirashipping.com>",
+      from: "Danamira Inquiries <onboarding@resend.dev>",
       to: [recipient],
       subject: `[New Lead] ${lead.clientName} - ${lead.cargoType || "Freight Request"}`,
       html: htmlContent,
     });
+    console.log(`[EMAIL NOTIFICATION SUCCESS] Sent to ${recipient}`);
   } catch (err) {
     console.error("Failed to send lead email notification:", err);
   }
