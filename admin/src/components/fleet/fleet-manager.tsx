@@ -219,15 +219,18 @@ export function FleetManager({ initialFleet }: FleetManagerProps) {
               >
                 {/* Vessel Thumbnail */}
                 <div className="aspect-[16/9] relative bg-neutral-900 overflow-hidden border-b border-white/5">
-                  {v.coverImageUrl ? (
+                  {v.coverImageUrl && v.coverImageUrl.trim().length > 5 ? (
                     <img
                       src={v.coverImageUrl}
                       alt={name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-[#18181b] text-neutral-600">
-                      <Ship className="w-10 h-10" />
+                    <div className="w-full h-full flex flex-col items-center justify-center bg-[#141416] text-neutral-600 gap-2">
+                      <Ship className="w-10 h-10 text-neutral-600" />
+                      <span className="text-[10px] uppercase font-mono tracking-widest text-neutral-500">
+                        No Photo Uploaded
+                      </span>
                     </div>
                   )}
 

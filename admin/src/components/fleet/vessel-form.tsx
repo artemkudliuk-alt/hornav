@@ -83,8 +83,16 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setIsSaving(true);
     setError(null);
+
+    // Client-side validation: Name is mandatory
+    if (!formData.name || formData.name.trim().length === 0) {
+      setActiveTab("base");
+      setError("Please enter the Vessel Name in Tab 1 (Base Details) before creating the vessel.");
+      return;
+    }
+
+    setIsSaving(true);
 
     // Ensure cover image is set if media has a cover
     let finalCoverUrl = formData.coverImageUrl;
@@ -101,7 +109,7 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
     const payload = {
       ...formData,
       coverImageUrl: finalCoverUrl,
-      name: { en: formData.name, ua: "", ru: "" },
+      name: { en: formData.name.trim(), ua: "", ru: "" },
       description: { en: formData.description, ua: "", ru: "" },
       deckEquipment: { en: formData.deckEquipment, ua: "", ru: "" },
       charterRateUsd: formData.charterRateUsd ? Number(formData.charterRateUsd) : null,
@@ -132,13 +140,15 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
 
       if (!res.ok) {
         const data = await res.json();
-        throw new Error(data.error || "Failed to save vessel");
+        const msg = data.details?.name?.en?._errors?.[0] || data.error || "Failed to save vessel";
+        throw new Error(msg);
       }
 
       const saved = await res.json();
 
       if (!isEditing) {
-        router.push(`/fleet/${saved.id}`);
+        router.push("/fleet");
+        router.refresh();
       } else {
         router.refresh();
       }

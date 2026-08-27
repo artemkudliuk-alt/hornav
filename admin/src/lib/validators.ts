@@ -48,38 +48,43 @@ export const vesselStatusEnumSchema = z.enum([
   "maintenance",
 ]);
 
-export const vesselFormSchema = z.object({
-  imoNumber: z.string().max(20).optional().nullable().or(z.literal("")),
-  name: i18nStringSchema.refine((val) => val.en.trim().length > 0, {
-    message: "English vessel name is required",
-    path: ["en"],
-  }),
-  type: vesselTypeEnumSchema.default("bulk_carrier"),
-  status: vesselStatusEnumSchema.default("available"),
-  charterRateUsd: z.coerce.number().min(0).optional().nullable(),
-  salePriceUsd: z.coerce.number().min(0).optional().nullable(),
-  priceOnRequest: z.boolean().default(false),
-  currentLocation: z.string().max(255).optional().nullable().or(z.literal("")),
-  tradingArea: z.string().max(255).optional().nullable().or(z.literal("")),
+export const vesselFormSchema = z
+  .object({
+    imoNumber: z.string().optional().nullable().or(z.literal("")),
+    name: i18nStringSchema.refine(
+      (val) => Boolean(val.en && val.en.trim().length > 0),
+      {
+        message: "Vessel Name is required in Tab 1 (Base Details)",
+        path: ["en"],
+      }
+    ),
+    type: z.string().default("bulk_carrier"),
+    status: z.string().default("available"),
+    charterRateUsd: z.coerce.number().optional().nullable(),
+    salePriceUsd: z.coerce.number().optional().nullable(),
+    priceOnRequest: z.boolean().default(false),
+    currentLocation: z.string().optional().nullable().or(z.literal("")),
+    tradingArea: z.string().optional().nullable().or(z.literal("")),
 
-  // Technical specifications
-  dwt: z.coerce.number().int().min(0).optional().nullable(),
-  teu: z.coerce.number().int().min(0).optional().nullable(),
-  cubicCapacity: z.coerce.number().min(0).optional().nullable(),
-  yearBuilt: z.coerce.number().int().min(1900).max(2100).optional().nullable(),
-  flag: z.string().max(100).optional().nullable().or(z.literal("")),
-  loa: z.coerce.number().min(0).optional().nullable(),
-  beam: z.coerce.number().min(0).optional().nullable(),
-  draft: z.coerce.number().min(0).optional().nullable(),
-  maxSpeed: z.coerce.number().min(0).optional().nullable(),
-  ecoSpeed: z.coerce.number().min(0).optional().nullable(),
-  classSociety: z.string().max(100).optional().nullable().or(z.literal("")),
+    // Technical specifications
+    dwt: z.coerce.number().optional().nullable(),
+    teu: z.coerce.number().optional().nullable(),
+    cubicCapacity: z.coerce.number().optional().nullable(),
+    yearBuilt: z.coerce.number().optional().nullable(),
+    flag: z.string().optional().nullable().or(z.literal("")),
+    loa: z.coerce.number().optional().nullable(),
+    beam: z.coerce.number().optional().nullable(),
+    draft: z.coerce.number().optional().nullable(),
+    maxSpeed: z.coerce.number().optional().nullable(),
+    ecoSpeed: z.coerce.number().optional().nullable(),
+    classSociety: z.string().optional().nullable().or(z.literal("")),
 
-  // Content
-  description: i18nStringSchema.optional().nullable(),
-  deckEquipment: i18nStringSchema.optional().nullable(),
-  coverImageUrl: z.string().optional().nullable().or(z.literal("")),
-});
+    // Content
+    description: i18nStringSchema.optional().nullable(),
+    deckEquipment: i18nStringSchema.optional().nullable(),
+    coverImageUrl: z.string().optional().nullable().or(z.literal("")),
+  })
+  .passthrough();
 
 export type VesselFormData = z.infer<typeof vesselFormSchema>;
 

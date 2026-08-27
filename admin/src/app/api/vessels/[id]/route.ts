@@ -128,8 +128,8 @@ export async function PUT(
           .set({
             imoNumber: imoNumber || null,
             name,
-            type,
-            status,
+            type: type as any,
+            status: status as any,
             charterRateUsd: charterRateUsd ? charterRateUsd.toString() : null,
             salePriceUsd: salePriceUsd ? salePriceUsd.toString() : null,
             priceOnRequest,
