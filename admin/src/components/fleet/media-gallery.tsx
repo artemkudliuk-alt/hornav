@@ -164,7 +164,7 @@ export function MediaGallery({
         )}
 
         {photos.length === 0 ? (
-          <div className="border border-dashed border-white/10 rounded-lg p-10 text-center space-y-3 bg-[#18181b]/50">
+          <div className="border border-dashed border-white/10 rounded-none p-10 text-center space-y-3 bg-[#18181b]/50">
             <Upload className="w-8 h-8 text-neutral-500 mx-auto" />
             <p className="text-xs text-neutral-400">
               No photos uploaded yet. Click "Upload Photos" above to add vessel pictures.
@@ -175,25 +175,23 @@ export function MediaGallery({
             {photos.map((photo) => (
               <Card
                 key={photo.id}
-                className={`overflow-hidden relative group border transition-all ${
+                className={`rounded-none overflow-hidden relative group border transition-all ${
                   photo.isCover
                     ? "border-[#c89b3c] ring-1 ring-[#c89b3c]"
                     : "border-white/5 hover:border-white/20"
-                } bg-[#18181b]`}
+                } bg-[#18181b] shadow-md`}
               >
-                <div className="aspect-[4/3] relative w-full bg-neutral-900">
-                  <Image
+                <div className="aspect-[4/3] relative w-full bg-neutral-900 overflow-hidden">
+                  <img
                     src={photo.url}
                     alt={photo.filename || "Vessel photo"}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 50vw, 25vw"
+                    className="w-full h-full object-cover"
                   />
 
                   {/* Main Cover Badge */}
                   {photo.isCover && (
                     <div className="absolute top-2 left-2 z-10">
-                      <Badge className="bg-[#c89b3c] text-[#141416] font-bold text-[9px] uppercase tracking-wider flex items-center gap-1 shadow-md">
+                      <Badge className="rounded-none bg-[#c89b3c] text-[#141416] font-bold text-[9px] uppercase tracking-wider flex items-center gap-1 shadow-md">
                         <Star className="w-3 h-3 fill-current" />
                         MAIN COVER
                       </Badge>
@@ -208,7 +206,7 @@ export function MediaGallery({
                         size="sm"
                         variant="secondary"
                         onClick={() => handleSetCover(photo.id)}
-                        className="text-[10px] h-7 bg-[#202023] hover:bg-[#c89b3c] hover:text-[#141416] text-white border border-white/10"
+                        className="rounded-none text-[10px] h-7 bg-[#202023] hover:bg-[#c89b3c] hover:text-[#141416] text-white border border-white/10 font-semibold uppercase tracking-wider cursor-pointer"
                       >
                         <Star className="w-3 h-3 mr-1" />
                         Make Cover
@@ -220,14 +218,14 @@ export function MediaGallery({
                       size="icon"
                       variant="destructive"
                       onClick={() => handleDelete(photo.id)}
-                      className="h-7 w-7 bg-red-600/80 hover:bg-red-600 text-white"
+                      className="rounded-none h-7 w-7 bg-red-600/80 hover:bg-red-600 text-white cursor-pointer"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
                     </Button>
                   </div>
                 </div>
 
-                <div className="p-2 text-[10px] text-neutral-400 truncate font-mono">
+                <div className="p-2 text-[10px] text-neutral-400 truncate font-mono bg-[#18181b]">
                   {photo.filename || "image.png"}
                 </div>
               </Card>
@@ -262,7 +260,7 @@ export function MediaGallery({
               variant="outline"
               size="sm"
               disabled={isUploading}
-              className="bg-[#202023] border-white/10 hover:border-[#c89b3c]/50 text-xs text-neutral-200 pointer-events-none"
+              className="rounded-none bg-[#202023] border-white/10 hover:border-[#c89b3c]/50 text-xs text-neutral-200 pointer-events-none font-semibold uppercase tracking-wider"
             >
               <Upload className="w-3.5 h-3.5 mr-1.5 text-[#c89b3c]" />
               Attach PDF Specs
@@ -271,7 +269,7 @@ export function MediaGallery({
         </div>
 
         {documents.length === 0 ? (
-          <div className="border border-dashed border-white/10 rounded-lg p-6 text-center text-xs text-neutral-500 bg-[#18181b]/50">
+          <div className="border border-dashed border-white/10 rounded-none p-6 text-center text-xs text-neutral-500 bg-[#18181b]/50">
             No PDF specifications attached.
           </div>
         ) : (
@@ -279,10 +277,10 @@ export function MediaGallery({
             {documents.map((doc) => (
               <div
                 key={doc.id}
-                className="p-3 rounded-lg bg-[#18181b] border border-white/5 flex items-center justify-between hover:border-white/10 transition-colors"
+                className="p-3 rounded-none bg-[#18181b] border border-white/5 flex items-center justify-between hover:border-white/10 transition-colors"
               >
                 <div className="flex items-center gap-3 min-w-0">
-                  <div className="w-8 h-8 rounded bg-red-500/10 border border-red-500/20 flex items-center justify-center shrink-0">
+                  <div className="w-8 h-8 rounded-none bg-red-500/10 border border-red-500/20 flex items-center justify-center shrink-0">
                     <FileText className="w-4 h-4 text-red-400" />
                   </div>
                   <div className="truncate">
@@ -305,7 +303,7 @@ export function MediaGallery({
                   size="icon"
                   variant="ghost"
                   onClick={() => handleDelete(doc.id)}
-                  className="text-neutral-500 hover:text-red-400 hover:bg-red-500/10 h-8 w-8"
+                  className="rounded-none text-neutral-500 hover:text-red-400 hover:bg-red-500/10 h-8 w-8 cursor-pointer"
                 >
                   <Trash2 className="w-4 h-4" />
                 </Button>

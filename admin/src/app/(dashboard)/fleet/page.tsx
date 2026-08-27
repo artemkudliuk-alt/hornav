@@ -84,16 +84,15 @@ export default async function FleetPage() {
             return (
               <Card
                 key={v.id}
-                className="overflow-hidden bg-[#202023]/70 border-white/5 hover:border-white/15 transition-all flex flex-col group"
+                className="rounded-none overflow-hidden bg-[#202023]/70 border-white/5 hover:border-[#c89b3c]/40 transition-all flex flex-col group shadow-lg"
               >
                 {/* Vessel Thumbnail */}
-                <div className="aspect-[16/9] relative bg-neutral-900 overflow-hidden">
+                <div className="aspect-[16/9] relative bg-neutral-900 overflow-hidden border-b border-white/5">
                   {v.coverImageUrl ? (
-                    <Image
-                      src={coverUrl}
+                    <img
+                      src={v.coverImageUrl}
                       alt={name}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center bg-[#18181b] text-neutral-600">
@@ -104,7 +103,7 @@ export default async function FleetPage() {
                   {/* Status Badge */}
                   <div className="absolute top-3 right-3">
                     <Badge
-                      className={`text-[9px] uppercase font-mono px-2 py-0.5 shadow-md ${
+                      className={`text-[9px] uppercase font-mono px-2 py-0.5 rounded-none font-bold tracking-wider shadow-md ${
                         statusBadge[v.status] || statusBadge.available
                       }`}
                     >
@@ -176,7 +175,7 @@ export default async function FleetPage() {
                       <Button
                         size="sm"
                         variant="secondary"
-                        className="bg-[#18181b] hover:bg-[#c89b3c] hover:text-[#141416] text-white text-xs gap-1.5 h-8 cursor-pointer"
+                        className="rounded-none bg-[#18181b] hover:bg-[#c89b3c] hover:text-[#141416] text-white text-xs gap-1.5 h-8 cursor-pointer font-semibold uppercase tracking-wider"
                       >
                         <Edit3 className="w-3.5 h-3.5" />
                         Edit Particulars
