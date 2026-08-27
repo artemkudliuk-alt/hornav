@@ -10,7 +10,7 @@ const globalForData = globalThis as unknown as {
 
 const initialSampleVessels = [
   {
-    id: "vessel-molpadia",
+    id: "11111111-1111-1111-1111-111111111111",
     imoNumber: "9613616",
     name: {
       en: "MV MOLPADIA",
@@ -116,7 +116,7 @@ const initialSampleVessels = [
     ],
   },
   {
-    id: "vessel-metanira",
+    id: "22222222-2222-2222-2222-222222222222",
     imoNumber: "9584724",
     name: {
       en: "MV METANIRA",

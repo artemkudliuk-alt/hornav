@@ -3,34 +3,47 @@ import { db, isDbConnected } from "@/lib/db";
 import { vessels, vesselMedia } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { sampleVessels } from "@/lib/db/mock-data";
+import { ensureDatabaseInitialized } from "@/lib/db/init-db";
+
+export const dynamic = "force-dynamic";
 
 export async function GET(
   req: Request,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> | { id: string } }
 ) {
-  const { id } = await params;
-  const { searchParams } = new URL(req.url);
-  const lang = (searchParams.get("lang") as "en" | "ua" | "ru") || "en";
-
   try {
+    await ensureDatabaseInitialized();
+    const resolvedParams = params instanceof Promise ? await params : (await Promise.resolve(params));
+    const rawId = resolvedParams?.id || "";
+    const id = decodeURIComponent(rawId);
+    const { searchParams } = new URL(req.url);
+    const lang = (searchParams.get("lang") as "en" | "ua" | "ru") || "en";
+
     let vessel: any = null;
     let media: any[] = [];
 
     if (isDbConnected) {
       try {
-        const [dbVessel] = await db
-          .select()
-          .from(vessels)
-          .where(eq(vessels.id, id))
-          .limit(1);
+        const allVessels = await db.select().from(vessels);
+        const dbVessel = allVessels.find(
+          (v: any) =>
+            v.id === id ||
+            v.imoNumber === id ||
+            v.imo_number === id ||
+            (v.name && typeof v.name === "object" && (v.name.en?.toLowerCase().includes(id.toLowerCase()) || v.name.en?.toLowerCase().replace(/[^a-z0-9]/g, "-") === id))
+        );
 
         if (dbVessel) {
           vessel = dbVessel;
-          media = await db
-            .select()
-            .from(vesselMedia)
-            .where(eq(vesselMedia.vesselId, id))
-            .orderBy(vesselMedia.sortOrder);
+          try {
+            media = await db
+              .select()
+              .from(vesselMedia)
+              .where(eq(vesselMedia.vesselId, dbVessel.id))
+              .orderBy(vesselMedia.sortOrder);
+          } catch (mErr) {
+            console.warn("Could not query vesselMedia table:", mErr);
+          }
         }
       } catch (dbErr) {
         console.warn("DB query failed, fallback to mock data:", dbErr);
@@ -38,7 +51,12 @@ export async function GET(
     }
 
     if (!vessel) {
-      const mock = sampleVessels.find((v) => v.id === id);
+      const mock = sampleVessels.find(
+        (v) =>
+          v.id === id ||
+          v.imoNumber === id ||
+          (v.name && typeof v.name === "object" && (v.name.en?.toLowerCase().includes(id.toLowerCase()) || v.name.en?.toLowerCase().replace(/[^a-z0-9]/g, "-") === id))
+      );
       if (mock) {
         vessel = mock;
         media = mock.media || [];
@@ -55,14 +73,13 @@ export async function GET(
 
     const responseData = {
       ...vessel,
-      name: nameObj?.[lang] || nameObj?.en || "Unnamed Vessel",
-      nameI18n: vessel.name,
-      description: descObj?.[lang] || descObj?.en || "",
-      descriptionI18n: vessel.description,
-      deckEquipment: deckObj?.[lang] || deckObj?.en || "",
-      deckEquipmentI18n: vessel.deckEquipment,
-      photos: media.filter((m: any) => m.type === "photo"),
-      documents: media.filter((m: any) => m.type === "pdf"),
+      imoNumber: vessel.imoNumber || vessel.imo_number,
+      name: typeof vessel.name === "object" ? (nameObj?.[lang] || nameObj?.en || "Unnamed Vessel") : (vessel.name || "Unnamed Vessel"),
+      nameI18n: typeof vessel.name === "object" ? vessel.name : { en: vessel.name, ua: "", ru: "" },
+      description: typeof vessel.description === "object" ? (descObj?.[lang] || descObj?.en || "") : (vessel.description || ""),
+      deckEquipment: typeof vessel.deckEquipment === "object" ? (deckObj?.[lang] || deckObj?.en || "") : (vessel.deckEquipment || ""),
+      coverImageUrl: vessel.coverImageUrl || vessel.cover_image_url || "/fleet/molpadia/MV_MOLPADIA__PHOTO.jpg",
+      media,
     };
 
     return NextResponse.json(responseData, {
@@ -72,7 +89,7 @@ export async function GET(
         "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300",
       },
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error("GET /api/public/vessels/[id] error:", error);
     return NextResponse.json(
       { error: "Failed to fetch vessel details" },

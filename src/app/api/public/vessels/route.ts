@@ -3,6 +3,7 @@ import { db, isDbConnected } from "@/lib/db";
 import { vessels } from "@/lib/db/schema";
 import { eq, and, desc } from "drizzle-orm";
 import { sampleVessels } from "@/lib/db/mock-data";
+import { ensureDatabaseInitialized } from "@/lib/db/init-db";
 
 export const dynamic = "force-dynamic";
 
@@ -13,6 +14,7 @@ export async function GET(req: Request) {
   const lang = (searchParams.get("lang") as "en" | "ua" | "ru") || "en";
 
   try {
+    await ensureDatabaseInitialized();
     let list: any[] = sampleVessels;
 
     if (isDbConnected) {

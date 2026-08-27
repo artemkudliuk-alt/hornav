@@ -1,8 +1,11 @@
 ﻿import { neon } from "@neondatabase/serverless";
 import bcrypt from "bcryptjs";
-import { sampleVessels, sampleLeads, sampleBranches } from "./mock-data";
+import { initialSampleVessels, sampleBranches } from "./mock-data";
 
 let isInitialized = false;
+
+export const MOLPADIA_ID = "11111111-1111-1111-1111-111111111111";
+export const METANIRA_ID = "22222222-2222-2222-2222-222222222222";
 
 export async function ensureDatabaseInitialized() {
   const dbUrl =
@@ -199,30 +202,102 @@ export async function ensureDatabaseInitialized() {
       `;
     }
 
-    // 4. Seed sample vessels if empty
-    const existingVessels = await sql`SELECT id FROM vessels LIMIT 1`;
-    if (existingVessels.length === 0) {
-      for (const v of sampleVessels) {
-        const vName = typeof v.name === "object" ? v.name : { en: v.name, ua: "", ru: "" };
-        await sql`
-          INSERT INTO vessels (
-            id, name, type, status, imo_number, flag,
-            year_built, class_society, dwt, loa, beam, draft,
-            description, cover_image_url
-          ) VALUES (
-            ${v.id}, ${JSON.stringify(vName)}, ${v.type || 'bulk_carrier'}, ${v.status || 'available'},
-            ${v.imoNumber || '9613616'}, ${v.flag || 'Panama'}, ${v.builtYear || 2012},
-            ${v.classificationSociety || 'DNV'}, ${v.dwtTonnage || 6400},
-            ${v.lengthOverallM || 108.2}, ${v.beamM || 18.2}, ${v.summerDraftM || 6.7},
-            ${JSON.stringify(v.description || { en: 'Bulk Carrier', ua: '', ru: '' })},
-            ${v.coverImageUrl || '/ship1_screen3.png'}
-          ) ON CONFLICT DO NOTHING;
-        `;
+    // 4. Seed Vessel 1: MV MOLPADIA with all photos & PDF
+    const molpadia = initialSampleVessels[0];
+    if (molpadia) {
+      await sql`
+        INSERT INTO vessels (
+          id, name, type, status, imo_number, flag,
+          year_built, class_society, dwt, loa, beam, draft,
+          cubic_capacity, charter_rate_usd, sale_price_usd, price_on_request,
+          current_location, trading_area, description, deck_equipment, cover_image_url
+        ) VALUES (
+          ${MOLPADIA_ID}, ${JSON.stringify(molpadia.name)}, ${molpadia.type}, ${molpadia.status},
+          ${molpadia.imoNumber}, ${molpadia.flag}, ${molpadia.yearBuilt},
+          ${molpadia.classSociety}, ${molpadia.dwt}, ${molpadia.loa}, ${molpadia.beam}, ${molpadia.draft},
+          ${molpadia.cubicCapacity}, ${molpadia.charterRateUsd}, ${molpadia.salePriceUsd}, ${molpadia.priceOnRequest},
+          ${molpadia.currentLocation}, ${molpadia.tradingArea},
+          ${JSON.stringify(molpadia.description)}, ${JSON.stringify(molpadia.deckEquipment)},
+          ${molpadia.coverImageUrl}
+        ) ON CONFLICT (id) DO UPDATE SET
+          name = EXCLUDED.name,
+          cover_image_url = EXCLUDED.cover_image_url,
+          imo_number = EXCLUDED.imo_number,
+          dwt = EXCLUDED.dwt,
+          loa = EXCLUDED.loa,
+          beam = EXCLUDED.beam,
+          draft = EXCLUDED.draft,
+          year_built = EXCLUDED.year_built,
+          class_society = EXCLUDED.class_society,
+          description = EXCLUDED.description,
+          deck_equipment = EXCLUDED.deck_equipment;
+      `;
+
+      if (Array.isArray(molpadia.media)) {
+        for (let i = 0; i < molpadia.media.length; i++) {
+          const m = molpadia.media[i];
+          const mediaUuid = `11111111-1111-1111-1111-${String(i + 1).padStart(12, '0')}`;
+          await sql`
+            INSERT INTO vessel_media (
+              id, vessel_id, url, type, filename, sort_order, is_cover
+            ) VALUES (
+              ${mediaUuid}, ${MOLPADIA_ID}, ${m.url}, ${m.type || 'photo'},
+              ${m.filename || 'photo.jpg'}, ${m.sortOrder ?? i}, ${Boolean(m.isCover)}
+            ) ON CONFLICT (id) DO NOTHING;
+          `;
+        }
+      }
+    }
+
+    // 5. Seed Vessel 2: MV METANIRA with all photos & PDF
+    const metanira = initialSampleVessels[1];
+    if (metanira) {
+      await sql`
+        INSERT INTO vessels (
+          id, name, type, status, imo_number, flag,
+          year_built, class_society, dwt, loa, beam, draft,
+          cubic_capacity, charter_rate_usd, sale_price_usd, price_on_request,
+          current_location, trading_area, description, deck_equipment, cover_image_url
+        ) VALUES (
+          ${METANIRA_ID}, ${JSON.stringify(metanira.name)}, ${metanira.type}, ${metanira.status},
+          ${metanira.imoNumber}, ${metanira.flag}, ${metanira.yearBuilt},
+          ${metanira.classSociety}, ${metanira.dwt}, ${metanira.loa}, ${metanira.beam}, ${metanira.draft},
+          ${metanira.cubicCapacity}, ${metanira.charterRateUsd}, ${metanira.salePriceUsd}, ${metanira.priceOnRequest},
+          ${metanira.currentLocation}, ${metanira.tradingArea},
+          ${JSON.stringify(metanira.description)}, ${JSON.stringify(metanira.deckEquipment)},
+          ${metanira.coverImageUrl}
+        ) ON CONFLICT (id) DO UPDATE SET
+          name = EXCLUDED.name,
+          cover_image_url = EXCLUDED.cover_image_url,
+          imo_number = EXCLUDED.imo_number,
+          dwt = EXCLUDED.dwt,
+          loa = EXCLUDED.loa,
+          beam = EXCLUDED.beam,
+          draft = EXCLUDED.draft,
+          year_built = EXCLUDED.year_built,
+          class_society = EXCLUDED.class_society,
+          description = EXCLUDED.description,
+          deck_equipment = EXCLUDED.deck_equipment;
+      `;
+
+      if (Array.isArray(metanira.media)) {
+        for (let i = 0; i < metanira.media.length; i++) {
+          const m = metanira.media[i];
+          const mediaUuid = `22222222-2222-2222-2222-${String(i + 1).padStart(12, '0')}`;
+          await sql`
+            INSERT INTO vessel_media (
+              id, vessel_id, url, type, filename, sort_order, is_cover
+            ) VALUES (
+              ${mediaUuid}, ${METANIRA_ID}, ${m.url}, ${m.type || 'photo'},
+              ${m.filename || 'photo.jpg'}, ${m.sortOrder ?? i}, ${Boolean(m.isCover)}
+            ) ON CONFLICT (id) DO NOTHING;
+          `;
+        }
       }
     }
 
     isInitialized = true;
-    console.log("✅ PostgreSQL schema and defaults verified and synchronized.");
+    console.log("✅ PostgreSQL schema, MV MOLPADIA & MV METANIRA with photos/PDFs synchronized.");
   } catch (err) {
     console.error("Failed to auto-initialize database:", err);
   }

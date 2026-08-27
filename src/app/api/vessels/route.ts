@@ -5,6 +5,7 @@ import { vessels } from "@/lib/db/schema";
 import { vesselFormSchema } from "@/lib/validators";
 import { desc } from "drizzle-orm";
 import { sampleVessels } from "@/lib/db/mock-data";
+import { ensureDatabaseInitialized } from "@/lib/db/init-db";
 
 export const dynamic = "force-dynamic";
 
@@ -16,6 +17,7 @@ export async function GET() {
   }
 
   try {
+    await ensureDatabaseInitialized();
     if (isDbConnected) {
       try {
         const data = await db
