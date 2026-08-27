@@ -41,16 +41,75 @@ document.addEventListener('DOMContentLoaded', async () => {
   const countIndicator = document.getElementById('fleet-count-indicator');
   const filterButtons = document.querySelectorAll('.fleet-filter-btn');
 
+  function updateFleetStats(vessels) {
+    const totalCount = vessels.length;
+    const statActive = document.getElementById('stat-active-vessels');
+    if (statActive) {
+      statActive.textContent = `${totalCount} ${totalCount === 1 ? 'Vessel' : 'Vessels'}`;
+    }
+
+    // Calculate total DWT
+    let totalDwtNum = 0;
+    vessels.forEach(v => {
+      if (v.dwt) {
+        const num = parseFloat(String(v.dwt).replace(/[^0-9.]/g, ''));
+        if (!isNaN(num) && num > 0) totalDwtNum += num;
+      }
+    });
+    const statDwt = document.getElementById('stat-total-dwt');
+    if (statDwt && totalDwtNum > 0) {
+      statDwt.textContent = `${Math.round(totalDwtNum).toLocaleString()} DWT`;
+    }
+
+    // Calculate filter counts
+    const gcCount = vessels.filter(v => {
+      const t = (v.type || '').toLowerCase();
+      return t.includes('general cargo') && !t.includes('bulk carrier');
+    }).length;
+
+    const bcCount = vessels.filter(v => {
+      const t = (v.type || '').toLowerCase();
+      return t.includes('bulk carrier') || t.includes('bulk');
+    }).length;
+
+    const gearedCount = vessels.filter(v => {
+      const g = (v.deckGear || '').toLowerCase();
+      return g.includes('crane') || g.includes('derrick') || g.includes('30 mt') || g.includes('geared');
+    }).length;
+
+    const btnAll = document.getElementById('filter-btn-all') || document.querySelector('button[data-filter="all"]');
+    if (btnAll) {
+      btnAll.textContent = `All Fleet (${totalCount})`;
+    }
+
+    const btnGc = document.getElementById('filter-btn-gc') || document.querySelector('button[data-filter="general-cargo"]');
+    if (btnGc) {
+      btnGc.textContent = `General Cargo (${gcCount})`;
+    }
+
+    const btnBc = document.getElementById('filter-btn-bc') || document.querySelector('button[data-filter="bulk-carrier"]');
+    if (btnBc) {
+      btnBc.textContent = `Bulk Carrier (${bcCount})`;
+    }
+
+    const btnGeared = document.getElementById('filter-btn-geared') || document.querySelector('button[data-filter="geared"]');
+    if (btnGeared) {
+      btnGeared.textContent = `Geared with Cranes (${gearedCount})`;
+    }
+  }
+
+  updateFleetStats(fleetList);
+
   function renderVessels(filter = 'all') {
     if (!container) return;
 
     let filtered = fleetList;
     if (filter === 'general-cargo') {
-      filtered = fleetList.filter(v => v.type.toLowerCase().includes('general cargo') && !v.type.toLowerCase().includes('bulk carrier'));
+      filtered = fleetList.filter(v => (v.type || '').toLowerCase().includes('general cargo') && !(v.type || '').toLowerCase().includes('bulk carrier'));
     } else if (filter === 'bulk-carrier') {
-      filtered = fleetList.filter(v => v.type.toLowerCase().includes('bulk carrier'));
+      filtered = fleetList.filter(v => (v.type || '').toLowerCase().includes('bulk carrier') || (v.type || '').toLowerCase().includes('bulk'));
     } else if (filter === 'geared') {
-      filtered = fleetList.filter(v => v.deckGear && v.deckGear.includes('Cranes'));
+      filtered = fleetList.filter(v => v.deckGear && (v.deckGear.includes('Cranes') || v.deckGear.includes('crane') || v.deckGear.includes('30 MT')));
     }
 
     if (countIndicator) {

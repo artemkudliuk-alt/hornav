@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@300,400,500,600,700&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/assets/js/fleet-wUGOycA3.js"></script>
+  <script type="module" crossorigin src="/assets/js/fleet-CNROLRNl.js"></script>
   <link rel="modulepreload" crossorigin href="/assets/js/mobile-menu-Biv_2iMB.js">
   <link rel="modulepreload" crossorigin href="/assets/js/vessel-data-82TcNlHY.js">
   <link rel="modulepreload" crossorigin href="/assets/js/pdf-viewer-CB4qtJyb.js">
@@ -128,20 +128,20 @@
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 pt-4 border-t border-neutral-800" data-stagger-group>
         <div class="flex flex-col gap-1">
           <span class="text-[10px] sm:text-xs font-mono tracking-widest text-gold uppercase">Active Managed Fleet</span>
-          <span class="text-lg sm:text-2xl lg:text-3xl font-serif text-white font-medium">2 Vessels</span>
+          <span id="stat-active-vessels" class="text-lg sm:text-2xl lg:text-3xl font-serif text-white font-medium">2 Vessels</span>
         </div>
         <div class="flex flex-col gap-1">
           <span class="text-[10px] sm:text-xs font-mono tracking-widest text-gold uppercase">Total Deadweight</span>
-          <span class="text-lg sm:text-2xl lg:text-3xl font-serif text-gold font-medium">13,608 DWT</span>
+          <span id="stat-total-dwt" class="text-lg sm:text-2xl lg:text-3xl font-serif text-gold font-medium">13,608 DWT</span>
         </div>
         <div class="flex flex-col gap-1">
           <span class="text-[10px] sm:text-xs font-mono tracking-widest text-gold uppercase">Heavy-Lift Cranes</span>
-          <span class="text-lg sm:text-2xl lg:text-3xl font-serif text-white font-medium">4 x 30 MT</span>
+          <span id="stat-total-cranes" class="text-lg sm:text-2xl lg:text-3xl font-serif text-white font-medium">4 x 30 MT</span>
           <span class="text-[10px] text-neutral-400 font-mono">(60 MT comb.)</span>
         </div>
         <div class="flex flex-col gap-1">
           <span class="text-[10px] sm:text-xs font-mono tracking-widest text-gold uppercase">Total Grain Capacity</span>
-          <span class="text-lg sm:text-2xl lg:text-3xl font-serif text-white font-medium">667,000 cu.ft</span>
+          <span id="stat-total-grain" class="text-lg sm:text-2xl lg:text-3xl font-serif text-white font-medium">667,000 cu.ft</span>
         </div>
       </div>
     </div>
@@ -149,16 +149,16 @@
     <!-- FILTER & SORT BAR (Single Scrollable Row on Mobile, Wrap on Desktop) -->
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 w-full" data-reveal="fade">
       <div class="swipeable-tabs-row flex items-center gap-2 no-scrollbar w-full sm:w-auto py-1 -mx-2 px-2 sm:mx-0 sm:px-0 sm:flex-wrap shrink-0 touch-pan-x" data-swipeable id="fleet-filter-scroll-container">
-        <button type="button" data-filter="all" class="fleet-filter-btn px-4 py-2 text-xs font-mono font-bold uppercase tracking-wider bg-gold text-neutral-950 transition-all duration-200 cursor-pointer shadow-md rounded-none shrink-0 whitespace-nowrap">
+        <button type="button" data-filter="all" id="filter-btn-all" class="fleet-filter-btn px-4 py-2 text-xs font-mono font-bold uppercase tracking-wider bg-gold text-neutral-950 transition-all duration-200 cursor-pointer shadow-md rounded-none shrink-0 whitespace-nowrap">
           All Fleet (2)
         </button>
-        <button type="button" data-filter="general-cargo" class="fleet-filter-btn px-4 py-2 text-xs font-mono font-bold uppercase tracking-wider bg-white/5 text-neutral-300 hover:bg-white/10 transition-all duration-200 cursor-pointer border border-white/10 hover:border-gold rounded-none shrink-0 whitespace-nowrap">
+        <button type="button" data-filter="general-cargo" id="filter-btn-gc" class="fleet-filter-btn px-4 py-2 text-xs font-mono font-bold uppercase tracking-wider bg-white/5 text-neutral-300 hover:bg-white/10 transition-all duration-200 cursor-pointer border border-white/10 hover:border-gold rounded-none shrink-0 whitespace-nowrap">
           General Cargo (1)
         </button>
-        <button type="button" data-filter="bulk-carrier" class="fleet-filter-btn px-4 py-2 text-xs font-mono font-bold uppercase tracking-wider bg-white/5 text-neutral-300 hover:bg-white/10 transition-all duration-200 cursor-pointer border border-white/10 hover:border-gold rounded-none shrink-0 whitespace-nowrap">
+        <button type="button" data-filter="bulk-carrier" id="filter-btn-bc" class="fleet-filter-btn px-4 py-2 text-xs font-mono font-bold uppercase tracking-wider bg-white/5 text-neutral-300 hover:bg-white/10 transition-all duration-200 cursor-pointer border border-white/10 hover:border-gold rounded-none shrink-0 whitespace-nowrap">
           Bulk Carrier (1)
         </button>
-        <button type="button" data-filter="geared" class="fleet-filter-btn px-4 py-2 text-xs font-mono font-bold uppercase tracking-wider bg-white/5 text-neutral-300 hover:bg-white/10 transition-all duration-200 cursor-pointer border border-white/10 hover:border-gold rounded-none shrink-0 whitespace-nowrap">
+        <button type="button" data-filter="geared" id="filter-btn-geared" class="fleet-filter-btn px-4 py-2 text-xs font-mono font-bold uppercase tracking-wider bg-white/5 text-neutral-300 hover:bg-white/10 transition-all duration-200 cursor-pointer border border-white/10 hover:border-gold rounded-none shrink-0 whitespace-nowrap">
           Geared with Cranes (2)
         </button>
       </div>
