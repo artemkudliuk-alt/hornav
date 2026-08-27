@@ -605,19 +605,42 @@ export function RichTextEditor({
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-2">
+            {/* Direct File Upload from Device */}
             <div className="space-y-1.5">
-              <Label className="text-xs text-neutral-300">Image URL / Path</Label>
+              <Label className="text-xs text-neutral-300">Upload Image from Computer</Label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                      if (event.target?.result) {
+                        setImageUrl(event.target.result as string);
+                        if (!imageAlt) setImageAlt(file.name.replace(/\.[^/.]+$/, ""));
+                      }
+                    };
+                    reader.readAsDataURL(file);
+                  }
+                }}
+                className="w-full text-xs text-neutral-400 file:mr-3 file:py-1.5 file:px-3 file:rounded-none file:border-0 file:text-xs file:font-semibold file:bg-[#c89b3c] file:text-[#141416] hover:file:bg-[#e5bf6c] cursor-pointer bg-[#18181b] border border-white/10 p-1"
+              />
+            </div>
+
+            <div className="space-y-1.5">
+              <Label className="text-xs text-neutral-300">Or Image URL / Asset Path</Label>
               <Input
-                placeholder="/fleet/molpadia/Photo-1.jpg"
+                placeholder="https://... or /fleet/molpadia/Photo.jpg"
                 value={imageUrl}
                 onChange={(e) => setImageUrl(e.target.value)}
                 className="bg-[#18181b] border-white/10 text-xs text-white font-mono"
               />
             </div>
             <div className="space-y-1.5">
-              <Label className="text-xs text-neutral-300">Alt Description</Label>
+              <Label className="text-xs text-neutral-300">Image Description / Caption</Label>
               <Input
-                placeholder="MV MOLPADIA deck cranes view"
+                placeholder="e.g. Vessel loading grain at berth"
                 value={imageAlt}
                 onChange={(e) => setImageAlt(e.target.value)}
                 className="bg-[#18181b] border-white/10 text-xs text-white"

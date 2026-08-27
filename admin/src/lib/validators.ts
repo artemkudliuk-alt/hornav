@@ -126,18 +126,15 @@ export const leadUpdateStatusSchema = z.object({
 export const pageStatusEnumSchema = z.enum(["draft", "published"]);
 
 export const pageFormSchema = z.object({
-  slug: z
-    .string()
-    .min(2, "Slug is required")
-    .regex(/^[a-z0-9-]+$/, "Slug must only contain lowercase alphanumeric characters and hyphens"),
-  status: pageStatusEnumSchema.default("draft"),
-  title: i18nStringSchema.refine((val) => val.en.trim().length > 0, {
-    message: "English title is required",
-    path: ["en"],
-  }),
-  metaDescription: i18nStringSchema.optional().nullable(),
-  ogImage: i18nStringSchema.optional().nullable(),
-  content: i18nStringSchema.default({ en: "", ua: "", ru: "" }),
+  slug: z.string().min(1, "Slug is required"),
+  status: pageStatusEnumSchema.default("published"),
+  pageName: z.string().optional().nullable(),
+  includeInNav: z.boolean().default(true),
+  includeInFooter: z.boolean().default(false),
+  title: z.any().optional().nullable(),
+  metaDescription: z.any().optional().nullable(),
+  ogImage: z.any().optional().nullable(),
+  content: z.any().optional().nullable(),
 });
 
 export type PageFormData = z.infer<typeof pageFormSchema>;

@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { db } from "@/lib/db";
+import { db, isDbConnected } from "@/lib/db";
 import { pages } from "@/lib/db/schema";
 import { pageFormSchema } from "@/lib/validators";
+import { samplePages } from "@/lib/db/mock-data";
 import { eq } from "drizzle-orm";
 
 // ─── GET /api/pages/[id] ──────────────────────────────────────
@@ -17,25 +18,24 @@ export async function GET(
 
   const { id } = await params;
 
-  try {
-    const [page] = await db
-      .select()
-      .from(pages)
-      .where(eq(pages.id, id))
-      .limit(1);
+  if (isDbConnected) {
+    try {
+      const [page] = await db
+        .select()
+        .from(pages)
+        .where(eq(pages.id, id))
+        .limit(1);
 
-    if (!page) {
-      return NextResponse.json({ error: "Page not found" }, { status: 404 });
+      if (page) return NextResponse.json(page);
+    } catch (error) {
+      console.warn("DB fetch error, falling back to mock");
     }
-
-    return NextResponse.json(page);
-  } catch (error) {
-    console.error("GET /api/pages/[id] error:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch page" },
-      { status: 500 }
-    );
   }
+
+  const mock = samplePages.find((p) => p.id === id);
+  if (mock) return NextResponse.json(mock);
+
+  return NextResponse.json({ error: "Page not found" }, { status: 404 });
 }
 
 // ─── PUT /api/pages/[id] ──────────────────────────────────────
@@ -61,28 +61,43 @@ export async function PUT(
       );
     }
 
-    const { slug, status, title, metaDescription, ogImage, content } = parsed.data;
+    const data = parsed.data;
 
-    const [updated] = await db
-      .update(pages)
-      .set({
-        slug,
-        status,
-        title,
-        metaDescription: metaDescription || null,
-        ogImage: ogImage || null,
-        content,
-        updatedAt: new Date(),
-        publishedAt: status === "published" ? new Date() : null,
-      })
-      .where(eq(pages.id, id))
-      .returning();
+    if (isDbConnected) {
+      try {
+        const [updated] = await db
+          .update(pages)
+          .set({
+            slug: data.slug,
+            status: data.status,
+            title: typeof data.title === "object" ? data.title : { en: data.title || data.pageName || data.slug, ua: "", ru: "" },
+            metaDescription: typeof data.metaDescription === "object" ? data.metaDescription : { en: data.metaDescription || "", ua: "", ru: "" },
+            content: typeof data.content === "object" ? data.content : { en: data.content || "", ua: "", ru: "" },
+            updatedAt: new Date(),
+            publishedAt: data.status === "published" ? new Date() : null,
+          })
+          .where(eq(pages.id, id))
+          .returning();
 
-    if (!updated) {
-      return NextResponse.json({ error: "Page not found" }, { status: 404 });
+        if (updated) return NextResponse.json(updated);
+      } catch (dbErr: any) {
+        console.warn("DB update error, falling back to mock:", dbErr.message);
+      }
     }
 
-    return NextResponse.json(updated);
+    // Mock store update
+    const idx = samplePages.findIndex((p) => p.id === id);
+    if (idx !== -1) {
+      samplePages[idx] = {
+        ...samplePages[idx],
+        ...data,
+        id,
+        updatedAt: new Date().toISOString(),
+      };
+      return NextResponse.json(samplePages[idx]);
+    }
+
+    return NextResponse.json({ error: "Page not found" }, { status: 404 });
   } catch (error) {
     console.error("PUT /api/pages/[id] error:", error);
     return NextResponse.json(
@@ -105,16 +120,26 @@ export async function DELETE(
   const { id } = await params;
 
   try {
-    const [deleted] = await db
-      .delete(pages)
-      .where(eq(pages.id, id))
-      .returning();
+    if (isDbConnected) {
+      try {
+        const [deleted] = await db
+          .delete(pages)
+          .where(eq(pages.id, id))
+          .returning();
 
-    if (!deleted) {
-      return NextResponse.json({ error: "Page not found" }, { status: 404 });
+        if (deleted) return NextResponse.json({ success: true, id: deleted.id });
+      } catch (dbErr) {
+        console.warn("DB delete error, falling back to mock");
+      }
     }
 
-    return NextResponse.json({ success: true, id: deleted.id });
+    const idx = samplePages.findIndex((p) => p.id === id);
+    if (idx !== -1) {
+      samplePages.splice(idx, 1);
+      return NextResponse.json({ success: true, id });
+    }
+
+    return NextResponse.json({ success: true, id });
   } catch (error) {
     console.error("DELETE /api/pages/[id] error:", error);
     return NextResponse.json(

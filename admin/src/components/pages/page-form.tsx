@@ -16,7 +16,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, ExternalLink, Loader2, Save, FileText, Compass } from "lucide-react";
+import { ArrowLeft, ExternalLink, Loader2, Save, FileText, Compass, Trash2 } from "lucide-react";
 
 interface PageFormProps {
   initialData?: any;
@@ -26,6 +26,7 @@ interface PageFormProps {
 export function PageForm({ initialData, isEditing = false }: PageFormProps) {
   const router = useRouter();
   const [isSaving, setIsSaving] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   // Form state (Clean English)
@@ -33,6 +34,7 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
     slug: initialData?.slug || "",
     status: initialData?.status || "published",
     includeInNav: initialData?.includeInNav ?? true,
+    includeInFooter: initialData?.includeInFooter ?? false,
     pageName: initialData?.pageName || "",
     title: typeof initialData?.title === "string" ? initialData.title : (initialData?.title?.en || ""),
     metaDescription: typeof initialData?.metaDescription === "string" ? initialData.metaDescription : (initialData?.metaDescription?.en || ""),
@@ -51,6 +53,23 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
       }
       return updated;
     });
+  }
+
+  async function handleDelete() {
+    if (!confirm("Are you sure you want to delete this page?")) return;
+    setIsDeleting(true);
+    setError(null);
+
+    try {
+      const res = await fetch(`/api/pages/${initialData.id}`, { method: "DELETE" });
+      if (!res.ok) throw new Error("Failed to delete page");
+      router.push("/pages");
+      router.refresh();
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message || "Failed to delete page");
+      setIsDeleting(false);
+    }
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -121,28 +140,46 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
               {isEditing ? `Edit: ${formData.pageName || formData.slug}` : "Create New Site Page"}
             </h1>
             <p className="text-xs text-neutral-400">
-              Manage SEO metadata, search engine snippets, and page content.
+              Manage page title, formatting, media photos, and menu placement.
             </p>
           </div>
         </div>
 
         <div className="flex items-center gap-2">
           {isEditing && (
-            <a
-              href={livePageUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <>
+              <a
+                href={livePageUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="rounded-none bg-[#202023] border-white/10 hover:bg-white/5 text-neutral-300 hover:text-white text-xs font-semibold uppercase tracking-wider gap-1.5 h-9 cursor-pointer"
+                >
+                  <ExternalLink className="w-3.5 h-3.5 text-[#c89b3c]" />
+                  View Live Page
+                </Button>
+              </a>
+
               <Button
                 type="button"
                 variant="outline"
-                className="rounded-none bg-[#202023] border-white/10 hover:bg-white/5 text-neutral-300 hover:text-white text-xs font-semibold uppercase tracking-wider gap-1.5 h-9 cursor-pointer"
+                disabled={isDeleting}
+                onClick={handleDelete}
+                className="rounded-none bg-red-500/10 border-red-500/30 hover:bg-red-500/20 text-red-400 text-xs font-semibold uppercase tracking-wider gap-1.5 h-9 cursor-pointer"
               >
-                <ExternalLink className="w-3.5 h-3.5 text-[#c89b3c]" />
-                View Live Page
+                {isDeleting ? (
+                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                ) : (
+                  <Trash2 className="w-3.5 h-3.5" />
+                )}
+                Delete
               </Button>
-            </a>
+            </>
           )}
+
           <Button
             type="submit"
             disabled={isSaving}
@@ -219,8 +256,8 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
           </div>
         </div>
 
-        {/* Menu Integration Toggle */}
-        <div className="pt-3 border-t border-white/5">
+        {/* Menu & Footer Placement Options */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-3 border-t border-white/5">
           <label className="flex items-center gap-3 p-3.5 rounded-none bg-[#18181b] border border-[#c89b3c]/30 hover:border-[#c89b3c] transition-colors cursor-pointer select-none">
             <input
               type="checkbox"
@@ -233,10 +270,30 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
             <div>
               <span className="text-xs font-semibold text-[#c89b3c] flex items-center gap-1.5">
                 <Compass className="w-3.5 h-3.5" />
-                Include in Main Navigation Menu
+                Include in Header Menu
               </span>
               <span className="text-[11px] text-neutral-400 block">
-                Display this page in the top header navigation bar across the website
+                Display in the top navigation bar across the website
+              </span>
+            </div>
+          </label>
+
+          <label className="flex items-center gap-3 p-3.5 rounded-none bg-[#18181b] border border-white/10 hover:border-[#c89b3c]/50 transition-colors cursor-pointer select-none">
+            <input
+              type="checkbox"
+              checked={formData.includeInFooter}
+              onChange={(e) =>
+                setFormData({ ...formData, includeInFooter: e.target.checked })
+              }
+              className="w-4 h-4 rounded-none border-white/20 text-[#c89b3c] focus:ring-[#c89b3c] cursor-pointer"
+            />
+            <div>
+              <span className="text-xs font-semibold text-white flex items-center gap-1.5">
+                <FileText className="w-3.5 h-3.5 text-[#c89b3c]" />
+                Include in Footer Links
+              </span>
+              <span className="text-[11px] text-neutral-400 block">
+                Display link in the website footer columns
               </span>
             </div>
           </label>
