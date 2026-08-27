@@ -10,7 +10,6 @@ async function loadDynamicPage() {
   let slug = urlParams.get('slug');
 
   if (!slug) {
-    // If accessed via clean pathname e.g. /my-custom-page
     const path = window.location.pathname.replace(/^\/+/, '').replace(/\.html$/, '');
     if (path && path !== 'page' && path !== 'index') {
       slug = path;
@@ -18,7 +17,7 @@ async function loadDynamicPage() {
   }
 
   if (!slug) {
-    slug = 'test1';
+    slug = 'test';
   }
 
   const heroTitle = document.getElementById('page-hero-title');

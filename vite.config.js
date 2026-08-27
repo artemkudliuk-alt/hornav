@@ -11,6 +11,34 @@ export default defineConfig(({ mode }) => {
   return {
     root: './',
     base: '/',
+    plugins: [
+      {
+        name: 'dynamic-page-router',
+        configureServer(server) {
+          server.middlewares.use((req, res, next) => {
+            const rawUrl = req.url || '';
+            const cleanUrl = rawUrl.split('?')[0];
+            const staticFiles = [
+              '/', '/index.html', '/company.html', '/fleet.html', '/vessel.html',
+              '/contacts.html', '/accountability.html', '/page.html'
+            ];
+            if (
+              !cleanUrl.includes('.') &&
+              !cleanUrl.startsWith('/@') &&
+              !cleanUrl.startsWith('/src') &&
+              !cleanUrl.startsWith('/assets') &&
+              !cleanUrl.startsWith('/api') &&
+              !cleanUrl.startsWith('/uploads') &&
+              !staticFiles.includes(cleanUrl)
+            ) {
+              const slug = cleanUrl.replace(/^\/+/, '');
+              req.url = `/page.html?slug=${slug}`;
+            }
+            next();
+          });
+        }
+      }
+    ],
     css: {
       postcss: './postcss.config.mjs'
     },
