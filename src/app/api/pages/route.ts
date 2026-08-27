@@ -6,6 +6,8 @@ import { pageFormSchema } from "@/lib/validators";
 import { samplePages } from "@/lib/db/mock-data";
 import { desc } from "drizzle-orm";
 
+export const dynamic = "force-dynamic";
+
 // ─── GET /api/pages ───────────────────────────────────────────
 export async function GET() {
   const session = await auth();

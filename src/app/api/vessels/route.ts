@@ -6,6 +6,8 @@ import { vesselFormSchema } from "@/lib/validators";
 import { desc } from "drizzle-orm";
 import { sampleVessels } from "@/lib/db/mock-data";
 
+export const dynamic = "force-dynamic";
+
 // ─── GET /api/vessels (List all vessels) ──────────────────────
 export async function GET() {
   const session = await auth();
