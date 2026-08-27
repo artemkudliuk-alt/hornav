@@ -34,6 +34,7 @@ import {
   MoreHorizontal,
   Phone,
   Search,
+  Ship,
   Trash2,
   XCircle,
 } from "lucide-react";
@@ -149,20 +150,20 @@ export function LeadsTable({ initialLeads }: LeadsTableProps) {
           onValueChange={setStatusFilter}
           className="w-full sm:w-auto"
         >
-          <TabsList className="bg-[#202023] border border-white/5 p-1">
-            <TabsTrigger value="all" className="text-xs">
+          <TabsList className="rounded-none bg-[#202023] border border-white/5 p-1">
+            <TabsTrigger value="all" className="rounded-none text-xs">
               All ({leadsList.length})
             </TabsTrigger>
-            <TabsTrigger value="new" className="text-xs text-emerald-400">
+            <TabsTrigger value="new" className="rounded-none text-xs text-emerald-400">
               New ({leadsList.filter((l) => (l.lead?.status || l.status) === "new").length})
             </TabsTrigger>
-            <TabsTrigger value="in_progress" className="text-xs text-amber-400">
+            <TabsTrigger value="in_progress" className="rounded-none text-xs text-amber-400">
               In Progress ({leadsList.filter((l) => (l.lead?.status || l.status) === "in_progress").length})
             </TabsTrigger>
-            <TabsTrigger value="completed" className="text-xs text-blue-400">
+            <TabsTrigger value="completed" className="rounded-none text-xs text-blue-400">
               Completed
             </TabsTrigger>
-            <TabsTrigger value="declined" className="text-xs text-neutral-400">
+            <TabsTrigger value="declined" className="rounded-none text-xs text-neutral-400">
               Declined
             </TabsTrigger>
           </TabsList>
@@ -175,17 +176,17 @@ export function LeadsTable({ initialLeads }: LeadsTableProps) {
             placeholder="Search by client, email, port..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-9 bg-[#202023] border-white/10 text-xs text-white placeholder:text-neutral-500"
+            className="rounded-none pl-9 bg-[#202023] border-white/10 text-xs text-white placeholder:text-neutral-500"
           />
         </div>
       </div>
 
       {/* Leads Table Container */}
-      <div className="rounded-lg border border-white/5 bg-[#202023]/60 overflow-hidden">
+      <div className="rounded-none border border-white/5 bg-[#202023]/60 overflow-hidden shadow-xl">
         <Table>
           <TableHeader className="bg-[#18181b] border-b border-white/5">
             <TableRow className="border-none hover:bg-transparent">
-              <TableHead className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider w-28">
+              <TableHead className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider w-32">
                 Status
               </TableHead>
               <TableHead className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider">
@@ -232,7 +233,7 @@ export function LeadsTable({ initialLeads }: LeadsTableProps) {
                           render={
                             <button className="outline-none">
                               <Badge
-                                className={`text-[9px] uppercase font-mono px-2 py-0.5 flex items-center gap-1 cursor-pointer hover:opacity-80 transition-opacity ${
+                                className={`text-[9px] uppercase font-mono px-2 py-0.5 rounded-none flex items-center gap-1 cursor-pointer hover:opacity-80 transition-opacity font-bold tracking-wider ${
                                   statusBadge[lead.status] || statusBadge.new
                                 }`}
                               >
@@ -244,31 +245,31 @@ export function LeadsTable({ initialLeads }: LeadsTableProps) {
                         />
                         <DropdownMenuContent
                           align="start"
-                          className="bg-[#202023] border-white/10 text-white text-xs"
+                          className="rounded-none bg-[#202023] border-white/10 text-white text-xs"
                         >
                           <DropdownMenuItem
                             onClick={() => handleStatusChange(lead.id, "new")}
-                            className="text-emerald-400"
+                            className="text-emerald-400 cursor-pointer"
                           >
-                            🟢 New (Новая)
+                            🟢 New
                           </DropdownMenuItem>
                           <DropdownMenuItem
                             onClick={() => handleStatusChange(lead.id, "in_progress")}
-                            className="text-amber-400"
+                            className="text-amber-400 cursor-pointer"
                           >
-                            🟡 In Progress (В работе)
+                            🟡 In Progress
                           </DropdownMenuItem>
                           <DropdownMenuItem
                             onClick={() => handleStatusChange(lead.id, "completed")}
-                            className="text-blue-400"
+                            className="text-blue-400 cursor-pointer"
                           >
-                            🔵 Completed (Завершено)
+                            🔵 Completed
                           </DropdownMenuItem>
                           <DropdownMenuItem
                             onClick={() => handleStatusChange(lead.id, "declined")}
-                            className="text-neutral-400"
+                            className="text-neutral-400 cursor-pointer"
                           >
-                            ⚪ Declined (Отклонено)
+                            ⚪ Declined
                           </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
@@ -289,22 +290,45 @@ export function LeadsTable({ initialLeads }: LeadsTableProps) {
 
                     {/* Route & Cargo */}
                     <TableCell>
-                      <span className="text-xs text-neutral-200 block">
+                      <span className="text-xs text-neutral-200 block font-medium">
                         {lead.loadingPort || "?"} &rarr; {lead.dischargePort || "?"}
                       </span>
-                      <span className="text-[11px] text-neutral-500 mt-0.5 block font-mono">
+                      <span className="text-[11px] text-neutral-400 mt-0.5 block font-mono">
                         {lead.cargoType || "Cargo N/A"} {lead.cargoVolume ? `(${lead.cargoVolume})` : ""}
                       </span>
                     </TableCell>
 
-                    {/* Vessel */}
+                    {/* Vessel with Thumbnail */}
                     <TableCell>
                       {vessel ? (
-                        <span className="text-xs font-medium text-[#c89b3c] block">
-                          {(vessel.name as any)?.en || "Linked Vessel"}
-                        </span>
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-10 h-7 rounded-none bg-[#141416] border border-white/10 shrink-0 overflow-hidden relative">
+                            {vessel.coverImageUrl ? (
+                              <img
+                                src={vessel.coverImageUrl}
+                                alt={typeof vessel.name === "string" ? vessel.name : ((vessel.name as any)?.en || "Vessel")}
+                                className="w-full h-full object-cover"
+                              />
+                            ) : (
+                              <div className="w-full h-full flex items-center justify-center text-neutral-600">
+                                <Ship className="w-3.5 h-3.5 text-[#c89b3c]" />
+                              </div>
+                            )}
+                          </div>
+                          <div className="flex flex-col min-w-0">
+                            <span className="text-xs font-semibold text-white hover:text-[#c89b3c] transition-colors truncate max-w-[140px] block">
+                              {typeof vessel.name === "string" ? vessel.name : ((vessel.name as any)?.en || "Linked Vessel")}
+                            </span>
+                            <span className="text-[10px] text-neutral-500 font-mono block">
+                              {vessel.imoNumber ? `IMO ${vessel.imoNumber}` : (vessel.dwt ? `${vessel.dwt} DWT` : "Vessel")}
+                            </span>
+                          </div>
+                        </div>
                       ) : (
-                        <span className="text-xs text-neutral-500">—</span>
+                        <div className="flex items-center gap-1.5 text-neutral-500">
+                          <Ship className="w-3.5 h-3.5 text-neutral-600 shrink-0" />
+                          <span className="text-[11px] font-mono text-neutral-400">General Fleet</span>
+                        </div>
                       )}
                     </TableCell>
 
@@ -321,7 +345,7 @@ export function LeadsTable({ initialLeads }: LeadsTableProps) {
                             <Button
                               variant="ghost"
                               size="icon"
-                              className="h-8 w-8 text-neutral-500 hover:text-white"
+                              className="rounded-none h-8 w-8 text-neutral-500 hover:text-white"
                             >
                               <MoreHorizontal className="w-4 h-4" />
                             </Button>
@@ -329,7 +353,7 @@ export function LeadsTable({ initialLeads }: LeadsTableProps) {
                         />
                         <DropdownMenuContent
                           align="end"
-                          className="bg-[#202023] border-white/10 text-white text-xs"
+                          className="rounded-none bg-[#202023] border-white/10 text-white text-xs"
                         >
                           <DropdownMenuItem
                             onClick={() => openLeadDetail(item)}
