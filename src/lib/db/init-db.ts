@@ -114,7 +114,8 @@ export async function ensureDatabaseInitialized() {
         content JSONB NOT NULL DEFAULT '{"en":""}',
         created_by UUID,
         created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-        updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+        updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+        published_at TIMESTAMPTZ DEFAULT NOW()
       );
     `;
 
@@ -172,6 +173,7 @@ export async function ensureDatabaseInitialized() {
     await sql`ALTER TABLE pages ADD COLUMN IF NOT EXISTS og_image JSONB;`;
     await sql`ALTER TABLE pages ADD COLUMN IF NOT EXISTS meta_description JSONB;`;
     await sql`ALTER TABLE pages ADD COLUMN IF NOT EXISTS created_by UUID;`;
+    await sql`ALTER TABLE pages ADD COLUMN IF NOT EXISTS published_at TIMESTAMPTZ;`;
 
     await sql`ALTER TABLE vessel_media ADD COLUMN IF NOT EXISTS is_cover BOOLEAN DEFAULT FALSE;`;
     await sql`ALTER TABLE vessel_media ADD COLUMN IF NOT EXISTS blob_key TEXT;`;

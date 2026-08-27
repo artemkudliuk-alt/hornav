@@ -65,10 +65,10 @@ export async function GET(
         },
       }
     );
-  } catch (error) {
+  } catch (error: any) {
     console.error("GET /api/public/pages/[slug] error:", error);
     return NextResponse.json(
-      { error: "Failed to fetch page" },
+      { error: error?.message || "Failed to fetch page", details: String(error) },
       { status: 500 }
     );
   }
