@@ -16,7 +16,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, Loader2, Save, FileText } from "lucide-react";
+import { ArrowLeft, ExternalLink, Loader2, Save, FileText } from "lucide-react";
 
 interface PageFormProps {
   initialData?: any;
@@ -30,8 +30,9 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
 
   // Form state (Clean English)
   const [formData, setFormData] = useState({
-    slug: initialData?.slug || "",
-    status: initialData?.status || "draft",
+    slug: initialData?.slug || "index.html",
+    status: initialData?.status || "published",
+    pageName: initialData?.pageName || "",
     title: typeof initialData?.title === "string" ? initialData.title : (initialData?.title?.en || ""),
     metaDescription: typeof initialData?.metaDescription === "string" ? initialData.metaDescription : (initialData?.metaDescription?.en || ""),
     content: typeof initialData?.content === "string" ? initialData.content : (initialData?.content?.en || ""),
@@ -41,12 +42,6 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
   function handleTitleChange(val: string) {
     setFormData((prev) => {
       const updated = { ...prev, title: val };
-      if (!isEditing && !prev.slug) {
-        updated.slug = val
-          .toLowerCase()
-          .replace(/[^a-z0-9]+/g, "-")
-          .replace(/^-+|-+$/g, "");
-      }
       return updated;
     });
   }
@@ -57,16 +52,16 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
     setError(null);
 
     const payload = {
-      slug: formData.slug,
-      status: formData.status,
+      ...formData,
       title: { en: formData.title, ua: "", ru: "" },
       metaDescription: { en: formData.metaDescription, ua: "", ru: "" },
-      ogImage: { en: "", ua: "", ru: "" },
       content: { en: formData.content, ua: "", ru: "" },
     };
 
     try {
-      const url = isEditing ? `/api/pages/${initialData.id}` : `/api/pages`;
+      const url = isEditing
+        ? `/api/pages/${initialData.id}`
+        : `/api/pages`;
       const method = isEditing ? "PUT" : "POST";
 
       const res = await fetch(url, {
@@ -80,15 +75,24 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
         throw new Error(data.error || "Failed to save page");
       }
 
-      router.push("/pages");
-      router.refresh();
+      const saved = await res.json();
+
+      if (!isEditing) {
+        router.push(`/pages/${saved.id}`);
+      } else {
+        router.refresh();
+      }
     } catch (err: any) {
       console.error(err);
-      setError(err.message || "Failed to save page");
+      setError(err.message || "An unexpected error occurred");
     } finally {
       setIsSaving(false);
     }
   }
+
+  const livePageUrl = typeof window !== "undefined" && window.location.hostname === "localhost"
+    ? `http://localhost:5173/${formData.slug}`
+    : `https://danamiratest.vercel.app/${formData.slug}`;
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -107,15 +111,31 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
           </Link>
           <div>
             <h1 className="text-xl sm:text-2xl font-semibold text-white tracking-tight">
-              {isEditing ? `Edit Page: /routes/${formData.slug}` : "Create Custom Route Landing"}
+              {isEditing ? `Edit: ${formData.pageName || formData.slug}` : "Create Custom Page"}
             </h1>
             <p className="text-xs text-neutral-400">
-              Build dedicated SEO landing pages for specialized cargo corridors and freight solutions.
+              Manage SEO metadata, search engine snippets, and page rich content.
             </p>
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
+          {isEditing && (
+            <a
+              href={livePageUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                type="button"
+                variant="outline"
+                className="rounded-none bg-[#202023] border-white/10 hover:bg-white/5 text-neutral-300 hover:text-white text-xs font-semibold uppercase tracking-wider gap-1.5 h-9 cursor-pointer"
+              >
+                <ExternalLink className="w-3.5 h-3.5 text-[#c89b3c]" />
+                View Live Page
+              </Button>
+            </a>
+          )}
           <Button
             type="submit"
             disabled={isSaving}
@@ -141,18 +161,18 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
       <Card className="rounded-none bg-[#202023]/70 border-white/5 p-6 shadow-xl">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="sm:col-span-2 space-y-2">
-            <Label className="text-xs text-neutral-300">URL Route Slug</Label>
+            <Label className="text-xs text-neutral-300">Public Page URL</Label>
             <div className="flex items-center rounded-none bg-[#18181b] border border-white/10 overflow-hidden">
               <span className="px-3 text-xs text-neutral-500 font-mono select-none">
-                danamirashipping.com/routes/
+                danamirashipping.com/
               </span>
               <Input
-                placeholder="black-sea-grain-freight"
+                placeholder="index.html"
                 value={formData.slug}
                 onChange={(e) =>
                   setFormData({
                     ...formData,
-                    slug: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, "-"),
+                    slug: e.target.value.toLowerCase(),
                   })
                 }
                 required
@@ -166,15 +186,15 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
             <Select
               value={formData.status}
               onValueChange={(val) =>
-                setFormData({ ...formData, status: val || "draft" })
+                setFormData({ ...formData, status: val || "published" })
               }
             >
               <SelectTrigger className="rounded-none bg-[#18181b] border-white/10 text-xs text-white">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent className="rounded-none bg-[#202023] border-white/10 text-white text-xs">
-                <SelectItem value="draft">Draft</SelectItem>
                 <SelectItem value="published">Published</SelectItem>
+                <SelectItem value="draft">Draft</SelectItem>
               </SelectContent>
             </Select>
           </div>

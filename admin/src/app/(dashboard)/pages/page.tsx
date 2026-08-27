@@ -35,19 +35,12 @@ export default async function PagesListPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-xl sm:text-2xl font-semibold text-white tracking-tight">
-            Landing Pages & Route Builder ({pagesList.length})
+            Site Pages & SEO ({pagesList.length})
           </h1>
           <p className="text-xs text-neutral-400 mt-1">
-            Generate and edit custom marketing landing pages for logistics corridors and cargo trades.
+            Manage SEO metadata, search engine snippets, and content for all public website pages.
           </p>
         </div>
-
-        <Link href="/pages/new">
-          <Button className="bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer">
-            <Plus className="w-4 h-4" />
-            Create Page
-          </Button>
-        </Link>
       </div>
 
       {/* Pages Table */}
@@ -55,14 +48,14 @@ export default async function PagesListPage() {
         <Table>
           <TableHeader className="bg-[#18181b] border-b border-white/5">
             <TableRow className="border-none hover:bg-transparent">
-              <TableHead className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider w-32">
+              <TableHead className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider w-28">
                 Status
               </TableHead>
-              <TableHead className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider">
-                Page Title & URL Slug
+              <TableHead className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider w-56">
+                Page & File
               </TableHead>
-              <TableHead className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider text-right">
-                Created
+              <TableHead className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider">
+                SEO Title & Meta Description Snippet
               </TableHead>
               <TableHead className="w-28 text-right"></TableHead>
             </TableRow>
@@ -71,6 +64,8 @@ export default async function PagesListPage() {
           <TableBody>
             {pagesList.map((p) => {
               const title = (p.title as any)?.en || "Untitled Page";
+              const metaDesc = (p.metaDescription as any)?.en || "";
+              const pageName = p.pageName || title;
               const isPublished = p.status === "published";
 
               return (
@@ -97,15 +92,20 @@ export default async function PagesListPage() {
 
                   <TableCell>
                     <span className="font-semibold text-xs text-white block">
-                      {title}
+                      {pageName}
                     </span>
                     <span className="text-[11px] text-[#c89b3c] font-mono mt-0.5 block">
-                      /routes/{p.slug}
+                      /{p.slug}
                     </span>
                   </TableCell>
 
-                  <TableCell className="text-right text-xs text-neutral-400 font-mono">
-                    {new Date(p.createdAt).toLocaleDateString("en-GB")}
+                  <TableCell>
+                    <span className="font-medium text-xs text-neutral-200 block line-clamp-1">
+                      {title}
+                    </span>
+                    <span className="text-[11px] text-neutral-400 font-mono mt-0.5 line-clamp-1 block">
+                      {metaDesc}
+                    </span>
                   </TableCell>
 
                   <TableCell className="text-right">
