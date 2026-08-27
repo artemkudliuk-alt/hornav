@@ -27,11 +27,35 @@ export default async function FleetPage() {
     }
   }
 
-  const statusBadge: Record<string, string> = {
-    available: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
-    in_transit: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-    chartered: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-    maintenance: "bg-red-500/10 text-red-400 border-red-500/20",
+  const statusConfig: Record<string, { label: string; bg: string; dot: string; text: string; border: string }> = {
+    available: {
+      label: "AVAILABLE",
+      bg: "bg-[#0d0d0f]/90 backdrop-blur-md",
+      text: "text-emerald-400",
+      border: "border-emerald-500/40",
+      dot: "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]",
+    },
+    in_transit: {
+      label: "IN TRANSIT",
+      bg: "bg-[#0d0d0f]/90 backdrop-blur-md",
+      text: "text-blue-400",
+      border: "border-blue-500/40",
+      dot: "bg-blue-400 shadow-[0_0_8px_rgba(96,165,250,0.8)]",
+    },
+    chartered: {
+      label: "CHARTERED",
+      bg: "bg-[#0d0d0f]/90 backdrop-blur-md",
+      text: "text-amber-400",
+      border: "border-amber-500/40",
+      dot: "bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]",
+    },
+    maintenance: {
+      label: "MAINTENANCE",
+      bg: "bg-[#0d0d0f]/90 backdrop-blur-md",
+      text: "text-red-400",
+      border: "border-red-500/40",
+      dot: "bg-red-400 shadow-[0_0_8px_rgba(248,113,113,0.8)]",
+    },
   };
 
   return (
@@ -48,7 +72,7 @@ export default async function FleetPage() {
         </div>
 
         <Link href="/fleet/new">
-          <Button className="bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer">
+          <Button className="rounded-none bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer h-9 shadow-md">
             <Plus className="w-4 h-4" />
             Add New Vessel
           </Button>
@@ -57,7 +81,7 @@ export default async function FleetPage() {
 
       {/* Grid of Vessels */}
       {fleetList.length === 0 ? (
-        <Card className="bg-[#202023]/60 border-white/5 p-12 text-center space-y-4">
+        <Card className="rounded-none bg-[#202023]/60 border-white/5 p-12 text-center space-y-4">
           <Ship className="w-10 h-10 text-neutral-500 mx-auto" />
           <div>
             <h3 className="text-sm font-semibold text-white">No vessels in catalog</h3>
@@ -69,7 +93,7 @@ export default async function FleetPage() {
             <Button
               variant="outline"
               size="sm"
-              className="bg-[#18181b] border-white/10 text-xs text-[#c89b3c]"
+              className="rounded-none bg-[#18181b] border-white/10 text-xs text-[#c89b3c]"
             >
               Add Vessel Now
             </Button>
@@ -80,11 +104,12 @@ export default async function FleetPage() {
           {fleetList.map((v) => {
             const name = (v.name as any)?.en || "Unnamed Vessel";
             const coverUrl = v.coverImageUrl || "/placeholder-ship.jpg";
+            const s = statusConfig[v.status] || statusConfig.available;
 
             return (
               <Card
                 key={v.id}
-                className="rounded-none overflow-hidden bg-[#202023]/70 border-white/5 hover:border-[#c89b3c]/40 transition-all flex flex-col group shadow-lg"
+                className="rounded-none overflow-hidden bg-[#202023]/70 border-white/5 hover:border-[#c89b3c]/40 transition-all flex flex-col group shadow-xl"
               >
                 {/* Vessel Thumbnail */}
                 <div className="aspect-[16/9] relative bg-neutral-900 overflow-hidden border-b border-white/5">
@@ -100,15 +125,18 @@ export default async function FleetPage() {
                     </div>
                   )}
 
-                  {/* Status Badge */}
-                  <div className="absolute top-3 right-3">
-                    <Badge
-                      className={`text-[9px] uppercase font-mono px-2 py-0.5 rounded-none font-bold tracking-wider shadow-md ${
-                        statusBadge[v.status] || statusBadge.available
-                      }`}
+                  {/* High-Contrast Status Badge */}
+                  <div className="absolute top-3 right-3 z-10">
+                    <div
+                      className={`text-[10px] font-mono font-bold tracking-wider uppercase px-2.5 py-1 rounded-none border shadow-2xl flex items-center gap-1.5 ${s.text} ${s.border}`}
+                      style={{
+                        backgroundColor: "rgba(10, 10, 12, 0.92)",
+                        backdropFilter: "blur(8px)",
+                      }}
                     >
-                      {v.status.replace("_", " ")}
-                    </Badge>
+                      <span className={`w-2 h-2 rounded-full ${s.dot}`} />
+                      <span>{s.label}</span>
+                    </div>
                   </div>
                 </div>
 
