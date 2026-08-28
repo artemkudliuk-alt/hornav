@@ -121,15 +121,15 @@ async function initFleetCatalog() {
       <div class="bg-bg-secondary/70 border border-neutral-800/80 hover:border-gold/40 rounded-none p-4 sm:p-6 lg:p-7 flex flex-col gap-5 sm:gap-6 transition-all duration-500 hover:-translate-y-1 group relative shadow-xl text-left overflow-hidden" id="f-card-${v.id}">
         
         <!-- Image Container (Sharp Corners & Safe Badge Placement) -->
-        <a href="/vessel.html?id=${v.id}" class="block w-full h-64 sm:h-72 overflow-hidden rounded-none relative bg-neutral-900 group/img" title="View Full Particulars of ${v.name}">
+        <a href="/vessel.html?id=${v.id}" class="block w-full h-64 sm:h-72 overflow-hidden rounded-none relative bg-[#222225] group/img" title="View Full Particulars of ${v.name}">
           <!-- High-Contrast Status Badge (Strictly inside image container) -->
-          <div class="absolute top-3 right-3 z-20 bg-neutral-950/95 text-white border-2 border-emerald-500 text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1.5 rounded-none shadow-2xl flex items-center gap-1.5 backdrop-blur-md">
+          <div class="absolute top-3 right-3 z-20 bg-[#222225]/95 text-white border-2 border-emerald-500 text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1.5 rounded-none shadow-2xl flex items-center gap-1.5 backdrop-blur-md">
             <span class="w-2 h-2 rounded-none bg-emerald-400 shadow-[0_0_8px_#34d399] inline-block"></span>
             <span class="text-white font-bold tracking-wider">${v.status.toUpperCase()}</span>
           </div>
 
           <img src="${v.coverImageUrl}" alt="${v.name} Commercial Vessel Danamira Shipping" class="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#141416]/80 via-transparent to-transparent pointer-events-none"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#222225]/80 via-transparent to-transparent pointer-events-none"></div>
           <span class="absolute bottom-3 left-3 bg-black/70 backdrop-blur-sm text-white/90 text-[10px] font-mono px-2.5 py-1 rounded-none border border-white/10 opacity-0 group-hover/img:opacity-100 transition-opacity inline-flex items-center gap-1.5">
             <span>👁️ View Full Profile (${v.photos ? v.photos.length : 22} Photos)</span>
             <svg class="w-3 h-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -183,7 +183,7 @@ async function initFleetCatalog() {
           
           <!-- Buttons & Actions Row (Sharp Corners: GA-Plan Left, Details Right) -->
           <div class="flex items-center justify-between gap-3 pt-5 mt-4 border-t border-white/5 w-full">
-            <button type="button" data-pdf="${v.pdfGaPlanUrl}" data-vessel="${v.name}" class="btn-ga-plan group inline-flex items-center gap-2 px-3 py-2 rounded-none bg-[#141416] hover:bg-[#1a1a1d] text-white border border-white/20 hover:border-red-500/60 text-xs font-mono uppercase tracking-wider transition-all duration-200 cursor-pointer active:scale-95 shadow-sm whitespace-nowrap shrink-0">
+            <button type="button" data-pdf="${v.pdfGaPlanUrl}" data-vessel="${v.name}" class="btn-ga-plan group inline-flex items-center gap-2 px-3 py-2 rounded-none bg-[#2a2a2f] hover:bg-[#34343a] text-white border border-white/20 hover:border-red-500/60 text-xs font-mono uppercase tracking-wider transition-all duration-200 cursor-pointer active:scale-95 shadow-sm whitespace-nowrap shrink-0">
               <!-- Classic Red PDF Document Badge Icon -->
               <svg viewBox="0 0 32 36" class="w-4 h-4.5 shrink-0 transition-transform duration-200 group-hover:scale-105" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M7 2C5.34315 2 4 3.34315 4 5V31C4 32.6569 5.34315 34 7 34H25C26.6569 34 28 32.6569 28 31V12L18 2H7Z" stroke="#EF4444" stroke-width="2.2" stroke-linejoin="round" fill="none"/>
