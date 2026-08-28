@@ -71,6 +71,7 @@ export async function PUT(
             status: data.status,
             title: typeof data.title === "object" ? data.title : { en: data.title || data.pageName || data.slug, ua: "", ru: "" },
             metaDescription: typeof data.metaDescription === "object" ? data.metaDescription : { en: data.metaDescription || "", ua: "", ru: "" },
+            ogImage: typeof data.ogImage === "object" ? data.ogImage : { en: data.ogImage || "", ua: "", ru: "" },
             content: typeof data.content === "object" ? data.content : { en: data.content || "", ua: "", ru: "" },
             updatedAt: new Date(),
             publishedAt: data.status === "published" ? new Date() : null,

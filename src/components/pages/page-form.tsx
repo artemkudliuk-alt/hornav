@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -16,7 +16,22 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, ExternalLink, Loader2, Save, FileText, Compass, Trash2 } from "lucide-react";
+import {
+  ArrowLeft,
+  ExternalLink,
+  Loader2,
+  Save,
+  FileText,
+  Compass,
+  Trash2,
+  Search,
+  Globe,
+  Share2,
+  Sparkles,
+  CheckCircle2,
+  Copy,
+  Image as ImageIcon,
+} from "lucide-react";
 
 interface PageFormProps {
   initialData?: any;
@@ -28,8 +43,10 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
   const [isSaving, setIsSaving] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [copiedSlug, setCopiedSlug] = useState(false);
+  const [previewMode, setPreviewMode] = useState<"google" | "telegram">("google");
 
-  // Form state (Clean English)
+  // Form state
   const [formData, setFormData] = useState({
     slug: initialData?.slug || "",
     status: initialData?.status || "published",
@@ -37,19 +54,24 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
     includeInFooter: initialData?.includeInFooter ?? false,
     pageName: initialData?.pageName || "",
     title: typeof initialData?.title === "string" ? initialData.title : (initialData?.title?.en || ""),
+    metaTitle: typeof initialData?.metaTitle === "string" ? initialData.metaTitle : (initialData?.metaTitle?.en || initialData?.title?.en || ""),
     metaDescription: typeof initialData?.metaDescription === "string" ? initialData.metaDescription : (initialData?.metaDescription?.en || ""),
+    ogImage: typeof initialData?.ogImage === "string" ? initialData.ogImage : (initialData?.ogImage?.en || ""),
     content: typeof initialData?.content === "string" ? initialData.content : (initialData?.content?.en || ""),
   });
 
-  // Auto slug generation from English title
-  function handleTitleChange(val: string) {
+  // Auto slug generation from English title if empty
+  function handlePageNameChange(val: string) {
     setFormData((prev) => {
-      const updated = { ...prev, title: val };
+      const updated = { ...prev, pageName: val };
       if (!isEditing && !prev.slug) {
         updated.slug = val
           .toLowerCase()
           .replace(/[^a-z0-9]+/g, "-")
           .replace(/^-+|-+$/g, "");
+      }
+      if (!prev.metaTitle) {
+        updated.metaTitle = val ? `${val} | Danamira Shipping Ltd` : "";
       }
       return updated;
     });
@@ -78,11 +100,15 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
     setError(null);
 
     const pageTitle = formData.title || formData.pageName || formData.slug || "New Page";
+    const seoTitle = formData.metaTitle || `${pageTitle} | Danamira Shipping Ltd`;
+    
     const payload = {
       ...formData,
       pageName: formData.pageName || pageTitle,
       title: { en: pageTitle, ua: "", ru: "" },
+      metaTitle: { en: seoTitle, ua: "", ru: "" },
       metaDescription: { en: formData.metaDescription || "", ua: "", ru: "" },
+      ogImage: { en: formData.ogImage || "", ua: "", ru: "" },
       content: { en: formData.content || "", ua: "", ru: "" },
     };
 
@@ -103,8 +129,6 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
         throw new Error(data.error || "Failed to save page");
       }
 
-      const saved = await res.json();
-
       router.push("/pages");
       router.refresh();
     } catch (err: any) {
@@ -118,9 +142,25 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
   const cleanSlug = formData.slug ? formData.slug.replace(/^\/+/, "") : "";
   const isStaticPage = ["company.html", "fleet.html", "contacts.html", "accountability.html", "vessel.html"].includes(cleanSlug);
   const targetPath = isStaticPage ? `/${cleanSlug}` : `/page.html?slug=${cleanSlug}`;
-  const livePageUrl = typeof window !== "undefined" && window.location.hostname === "localhost"
-    ? `http://localhost:5173${targetPath}`
-    : `https://danamiratest.vercel.app${targetPath}`;
+  
+  const [livePageUrl, setLivePageUrl] = useState<string>(`https://danamira-shipping.com${targetPath}`);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const port = window.location.port ? ":5188" : "";
+      const base = window.location.hostname === "localhost" ? `http://localhost${port}` : "https://danamira-shipping.com";
+      setLivePageUrl(`${base}${targetPath}`);
+    }
+  }, [targetPath]);
+
+  const titleLength = (formData.metaTitle || formData.pageName || "").length;
+  const descLength = (formData.metaDescription || "").length;
+
+  function copySlugUrl() {
+    navigator.clipboard.writeText(`https://danamira-shipping.com${targetPath}`);
+    setCopiedSlug(true);
+    setTimeout(() => setCopiedSlug(false), 2000);
+  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -142,7 +182,7 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
               {isEditing ? `Edit: ${formData.pageName || formData.slug}` : "Create New Site Page"}
             </h1>
             <p className="text-xs text-neutral-400">
-              Manage page title, formatting, media photos, and menu placement.
+              Manage page content, SEO meta tags, social previews, and navigation links.
             </p>
           </div>
         </div>
@@ -203,29 +243,34 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
         </div>
       )}
 
-      {/* Basic URL and Status Settings */}
+      {/* Basic Settings */}
       <Card className="rounded-none bg-[#202023]/70 border-white/5 p-6 space-y-5 shadow-xl">
+        <div className="flex items-center gap-2 border-b border-white/5 pb-3">
+          <FileText className="w-4 h-4 text-[#c89b3c]" />
+          <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
+            General Page Settings
+          </h3>
+        </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="space-y-2">
             <Label className="text-xs text-neutral-300">Page Internal Name</Label>
             <Input
               placeholder="e.g. Careers & Crewing"
               value={formData.pageName}
-              onChange={(e) =>
-                setFormData({ ...formData, pageName: e.target.value })
-              }
+              onChange={(e) => handlePageNameChange(e.target.value)}
               className="rounded-none bg-[#18181b] border-white/10 text-xs text-white"
             />
           </div>
 
           <div className="space-y-2">
-            <Label className="text-xs text-neutral-300">Public Page URL</Label>
+            <Label className="text-xs text-neutral-300">Public Slug / URL</Label>
             <div className="flex items-center rounded-none bg-[#18181b] border border-white/10 overflow-hidden">
-              <span className="px-3 text-xs text-neutral-500 font-mono select-none">
+              <span className="px-2.5 text-xs text-neutral-500 font-mono select-none">
                 danamirashipping.com/
               </span>
               <Input
-                placeholder="page.html"
+                placeholder="careers"
                 value={formData.slug}
                 onChange={(e) =>
                   setFormData({
@@ -302,6 +347,193 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
         </div>
       </Card>
 
+      {/* SEO & Search / Social Preview Block (Yoast Style) */}
+      <Card className="rounded-none bg-[#202023]/70 border-white/5 p-6 space-y-6 shadow-xl">
+        <div className="flex items-center justify-between border-b border-white/5 pb-3">
+          <div className="flex items-center gap-2">
+            <Search className="w-4 h-4 text-[#c89b3c]" />
+            <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
+              Search Engine Optimization (SEO) &amp; Social Snippets
+            </h3>
+          </div>
+          <div className="flex items-center gap-1 bg-[#18181b] p-1 border border-white/10">
+            <button
+              type="button"
+              onClick={() => setPreviewMode("google")}
+              className={`px-3 py-1 text-xs uppercase tracking-wider font-mono cursor-pointer transition-colors ${
+                previewMode === "google"
+                  ? "bg-[#c89b3c] text-neutral-950 font-bold"
+                  : "text-neutral-400 hover:text-white"
+              }`}
+            >
+              Google Preview
+            </button>
+            <button
+              type="button"
+              onClick={() => setPreviewMode("telegram")}
+              className={`px-3 py-1 text-xs uppercase tracking-wider font-mono cursor-pointer transition-colors ${
+                previewMode === "telegram"
+                  ? "bg-[#c89b3c] text-neutral-950 font-bold"
+                  : "text-neutral-400 hover:text-white"
+              }`}
+            >
+              Telegram / Social Preview
+            </button>
+          </div>
+        </div>
+
+        {/* Live Snippet Preview Box */}
+        <div className="bg-[#18181b] border border-white/10 p-4 sm:p-5 rounded-none">
+          <div className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest mb-3 flex items-center gap-1.5">
+            <Globe className="w-3.5 h-3.5 text-[#c89b3c]" />
+            Live Preview Snippet
+          </div>
+
+          {previewMode === "google" ? (
+            /* Google Search Engine Result Preview */
+            <div className="space-y-1.5 font-sans">
+              <div className="flex items-center gap-2 text-xs text-neutral-400">
+                <span className="w-4 h-4 rounded-full bg-neutral-800 text-neutral-300 flex items-center justify-center text-[10px]">⚓</span>
+                <span className="text-neutral-300 font-medium">danamirashipping.com</span>
+                <span className="text-neutral-500">&rsaquo; {cleanSlug || "page"}</span>
+              </div>
+              <h4 className="text-base sm:text-lg text-[#8ab4f8] hover:underline cursor-pointer font-medium leading-tight">
+                {formData.metaTitle || formData.pageName || "Danamira Shipping Ltd — Commercial Fleet & Ship Management"}
+              </h4>
+              <p className="text-xs sm:text-sm text-[#bdc1c6] leading-snug line-clamp-2">
+                {formData.metaDescription || "Official document and information published by Danamira Shipping Ltd. Independent commercial ship management and global maritime chartering services."}
+              </p>
+            </div>
+          ) : (
+            /* Telegram / WhatsApp / Social Share Card Preview */
+            <div className="bg-[#242428] border-l-4 border-[#c89b3c] p-3.5 max-w-lg rounded-sm shadow-md font-sans">
+              <div className="text-[11px] text-[#c89b3c] font-semibold tracking-wide uppercase mb-1 flex items-center justify-between">
+                <span>danamirashipping.com</span>
+                <span className="text-[10px] text-neutral-400 font-mono">TG / WA Preview</span>
+              </div>
+              <h4 className="text-sm sm:text-base font-semibold text-white leading-snug mb-1">
+                {formData.metaTitle || formData.pageName || "Danamira Shipping Ltd"}
+              </h4>
+              <p className="text-xs text-neutral-300 line-clamp-2 leading-relaxed mb-2">
+                {formData.metaDescription || "Official company profile, commercial particulars and dry bulk cargo chartering."}
+              </p>
+              {formData.ogImage ? (
+                <div className="w-full h-32 rounded bg-cover bg-center border border-white/5" style={{ backgroundImage: `url(${formData.ogImage})` }} />
+              ) : (
+                <div className="w-full h-24 rounded bg-[#18181b] border border-white/5 flex items-center justify-center text-neutral-500 text-xs gap-2">
+                  <ImageIcon className="w-4 h-4 text-neutral-600" />
+                  <span>Default Danamira Maritime Social Card</span>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* SEO Input Fields */}
+        <div className="space-y-4">
+          {/* SEO Title Input */}
+          <div className="space-y-1.5">
+            <div className="flex items-center justify-between">
+              <Label className="text-xs font-semibold text-white flex items-center gap-1.5">
+                <span>SEO-заголовок (Meta Title / &lt;title&gt;)</span>
+              </Label>
+              <span className={`text-[11px] font-mono ${titleLength > 60 ? "text-amber-400 font-bold" : "text-emerald-400"}`}>
+                {titleLength} / 60 characters {titleLength >= 30 && titleLength <= 60 && "✓ Optimal"}
+              </span>
+            </div>
+            <Input
+              placeholder="e.g. About Us • Company Profile & Mission | Danamira Shipping Ltd"
+              value={formData.metaTitle}
+              onChange={(e) => setFormData({ ...formData, metaTitle: e.target.value })}
+              className="rounded-none bg-[#18181b] border-white/10 text-xs text-white"
+            />
+            {/* Title Progress Bar */}
+            <div className="w-full h-1 bg-neutral-800 overflow-hidden">
+              <div
+                className={`h-full transition-all duration-300 ${
+                  titleLength > 65
+                    ? "bg-red-500"
+                    : titleLength > 60
+                    ? "bg-amber-500"
+                    : titleLength >= 30
+                    ? "bg-emerald-500"
+                    : "bg-neutral-600"
+                }`}
+                style={{ width: `${Math.min(100, (titleLength / 60) * 100)}%` }}
+              />
+            </div>
+            <p className="text-[11px] text-neutral-400">
+              The title displayed on browser tabs, search engine results, and social card headers.
+            </p>
+          </div>
+
+          {/* Meta Description Input */}
+          <div className="space-y-1.5">
+            <div className="flex items-center justify-between">
+              <Label className="text-xs font-semibold text-white">
+                Мета-описание (Meta Description / &lt;meta name="description"&gt;)
+              </Label>
+              <span className={`text-[11px] font-mono ${descLength > 160 ? "text-amber-400 font-bold" : "text-emerald-400"}`}>
+                {descLength} / 160 characters {descLength >= 100 && descLength <= 160 && "✓ Optimal"}
+              </span>
+            </div>
+            <Textarea
+              rows={3}
+              placeholder="e.g. Official company profile of Danamira Shipping Ltd: Independent ship-management under Greek Law 89/1967, corporate mission, and commercial chartering desks."
+              value={formData.metaDescription}
+              onChange={(e) => setFormData({ ...formData, metaDescription: e.target.value })}
+              className="rounded-none bg-[#18181b] border-white/10 text-xs text-white resize-none"
+            />
+            {/* Description Progress Bar */}
+            <div className="w-full h-1 bg-neutral-800 overflow-hidden">
+              <div
+                className={`h-full transition-all duration-300 ${
+                  descLength > 170
+                    ? "bg-red-500"
+                    : descLength > 160
+                    ? "bg-amber-500"
+                    : descLength >= 100
+                    ? "bg-emerald-500"
+                    : "bg-neutral-600"
+                }`}
+                style={{ width: `${Math.min(100, (descLength / 160) * 100)}%` }}
+              />
+            </div>
+            <p className="text-[11px] text-neutral-400">
+              Snippet summary used by Google, Bing, Telegram, and messengers when linking to this page.
+            </p>
+          </div>
+
+          {/* Social Preview Image (OG:Image) */}
+          <div className="space-y-1.5">
+            <Label className="text-xs font-semibold text-white flex items-center gap-1.5">
+              <Share2 className="w-3.5 h-3.5 text-[#c89b3c]" />
+              Social Preview Image URL (og:image)
+            </Label>
+            <div className="flex gap-2">
+              <Input
+                placeholder="https://danamirashipping.com/assets/og-preview.jpg or /fleet/molpadia/Photo-1.jpg"
+                value={formData.ogImage}
+                onChange={(e) => setFormData({ ...formData, ogImage: e.target.value })}
+                className="rounded-none bg-[#18181b] border-white/10 text-xs text-white"
+              />
+              <Button
+                type="button"
+                variant="outline"
+                onClick={copySlugUrl}
+                className="rounded-none bg-[#18181b] border-white/10 hover:bg-white/5 text-xs text-neutral-300 shrink-0 cursor-pointer"
+              >
+                {copiedSlug ? <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                {copiedSlug ? "Copied" : "Copy URL"}
+              </Button>
+            </div>
+            <p className="text-[11px] text-neutral-400">
+              Banner image attached to messenger links (Telegram, WhatsApp, iMessage, Twitter/X, LinkedIn).
+            </p>
+          </div>
+        </div>
+      </Card>
+
       {/* Page Content & Visual Editor Block */}
       <Card className="rounded-none bg-[#202023]/70 border-white/5 p-6 space-y-4 shadow-xl">
         <div className="flex items-center justify-between border-b border-white/5 pb-3">
@@ -329,3 +561,4 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
     </form>
   );
 }
+

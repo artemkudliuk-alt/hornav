@@ -4,10 +4,10 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
-    "dev:admin": "next dev -p 3000",
+    "dev:admin": "next dev -p 3030",
     "build:vite": "vite build && node scripts/sync-build.mjs",
     "build": "vite build && node scripts/sync-build.mjs && next build",
-    "start": "next start",
+    "start": "next start -p 3030",
     "lint": "eslint",
     "preview": "vite preview"
   },

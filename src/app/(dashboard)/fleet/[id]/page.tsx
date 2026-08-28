@@ -38,7 +38,13 @@ export default async function EditVesselPage({
   }
 
   if (!vesselData) {
-    vesselData = sampleVessels.find((v) => v.id === id) || sampleVessels[0];
+    vesselData = sampleVessels.find(
+      (v) =>
+        v.id === id ||
+        v.slug === id ||
+        v.imoNumber === id ||
+        (typeof v.name === "object" && v.name.en?.toLowerCase().includes(id.toLowerCase()))
+    ) || sampleVessels[0];
   }
 
   if (!vesselData) {

@@ -697,7 +697,36 @@ document.addEventListener('DOMContentLoaded', async () => {
     vessel = FLEET_DATABASE['vessel-molpadia'];
   }
 
-  document.title = `${vessel.name} — Technical Particulars | Danamira Shipping`;
+  const seoTitle = vessel.metaTitle || `${vessel.name} — Technical Particulars | Danamira Shipping`;
+  const seoDesc = vessel.metaDescription || `Commercial specifications, general arrangement plan, crane capacities, and photo inspection gallery of dry bulk cargo vessel ${vessel.name}.`;
+  const seoImage = vessel.ogImage || (vessel.gallery && vessel.gallery[0]) || (vessel.media && vessel.media[0]?.url) || '';
+
+  document.title = seoTitle;
+
+  function setVesselMetaTag(attr, key, val) {
+    if (!val) return;
+    let el = document.querySelector(`meta[${attr}="${key}"]`);
+    if (!el) {
+      el = document.createElement('meta');
+      el.setAttribute(attr, key);
+      document.head.appendChild(el);
+    }
+    el.setAttribute('content', val);
+  }
+
+  setVesselMetaTag('name', 'description', seoDesc);
+  setVesselMetaTag('property', 'og:title', seoTitle);
+  setVesselMetaTag('property', 'og:description', seoDesc);
+  setVesselMetaTag('name', 'twitter:title', seoTitle);
+  setVesselMetaTag('name', 'twitter:description', seoDesc);
+  setVesselMetaTag('property', 'og:type', 'website');
+  setVesselMetaTag('property', 'og:url', window.location.href);
+
+  if (seoImage) {
+    setVesselMetaTag('property', 'og:image', seoImage);
+    setVesselMetaTag('name', 'twitter:image', seoImage);
+    setVesselMetaTag('name', 'twitter:card', 'summary_large_image');
+  }
 
   const titleEl = document.getElementById('vessel-name-title');
   if (titleEl) titleEl.textContent = vessel.name;

@@ -4,8 +4,8 @@
 @source "../src/**/*.js";
 
 @theme {
-  --color-bg-primary: #25252a;
-  --color-bg-secondary: #2e2e35;
+  --color-bg-primary: #222225;
+  --color-bg-secondary: #2a2a2f;
   --color-gold: #C89B3C;
   --color-gold-light: #DFB758;
   --color-gold-dark: #A67D28;
@@ -774,7 +774,7 @@ textarea:-webkit-autofill:focus {
   .stacking-section {
     position: sticky !important;
     top: 0 !important;
-    overflow: hidden !important;
+    overflow: visible !important;
     padding-top: 7rem !important; /* 112px to clear header */
     will-change: transform, opacity;
   }
@@ -958,36 +958,7 @@ header {
 
 
 
-/* Premium hardware-accelerated animated gradient flow */
-.premium-gradient-flow {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  background-color: var(--color-bg-primary) !important;
-}
-
-.premium-gradient-flow::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at 45% 45%, #34343a 0%, #252529 55%, #1c1c20 100%) !important;
-  z-index: -1;
-  pointer-events: none;
-  animation: premium-shimmer 40s linear infinite;
-  will-change: transform;
-}
-
-@keyframes premium-shimmer {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
+/* Clean static background */
 
 /* Swiss Maritime Minimal — Split Layout & Compact Media Player */
 .vessel-hero-grid {

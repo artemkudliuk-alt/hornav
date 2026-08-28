@@ -58,6 +58,7 @@ export async function POST(req: Request) {
             status: data.status,
             title: typeof data.title === "object" ? data.title : { en: data.title || data.pageName || data.slug, ua: "", ru: "" },
             metaDescription: typeof data.metaDescription === "object" ? data.metaDescription : { en: data.metaDescription || "", ua: "", ru: "" },
+            ogImage: typeof data.ogImage === "object" ? data.ogImage : { en: data.ogImage || "", ua: "", ru: "" },
             content: typeof data.content === "object" ? data.content : { en: data.content || "", ua: "", ru: "" },
             createdBy: (user.id && user.id.includes("-") && user.id.length === 36) ? user.id : null,
             publishedAt: data.status === "published" ? new Date() : null,
@@ -79,7 +80,9 @@ export async function POST(req: Request) {
       includeInNav: data.includeInNav,
       includeInFooter: data.includeInFooter,
       title: data.title || { en: data.pageName || data.slug, ua: "", ru: "" },
+      metaTitle: data.metaTitle || { en: data.metaTitle || data.pageName || data.slug, ua: "", ru: "" },
       metaDescription: data.metaDescription || { en: "", ua: "", ru: "" },
+      ogImage: data.ogImage || { en: "", ua: "", ru: "" },
       content: data.content || { en: "", ua: "", ru: "" },
       createdAt: new Date().toISOString(),
     };

@@ -28,6 +28,7 @@ export async function GET(
         const dbVessel = allVessels.find(
           (v: any) =>
             v.id === id ||
+            v.slug === id ||
             v.imoNumber === id ||
             v.imo_number === id ||
             (v.name && typeof v.name === "object" && (v.name.en?.toLowerCase().includes(id.toLowerCase()) || v.name.en?.toLowerCase().replace(/[^a-z0-9]/g, "-") === id))
@@ -54,6 +55,7 @@ export async function GET(
       const mock = sampleVessels.find(
         (v) =>
           v.id === id ||
+          v.slug === id ||
           v.imoNumber === id ||
           (v.name && typeof v.name === "object" && (v.name.en?.toLowerCase().includes(id.toLowerCase()) || v.name.en?.toLowerCase().replace(/[^a-z0-9]/g, "-") === id))
       );
@@ -70,15 +72,20 @@ export async function GET(
     const nameObj = vessel.name as unknown as Record<string, string> | null;
     const descObj = vessel.description as unknown as Record<string, string> | null;
     const deckObj = vessel.deckEquipment as unknown as Record<string, string> | null;
+    const metaTitleObj = vessel.metaTitle as unknown as Record<string, string> | null;
+    const metaDescObj = vessel.metaDescription as unknown as Record<string, string> | null;
 
     const responseData = {
       ...vessel,
       imoNumber: vessel.imoNumber || vessel.imo_number,
       name: typeof vessel.name === "object" ? (nameObj?.[lang] || nameObj?.en || "Unnamed Vessel") : (vessel.name || "Unnamed Vessel"),
       nameI18n: typeof vessel.name === "object" ? vessel.name : { en: vessel.name, ua: "", ru: "" },
+      metaTitle: typeof vessel.metaTitle === "object" ? (metaTitleObj?.[lang] || metaTitleObj?.en || `MV ${nameObj?.en || vessel.name} — Technical Particulars | Danamira Shipping`) : (vessel.metaTitle || `MV ${nameObj?.en || vessel.name} — Technical Particulars | Danamira Shipping`),
+      metaDescription: typeof vessel.metaDescription === "object" ? (metaDescObj?.[lang] || metaDescObj?.en || (descObj?.[lang] || descObj?.en || "")) : (vessel.metaDescription || (descObj?.[lang] || descObj?.en || "")),
       description: typeof vessel.description === "object" ? (descObj?.[lang] || descObj?.en || "") : (vessel.description || ""),
       deckEquipment: typeof vessel.deckEquipment === "object" ? (deckObj?.[lang] || deckObj?.en || "") : (vessel.deckEquipment || ""),
       coverImageUrl: vessel.coverImageUrl || vessel.cover_image_url || "/fleet/molpadia/MV_MOLPADIA__PHOTO.jpg",
+      ogImage: vessel.ogImage || vessel.coverImageUrl || "/fleet/molpadia/MV_MOLPADIA__PHOTO.jpg",
       media,
     };
 

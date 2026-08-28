@@ -354,11 +354,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const nameInput = document.getElementById('input-name');
       const companyInput = document.getElementById('input-company');
       const emailInput = document.getElementById('input-email');
+      const phoneInput = document.getElementById('input-phone');
       const messageInput = document.getElementById('input-message');
 
       const clientName = nameInput ? nameInput.value.trim() : 'Inbound Client';
       const companyName = companyInput ? companyInput.value.trim() : '';
       const clientEmail = emailInput ? emailInput.value.trim() : '';
+      const clientPhone = phoneInput ? phoneInput.value.trim() : '';
       const clientMessage = messageInput ? messageInput.value.trim() : '';
 
       // Morph button to loading state
@@ -381,8 +383,9 @@ document.addEventListener('DOMContentLoaded', () => {
           company: companyName,
           clientEmail: clientEmail || null,
           email: clientEmail || null,
+          phone: clientPhone || null,
           comment: clientMessage || null,
-          notes: clientMessage || null,
+          notes: clientPhone ? `[Phone: ${clientPhone}] ${clientMessage}` : clientMessage || null,
           source: 'landing_page',
           sourcePage: window.location.pathname || "/",
         };
@@ -409,7 +412,7 @@ document.addEventListener('DOMContentLoaded', () => {
               </div>
               <h3 class="text-2xl font-serif text-gold mb-3">Inquiry Sent</h3>
               <p class="text-xs text-neutral-300 font-light max-w-sm leading-relaxed">
-                Thank you for contacting Danamira Shipping Ltd. Your inquiry has been routed to our Piraeus office, and a representative will follow up with you within 24 business hours.
+                Thank you for contacting Danamira Shipping Ltd. Your inquiry has been routed to our Glyfada office, and a representative will follow up with you within 24 business hours.
               </p>
             </div>
           `;
@@ -575,9 +578,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const H_N = secInfo.height;
       const Offset_N = secInfo.offsetTop;
 
-      // The last section doesn't get covered by anything, it just scrolls naturally
+      // The last section (Contact) doesn't get covered by another section.
+      // When scrolled past its top offset, it translates up with scroll so its entire content and the footer below it flow naturally!
       if (idx === sectionData.length - 1) {
-        secInfo.el.style.transform = 'translate3d(0, 0, 0) scale(1)';
+        if (scrollY >= Offset_N) {
+          const scrollInside = scrollY - Offset_N;
+          secInfo.el.style.transform = `translate3d(0, ${-scrollInside}px, 0)`;
+        } else {
+          secInfo.el.style.transform = 'translate3d(0, 0, 0)';
+        }
         secInfo.el.style.opacity = 1;
         secInfo.el.style.visibility = 'visible';
         return;
@@ -636,16 +645,20 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const updateActiveNav = () => {
-    if (sectionData.length === 0) return;
     const scrollY = window.scrollY;
     const currentVh = window.innerHeight;
     
     let activeSectionId = 'hero-sec';
-    for (let i = sectionData.length - 1; i >= 0; i--) {
-      const sec = sectionData[i];
-      if (scrollY >= sec.offsetTop - currentVh / 2) {
-        activeSectionId = sec.el.id;
-        break;
+    const contactSec = document.getElementById('contact');
+    if (contactSec && scrollY >= contactSec.offsetTop - currentVh / 2) {
+      activeSectionId = 'contact';
+    } else if (sectionData.length > 0) {
+      for (let i = sectionData.length - 1; i >= 0; i--) {
+        const sec = sectionData[i];
+        if (scrollY >= sec.offsetTop - currentVh / 2) {
+          activeSectionId = sec.el.id;
+          break;
+        }
       }
     }
     
@@ -656,11 +669,12 @@ document.addEventListener('DOMContentLoaded', () => {
       'markets': 'company',
       'fleet': 'fleet',
       'compliance': 'company',
+      'careers': 'careers',
       'contact': 'contact'
     };
     
     const activeNavKey = sectionToNav[activeSectionId] || 'home';
-    const navKeys = ['home', 'company', 'fleet', 'contact'];
+    const navKeys = ['home', 'company', 'fleet', 'careers', 'contact'];
     
     navKeys.forEach(key => {
       const headerLink = document.getElementById(`link-${key}`);
@@ -675,9 +689,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const footerLink = document.getElementById(`footer-link-${key}`);
       if (footerLink) {
         if (key === activeNavKey) {
-          footerLink.className = 'text-gold border-b border-gold pb-0.5';
+          footerLink.className = 'text-gold transition-colors duration-200';
         } else {
-          footerLink.className = 'hover:text-gold transition-colors duration-200';
+          footerLink.className = 'hover:text-gold transition-colors duration-200 text-neutral-300';
         }
       }
 
@@ -703,7 +717,9 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('cargo'),
       document.getElementById('markets'),
       document.getElementById('fleet'),
-      document.getElementById('compliance')
+      document.getElementById('compliance'),
+      document.getElementById('careers'),
+      document.getElementById('contact')
     ].filter(Boolean);
 
     if (!isDesktop) {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,7 +17,22 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
 import { MediaGallery } from "./media-gallery";
-import { Loader2, Save, ArrowLeft, Ship, ExternalLink, Star, Trash2, AlertTriangle } from "lucide-react";
+import {
+  Loader2,
+  Save,
+  ArrowLeft,
+  Ship,
+  ExternalLink,
+  Star,
+  Trash2,
+  AlertTriangle,
+  Search,
+  Globe,
+  Share2,
+  Copy,
+  CheckCircle2,
+  Image as ImageIcon,
+} from "lucide-react";
 import Link from "next/link";
 
 interface VesselFormProps {
@@ -27,15 +42,22 @@ interface VesselFormProps {
 
 export function VesselForm({ initialData, isEditing = false }: VesselFormProps) {
   const router = useRouter();
+  const [activeTab, setActiveTab] = useState("base");
   const [isSaving, setIsSaving] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [copiedSlug, setCopiedSlug] = useState(false);
+  const [seoPreviewMode, setSeoPreviewMode] = useState<"google" | "telegram">("google");
 
   // Form State (Clean English)
   const [formData, setFormData] = useState({
     imoNumber: initialData?.imoNumber || "",
     name: typeof initialData?.name === "string" ? initialData?.name : (initialData?.name?.en || ""),
+    slug: initialData?.slug || (initialData?.name?.en ? initialData.name.en.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") : ""),
+    metaTitle: typeof initialData?.metaTitle === "string" ? initialData.metaTitle : (initialData?.metaTitle?.en || (initialData?.name?.en ? `${initialData.name.en} — Technical Particulars | Danamira Shipping` : "")),
+    metaDescription: typeof initialData?.metaDescription === "string" ? initialData.metaDescription : (initialData?.metaDescription?.en || (initialData?.description?.en || "Commercial specifications, general arrangement plan, crane capacities, and photo inspection gallery of dry bulk cargo vessel.")),
+    ogImage: initialData?.ogImage || initialData?.coverImageUrl || "",
     type: initialData?.type || "bulk_carrier",
     status: initialData?.status || "available",
     charterRateUsd: initialData?.charterRateUsd || "",
@@ -160,11 +182,18 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
     }
   }
 
-  const liveSiteUrl = typeof window !== "undefined" && window.location.hostname === "localhost"
-    ? `http://localhost:5173/vessel.html?id=${initialData?.id || "vessel-molpadia"}`
-    : `https://danamiratest.vercel.app/vessel.html?id=${initialData?.id || "vessel-molpadia"}`;
+  const targetVesselSlug = formData.slug || initialData?.slug || initialData?.id || "vessel-molpadia";
+  const [liveSiteUrl, setLiveSiteUrl] = useState<string>(
+    `https://danamira-shipping.com/vessel.html?id=${targetVesselSlug}`
+  );
 
-  const [activeTab, setActiveTab] = useState("base");
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const port = window.location.port ? ":5188" : "";
+      const base = window.location.hostname === "localhost" ? `http://localhost${port}` : "https://danamira-shipping.com";
+      setLiveSiteUrl(`${base}/vessel.html?id=${targetVesselSlug}`);
+    }
+  }, [targetVesselSlug]);
 
   async function handleDeleteVessel() {
     if (!initialData?.id) return;
@@ -288,6 +317,9 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
           </TabsTrigger>
           <TabsTrigger value="media" className="rounded-none text-xs uppercase tracking-wider">
             4. Photos &amp; PDF Specs
+          </TabsTrigger>
+          <TabsTrigger value="seo" className="rounded-none text-xs uppercase tracking-wider text-[#c89b3c] font-semibold">
+            5. SEO &amp; Social Snippets
           </TabsTrigger>
         </TabsList>
 
@@ -860,6 +892,188 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
               onCoverChange={handleCoverChange}
               onMediaChange={handleMediaListChange}
             />
+          </Card>
+        </TabsContent>
+
+        {/* ─── TAB 5: SEO & Social Snippets ─────────────────────── */}
+        <TabsContent value="seo" className="space-y-6">
+          <Card className="rounded-none bg-[#202023]/70 border-white/5 p-6 space-y-6 shadow-xl">
+            <div className="flex items-center justify-between border-b border-white/5 pb-3">
+              <div className="flex items-center gap-2">
+                <Search className="w-4 h-4 text-[#c89b3c]" />
+                <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
+                  Vessel SEO &amp; Messenger Previews (OpenGraph)
+                </h3>
+              </div>
+              <div className="flex items-center gap-1 bg-[#18181b] p-1 border border-white/10">
+                <button
+                  type="button"
+                  onClick={() => setSeoPreviewMode("google")}
+                  className={`px-3 py-1 text-xs uppercase tracking-wider font-mono cursor-pointer transition-colors ${
+                    seoPreviewMode === "google"
+                      ? "bg-[#c89b3c] text-neutral-950 font-bold"
+                      : "text-neutral-400 hover:text-white"
+                  }`}
+                >
+                  Google Preview
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSeoPreviewMode("telegram")}
+                  className={`px-3 py-1 text-xs uppercase tracking-wider font-mono cursor-pointer transition-colors ${
+                    seoPreviewMode === "telegram"
+                      ? "bg-[#c89b3c] text-neutral-950 font-bold"
+                      : "text-neutral-400 hover:text-white"
+                  }`}
+                >
+                  Telegram / WhatsApp Preview
+                </button>
+              </div>
+            </div>
+
+            {/* Live Snippet Preview Box */}
+            <div className="bg-[#18181b] border border-white/10 p-4 sm:p-5 rounded-none">
+              <div className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest mb-3 flex items-center gap-1.5">
+                <Globe className="w-3.5 h-3.5 text-[#c89b3c]" />
+                Live Social / Search Snippet
+              </div>
+
+              {seoPreviewMode === "google" ? (
+                /* Google Search Engine Result Preview */
+                <div className="space-y-1.5 font-sans">
+                  <div className="flex items-center gap-2 text-xs text-neutral-400">
+                    <span className="w-4 h-4 rounded-full bg-neutral-800 text-neutral-300 flex items-center justify-center text-[10px]">⚓</span>
+                    <span className="text-neutral-300 font-medium">danamirashipping.com</span>
+                    <span className="text-neutral-500">&rsaquo; fleet &rsaquo; {formData.slug || (formData.name ? formData.name.toLowerCase().replace(/[^a-z0-9]+/g, "-") : "vessel")}</span>
+                  </div>
+                  <h4 className="text-base sm:text-lg text-[#8ab4f8] hover:underline cursor-pointer font-medium leading-tight">
+                    {formData.metaTitle || (formData.name ? `${formData.name} — Technical Particulars | Danamira Shipping` : "MV MOLPADIA — Technical Particulars | Danamira Shipping")}
+                  </h4>
+                  <p className="text-xs sm:text-sm text-[#bdc1c6] leading-snug line-clamp-2">
+                    {formData.metaDescription || "Commercial specifications, general arrangement plan, crane capacities, and photo inspection gallery of dry bulk cargo vessel."}
+                  </p>
+                </div>
+              ) : (
+                /* Telegram / WhatsApp / Social Share Card Preview */
+                <div className="bg-[#242428] border-l-4 border-[#c89b3c] p-3.5 max-w-lg rounded-sm shadow-md font-sans">
+                  <div className="text-[11px] text-[#c89b3c] font-semibold tracking-wide uppercase mb-1 flex items-center justify-between">
+                    <span>danamirashipping.com</span>
+                    <span className="text-[10px] text-neutral-400 font-mono">Telegram / WA Preview</span>
+                  </div>
+                  <h4 className="text-sm sm:text-base font-semibold text-white leading-snug mb-1">
+                    {formData.metaTitle || (formData.name ? `${formData.name} — Technical Particulars | Danamira Shipping` : "MV MOLPADIA — Technical Particulars | Danamira Shipping")}
+                  </h4>
+                  <p className="text-xs text-neutral-300 line-clamp-2 leading-relaxed mb-2">
+                    {formData.metaDescription || "Commercial specifications, general arrangement plan, crane capacities, and photo inspection gallery of dry bulk cargo vessel."}
+                  </p>
+                  {(formData.ogImage || formData.coverImageUrl) ? (
+                    <div
+                      className="w-full h-36 rounded bg-cover bg-center border border-white/5 shadow-inner"
+                      style={{ backgroundImage: `url(${formData.ogImage || formData.coverImageUrl})` }}
+                    />
+                  ) : (
+                    <div className="w-full h-24 rounded bg-[#18181b] border border-white/5 flex items-center justify-center text-neutral-500 text-xs gap-2">
+                      <ImageIcon className="w-4 h-4 text-neutral-600" />
+                      <span>Vessel Cover Photo Preview</span>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* SEO Input Fields */}
+            <div className="space-y-4">
+              {/* Vessel SEO Title */}
+              <div className="space-y-1.5">
+                <div className="flex items-center justify-between">
+                  <Label className="text-xs font-semibold text-white">
+                    SEO-заголовок (Meta Title / &lt;title&gt;)
+                  </Label>
+                  <span className={`text-[11px] font-mono ${(formData.metaTitle || "").length > 60 ? "text-amber-400 font-bold" : "text-emerald-400"}`}>
+                    {(formData.metaTitle || "").length} / 60 characters
+                  </span>
+                </div>
+                <Input
+                  placeholder="e.g. MV METANIRA — Technical Particulars & GA Plan | Danamira Shipping"
+                  value={formData.metaTitle}
+                  onChange={(e) => setFormData({ ...formData, metaTitle: e.target.value })}
+                  className="rounded-none bg-[#18181b] border-white/10 text-xs text-white"
+                />
+                <p className="text-[11px] text-neutral-400">
+                  Custom page title shown in browser tab and search results.
+                </p>
+              </div>
+
+              {/* Permanent Link / Slug */}
+              <div className="space-y-1.5">
+                <Label className="text-xs font-semibold text-white">
+                  Ярлык / ЧПУ (Vessel Slug &amp; URL)
+                </Label>
+                <div className="flex items-center rounded-none bg-[#18181b] border border-white/10 overflow-hidden">
+                  <span className="px-2.5 text-xs text-neutral-500 font-mono select-none">
+                    danamirashipping.com/vessel.html?slug=
+                  </span>
+                  <Input
+                    placeholder="metanira"
+                    value={formData.slug}
+                    onChange={(e) => setFormData({ ...formData, slug: e.target.value.toLowerCase().replace(/[^a-z0-9]+/g, "-") })}
+                    className="rounded-none bg-transparent border-none text-xs font-mono text-white focus-visible:ring-0"
+                  />
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => {
+                      navigator.clipboard.writeText(`https://danamirashipping.com/vessel.html?slug=${formData.slug || "vessel"}`);
+                      setCopiedSlug(true);
+                      setTimeout(() => setCopiedSlug(false), 2000);
+                    }}
+                    className="rounded-none px-3 text-xs text-neutral-400 hover:text-white cursor-pointer"
+                  >
+                    {copiedSlug ? <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                  </Button>
+                </div>
+              </div>
+
+              {/* Meta Description */}
+              <div className="space-y-1.5">
+                <div className="flex items-center justify-between">
+                  <Label className="text-xs font-semibold text-white">
+                    Мета-описание (Meta Description / &lt;meta name="description"&gt;)
+                  </Label>
+                  <span className={`text-[11px] font-mono ${(formData.metaDescription || "").length > 160 ? "text-amber-400 font-bold" : "text-emerald-400"}`}>
+                    {(formData.metaDescription || "").length} / 160 characters
+                  </span>
+                </div>
+                <Textarea
+                  rows={3}
+                  placeholder="e.g. Commercial specifications, general arrangement plan, crane capacities, and photo inspection gallery of dry bulk cargo vessel."
+                  value={formData.metaDescription}
+                  onChange={(e) => setFormData({ ...formData, metaDescription: e.target.value })}
+                  className="rounded-none bg-[#18181b] border-white/10 text-xs text-white resize-none"
+                />
+                <p className="text-[11px] text-neutral-400">
+                  Snippet description for search engines and social preview cards.
+                </p>
+              </div>
+
+              {/* Social Preview Image URL */}
+              <div className="space-y-1.5">
+                <Label className="text-xs font-semibold text-white flex items-center gap-1.5">
+                  <Share2 className="w-3.5 h-3.5 text-[#c89b3c]" />
+                  Social Preview Image (og:image)
+                </Label>
+                <Input
+                  placeholder="e.g. /fleet/metanira/Vessel_Description__METANIRA.png or direct photo URL"
+                  value={formData.ogImage}
+                  onChange={(e) => setFormData({ ...formData, ogImage: e.target.value })}
+                  className="rounded-none bg-[#18181b] border-white/10 text-xs text-white"
+                />
+                <p className="text-[11px] text-neutral-400">
+                  Defaults to the primary vessel photo or a custom social card image.
+                </p>
+              </div>
+            </div>
           </Card>
         </TabsContent>
       </Tabs>

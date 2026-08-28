@@ -36,14 +36,43 @@ async function loadDynamicPage() {
       throw new Error('Page not found');
     }
 
-    const data = await res.json();
     const pageTitle = typeof data.title === 'object' ? (data.title.en || slug) : (data.title || slug);
+    const seoTitle = typeof data.metaTitle === 'object' ? (data.metaTitle.en || pageTitle) : (data.metaTitle || pageTitle);
     const pageDesc = typeof data.metaDescription === 'object' ? (data.metaDescription.en || '') : (data.metaDescription || '');
+    const ogImg = typeof data.ogImage === 'object' ? (data.ogImage.en || '') : (data.ogImage || '');
     const rawContent = typeof data.content === 'object' ? (data.content.en || '') : (data.content || '');
 
-    // Set Meta & Titles
-    if (metaTitle) metaTitle.textContent = `${pageTitle} • Danamira Shipping Ltd`;
-    if (metaDesc && pageDesc) metaDesc.setAttribute('content', pageDesc);
+    // Set Document Title & Meta Tags
+    document.title = seoTitle.includes('Danamira') ? seoTitle : `${seoTitle} | Danamira Shipping Ltd`;
+
+    function setMetaTag(attr, key, val) {
+      if (!val) return;
+      let el = document.querySelector(`meta[${attr}="${key}"]`);
+      if (!el) {
+        el = document.createElement('meta');
+        el.setAttribute(attr, key);
+        document.head.appendChild(el);
+      }
+      el.setAttribute('content', val);
+    }
+
+    if (pageDesc) {
+      setMetaTag('name', 'description', pageDesc);
+      setMetaTag('property', 'og:description', pageDesc);
+      setMetaTag('name', 'twitter:description', pageDesc);
+    }
+
+    setMetaTag('property', 'og:title', document.title);
+    setMetaTag('name', 'twitter:title', document.title);
+    setMetaTag('property', 'og:type', 'website');
+    setMetaTag('property', 'og:url', window.location.href);
+
+    if (ogImg) {
+      setMetaTag('property', 'og:image', ogImg);
+      setMetaTag('name', 'twitter:image', ogImg);
+      setMetaTag('name', 'twitter:card', 'summary_large_image');
+    }
+
     if (breadcrumb) breadcrumb.textContent = pageTitle.toUpperCase();
     if (heroTitle) heroTitle.textContent = pageTitle;
     if (heroDesc) {

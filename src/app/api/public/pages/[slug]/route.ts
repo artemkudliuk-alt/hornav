@@ -50,6 +50,7 @@ export async function GET(
     }
 
     const pageTitle = typeof page.title === "object" ? (page.title?.[lang] || page.title?.en || page.slug) : (page.title || page.slug);
+    const pageMetaTitle = typeof page.metaTitle === "object" ? (page.metaTitle?.[lang] || page.metaTitle?.en || pageTitle) : (page.metaTitle || pageTitle);
     const pageDesc = typeof page.metaDescription === "object" ? (page.metaDescription?.[lang] || page.metaDescription?.en || "") : (page.metaDescription || "");
     const pageContent = typeof page.content === "object" ? (page.content?.[lang] || page.content?.en || "") : (page.content || "");
     const pageOg = typeof page.ogImage === "object" ? (page.ogImage?.[lang] || page.ogImage?.en || "") : (page.ogImage || "");
@@ -59,6 +60,8 @@ export async function GET(
         slug: page.slug,
         title: pageTitle,
         titleI18n: typeof page.title === "object" ? page.title : { en: page.title, ua: "", ru: "" },
+        metaTitle: pageMetaTitle,
+        metaTitleI18n: typeof page.metaTitle === "object" ? page.metaTitle : { en: pageMetaTitle, ua: "", ru: "" },
         metaDescription: pageDesc,
         ogImage: pageOg,
         content: pageContent,

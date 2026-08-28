@@ -40,6 +40,7 @@ function initContacts() {
       const name = document.getElementById('c-name')?.value.trim() || '';
       const company = document.getElementById('c-company')?.value.trim() || '';
       const email = document.getElementById('c-email')?.value.trim() || '';
+      const phone = document.getElementById('c-phone')?.value.trim() || '';
       const department = document.getElementById('c-department')?.value || 'General Inquiry';
       const message = document.getElementById('c-message')?.value.trim() || '';
 
@@ -65,8 +66,9 @@ function initContacts() {
             company: company,
             clientEmail: email,
             email: email,
-            comment: `[Department: ${department}] ${message}`,
-            notes: `[Department: ${department}] ${message}`,
+            phone: phone || null,
+            comment: phone ? `[Phone: ${phone}] [Department: ${department}] ${message}` : `[Department: ${department}] ${message}`,
+            notes: phone ? `[Phone: ${phone}] [Department: ${department}] ${message}` : `[Department: ${department}] ${message}`,
             source: 'contacts_page',
             sourcePage: '/contacts.html'
           })

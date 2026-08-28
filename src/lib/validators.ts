@@ -141,6 +141,7 @@ export const pageFormSchema = z.object({
   includeInNav: z.boolean().default(true),
   includeInFooter: z.boolean().default(false),
   title: z.any().optional().nullable(),
+  metaTitle: z.any().optional().nullable(),
   metaDescription: z.any().optional().nullable(),
   ogImage: z.any().optional().nullable(),
   content: z.any().optional().nullable(),
