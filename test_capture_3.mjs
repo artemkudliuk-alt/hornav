@@ -1,30 +1,37 @@
-﻿import { chromium } from "playwright";
+import { chromium } from "playwright";
 
 async function main() {
   const browser = await chromium.launch({ headless: true });
   const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
   const page = await context.newPage();
 
-  console.log("Navigating to https://danamiratest.vercel.app/fleet.html...");
+  console.log("Navigating to https://danamiratest.vercel.app...");
+  await page.goto("https://danamiratest.vercel.app", { waitUntil: "domcontentloaded" });
+  
+  await page.screenshot({ path: "C:/Users/Jaku/.gemini/antigravity/brain/c4ea53a2-dcae-4aef-819a-50eea4dced37/live_17_preloader_lightened.png" });
+  console.log("Preloader screenshot saved.");
+
+  await page.waitForTimeout(3000);
+  await page.screenshot({ path: "C:/Users/Jaku/.gemini/antigravity/brain/c4ea53a2-dcae-4aef-819a-50eea4dced37/live_18_hero_lightened.png" });
+  console.log("Hero screenshot saved.");
+
+  await page.evaluate(() => window.scrollTo(0, 1100));
+  await page.waitForTimeout(1000);
+  await page.screenshot({ path: "C:/Users/Jaku/.gemini/antigravity/brain/c4ea53a2-dcae-4aef-819a-50eea4dced37/live_19_company_lightened.png" });
+  console.log("Company screenshot saved.");
+
+  await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+  await page.waitForTimeout(1000);
+  await page.screenshot({ path: "C:/Users/Jaku/.gemini/antigravity/brain/c4ea53a2-dcae-4aef-819a-50eea4dced37/live_20_footer_lightened.png" });
+  console.log("Footer screenshot saved.");
+
   await page.goto("https://danamiratest.vercel.app/fleet.html", { waitUntil: "networkidle" });
-  await page.waitForTimeout(2500);
-
-  const activeStat = await page.textContent("#stat-active-vessels");
-  const filterAll = await page.textContent("#filter-btn-all");
-  const filterGc = await page.textContent("#filter-btn-gc");
-  const filterBc = await page.textContent("#filter-btn-bc");
-  const countIndicator = await page.textContent("#fleet-count-indicator");
-
-  console.log("=== VERIFIED METRICS ON LIVE FLEET PAGE ===");
-  console.log("Active Managed Fleet Stat:", activeStat?.trim());
-  console.log("All Fleet Filter Button:", filterAll?.trim());
-  console.log("General Cargo Filter:", filterGc?.trim());
-  console.log("Bulk Carrier Filter:", filterBc?.trim());
-  console.log("Count Indicator:", countIndicator?.trim());
-
-  await page.screenshot({ path: "C:\\Users\\Jaku\\.gemini\\antigravity\\brain\\c4ea53a2-dcae-4aef-819a-50eea4dced37\\live_16_fleet_counts_3.png", fullPage: false });
+  await page.waitForTimeout(1500);
+  await page.screenshot({ path: "C:/Users/Jaku/.gemini/antigravity/brain/c4ea53a2-dcae-4aef-819a-50eea4dced37/live_21_fleet_page_lightened.png" });
+  console.log("Fleet page screenshot saved.");
 
   await browser.close();
+  console.log("All screenshots captured successfully!");
 }
 
 main().catch(console.error);

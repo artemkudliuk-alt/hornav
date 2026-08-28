@@ -4,11 +4,12 @@
 @source "../src/**/*.js";
 
 @theme {
-  --color-gold: oklch(71.43% 0.123 82.9);
-  --color-gold-light: oklch(82.93% 0.115 88.3);
-  --color-gold-dark: oklch(53.25% 0.116 84.1);
-  --color-bg-primary: #222225;
-  --color-bg-secondary: #2a2a2f;
+  --color-bg-primary: #25252a;
+  --color-bg-secondary: #2e2e35;
+  --color-gold: #C89B3C;
+  --color-gold-light: #DFB758;
+  --color-gold-dark: #A67D28;
+  --color-gold-muted: #8A6820;
   --color-border-gold: oklch(71.43% 0.123 82.9 / 25%);
   
   --font-serif: "Clash Display", sans-serif;
