@@ -85,12 +85,12 @@ export default async function DashboardPage() {
   return (
     <div className="space-y-6">
       {/* Top Banner (Clean, no duplicate button) */}
-      <div className="p-6 rounded-none bg-[#202023]/80 border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xl">
+      <div className="p-4 sm:p-6 rounded-none bg-[#202023]/80 border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xl">
         <div>
           <span className="text-[10px] text-[#c89b3c] uppercase font-mono tracking-widest block mb-1">
             Operational Dashboard
           </span>
-          <h1 className="text-2xl sm:text-3xl font-semibold text-white tracking-tight">
+          <h1 className="text-xl sm:text-3xl font-semibold text-white tracking-tight">
             Fleet Operations & Freight Control
           </h1>
           <p className="text-xs sm:text-sm text-neutral-400 mt-1 max-w-2xl font-light">

@@ -161,7 +161,7 @@ export function SettingsManager({
   return (
     <div className="space-y-6">
       {/* ─── 1. Account & Security Card ────────────────────────── */}
-      <Card className="rounded-none bg-[#202023]/70 border border-white/10 p-6 space-y-5">
+      <Card className="rounded-none bg-[#202023]/70 border border-white/10 p-4 sm:p-6 space-y-5">
         <div className="border-b border-white/5 pb-4">
           <h2 className="text-sm font-semibold text-white uppercase tracking-wider flex items-center gap-2.5">
             <User className="w-4 h-4 text-[#c89b3c]" />
@@ -232,7 +232,7 @@ export function SettingsManager({
             </div>
           </div>
 
-          <div className="flex items-center justify-between pt-3 border-t border-white/5">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-white/5">
             {accountFeedback ? (
               <span className="text-xs font-medium text-amber-300">
                 {accountFeedback}
@@ -244,7 +244,7 @@ export function SettingsManager({
             <Button
               type="submit"
               disabled={isSavingAccount}
-              className="rounded-none bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer h-9 px-4"
+              className="w-full sm:w-auto rounded-none bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer h-9 px-4"
             >
               {isSavingAccount ? (
                 <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -258,7 +258,7 @@ export function SettingsManager({
       </Card>
 
       {/* ─── 2. Lead Inquiries & Email Routing Card ────────────── */}
-      <Card className="rounded-none bg-[#202023]/70 border border-white/10 p-6 space-y-5">
+      <Card className="rounded-none bg-[#202023]/70 border border-white/10 p-4 sm:p-6 space-y-5">
         <div className="border-b border-white/5 pb-4">
           <h2 className="text-sm font-semibold text-white uppercase tracking-wider flex items-center gap-2.5">
             <Mail className="w-4 h-4 text-[#c89b3c]" />
@@ -338,7 +338,7 @@ export function SettingsManager({
             />
           </div>
 
-          <div className="flex items-center justify-between pt-3 border-t border-white/5">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-white/5">
             {emailFeedback ? (
               <span className="text-xs font-medium text-amber-300">
                 {emailFeedback}
@@ -350,7 +350,7 @@ export function SettingsManager({
             <Button
               type="submit"
               disabled={isSavingEmail}
-              className="rounded-none bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer h-9 px-4"
+              className="w-full sm:w-auto rounded-none bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer h-9 px-4"
             >
               {isSavingEmail ? (
                 <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -364,7 +364,7 @@ export function SettingsManager({
       </Card>
 
       {/* ─── 3. Website & Company Defaults Card ─────────────────── */}
-      <Card className="rounded-none bg-[#202023]/70 border border-white/10 p-6 space-y-5">
+      <Card className="rounded-none bg-[#202023]/70 border border-white/10 p-4 sm:p-6 space-y-5">
         <div className="border-b border-white/5 pb-4">
           <h2 className="text-sm font-semibold text-white uppercase tracking-wider flex items-center gap-2.5">
             <Building2 className="w-4 h-4 text-[#c89b3c]" />
@@ -430,7 +430,7 @@ export function SettingsManager({
             </div>
           </div>
 
-          <div className="flex items-center justify-between pt-3 border-t border-white/5">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-white/5">
             {generalFeedback ? (
               <span className="text-xs font-medium text-amber-300">
                 {generalFeedback}
@@ -442,7 +442,7 @@ export function SettingsManager({
             <Button
               type="submit"
               disabled={isSavingGeneral}
-              className="rounded-none bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer h-9 px-4"
+              className="w-full sm:w-auto rounded-none bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer h-9 px-4"
             >
               {isSavingGeneral ? (
                 <Loader2 className="w-3.5 h-3.5 animate-spin" />

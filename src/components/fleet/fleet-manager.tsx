@@ -129,8 +129,8 @@ export function FleetManager({ initialFleet }: FleetManagerProps) {
           </p>
         </div>
 
-        <Link href="/fleet/new">
-          <Button className="rounded-none bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer h-9 shadow-md">
+        <Link href="/fleet/new" className="w-full sm:w-auto">
+          <Button className="w-full sm:w-auto rounded-none bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer h-9 shadow-md">
             <Plus className="w-4 h-4" />
             Add New Vessel
           </Button>
@@ -138,7 +138,7 @@ export function FleetManager({ initialFleet }: FleetManagerProps) {
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="flex flex-col sm:flex-row gap-3 items-center justify-between bg-[#202023]/70 border border-white/5 p-3">
+      <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between bg-[#202023]/70 border border-white/5 p-3">
         <div className="relative w-full sm:w-80">
           <Search className="w-4 h-4 text-neutral-400 absolute left-3 top-1/2 -translate-y-1/2" />
           <Input
@@ -149,14 +149,14 @@ export function FleetManager({ initialFleet }: FleetManagerProps) {
           />
         </div>
 
-        <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto">
+        <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto scrollbar-none whitespace-nowrap pb-1 sm:pb-0">
           {["all", "available", "in_transit", "chartered", "maintenance"].map(
             (status) => (
               <button
                 key={status}
                 type="button"
                 onClick={() => setStatusFilter(status)}
-                className={`px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider transition-colors cursor-pointer border ${
+                className={`px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider transition-colors cursor-pointer border shrink-0 ${
                   statusFilter === status
                     ? "bg-[#c89b3c] text-[#141416] border-[#c89b3c]"
                     : "bg-[#18181b] text-neutral-400 border-white/5 hover:text-white hover:border-white/10"

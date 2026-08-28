@@ -148,22 +148,22 @@ export function LeadsTable({ initialLeads }: LeadsTableProps) {
         <Tabs
           value={statusFilter}
           onValueChange={setStatusFilter}
-          className="w-full sm:w-auto"
+          className="w-full sm:w-auto overflow-x-auto"
         >
-          <TabsList className="rounded-none bg-[#202023] border border-white/5 p-1">
-            <TabsTrigger value="all" className="rounded-none text-xs">
+          <TabsList className="rounded-none bg-[#202023] border border-white/5 p-1 flex-nowrap overflow-x-auto scrollbar-none w-full sm:w-auto">
+            <TabsTrigger value="all" className="rounded-none text-xs shrink-0 whitespace-nowrap">
               All ({leadsList.length})
             </TabsTrigger>
-            <TabsTrigger value="new" className="rounded-none text-xs text-emerald-400">
+            <TabsTrigger value="new" className="rounded-none text-xs text-emerald-400 shrink-0 whitespace-nowrap">
               New ({leadsList.filter((l) => (l.lead?.status || l.status) === "new").length})
             </TabsTrigger>
-            <TabsTrigger value="in_progress" className="rounded-none text-xs text-amber-400">
+            <TabsTrigger value="in_progress" className="rounded-none text-xs text-amber-400 shrink-0 whitespace-nowrap">
               In Progress ({leadsList.filter((l) => (l.lead?.status || l.status) === "in_progress").length})
             </TabsTrigger>
-            <TabsTrigger value="completed" className="rounded-none text-xs text-blue-400">
+            <TabsTrigger value="completed" className="rounded-none text-xs text-blue-400 shrink-0 whitespace-nowrap">
               Completed
             </TabsTrigger>
-            <TabsTrigger value="declined" className="rounded-none text-xs text-neutral-400">
+            <TabsTrigger value="declined" className="rounded-none text-xs text-neutral-400 shrink-0 whitespace-nowrap">
               Declined
             </TabsTrigger>
           </TabsList>
@@ -182,7 +182,7 @@ export function LeadsTable({ initialLeads }: LeadsTableProps) {
       </div>
 
       {/* Leads Table Container */}
-      <div className="rounded-none border border-white/5 bg-[#202023]/60 overflow-hidden shadow-xl">
+      <div className="rounded-none border border-white/5 bg-[#202023]/60 overflow-x-auto min-w-full block shadow-xl">
         <Table>
           <TableHeader className="bg-[#18181b] border-b border-white/5">
             <TableRow className="border-none hover:bg-transparent">

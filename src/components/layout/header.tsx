@@ -21,23 +21,23 @@ export function Header({ user }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="h-16 border-b border-white/5 bg-[#141416]/80 backdrop-blur-md sticky top-0 z-30 px-6 flex items-center justify-between">
+    <header className="h-14 sm:h-16 border-b border-white/5 bg-[#141416]/80 backdrop-blur-md sticky top-0 z-30 px-3.5 sm:px-6 flex items-center justify-between">
       {/* Mobile Menu Toggle */}
-      <div className="flex items-center gap-4 lg:hidden">
+      <div className="flex items-center gap-3 lg:hidden">
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger
             render={
               <Button
                 variant="ghost"
                 size="icon"
-                className="text-neutral-400 hover:text-white"
+                className="text-neutral-400 hover:text-white h-9 w-9"
               >
                 <Menu className="w-5 h-5" />
               </Button>
             }
           />
           <SheetContent side="left" className="p-0 w-64 bg-[#141416] border-r border-white/5">
-            <Sidebar userRole={user.role || "editor"} />
+            <Sidebar userRole={user.role || "editor"} onItemClick={() => setIsOpen(false)} />
           </SheetContent>
         </Sheet>
         <span className="font-semibold text-xs text-white uppercase tracking-wider">

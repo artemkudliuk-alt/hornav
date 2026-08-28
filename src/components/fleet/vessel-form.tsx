@@ -228,31 +228,31 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
     <>
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Top Action Header */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Link href="/fleet">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-3 border-b border-white/5">
+          <div className="flex items-start sm:items-center gap-3 min-w-0">
+            <Link href="/fleet" className="shrink-0 mt-0.5 sm:mt-0">
               <Button
                 type="button"
                 variant="ghost"
                 size="icon"
-                className="rounded-none text-neutral-400 hover:text-white"
+                className="rounded-none text-neutral-400 hover:text-white h-9 w-9"
               >
                 <ArrowLeft className="w-5 h-5" />
               </Button>
             </Link>
-            <div>
+            <div className="min-w-0 flex-1">
               <h1 className="text-xl sm:text-2xl font-semibold text-white tracking-tight">
                 {isEditing
                   ? `Edit: ${formData.name || "Vessel"}`
                   : "Add New Vessel to Fleet"}
               </h1>
-              <p className="text-xs text-neutral-400">
+              <p className="text-xs text-neutral-400 mt-0.5">
                 Manage vessel technical particulars, cargo specifications, charter terms, and media assets.
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap sm:flex-nowrap items-center gap-2 shrink-0">
             {isEditing && (
               <>
                 <Button
@@ -260,24 +260,25 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
                   variant="outline"
                   size="sm"
                   onClick={() => setShowDeleteConfirm(true)}
-                  className="rounded-none bg-red-600/10 hover:bg-red-600 border-red-500/30 hover:border-red-600 text-red-400 hover:text-white text-xs font-semibold uppercase tracking-wider gap-1.5 h-9 cursor-pointer transition-colors"
+                  className="flex-1 sm:flex-initial rounded-none bg-red-600/10 hover:bg-red-600 border-red-500/30 hover:border-red-600 text-red-400 hover:text-white text-xs font-semibold uppercase tracking-wider gap-1.5 h-9 cursor-pointer transition-colors"
                 >
                   <Trash2 className="w-3.5 h-3.5" />
-                  Delete Vessel
+                  <span>Delete</span>
                 </Button>
 
                 <a
                   href={liveSiteUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="flex-1 sm:flex-initial"
                 >
                   <Button
                     type="button"
                     variant="outline"
-                    className="rounded-none bg-[#202023] border-white/10 hover:bg-white/5 text-neutral-300 hover:text-white text-xs font-semibold uppercase tracking-wider gap-1.5 h-9 cursor-pointer"
+                    className="w-full sm:w-auto rounded-none bg-[#202023] border-white/10 hover:bg-white/5 text-neutral-300 hover:text-white text-xs font-semibold uppercase tracking-wider gap-1.5 h-9 cursor-pointer"
                   >
                     <ExternalLink className="w-3.5 h-3.5 text-[#c89b3c]" />
-                    View on Site
+                    <span>View on Site</span>
                   </Button>
                 </a>
               </>
@@ -285,7 +286,7 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
             <Button
               type="submit"
               disabled={isSaving}
-              className="rounded-none bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer h-9 shadow-md"
+              className="w-full sm:w-auto rounded-none bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer h-9 shadow-md"
             >
               {isSaving ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -305,27 +306,27 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
 
       {/* Main Tabs Structure */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-        <TabsList className="rounded-none bg-[#202023] border border-white/5 p-1 w-full justify-start overflow-x-auto">
-          <TabsTrigger value="base" className="rounded-none text-xs uppercase tracking-wider">
+        <TabsList className="rounded-none bg-[#202023] border border-white/5 p-1 w-full justify-start overflow-x-auto scrollbar-none flex-nowrap shrink-0">
+          <TabsTrigger value="base" className="rounded-none text-[11px] sm:text-xs uppercase tracking-wider shrink-0 whitespace-nowrap px-3 py-2">
             1. Base Details
           </TabsTrigger>
-          <TabsTrigger value="specs" className="rounded-none text-xs uppercase tracking-wider">
+          <TabsTrigger value="specs" className="rounded-none text-[11px] sm:text-xs uppercase tracking-wider shrink-0 whitespace-nowrap px-3 py-2">
             2. Technical Specs
           </TabsTrigger>
-          <TabsTrigger value="content" className="rounded-none text-xs uppercase tracking-wider">
+          <TabsTrigger value="content" className="rounded-none text-[11px] sm:text-xs uppercase tracking-wider shrink-0 whitespace-nowrap px-3 py-2">
             3. Descriptions &amp; Particulars
           </TabsTrigger>
-          <TabsTrigger value="media" className="rounded-none text-xs uppercase tracking-wider">
+          <TabsTrigger value="media" className="rounded-none text-[11px] sm:text-xs uppercase tracking-wider shrink-0 whitespace-nowrap px-3 py-2">
             4. Photos &amp; PDF Specs
           </TabsTrigger>
-          <TabsTrigger value="seo" className="rounded-none text-xs uppercase tracking-wider text-[#c89b3c] font-semibold">
+          <TabsTrigger value="seo" className="rounded-none text-[11px] sm:text-xs uppercase tracking-wider text-[#c89b3c] font-semibold shrink-0 whitespace-nowrap px-3 py-2">
             5. SEO &amp; Social Snippets
           </TabsTrigger>
         </TabsList>
 
         {/* ─── TAB 1: Base Details ──────────────────────────────── */}
         <TabsContent value="base" className="space-y-6">
-          <Card className="rounded-none bg-[#202023]/70 border-white/5 p-6 space-y-6 shadow-xl">
+          <Card className="rounded-none bg-[#202023]/70 border-white/5 p-4 sm:p-6 space-y-6 shadow-xl">
             {/* Vessel Name */}
             <div className="space-y-2">
               <Label htmlFor="vesselName" className="text-xs font-semibold text-white uppercase tracking-wider flex items-center gap-2">
@@ -490,7 +491,7 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
         {/* ─── TAB 2: Technical Specifications ──────────────────── */}
         <TabsContent value="specs" className="space-y-6">
           {/* Section 1: Registry & Dimensions */}
-          <Card className="rounded-none bg-[#202023]/70 border-white/5 p-6 space-y-4 shadow-xl">
+          <Card className="rounded-none bg-[#202023]/70 border-white/5 p-4 sm:p-6 space-y-4 shadow-xl">
             <div className="border-b border-white/5 pb-2">
               <h3 className="text-xs font-semibold text-[#c89b3c] uppercase tracking-wider">
                 1. General Registry & Dimensions
@@ -658,7 +659,7 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
           </Card>
 
           {/* Section 2: Cargo Holds & Capacities */}
-          <Card className="rounded-none bg-[#202023]/70 border-white/5 p-6 space-y-4 shadow-xl">
+          <Card className="rounded-none bg-[#202023]/70 border-white/5 p-4 sm:p-6 space-y-4 shadow-xl">
             <div className="border-b border-white/5 pb-2">
               <h3 className="text-xs font-semibold text-[#c89b3c] uppercase tracking-wider">
                 2. Cargo Capacities, Holds & Gear
@@ -746,7 +747,7 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
           </Card>
 
           {/* Section 3: Machinery & Speeds */}
-          <Card className="rounded-none bg-[#202023]/70 border-white/5 p-6 space-y-4 shadow-xl">
+          <Card className="rounded-none bg-[#202023]/70 border-white/5 p-4 sm:p-6 space-y-4 shadow-xl">
             <div className="border-b border-white/5 pb-2">
               <h3 className="text-xs font-semibold text-[#c89b3c] uppercase tracking-wider">
                 3. Machinery, Speed & Fuel Consumption
@@ -826,7 +827,7 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
 
         {/* ─── TAB 3: Descriptions & Particulars ────────────────── */}
         <TabsContent value="content" className="space-y-6">
-          <Card className="rounded-none bg-[#202023]/70 border-white/5 p-6 space-y-6 shadow-xl">
+          <Card className="rounded-none bg-[#202023]/70 border-white/5 p-4 sm:p-6 space-y-6 shadow-xl">
             <div>
               <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
                 Vessel Particulars & Commercial Description
@@ -870,7 +871,7 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
 
         {/* ─── TAB 4: Media Gallery & Documents ───────────────── */}
         <TabsContent value="media" className="space-y-6">
-          <Card className="rounded-none bg-[#202023]/70 border-white/5 p-6 shadow-xl">
+          <Card className="rounded-none bg-[#202023]/70 border-white/5 p-4 sm:p-6 shadow-xl">
             <MediaGallery
               vesselId={initialData?.id || "new-vessel"}
               initialMedia={
@@ -897,42 +898,42 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
 
         {/* ─── TAB 5: SEO & Social Snippets ─────────────────────── */}
         <TabsContent value="seo" className="space-y-6">
-          <Card className="rounded-none bg-[#202023]/70 border-white/5 p-6 space-y-6 shadow-xl">
-            <div className="flex items-center justify-between border-b border-white/5 pb-3">
+          <Card className="rounded-none bg-[#202023]/70 border-white/5 p-4 sm:p-6 space-y-6 shadow-xl">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/5 pb-3">
               <div className="flex items-center gap-2">
                 <Search className="w-4 h-4 text-[#c89b3c]" />
                 <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
                   Vessel SEO &amp; Messenger Previews (OpenGraph)
                 </h3>
               </div>
-              <div className="flex items-center gap-1 bg-[#18181b] p-1 border border-white/10">
+              <div className="grid grid-cols-2 sm:flex items-center gap-1 bg-[#18181b] p-1 border border-white/10 w-full sm:w-auto">
                 <button
                   type="button"
                   onClick={() => setSeoPreviewMode("google")}
-                  className={`px-3 py-1 text-xs uppercase tracking-wider font-mono cursor-pointer transition-colors ${
+                  className={`px-2.5 py-1.5 sm:px-3 sm:py-1 text-[11px] sm:text-xs uppercase tracking-wider font-mono cursor-pointer transition-colors text-center ${
                     seoPreviewMode === "google"
                       ? "bg-[#c89b3c] text-neutral-950 font-bold"
                       : "text-neutral-400 hover:text-white"
                   }`}
                 >
-                  Google Preview
+                  Google
                 </button>
                 <button
                   type="button"
                   onClick={() => setSeoPreviewMode("telegram")}
-                  className={`px-3 py-1 text-xs uppercase tracking-wider font-mono cursor-pointer transition-colors ${
+                  className={`px-2.5 py-1.5 sm:px-3 sm:py-1 text-[11px] sm:text-xs uppercase tracking-wider font-mono cursor-pointer transition-colors text-center ${
                     seoPreviewMode === "telegram"
                       ? "bg-[#c89b3c] text-neutral-950 font-bold"
                       : "text-neutral-400 hover:text-white"
                   }`}
                 >
-                  Telegram / WhatsApp Preview
+                  Telegram / Social
                 </button>
               </div>
             </div>
 
             {/* Live Snippet Preview Box */}
-            <div className="bg-[#18181b] border border-white/10 p-4 sm:p-5 rounded-none">
+            <div className="bg-[#18181b] border border-white/10 p-3.5 sm:p-5 rounded-none overflow-hidden max-w-full">
               <div className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest mb-3 flex items-center gap-1.5">
                 <Globe className="w-3.5 h-3.5 text-[#c89b3c]" />
                 Live Social / Search Snippet

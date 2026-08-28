@@ -179,7 +179,7 @@ export function ContactsManager({
   return (
     <div className="space-y-8">
       {/* ─── Global Company Contacts ───────────────────────────── */}
-      <Card className="bg-[#202023]/70 border-white/5 p-6">
+      <Card className="bg-[#202023]/70 border-white/5 p-4 sm:p-6">
         <CardHeader className="p-0 pb-4">
           <CardTitle className="text-base font-semibold text-white flex items-center gap-2">
             <Globe className="w-4 h-4 text-[#c89b3c]" />
@@ -242,7 +242,7 @@ export function ContactsManager({
             </div>
           </div>
 
-          <div className="flex items-center justify-between pt-2">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2">
             {contactsFeedback ? (
               <span className="text-xs font-medium">{contactsFeedback}</span>
             ) : (
@@ -252,7 +252,7 @@ export function ContactsManager({
             <Button
               type="submit"
               disabled={isSavingContacts}
-              className="bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer"
+              className="w-full sm:w-auto bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer"
             >
               {isSavingContacts ? (
                 <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -266,14 +266,14 @@ export function ContactsManager({
       </Card>
 
       {/* ─── Port Agency & Branch Offices ──────────────────────── */}
-      <Card className="bg-[#202023]/70 border-white/5 p-6 space-y-4">
+      <Card className="bg-[#202023]/70 border-white/5 p-4 sm:p-6 space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/5 pb-4">
           <div>
             <h3 className="text-base font-semibold text-white flex items-center gap-2">
               <Building2 className="w-4 h-4 text-[#c89b3c]" />
               Branch Offices &amp; Regional Agencies ({offices.length})
             </h3>
-            <p className="text-xs text-neutral-400">
+            <p className="text-xs text-neutral-400 mt-0.5">
               Manage physical agency locations, addresses, local contact numbers, and lead agents.
             </p>
           </div>
@@ -281,7 +281,7 @@ export function ContactsManager({
           <Button
             type="button"
             onClick={() => openOfficeDialog()}
-            className="bg-[#202023] border border-white/10 hover:border-[#c89b3c]/50 text-xs text-neutral-200 hover:text-white gap-2 cursor-pointer"
+            className="w-full sm:w-auto bg-[#202023] border border-white/10 hover:border-[#c89b3c]/50 text-xs text-neutral-200 hover:text-white gap-2 cursor-pointer"
           >
             <Plus className="w-4 h-4 text-[#c89b3c]" />
             Add Port Agency
@@ -289,7 +289,7 @@ export function ContactsManager({
         </div>
 
         {/* Offices Table */}
-        <div className="rounded-lg border border-white/5 bg-[#18181b] overflow-hidden">
+        <div className="rounded-lg border border-white/5 bg-[#18181b] overflow-x-auto min-w-full block scrollbar-thin">
           <Table>
             <TableHeader className="bg-[#141416] border-b border-white/5">
               <TableRow className="border-none">

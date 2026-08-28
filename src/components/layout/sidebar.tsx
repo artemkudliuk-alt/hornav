@@ -17,9 +17,10 @@ import { cn } from "@/lib/utils";
 
 interface SidebarProps {
   userRole?: string;
+  onItemClick?: () => void;
 }
 
-export function Sidebar({ userRole = "editor" }: SidebarProps) {
+export function Sidebar({ userRole = "editor", onItemClick }: SidebarProps) {
   const pathname = usePathname();
 
   const navigation = [
@@ -108,6 +109,7 @@ export function Sidebar({ userRole = "editor" }: SidebarProps) {
             <Link
               key={item.href}
               href={item.href}
+              onClick={onItemClick}
               className={cn(
                 "flex items-center gap-3 px-3 py-2.5 rounded-none text-xs font-medium transition-colors",
                 isActive

@@ -165,43 +165,44 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Top Action Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <Link href="/pages">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-3 border-b border-white/5">
+        <div className="flex items-start sm:items-center gap-3 min-w-0">
+          <Link href="/pages" className="shrink-0 mt-0.5 sm:mt-0">
             <Button
               type="button"
               variant="ghost"
               size="icon"
-              className="rounded-none text-neutral-400 hover:text-white"
+              className="rounded-none text-neutral-400 hover:text-white h-9 w-9"
             >
               <ArrowLeft className="w-5 h-5" />
             </Button>
           </Link>
-          <div>
+          <div className="min-w-0 flex-1">
             <h1 className="text-xl sm:text-2xl font-semibold text-white tracking-tight">
               {isEditing ? `Edit: ${formData.pageName || formData.slug}` : "Create New Site Page"}
             </h1>
-            <p className="text-xs text-neutral-400">
+            <p className="text-xs text-neutral-400 mt-0.5">
               Manage page content, SEO meta tags, social previews, and navigation links.
             </p>
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap sm:flex-nowrap items-center gap-2 shrink-0">
           {isEditing && (
             <>
               <a
                 href={livePageUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="flex-1 sm:flex-initial"
               >
                 <Button
                   type="button"
                   variant="outline"
-                  className="rounded-none bg-[#202023] border-white/10 hover:bg-white/5 text-neutral-300 hover:text-white text-xs font-semibold uppercase tracking-wider gap-1.5 h-9 cursor-pointer"
+                  className="w-full sm:w-auto rounded-none bg-[#202023] border-white/10 hover:bg-white/5 text-neutral-300 hover:text-white text-xs font-semibold uppercase tracking-wider gap-1.5 h-9 cursor-pointer"
                 >
                   <ExternalLink className="w-3.5 h-3.5 text-[#c89b3c]" />
-                  View Live Page
+                  <span>View Live</span>
                 </Button>
               </a>
 
@@ -210,14 +211,14 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
                 variant="outline"
                 disabled={isDeleting}
                 onClick={handleDelete}
-                className="rounded-none bg-red-500/10 border-red-500/30 hover:bg-red-500/20 text-red-400 text-xs font-semibold uppercase tracking-wider gap-1.5 h-9 cursor-pointer"
+                className="flex-1 sm:flex-initial rounded-none bg-red-500/10 border-red-500/30 hover:bg-red-500/20 text-red-400 text-xs font-semibold uppercase tracking-wider gap-1.5 h-9 cursor-pointer"
               >
                 {isDeleting ? (
                   <Loader2 className="w-3.5 h-3.5 animate-spin" />
                 ) : (
                   <Trash2 className="w-3.5 h-3.5" />
                 )}
-                Delete
+                <span>Delete</span>
               </Button>
             </>
           )}
@@ -225,7 +226,7 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
           <Button
             type="submit"
             disabled={isSaving}
-            className="rounded-none bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer h-9 shadow-md"
+            className="w-full sm:w-auto rounded-none bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer h-9 shadow-md"
           >
             {isSaving ? (
               <Loader2 className="w-4 h-4 animate-spin" />
@@ -244,7 +245,7 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
       )}
 
       {/* Basic Settings */}
-      <Card className="rounded-none bg-[#202023]/70 border-white/5 p-6 space-y-5 shadow-xl">
+      <Card className="rounded-none bg-[#202023]/70 border-white/5 p-4 sm:p-6 space-y-5 shadow-xl">
         <div className="flex items-center gap-2 border-b border-white/5 pb-3">
           <FileText className="w-4 h-4 text-[#c89b3c]" />
           <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
@@ -265,8 +266,8 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
 
           <div className="space-y-2">
             <Label className="text-xs text-neutral-300">Public Slug / URL</Label>
-            <div className="flex items-center rounded-none bg-[#18181b] border border-white/10 overflow-hidden">
-              <span className="px-2.5 text-xs text-neutral-500 font-mono select-none">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center rounded-none bg-[#18181b] border border-white/10 overflow-hidden">
+              <span className="px-2.5 py-1.5 sm:py-0 text-[11px] sm:text-xs text-neutral-400 font-mono bg-white/[0.02] border-b sm:border-b-0 sm:border-r border-white/5 select-none">
                 danamirashipping.com/
               </span>
               <Input
@@ -279,7 +280,7 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
                   })
                 }
                 required
-                className="rounded-none bg-transparent border-none text-xs font-mono text-white focus-visible:ring-0"
+                className="rounded-none bg-transparent border-none text-xs font-mono text-white focus-visible:ring-0 px-2.5"
               />
             </div>
           </div>
@@ -348,42 +349,42 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
       </Card>
 
       {/* SEO & Search / Social Preview Block (Yoast Style) */}
-      <Card className="rounded-none bg-[#202023]/70 border-white/5 p-6 space-y-6 shadow-xl">
-        <div className="flex items-center justify-between border-b border-white/5 pb-3">
+      <Card className="rounded-none bg-[#202023]/70 border-white/5 p-4 sm:p-6 space-y-6 shadow-xl">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/5 pb-3">
           <div className="flex items-center gap-2">
             <Search className="w-4 h-4 text-[#c89b3c]" />
             <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
               Search Engine Optimization (SEO) &amp; Social Snippets
             </h3>
           </div>
-          <div className="flex items-center gap-1 bg-[#18181b] p-1 border border-white/10">
+          <div className="grid grid-cols-2 sm:flex items-center gap-1 bg-[#18181b] p-1 border border-white/10 w-full sm:w-auto">
             <button
               type="button"
               onClick={() => setPreviewMode("google")}
-              className={`px-3 py-1 text-xs uppercase tracking-wider font-mono cursor-pointer transition-colors ${
+              className={`px-2.5 py-1.5 sm:px-3 sm:py-1 text-[11px] sm:text-xs uppercase tracking-wider font-mono cursor-pointer transition-colors text-center ${
                 previewMode === "google"
                   ? "bg-[#c89b3c] text-neutral-950 font-bold"
                   : "text-neutral-400 hover:text-white"
               }`}
             >
-              Google Preview
+              Google
             </button>
             <button
               type="button"
               onClick={() => setPreviewMode("telegram")}
-              className={`px-3 py-1 text-xs uppercase tracking-wider font-mono cursor-pointer transition-colors ${
+              className={`px-2.5 py-1.5 sm:px-3 sm:py-1 text-[11px] sm:text-xs uppercase tracking-wider font-mono cursor-pointer transition-colors text-center ${
                 previewMode === "telegram"
                   ? "bg-[#c89b3c] text-neutral-950 font-bold"
                   : "text-neutral-400 hover:text-white"
               }`}
             >
-              Telegram / Social Preview
+              Telegram / Social
             </button>
           </div>
         </div>
 
         {/* Live Snippet Preview Box */}
-        <div className="bg-[#18181b] border border-white/10 p-4 sm:p-5 rounded-none">
+        <div className="bg-[#18181b] border border-white/10 p-3.5 sm:p-5 rounded-none overflow-hidden max-w-full">
           <div className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest mb-3 flex items-center gap-1.5">
             <Globe className="w-3.5 h-3.5 text-[#c89b3c]" />
             Live Preview Snippet
@@ -535,7 +536,7 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
       </Card>
 
       {/* Page Content & Visual Editor Block */}
-      <Card className="rounded-none bg-[#202023]/70 border-white/5 p-6 space-y-4 shadow-xl">
+      <Card className="rounded-none bg-[#202023]/70 border-white/5 p-4 sm:p-6 space-y-4 shadow-xl">
         <div className="flex items-center justify-between border-b border-white/5 pb-3">
           <div className="flex items-center gap-2">
             <FileText className="w-4 h-4 text-[#c89b3c]" />

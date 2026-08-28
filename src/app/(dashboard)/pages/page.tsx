@@ -34,8 +34,8 @@ export default async function PagesListPage() {
           </p>
         </div>
 
-        <Link href="/pages/new">
-          <Button className="rounded-none bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer h-9 shadow-md">
+        <Link href="/pages/new" className="w-full sm:w-auto">
+          <Button className="w-full sm:w-auto rounded-none bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer h-9 shadow-md">
             <Plus className="w-4 h-4" />
             Add New Page
           </Button>
@@ -136,27 +136,27 @@ export default async function PagesListPage() {
                 </div>
 
                 {/* Right: Actions */}
-                <div className="flex items-center gap-2 shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-white/5">
+                <div className="flex items-center gap-2 shrink-0 pt-3 md:pt-0 border-t md:border-t-0 border-white/5 w-full md:w-auto">
                   <a
                     href={liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hidden sm:inline-block"
+                    className="flex-1 md:flex-initial"
                   >
                     <Button
                       size="sm"
                       variant="outline"
-                      className="rounded-none text-xs bg-[#18181b] hover:bg-white/5 text-neutral-300 hover:text-white gap-1.5 h-8 font-semibold uppercase tracking-wider cursor-pointer border border-white/10"
+                      className="w-full md:w-auto rounded-none text-xs bg-[#18181b] hover:bg-white/5 text-neutral-300 hover:text-white gap-1.5 h-8 font-semibold uppercase tracking-wider cursor-pointer border border-white/10"
                     >
                       <ExternalLink className="w-3 h-3 text-[#c89b3c]" />
                       Live
                     </Button>
                   </a>
 
-                  <Link href={`/pages/${p.id}`}>
+                  <Link href={`/pages/${p.id}`} className="flex-1 md:flex-initial">
                     <Button
                       size="sm"
-                      className="rounded-none text-xs bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] gap-1.5 h-8 font-semibold uppercase tracking-wider cursor-pointer shadow-sm"
+                      className="w-full md:w-auto rounded-none text-xs bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] gap-1.5 h-8 font-semibold uppercase tracking-wider cursor-pointer shadow-sm"
                     >
                       <Edit3 className="w-3.5 h-3.5" />
                       Edit Page

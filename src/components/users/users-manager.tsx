@@ -174,7 +174,7 @@ export function UsersManager({
         <Button
           type="button"
           onClick={() => openDialog()}
-          className="bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer"
+          className="w-full sm:w-auto bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] text-xs font-semibold uppercase tracking-wider gap-2 cursor-pointer"
         >
           <Plus className="w-4 h-4" />
           Add User
@@ -182,7 +182,7 @@ export function UsersManager({
       </div>
 
       {/* Users Table */}
-      <div className="rounded-lg border border-white/5 bg-[#202023]/60 overflow-hidden">
+      <div className="rounded-lg border border-white/5 bg-[#202023]/60 overflow-x-auto min-w-full block scrollbar-thin">
         <Table>
           <TableHeader className="bg-[#18181b] border-b border-white/5">
             <TableRow className="border-none">
