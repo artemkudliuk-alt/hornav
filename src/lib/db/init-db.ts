@@ -1,4 +1,4 @@
-﻿import { neon } from "@neondatabase/serverless";
+import { neon } from "@neondatabase/serverless";
 import bcrypt from "bcryptjs";
 import { sampleVessels, sampleBranches } from "./mock-data";
 
@@ -223,6 +223,7 @@ export async function ensureDatabaseInitialized() {
           name = EXCLUDED.name,
           cover_image_url = EXCLUDED.cover_image_url,
           imo_number = EXCLUDED.imo_number,
+          flag = EXCLUDED.flag,
           dwt = EXCLUDED.dwt,
           loa = EXCLUDED.loa,
           beam = EXCLUDED.beam,
@@ -275,6 +276,7 @@ export async function ensureDatabaseInitialized() {
           name = EXCLUDED.name,
           cover_image_url = EXCLUDED.cover_image_url,
           imo_number = EXCLUDED.imo_number,
+          flag = EXCLUDED.flag,
           dwt = EXCLUDED.dwt,
           loa = EXCLUDED.loa,
           beam = EXCLUDED.beam,

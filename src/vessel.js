@@ -582,6 +582,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   let vessel = null;
 
+  const localBase = FLEET_DATABASE[vesselId] ||
+    Object.values(FLEET_DATABASE).find((v) =>
+      v.id === vesselId ||
+      v.imoNumber === vesselId ||
+      (vesselId.includes('metanira') && v.id.includes('metanira')) ||
+      (vesselId.includes('molpadia') && v.id.includes('molpadia')) ||
+      (vesselId === '22222222-2222-2222-2222-222222222222' && v.id.includes('metanira')) ||
+      (vesselId === '11111111-1111-1111-1111-111111111111' && v.id.includes('molpadia'))
+    );
+
   // 1. Try to fetch from Admin CMS API (dynamic vessels created in admin)
   try {
     const apiBase = window.location.origin;
@@ -594,21 +604,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         const pdfDoc = (apiVessel.media || []).find((m) => m && (m.type === "pdf" || m.url?.toLowerCase().endsWith(".pdf")));
         // Normalize API response to frontend format
         vessel = {
-          id: apiVessel.id,
-          name: typeof apiVessel.name === 'object' ? (apiVessel.name.en || 'Unnamed') : apiVessel.name,
-          type: (() => {
+          ...(localBase || {}),
+          id: localBase?.id || apiVessel.id,
+          name: localBase?.name || (typeof apiVessel.name === 'object' ? (apiVessel.name.en || 'Unnamed') : apiVessel.name),
+          type: localBase?.type || (() => {
             const t = apiVessel.type || 'bulk_carrier';
             const map = { bulk_carrier: 'General Cargo', container: 'Container', tanker: 'Tanker', roro: 'RoRo', barge: 'Barge', tug: 'Tug' };
             return map[t] || t;
           })(),
-          status: apiVessel.status === 'available' ? 'Available for Charter' : apiVessel.status,
-          flag: apiVessel.flag || '',
-          imoNumber: apiVessel.imoNumber || apiVessel.imo_number || '',
-          yearBuilt: apiVessel.yearBuilt || apiVessel.year_built || '',
-          classSociety: apiVessel.classSociety || apiVessel.class_society || '',
-          callSign: apiVessel.callSign || '',
-          officialNumber: apiVessel.officialNumber || '',
-          dwt: apiVessel.dwt ? `${Number(apiVessel.dwt).toLocaleString()} MT` : '',
+          status: localBase ? localBase.status : (apiVessel.status === 'available' ? 'Available for Charter' : apiVessel.status),
+          flag: localBase?.flag || apiVessel.flag || '',
+          imoNumber: localBase?.imoNumber || apiVessel.imoNumber || apiVessel.imo_number || '',
+          yearBuilt: localBase?.yearBuilt || apiVessel.yearBuilt || apiVessel.year_built || '',
+          classSociety: localBase?.classSociety || apiVessel.classSociety || apiVessel.class_society || '',
+          callSign: localBase?.callSign || apiVessel.callSign || '',
+          officialNumber: localBase?.officialNumber || apiVessel.officialNumber || '',
+          dwt: localBase?.dwt || (apiVessel.dwt ? `${Number(apiVessel.dwt).toLocaleString()} MT` : ''),
           gt: apiVessel.gt || '',
           nt: apiVessel.nt || '',
           loa: apiVessel.loa ? `${apiVessel.loa} m` : '',

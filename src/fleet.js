@@ -22,19 +22,19 @@ async function initFleetCatalog() {
           
           return {
             id: local?.id || av.id,
-            name: name || local?.name,
-            type: av.type ? (av.type === 'bulk_carrier' ? 'General Cargo' : av.type) : (local?.type || 'General Cargo'),
+            name: local?.name || name,
+            type: local?.type || (av.type ? (av.type === 'bulk_carrier' ? 'General Cargo' : av.type) : 'General Cargo'),
             status: status,
-            yearBuilt: av.yearBuilt || local?.yearBuilt || 'N/A',
-            flag: av.flag || local?.flag || 'N/A',
-            imoNumber: av.imoNumber || local?.imoNumber || 'N/A',
+            yearBuilt: local?.yearBuilt || (isMetanira ? 2011 : (isMolpadia ? 2012 : (av.yearBuilt || 'N/A'))),
+            flag: local?.flag || (isMetanira || isMolpadia ? 'Antigua & Barbuda' : (av.flag || 'N/A')),
+            imoNumber: local?.imoNumber || (isMetanira ? '9620358' : (isMolpadia ? '9633850' : (av.imoNumber || 'N/A'))),
             dwt: local?.dwt || (av.dwt ? `${Number(av.dwt).toLocaleString()} MT` : 'N/A'),
-            holdsCount: av.holdsCount || local?.holdsCount || '2HO / 2HA',
-            deckGear: isMetanira ? 'Gearless' : (local?.deckGear || (av.deckEquipment ? (typeof av.deckEquipment === 'object' ? av.deckEquipment.en : av.deckEquipment) : '2 x 30 MT Cranes')),
-            coverImageUrl: av.coverImageUrl || local?.coverImageUrl || '/placeholder-ship.jpg',
-            pdfGaPlanUrl: isMolpadia ? '/fleet/molpadia/2_GA-PLAN.pdf' : (isMetanira ? '/fleet/metanira/1_GA_PLAN.pdf' : (local?.pdfGaPlanUrl || null)),
-            pdfDescriptionUrl: isMolpadia ? '/fleet/molpadia/Vessel_Description__MOLPADIA.pdf' : (isMetanira ? '/fleet/metanira/Vessel_Description__METANIRA.pdf' : (local?.pdfDescriptionUrl || null)),
-            photos: av.photos || local?.photos || [],
+            holdsCount: local?.holdsCount || av.holdsCount || '2HO / 2HA',
+            deckGear: local?.deckGear || (isMetanira ? 'Gearless' : (av.deckEquipment ? (typeof av.deckEquipment === 'object' ? av.deckEquipment.en : av.deckEquipment) : '2 x 30 MT Cranes')),
+            coverImageUrl: local?.coverImageUrl || av.coverImageUrl || '/placeholder-ship.jpg',
+            pdfGaPlanUrl: local?.pdfGaPlanUrl || (isMolpadia ? '/fleet/molpadia/2_GA-PLAN.pdf' : (isMetanira ? '/fleet/metanira/1_GA_PLAN.pdf' : null)),
+            pdfDescriptionUrl: local?.pdfDescriptionUrl || (isMolpadia ? '/fleet/molpadia/Vessel_Description__MOLPADIA.pdf' : (isMetanira ? '/fleet/metanira/Vessel_Description__METANIRA.pdf' : null)),
+            photos: local?.photos || av.photos || [],
           };
         });
       }
