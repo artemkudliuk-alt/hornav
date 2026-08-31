@@ -36,6 +36,8 @@ async function loadDynamicPage() {
       throw new Error('Page not found');
     }
 
+    const data = await res.json();
+
     const pageTitle = typeof data.title === 'object' ? (data.title.en || slug) : (data.title || slug);
     const seoTitle = typeof data.metaTitle === 'object' ? (data.metaTitle.en || pageTitle) : (data.metaTitle || pageTitle);
     const pageDesc = typeof data.metaDescription === 'object' ? (data.metaDescription.en || '') : (data.metaDescription || '');

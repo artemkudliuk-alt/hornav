@@ -1,5 +1,6 @@
-﻿import { neon } from "@neondatabase/serverless";
+import { neon } from "@neondatabase/serverless";
 import * as dotenv from "dotenv";
+dotenv.config({ path: ".env.production" });
 dotenv.config({ path: ".env.local" });
 
 const dbUrl = process.env.DATABASE_URL;
@@ -21,23 +22,24 @@ async function main() {
     ) VALUES (
       ${MOLPADIA_ID},
       ${JSON.stringify({ en: "MV MOLPADIA", ua: "Т/Х МОЛПАДІЯ", ru: "Т/Х МОЛПАДИЯ" })},
-      'bulk_carrier', 'available', '9613616', 'Antigua & Barbuda',
-      2014, 'DNV', 6408, 108.20, 18.20, 6.70,
-      8950.00, 8200.00, 5900000.00, false,
+      'general_cargo', 'Available for TC', '9633850', 'Antigua & Barbuda',
+      2012, 'BV', 6408, 104.20, 17.20, 6.60,
+      8391.00, 8200.00, 5900000.00, false,
       'Mediterranean / Black Sea', 'Mediterranean, Black Sea, Continent, Baltic',
       ${JSON.stringify({
-        en: "Modern general cargo vessel built in 2014, 6,408 DWT with 2 Holds / 2 Hatches (2HO/2HA). Geared with 2x 30MT cranes. Fully equipped for agricultural bulk, steel products, project cargo, and solid fertilizers.",
-        ua: "Сучасне судно генеральних вантажів 2014 року побудови, дедвейт 6,408 MT, 2 трюми / 2 люки (2HO/2HA), крани 2x 30 MT.",
-        ru: "Современное судно генеральных грузов 2014 года постройки, дедвейт 6,408 MT, 2 трюма / 2 люка (2HO/2HA), краны 2x 30 MT."
+        en: "Geared Singledeck General Cargo / Heavy Load Carrier built in 2012, 6,408 DWT on 6.60 m SSW, 2 Holds / 2 Hatches (2HO/2HA). Geared with 2x 30MT cranes combinable to 60MT.",
+        ua: "Судно генеральних вантажів 2012 року побудови, дедвейт 6,408 MT, 2 трюми / 2 люки (2HO/2HA), крани 2x 30 MT.",
+        ru: "Судно генеральных грузов 2012 года постройки, дедвейт 6,408 MT, 2 трюма / 2 люка (2HO/2HA), краны 2x 30 MT."
       })},
       ${JSON.stringify({
-        en: "2x 30MT SWL Electro-Hydraulic Cranes, hydraulic folding hatch covers (2HO/2HA)",
-        ua: "2x 30MT електрогідравлічні крани, гідравлічні люкові закриття (2HO/2HA)",
-        ru: "2x 30MT электрогидравлические краны, гидравлические люковые закрытия (2HO/2HA)"
+        en: "2 x 30 MT electro-hydraulic twin cranes (combinable to 60 MT), weather tight folding hatch covers",
+        ua: "2 x 30 MT електроегідравлічні крани (до 60 MT), гідравлічні люкові закриття",
+        ru: "2 x 30 MT электрогидравлические краны (до 60 MT), гидравлические люковые закрытия"
       })},
       '/fleet/molpadia/MV_MOLPADIA__PHOTO.jpg'
     ) ON CONFLICT (id) DO UPDATE SET
       name = EXCLUDED.name,
+      status = EXCLUDED.status,
       cover_image_url = EXCLUDED.cover_image_url,
       imo_number = EXCLUDED.imo_number,
       dwt = EXCLUDED.dwt,
@@ -86,23 +88,24 @@ async function main() {
     ) VALUES (
       ${METANIRA_ID},
       ${JSON.stringify({ en: "MV METANIRA", ua: "Т/Х МЕТАНІРА", ru: "Т/Х МЕТАНИРА" })},
-      'bulk_carrier', 'available', '9584724', 'Liberia',
-      2012, 'Lloyd''s Register', 7200, 111.40, 18.60, 6.95,
-      9650.00, 8700.00, 6400000.00, false,
+      'general_cargo', '', '9620358', 'Antigua & Barbuda',
+      2011, 'NKK', 7639.45, 115.83, 17.60, 6.60,
+      9816.30, 8700.00, 6400000.00, false,
       'Port of Motril, Spain', 'Mediterranean, Black Sea, Continent, West Africa',
       ${JSON.stringify({
-        en: "Geared dry bulk and general cargo carrier, 7,200 DWT. Box-shaped holds with 2HO / 2HA. Equipped with 2x 30MT cranes, suitable for heavy bulk minerals, fertilizers, steel products, and grain.",
-        ua: "Судно генеральних та навалювальних вантажів 7,200 DWT, 2 трюми / 2 люки, крани 2x 30 MT.",
-        ru: "Судно генеральных и навалочных грузов 7,200 DWT, 2 трюма / 2 люка, краны 2x 30 MT."
+        en: "General Cargo carrier built in 2011, 7,639.45 MT DWT on 6.60m SSW. Box-shaped holds with 2HO / 2HA. Gearless, suitable for heavy bulk minerals, fertilizers, steel products, and grain.",
+        ua: "Судно генеральних вантажів 7,639.45 MT DWT, 2 трюми / 2 люки.",
+        ru: "Судно генеральных грузов 7,639.45 MT DWT, 2 трюма / 2 люка."
       })},
       ${JSON.stringify({
-        en: "2x 30MT SWL Electro-Hydraulic Cranes, hydraulic folding hatch covers (2HO/2HA)",
-        ua: "2x 30MT крани, гідравлічні люкові закриття",
-        ru: "2x 30MT краны, гидравлические люковые закрытия"
+        en: "Gearless, watertight hydraulic folding panels (2HO/2HA)",
+        ua: "Без кранів, гідравлічні люкові закриття",
+        ru: "Без кранов, гидравлические люковые закрытия"
       })},
       '/fleet/metanira/PHOTO__MV_METANIRA.JPG'
     ) ON CONFLICT (id) DO UPDATE SET
       name = EXCLUDED.name,
+      status = EXCLUDED.status,
       cover_image_url = EXCLUDED.cover_image_url,
       imo_number = EXCLUDED.imo_number,
       dwt = EXCLUDED.dwt,

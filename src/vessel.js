@@ -634,6 +634,8 @@ document.addEventListener('DOMContentLoaded', async () => {
           charterRateUsd: apiVessel.charterRateUsd || null,
           salePriceUsd: apiVessel.salePriceUsd || null,
           pdfGaPlanUrl: pdfDoc ? pdfDoc.url : (apiVessel.pdfGaPlanUrl || null),
+          pdfDescriptionUrl: apiVessel.pdfDescriptionUrl || (vesselId.includes('molpadia') ? '/fleet/molpadia/Vessel_Description__MOLPADIA.pdf' : '/fleet/metanira/Vessel_Description__METANIRA.pdf'),
+          sheetImageUrl: apiVessel.sheetImageUrl || (vesselId.includes('molpadia') ? '/fleet/molpadia/Vessel_Description__MOLPADIA.png' : '/fleet/metanira/Vessel_Description__METANIRA.png'),
           photos: (apiVessel.photos || apiVessel.media || [])
             .filter((m) => m && (m.type === "photo" || typeof m === "string" || !m.type))
             .map((m, idx) => {
@@ -862,7 +864,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   ['btn-open-pdf-hero', 'btn-open-pdf-hero-desktop', 'btn-tab-pdf-trigger', 'btn-view-ga-plan-tab'].forEach(id => {
     const el = document.getElementById(id);
     if (el) {
-      el.setAttribute('data-pdf', vessel.pdfGaPlanUrl);
+      el.setAttribute('data-pdf', vessel.pdfGaPlanUrl || '');
+      el.setAttribute('data-vessel', vessel.name);
+    }
+  });
+
+  ['btn-open-desc-pdf', 'btn-open-desc-pdf-desktop'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.setAttribute('data-pdf', vessel.pdfDescriptionUrl || '');
       el.setAttribute('data-vessel', vessel.name);
     }
   });
@@ -1306,6 +1316,20 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('btn-open-pdf-hero-desktop')?.addEventListener('click', (e) => {
     e.preventDefault();
     openPdfModal(vessel.pdfGaPlanUrl, `${vessel.name} — General Arrangement Plan`, 'Official Technical Blueprint • Danamira Managed Fleet', `${vessel.name.replace(/\s+/g, '_')}_GA_Plan.pdf`);
+  });
+
+  document.getElementById('btn-open-desc-pdf')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (vessel.pdfDescriptionUrl) {
+      openPdfModal(vessel.pdfDescriptionUrl, `${vessel.name} — Technical Specification`, 'Official Particulars Sheet • Danamira Managed Fleet', `${vessel.name.replace(/\s+/g, '_')}_Description.pdf`);
+    }
+  });
+
+  document.getElementById('btn-open-desc-pdf-desktop')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (vessel.pdfDescriptionUrl) {
+      openPdfModal(vessel.pdfDescriptionUrl, `${vessel.name} — Technical Specification`, 'Official Particulars Sheet • Danamira Managed Fleet', `${vessel.name.replace(/\s+/g, '_')}_Description.pdf`);
+    }
   });
 
   document.getElementById('btn-tab-pdf-trigger')?.addEventListener('click', (e) => {

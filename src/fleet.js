@@ -15,11 +15,13 @@ async function initFleetCatalog() {
         fleetList = apiVessels.map((av) => {
           const local = FLEET_DATABASE[av.id];
           const name = typeof av.name === 'object' ? (av.name.en || 'Unnamed') : av.name;
+          const isMetanira = av.id === '22222222-2222-2222-2222-222222222222' || (name && name.toUpperCase().includes('METANIRA'));
+          let status = isMetanira ? '' : (av.status === 'available' || av.status === 'Available for Charter' ? 'Available for TC' : (av.status || local?.status || 'Available for TC'));
           return {
             id: av.id,
             name: name,
             type: av.type ? (av.type === 'bulk_carrier' ? 'General Cargo' : av.type) : (local?.type || 'General Cargo'),
-            status: av.status === 'available' ? 'Available for Charter' : av.status,
+            status: status,
             yearBuilt: av.yearBuilt || local?.yearBuilt || 'N/A',
             flag: av.flag || local?.flag || 'N/A',
             imoNumber: av.imoNumber || local?.imoNumber || 'N/A',
@@ -28,6 +30,7 @@ async function initFleetCatalog() {
             deckGear: av.deckEquipment ? (typeof av.deckEquipment === 'object' ? av.deckEquipment.en : av.deckEquipment) : (local?.deckGear || '2 x 30 MT Cranes'),
             coverImageUrl: av.coverImageUrl || local?.coverImageUrl || '/placeholder-ship.jpg',
             pdfGaPlanUrl: local?.pdfGaPlanUrl || null,
+            pdfDescriptionUrl: local?.pdfDescriptionUrl || null,
             photos: av.photos || local?.photos || [],
           };
         });
@@ -78,24 +81,16 @@ async function initFleetCatalog() {
     }).length;
 
     const btnAll = document.getElementById('filter-btn-all') || document.querySelector('button[data-filter="all"]');
-    if (btnAll) {
-      btnAll.textContent = `All Fleet (${totalCount})`;
-    }
+    if (btnAll) btnAll.textContent = `All Fleet (${totalCount})`;
 
     const btnGc = document.getElementById('filter-btn-gc') || document.querySelector('button[data-filter="general-cargo"]');
-    if (btnGc) {
-      btnGc.textContent = `General Cargo (${gcCount})`;
-    }
+    if (btnGc) btnGc.textContent = `General Cargo (${gcCount})`;
 
     const btnBc = document.getElementById('filter-btn-bc') || document.querySelector('button[data-filter="bulk-carrier"]');
-    if (btnBc) {
-      btnBc.textContent = `Bulk Carrier (${bcCount})`;
-    }
+    if (btnBc) btnBc.textContent = `Bulk Carrier (${bcCount})`;
 
     const btnGeared = document.getElementById('filter-btn-geared') || document.querySelector('button[data-filter="geared"]');
-    if (btnGeared) {
-      btnGeared.textContent = `Geared with Cranes (${gearedCount})`;
-    }
+    if (btnGeared) btnGeared.textContent = `Geared with Cranes (${gearedCount})`;
   }
 
   updateFleetStats(fleetList);
@@ -123,15 +118,18 @@ async function initFleetCatalog() {
         <!-- Image Container (Sharp Corners & Safe Badge Placement) -->
         <a href="/vessel.html?id=${v.id}" class="block w-full h-64 sm:h-72 overflow-hidden rounded-none relative bg-[#222225] group/img" title="View Full Particulars of ${v.name}">
           <!-- High-Contrast Status Badge (Strictly inside image container) -->
-          <div class="absolute top-3 right-3 z-20 bg-[#222225]/95 text-white border-2 border-emerald-500 text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1.5 rounded-none shadow-2xl flex items-center gap-1.5 backdrop-blur-md">
+          ${v.status && v.status.trim() ? `
+          <div class="absolute top-3 right-3 z-20 bg-neutral-950/95 text-white border-2 border-emerald-500 text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1.5 rounded-none shadow-2xl flex items-center gap-1.5 backdrop-blur-md">
             <span class="w-2 h-2 rounded-none bg-emerald-400 shadow-[0_0_8px_#34d399] inline-block"></span>
             <span class="text-white font-bold tracking-wider">${v.status.toUpperCase()}</span>
           </div>
+          ` : ''}
 
-          <img src="${v.coverImageUrl}" alt="${v.name} Commercial Vessel Danamira Shipping" class="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#222225]/80 via-transparent to-transparent pointer-events-none"></div>
+          <img src="${v.coverImageUrl || '/placeholder-ship.jpg'}" alt="${v.name} Vessel Danamira Shipping" class="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#141416]/80 via-transparent to-transparent pointer-events-none"></div>
+          
           <span class="absolute bottom-3 left-3 bg-black/70 backdrop-blur-sm text-white/90 text-[10px] font-mono px-2.5 py-1 rounded-none border border-white/10 opacity-0 group-hover/img:opacity-100 transition-opacity inline-flex items-center gap-1.5">
-            <span>👁️ View Full Profile (${v.photos ? v.photos.length : 22} Photos)</span>
+            <span>👁️ View Full Profile (${v.photos ? v.photos.length : 'Inspection'} Photos)</span>
             <svg class="w-3 h-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </span>
         </a>
@@ -146,59 +144,81 @@ async function initFleetCatalog() {
                     ${v.name}
                   </h3>
                 </a>
-                <span class="text-[11px] font-mono text-neutral-400 mt-0.5 block">IMO: ${v.imoNumber} • Built ${v.yearBuilt}</span>
+                <span class="text-xs font-mono text-neutral-400 mt-0.5 block">IMO: ${v.imoNumber || 'N/A'} • Built ${v.yearBuilt || 'N/A'}</span>
               </div>
-              <span class="text-xl font-serif text-gold/40 select-none">0${idx + 1}</span>
+              <span class="text-xl font-serif text-gold/40 select-none">${String(idx + 1).padStart(2, '0')}</span>
             </div>
             <div class="h-[1px] w-12 bg-gold/30 mb-4"></div>
             
-            <!-- Specifications Sheet (3 Columns x 2 Rows) -->
+            <!-- Specifications Sheet -->
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-4 sm:gap-x-6 gap-y-3 sm:gap-y-4 font-sans text-xs border-t border-white/10 pt-4 mt-3">
               <div class="flex flex-col">
                 <span class="text-[9px] uppercase tracking-widest text-gold/70 mb-0.5">DWT</span>
-                <span class="text-white font-medium text-sm font-sans">${v.dwt}</span>
+                <span class="text-white font-medium text-sm">${v.dwt || 'N/A'}</span>
               </div>
               <div class="flex flex-col">
                 <span class="text-[9px] uppercase tracking-widest text-gold/70 mb-0.5">Flag</span>
-                <span class="text-white font-medium text-sm font-sans">${v.flag}</span>
+                <span class="text-white font-medium text-sm">${v.flag || 'N/A'}</span>
               </div>
               <div class="flex flex-col">
                 <span class="text-[9px] uppercase tracking-widest text-gold/70 mb-0.5">Year Built</span>
-                <span class="text-white font-medium text-sm font-sans">${v.yearBuilt}</span>
+                <span class="text-white font-medium text-sm">${v.yearBuilt || 'N/A'}</span>
               </div>
               <div class="flex flex-col">
                 <span class="text-[9px] uppercase tracking-widest text-gold/70 mb-0.5">Vessel Type</span>
-                <span class="text-white font-medium text-sm font-sans">${v.type}</span>
+                <span class="text-white font-medium text-sm">${v.type || 'General Cargo'}</span>
               </div>
               <div class="flex flex-col">
                 <span class="text-[9px] uppercase tracking-widest text-gold/70 mb-0.5">Holds / Hatches</span>
-                <span class="text-white font-medium text-sm font-sans">${v.holdsCount ? v.holdsCount.split('(')[0].trim() : '2HO / 2HA'}</span>
+                <span class="text-white font-medium text-sm">${v.holdsCount || '2HO / 2HA'}</span>
               </div>
               <div class="flex flex-col">
                 <span class="text-[9px] uppercase tracking-widest text-gold/70 mb-0.5">Deck Gear</span>
-                <span class="text-white font-medium text-sm font-sans">${v.deckGear}</span>
+                <span class="text-white font-medium text-sm">${v.deckGear || 'Gearless'}</span>
               </div>
             </div>
           </div>
           
-          <!-- Buttons & Actions Row (Sharp Corners: GA-Plan Left, Details Right) -->
-          <div class="flex items-center justify-between gap-3 pt-5 mt-4 border-t border-white/5 w-full">
-            <button type="button" data-pdf="${v.pdfGaPlanUrl}" data-vessel="${v.name}" class="btn-ga-plan group inline-flex items-center gap-2 px-3 py-2 rounded-none bg-[#2a2a2f] hover:bg-[#34343a] text-white border border-white/20 hover:border-red-500/60 text-xs font-mono uppercase tracking-wider transition-all duration-200 cursor-pointer active:scale-95 shadow-sm whitespace-nowrap shrink-0">
-              <!-- Classic Red PDF Document Badge Icon -->
-              <svg viewBox="0 0 32 36" class="w-4 h-4.5 shrink-0 transition-transform duration-200 group-hover:scale-105" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M7 2C5.34315 2 4 3.34315 4 5V31C4 32.6569 5.34315 34 7 34H25C26.6569 34 28 32.6569 28 31V12L18 2H7Z" stroke="#EF4444" stroke-width="2.2" stroke-linejoin="round" fill="none"/>
-                <path d="M18 2V12H28" stroke="#EF4444" stroke-width="2.2" stroke-linejoin="round"/>
-                <line x1="8" y1="13" x2="15" y2="13" stroke="#9CA3AF" stroke-width="1.8" stroke-linecap="round"/>
-                <line x1="8" y1="17.5" x2="24" y2="17.5" stroke="#9CA3AF" stroke-width="1.8" stroke-linecap="round"/>
-                <line x1="8" y1="22" x2="24" y2="22" stroke="#9CA3AF" stroke-width="1.8" stroke-linecap="round"/>
-                <rect x="2" y="21" width="18" height="11" rx="2" fill="#EF4444"/>
-                <text x="11" y="29.5" fill="white" font-size="7.5" font-weight="900" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" letter-spacing="-0.3px">PDF</text>
-              </svg>
-              <span class="font-bold text-white tracking-wider whitespace-nowrap">GA&#8209;PLAN</span>
-              <svg class="w-3 h-3 text-neutral-400 group-hover:text-white transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M7 17L17 7M7 7h10v10"/>
-              </svg>
-            </button>
+          <!-- Buttons & Actions Row (Sharp Corners: GA-Plan & Description Left, Details Right) -->
+          <div class="flex flex-wrap items-center justify-between gap-3 pt-5 mt-4 border-t border-white/5 w-full">
+            <div class="flex items-center gap-2">
+              ${v.pdfGaPlanUrl ? `
+              <button type="button" data-pdf="${v.pdfGaPlanUrl}" data-vessel="${v.name}" class="btn-ga-plan group inline-flex items-center gap-2 px-3 py-2 rounded-none bg-[#2a2a2f] hover:bg-[#34343a] text-white border border-white/20 hover:border-red-500/60 text-xs font-mono uppercase tracking-wider transition-all duration-200 cursor-pointer active:scale-95 shadow-sm whitespace-nowrap shrink-0" title="View General Arrangement Plan">
+                <!-- Classic Red PDF Document Badge Icon -->
+                <svg viewBox="0 0 32 36" class="w-4 h-4.5 shrink-0 transition-transform duration-200 group-hover:scale-105" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 2C5.34315 2 4 3.34315 4 5V31C4 32.6569 5.34315 34 7 34H25C26.6569 34 28 32.6569 28 31V12L18 2H7Z" stroke="#EF4444" stroke-width="2.2" stroke-linejoin="round" fill="none"/>
+                  <path d="M18 2V12H28" stroke="#EF4444" stroke-width="2.2" stroke-linejoin="round"/>
+                  <line x1="8" y1="13" x2="15" y2="13" stroke="#9CA3AF" stroke-width="1.8" stroke-linecap="round"/>
+                  <line x1="8" y1="17.5" x2="24" y2="17.5" stroke="#9CA3AF" stroke-width="1.8" stroke-linecap="round"/>
+                  <line x1="8" y1="22" x2="24" y2="22" stroke="#9CA3AF" stroke-width="1.8" stroke-linecap="round"/>
+                  <rect x="2" y="21" width="18" height="11" rx="2" fill="#EF4444"/>
+                  <text x="11" y="29.5" fill="white" font-size="7.5" font-weight="900" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" letter-spacing="-0.3px">PDF</text>
+                </svg>
+                <span class="font-bold text-white tracking-wider whitespace-nowrap">GA&#8209;PLAN</span>
+                <svg class="w-3 h-3 text-neutral-400 group-hover:text-white transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 17L17 7M7 7h10v10"/>
+                </svg>
+              </button>
+              ` : ''}
+
+              ${v.pdfDescriptionUrl ? `
+              <button type="button" data-pdf="${v.pdfDescriptionUrl}" data-vessel="${v.name}" class="btn-ga-plan group inline-flex items-center gap-2 px-3 py-2 rounded-none bg-[#2a2a2f] hover:bg-[#34343a] text-white border border-white/20 hover:border-gold/60 text-xs font-mono uppercase tracking-wider transition-all duration-200 cursor-pointer active:scale-95 shadow-sm whitespace-nowrap shrink-0" title="View Vessel Description PDF">
+                <svg viewBox="0 0 32 36" class="w-4 h-4.5 shrink-0 transition-transform duration-200 group-hover:scale-105" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 2C5.34315 2 4 3.34315 4 5V31C4 32.6569 5.34315 34 7 34H25C26.6569 34 28 32.6569 28 31V12L18 2H7Z" stroke="#C89B3C" stroke-width="2.2" stroke-linejoin="round" fill="none"/>
+                  <path d="M18 2V12H28" stroke="#C89B3C" stroke-width="2.2" stroke-linejoin="round"/>
+                  <line x1="8" y1="13" x2="15" y2="13" stroke="#9CA3AF" stroke-width="1.8" stroke-linecap="round"/>
+                  <line x1="8" y1="17.5" x2="24" y2="17.5" stroke="#9CA3AF" stroke-width="1.8" stroke-linecap="round"/>
+                  <line x1="8" y1="22" x2="24" y2="22" stroke="#9CA3AF" stroke-width="1.8" stroke-linecap="round"/>
+                  <rect x="2" y="21" width="18" height="11" rx="2" fill="#C89B3C"/>
+                  <text x="11" y="29.5" fill="white" font-size="7.5" font-weight="900" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" letter-spacing="-0.3px">DOC</text>
+                </svg>
+                <span class="font-bold text-white tracking-wider whitespace-nowrap">DESCRIPTION</span>
+                <svg class="w-3 h-3 text-neutral-400 group-hover:text-gold transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 17L17 7M7 7h10v10"/>
+                </svg>
+              </button>
+              ` : ''}
+            </div>
 
             <a href="/vessel.html?id=${v.id}" class="group/det inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-gold hover:text-white transition-colors duration-200">
               <span>Details</span>

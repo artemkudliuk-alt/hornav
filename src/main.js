@@ -665,7 +665,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sectionToNav = {
       'hero-sec': 'home',
       'company': 'company',
-      'cargo': 'company',
+      'accountability': 'company',
       'markets': 'company',
       'fleet': 'fleet',
       'compliance': 'company',
@@ -714,7 +714,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sections = [
       document.getElementById('hero-sec'),
       document.getElementById('company'),
-      document.getElementById('cargo'),
+      document.getElementById('accountability'),
       document.getElementById('markets'),
       document.getElementById('fleet'),
       document.getElementById('compliance'),
@@ -816,18 +816,20 @@ document.addEventListener('DOMContentLoaded', () => {
           ? `http://localhost:3000${rawCover}`
           : rawCover;
         const num = String(index + 1).padStart(2, '0');
-        const pdfLink = v.id.includes('meta') 
-          ? '/fleet/metanira/3_GA-PLAN.pdf'
+        const isMetanira = v.id.includes('meta') || vesselName.toUpperCase().includes('METANIRA');
+        const pdfLink = isMetanira 
+          ? '/fleet/metanira/1_GA_PLAN.pdf'
           : '/fleet/molpadia/2_GA-PLAN.pdf';
-        const vesselName = typeof v.name === 'object' ? (v.name.en || 'Unnamed') : v.name;
+        const statusText = isMetanira ? '' : (v.status === 'available' || v.status === 'Available for Charter' ? 'Available for TC' : (v.status || 'Available for TC'));
 
         return `
           <div class="bg-bg-secondary/70 border border-neutral-800/80 hover:border-gold/40 rounded-none p-5 sm:p-7 lg:p-8 flex flex-col gap-6 sm:gap-7 transition-all duration-500 hover:-translate-y-1 group relative shadow-xl text-left overflow-hidden" data-reveal id="f-card-${v.id}">
             <!-- High-Contrast Status Badge -->
+            ${statusText ? `
             <div class="absolute top-4 right-4 z-20 bg-neutral-950/95 text-white border-2 border-emerald-500 text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1.5 rounded-none shadow-2xl flex items-center gap-1.5 backdrop-blur-md">
               <span class="w-2 h-2 rounded-none bg-emerald-400 shadow-[0_0_8px_#34d399] inline-block"></span>
-              <span class="text-white font-bold tracking-wider">${(v.status || 'AVAILABLE').toUpperCase()}</span>
-            </div>
+              <span class="text-white font-bold tracking-wider">${statusText.toUpperCase()}</span>
+            </div>` : ''}
 
             <!-- Image Container -->
             <a href="/vessel.html?id=${v.id}" class="block w-full h-64 sm:h-72 overflow-hidden rounded-none relative bg-neutral-900 group/img" title="View Full Particulars of ${vesselName}">
@@ -859,7 +861,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-4 sm:gap-x-6 gap-y-3 sm:gap-y-4 font-sans text-xs border-t border-white/10 pt-4 mt-3">
                   <div class="flex flex-col">
                     <span class="text-[9px] uppercase tracking-widest text-gold/70 mb-0.5">DWT</span>
-                    <span class="text-white font-medium text-sm">${v.dwt ? Number(v.dwt).toLocaleString() + ' MT' : '6,408 MT'}</span>
+                    <span class="text-white font-medium text-sm">${v.dwt ? Number(v.dwt).toLocaleString() + ' MT' : (isMetanira ? '7,639 MT' : '6,408 MT')}</span>
                   </div>
                   <div class="flex flex-col">
                     <span class="text-[9px] uppercase tracking-widest text-gold/70 mb-0.5">Flag</span>
@@ -867,7 +869,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   </div>
                   <div class="flex flex-col">
                     <span class="text-[9px] uppercase tracking-widest text-gold/70 mb-0.5">Year Built</span>
-                    <span class="text-white font-medium text-sm">${v.yearBuilt || '2014'}</span>
+                    <span class="text-white font-medium text-sm">${v.yearBuilt || (isMetanira ? '2011' : '2012')}</span>
                   </div>
                   <div class="flex flex-col">
                     <span class="text-[9px] uppercase tracking-widest text-gold/70 mb-0.5">Vessel Type</span>
@@ -879,14 +881,14 @@ document.addEventListener('DOMContentLoaded', () => {
                   </div>
                   <div class="flex flex-col">
                     <span class="text-[9px] uppercase tracking-widest text-gold/70 mb-0.5">Deck Gear</span>
-                    <span class="text-white font-medium text-sm">${v.deckEquipment ? (typeof v.deckEquipment === 'object' ? v.deckEquipment.en : v.deckEquipment) : '2 x 30 MT Cranes'}</span>
+                    <span class="text-white font-medium text-sm">${v.deckEquipment ? (typeof v.deckEquipment === 'object' ? v.deckEquipment.en : v.deckEquipment) : (isMetanira ? 'Gearless' : '2 x 30 MT Cranes')}</span>
                   </div>
                 </div>
               </div>
               
               <!-- Buttons & Actions Row (Sharp Corners: GA-Plan Left, Details Right) -->
               <div class="flex items-center justify-between gap-3 pt-5 mt-4 border-t border-white/5 w-full">
-                <button type="button" data-pdf-url="${pdfLink}" data-vessel="${vesselName}" class="btn-open-pdf group inline-flex items-center gap-2 px-3 py-2 rounded-none bg-[#141416] hover:bg-[#1a1a1d] text-white border border-white/20 hover:border-red-500/60 text-xs font-mono uppercase tracking-wider transition-all duration-200 cursor-pointer active:scale-95 shadow-sm whitespace-nowrap shrink-0">
+                <button type="button" data-pdf-url="${pdfLink}" data-vessel="${vesselName}" class="btn-open-pdf group inline-flex items-center gap-2 px-3 py-2 rounded-none bg-[#141416] hover:bg-[#1a1a1d] text-white border border-white/20 hover:border-red-500/60 text-xs font-mono uppercase tracking-wider transition-all duration-200 cursor-pointer active:scale-95 shadow-sm whitespace-nowrap shrink-0" title="View General Arrangement Plan">
                   <svg viewBox="0 0 32 36" class="w-4 h-4.5 shrink-0 transition-transform duration-200 group-hover:scale-105" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7 2C5.34315 2 4 3.34315 4 5V31C4 32.6569 5.34315 34 7 34H25C26.6569 34 28 32.6569 28 31V12L18 2H7Z" stroke="#EF4444" stroke-width="2.2" stroke-linejoin="round" fill="none"/>
                     <path d="M18 2V12H28" stroke="#EF4444" stroke-width="2.2" stroke-linejoin="round"/>
@@ -925,6 +927,106 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize High-Precision PDF Viewer Engine
   initPdfModal();
+
+  // 8. Careers Application Modal & Form Submission
+  const careersModal = document.getElementById('careers-modal');
+  const closeCareersModalBtn = document.getElementById('close-careers-modal');
+  const careerModalCategory = document.getElementById('career-modal-category');
+  const careerModalTitle = document.getElementById('career-modal-title');
+  const appPositionInput = document.getElementById('app-position');
+  const careerAppForm = document.getElementById('career-app-form');
+  const careerAppSuccess = document.getElementById('career-app-success');
+  const btnSubmitCareer = document.getElementById('btn-submit-career');
+
+  const openCareersModal = (category, position) => {
+    if (!careersModal) return;
+    if (careerModalCategory) careerModalCategory.textContent = category || 'Shore-based';
+    if (careerModalTitle) careerModalTitle.textContent = position || 'Join to Shore Team';
+    if (appPositionInput) appPositionInput.value = position || 'Shore Team Specialist';
+    
+    if (careerAppForm) careerAppForm.classList.remove('hidden');
+    if (careerAppSuccess) careerAppSuccess.classList.add('hidden');
+    
+    careersModal.classList.remove('opacity-0', 'pointer-events-none');
+    careersModal.classList.add('opacity-100');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeCareersModal = () => {
+    if (!careersModal) return;
+    careersModal.classList.remove('opacity-100');
+    careersModal.classList.add('opacity-0', 'pointer-events-none');
+    document.body.style.overflow = '';
+  };
+
+  document.querySelectorAll('.btn-open-career-modal').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const category = btn.getAttribute('data-category');
+      const position = btn.getAttribute('data-position');
+      openCareersModal(category, position);
+    });
+  });
+
+  if (closeCareersModalBtn) {
+    closeCareersModalBtn.addEventListener('click', closeCareersModal);
+  }
+
+  if (careersModal) {
+    careersModal.addEventListener('click', (e) => {
+      if (e.target === careersModal) closeCareersModal();
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && careersModal && careersModal.classList.contains('opacity-100')) {
+      closeCareersModal();
+    }
+  });
+
+  if (careerAppForm) {
+    careerAppForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (btnSubmitCareer) {
+        btnSubmitCareer.disabled = true;
+        btnSubmitCareer.innerHTML = '<span>SUBMITTING APPLICATION...</span>';
+      }
+
+      const name = document.getElementById('app-name')?.value || '';
+      const email = document.getElementById('app-email')?.value || '';
+      const phone = document.getElementById('app-phone')?.value || '';
+      const position = document.getElementById('app-position')?.value || '';
+      const cover = document.getElementById('app-cover')?.value || '';
+
+      try {
+        await fetch(`${window.location.origin}/api/public/leads`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            clientName: name,
+            name: name,
+            clientEmail: email,
+            email: email,
+            phone: phone || null,
+            comment: `[Career Application: ${position}] ${cover}`,
+            notes: `[Phone: ${phone}] [Position: ${position}] ${cover}`,
+            source: 'careers_modal',
+            sourcePage: '/#careers'
+          })
+        }).catch(() => null);
+      } catch (err) {
+        console.error('Career submit err:', err);
+      }
+
+      setTimeout(() => {
+        if (careerAppForm) careerAppForm.classList.add('hidden');
+        if (careerAppSuccess) careerAppSuccess.classList.remove('hidden');
+        if (btnSubmitCareer) {
+          btnSubmitCareer.disabled = false;
+          btnSubmitCareer.innerHTML = '<span>SUBMIT APPLICATION</span>';
+        }
+      }, 600);
+    });
+  }
 
   // Load dynamic fleet from CMS and calculate stacking scroll
   syncFleetFromCMS().then(() => {

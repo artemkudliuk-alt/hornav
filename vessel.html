@@ -74,7 +74,7 @@
         </div>
 
         <a href="/fleet.html" class="text-gold hover:text-gold transition-colors duration-200" id="link-fleet">Managed Fleet</a>
-        <a href="/contacts.html" class="hover:text-gold transition-colors duration-200" id="link-careers">Careers</a>
+        <a href="/#careers" class="hover:text-gold transition-colors duration-200" id="link-careers">Careers</a>
         <a href="/contacts.html" class="hover:text-gold transition-colors duration-200" id="link-contact">Contact</a>
       </div>
 
@@ -113,7 +113,7 @@
       </div>
 
       <a href="/fleet.html" class="text-gold transition-colors duration-300">Managed Fleet</a>
-      <a href="/contacts.html" class="hover:text-gold transition-colors duration-300">Careers</a>
+      <a href="/#careers" class="hover:text-gold transition-colors duration-300">Careers</a>
       <a href="/contacts.html" class="hover:text-gold transition-colors duration-300">Contact</a>
     </div>
   </div>
@@ -154,28 +154,52 @@
           </span>
         </div>
 
-        <!-- Desktop Action: GA-Plan PDF Button (Top Right on Desktop) -->
-        <button id="btn-open-pdf-hero-desktop" type="button" class="group hidden sm:inline-flex items-center gap-3.5 px-6 py-2.5 bg-black/40 hover:bg-[#1f1f24] border border-white/20 hover:border-red-500/60 text-white transition-all duration-200 cursor-pointer active:scale-95 shadow-md shrink-0">
-          <!-- Classic Red PDF Document Badge Icon -->
-          <svg viewBox="0 0 32 36" class="w-6 h-7 shrink-0 transition-transform duration-200 group-hover:scale-105" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M7 2C5.34315 2 4 3.34315 4 5V31C4 32.6569 5.34315 34 7 34H25C26.6569 34 28 32.6569 28 31V12L18 2H7Z" stroke="#EF4444" stroke-width="2.2" stroke-linejoin="round" fill="none"/>
-            <path d="M18 2V12H28" stroke="#EF4444" stroke-width="2.2" stroke-linejoin="round"/>
-            <line x1="8" y1="13" x2="15" y2="13" stroke="#9CA3AF" stroke-width="1.8" stroke-linecap="round"/>
-            <line x1="8" y1="17.5" x2="24" y2="17.5" stroke="#9CA3AF" stroke-width="1.8" stroke-linecap="round"/>
-            <line x1="8" y1="22" x2="24" y2="22" stroke="#9CA3AF" stroke-width="1.8" stroke-linecap="round"/>
-            <rect x="2" y="21" width="18" height="11" rx="2" fill="#EF4444"/>
-            <text x="11" y="29.5" fill="white" font-size="7.5" font-weight="900" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" letter-spacing="-0.3px">PDF</text>
-          </svg>
-          <div class="flex flex-col text-left">
-            <div class="flex items-center gap-1.5">
-              <span class="text-xs sm:text-sm font-sans font-bold text-white uppercase group-hover:text-gold transition-colors whitespace-nowrap">GA&#8209;Plan</span>
-              <svg class="w-3 h-3 text-neutral-400 group-hover:text-gold transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M7 17L17 7M7 7h10v10"/>
-              </svg>
+        <!-- Desktop Actions: Description & GA-Plan PDF Buttons -->
+        <div class="hidden sm:flex items-center gap-3 shrink-0">
+          <!-- Description PDF Button -->
+          <button id="btn-open-desc-pdf-desktop" type="button" class="group inline-flex items-center gap-3 px-5 py-2.5 bg-black/40 hover:bg-[#1f1f24] border border-white/20 hover:border-gold/60 text-white transition-all duration-200 cursor-pointer active:scale-95 shadow-md">
+            <svg viewBox="0 0 32 36" class="w-6 h-7 shrink-0 transition-transform duration-200 group-hover:scale-105" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 2C5.34315 2 4 3.34315 4 5V31C4 32.6569 5.34315 34 7 34H25C26.6569 34 28 32.6569 28 31V12L18 2H7Z" stroke="#EF4444" stroke-width="2.2" stroke-linejoin="round" fill="none"/>
+              <path d="M18 2V12H28" stroke="#EF4444" stroke-width="2.2" stroke-linejoin="round"/>
+              <line x1="8" y1="13" x2="15" y2="13" stroke="#9CA3AF" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="8" y1="17.5" x2="24" y2="17.5" stroke="#9CA3AF" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="8" y1="22" x2="24" y2="22" stroke="#9CA3AF" stroke-width="1.8" stroke-linecap="round"/>
+              <rect x="2" y="21" width="18" height="11" rx="2" fill="#EF4444"/>
+              <text x="11" y="29.5" fill="white" font-size="7.5" font-weight="900" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" letter-spacing="-0.3px">PDF</text>
+            </svg>
+            <div class="flex flex-col text-left">
+              <div class="flex items-center gap-1.5">
+                <span class="text-xs sm:text-sm font-sans font-bold text-white uppercase group-hover:text-gold transition-colors whitespace-nowrap">Description</span>
+                <svg class="w-3 h-3 text-neutral-400 group-hover:text-gold transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 17L17 7M7 7h10v10"/>
+                </svg>
+              </div>
+              <span class="text-[10px] sm:text-xs font-sans text-neutral-400 uppercase tracking-wider whitespace-nowrap">Vessel Particulars</span>
             </div>
-            <span class="text-[10px] sm:text-xs font-sans text-neutral-400 uppercase tracking-wider whitespace-nowrap">Technical Drawing</span>
-          </div>
-        </button>
+          </button>
+
+          <!-- GA-Plan PDF Button -->
+          <button id="btn-open-pdf-hero-desktop" type="button" class="group inline-flex items-center gap-3 px-5 py-2.5 bg-black/40 hover:bg-[#1f1f24] border border-white/20 hover:border-gold/60 text-white transition-all duration-200 cursor-pointer active:scale-95 shadow-md">
+            <svg viewBox="0 0 32 36" class="w-6 h-7 shrink-0 transition-transform duration-200 group-hover:scale-105" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 2C5.34315 2 4 3.34315 4 5V31C4 32.6569 5.34315 34 7 34H25C26.6569 34 28 32.6569 28 31V12L18 2H7Z" stroke="#EF4444" stroke-width="2.2" stroke-linejoin="round" fill="none"/>
+              <path d="M18 2V12H28" stroke="#EF4444" stroke-width="2.2" stroke-linejoin="round"/>
+              <line x1="8" y1="13" x2="15" y2="13" stroke="#9CA3AF" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="8" y1="17.5" x2="24" y2="17.5" stroke="#9CA3AF" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="8" y1="22" x2="24" y2="22" stroke="#9CA3AF" stroke-width="1.8" stroke-linecap="round"/>
+              <rect x="2" y="21" width="18" height="11" rx="2" fill="#EF4444"/>
+              <text x="11" y="29.5" fill="white" font-size="7.5" font-weight="900" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" letter-spacing="-0.3px">PDF</text>
+            </svg>
+            <div class="flex flex-col text-left">
+              <div class="flex items-center gap-1.5">
+                <span class="text-xs sm:text-sm font-sans font-bold text-white uppercase group-hover:text-gold transition-colors whitespace-nowrap">GA&#8209;Plan</span>
+                <svg class="w-3 h-3 text-neutral-400 group-hover:text-gold transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 17L17 7M7 7h10v10"/>
+                </svg>
+              </div>
+              <span class="text-[10px] sm:text-xs font-sans text-neutral-400 uppercase tracking-wider whitespace-nowrap">Technical Drawing</span>
+            </div>
+          </button>
+        </div>
       </div>
 
       <!-- 2. MAIN 2-COLUMN COCKPIT GRID (Central Dividing Line Only) -->
@@ -280,27 +304,31 @@
             </div>
           </div>
 
-          <!-- GA-PLAN PDF BUTTON (Mobile Only, Centered Under Icons) -->
-          <div class="flex sm:hidden justify-center pt-3 pb-1 w-full">
-            <button id="btn-open-pdf-hero" type="button" class="group flex items-center gap-3.5 px-6 py-2.5 bg-black/40 hover:bg-[#1f1f24] border border-white/20 hover:border-red-500/60 text-white transition-all duration-200 cursor-pointer active:scale-95 shadow-md">
-              <!-- Classic Red PDF Document Badge Icon -->
-              <svg viewBox="0 0 32 36" class="w-6 h-7 shrink-0 transition-transform duration-200 group-hover:scale-105" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- PDF BUTTONS (Mobile Only, 2 Buttons Side-by-Side) -->
+          <div class="grid grid-cols-2 gap-2 sm:hidden pt-3 pb-1 w-full">
+            <button id="btn-open-desc-pdf" type="button" class="group flex items-center justify-center gap-2 px-3 py-2.5 bg-black/40 hover:bg-[#1f1f24] border border-white/20 hover:border-gold/60 text-white transition-all duration-200 cursor-pointer active:scale-95 shadow-md">
+              <svg viewBox="0 0 32 36" class="w-5 h-6 shrink-0" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M7 2C5.34315 2 4 3.34315 4 5V31C4 32.6569 5.34315 34 7 34H25C26.6569 34 28 32.6569 28 31V12L18 2H7Z" stroke="#EF4444" stroke-width="2.2" stroke-linejoin="round" fill="none"/>
                 <path d="M18 2V12H28" stroke="#EF4444" stroke-width="2.2" stroke-linejoin="round"/>
-                <line x1="8" y1="13" x2="15" y2="13" stroke="#9CA3AF" stroke-width="1.8" stroke-linecap="round"/>
-                <line x1="8" y1="17.5" x2="24" y2="17.5" stroke="#9CA3AF" stroke-width="1.8" stroke-linecap="round"/>
-                <line x1="8" y1="22" x2="24" y2="22" stroke="#9CA3AF" stroke-width="1.8" stroke-linecap="round"/>
                 <rect x="2" y="21" width="18" height="11" rx="2" fill="#EF4444"/>
                 <text x="11" y="29.5" fill="white" font-size="7.5" font-weight="900" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" letter-spacing="-0.3px">PDF</text>
               </svg>
               <div class="flex flex-col text-left">
-                <div class="flex items-center gap-1.5">
-                  <span class="text-xs sm:text-sm font-sans font-bold text-white uppercase group-hover:text-gold transition-colors whitespace-nowrap">GA&#8209;Plan</span>
-                  <svg class="w-3 h-3 text-neutral-400 group-hover:text-gold transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M7 17L17 7M7 7h10v10"/>
-                  </svg>
-                </div>
-                <span class="text-[10px] sm:text-xs font-sans text-neutral-400 uppercase tracking-wider whitespace-nowrap">Technical Drawing</span>
+                <span class="text-[11px] font-sans font-bold text-white uppercase group-hover:text-gold transition-colors whitespace-nowrap">Description</span>
+                <span class="text-[9px] font-sans text-neutral-400 uppercase tracking-wider whitespace-nowrap">Particulars</span>
+              </div>
+            </button>
+
+            <button id="btn-open-pdf-hero" type="button" class="group flex items-center justify-center gap-2 px-3 py-2.5 bg-black/40 hover:bg-[#1f1f24] border border-white/20 hover:border-gold/60 text-white transition-all duration-200 cursor-pointer active:scale-95 shadow-md">
+              <svg viewBox="0 0 32 36" class="w-5 h-6 shrink-0" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 2C5.34315 2 4 3.34315 4 5V31C4 32.6569 5.34315 34 7 34H25C26.6569 34 28 32.6569 28 31V12L18 2H7Z" stroke="#EF4444" stroke-width="2.2" stroke-linejoin="round" fill="none"/>
+                <path d="M18 2V12H28" stroke="#EF4444" stroke-width="2.2" stroke-linejoin="round"/>
+                <rect x="2" y="21" width="18" height="11" rx="2" fill="#EF4444"/>
+                <text x="11" y="29.5" fill="white" font-size="7.5" font-weight="900" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" letter-spacing="-0.3px">PDF</text>
+              </svg>
+              <div class="flex flex-col text-left">
+                <span class="text-[11px] font-sans font-bold text-white uppercase group-hover:text-gold transition-colors whitespace-nowrap">GA&#8209;Plan</span>
+                <span class="text-[9px] font-sans text-neutral-400 uppercase tracking-wider whitespace-nowrap">Drawing</span>
               </div>
             </button>
           </div>
@@ -371,23 +399,62 @@
         </a>
         
         <p class="text-sm sm:text-base text-neutral-300 font-sans font-light leading-relaxed max-w-lg" id="footer-brand-desc">
-          Provides integrated ship management services covering commercial management, sale &amp; purchase, chartering, vessel operations, technical, ISM and safety management and financial &amp; accounting support.
+          Integrated ship management services covering commercial management, sale &amp; purchase, chartering, vessel operations, technical, ISM and safety management and financial &amp; accounting support.
         </p>
 
-        <!-- Quick Contacts Matrix -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-2 text-sm font-sans text-neutral-300" id="footer-quick-contacts">
-          <div class="flex flex-col gap-1 text-left">
-            <span class="text-[10px] font-mono uppercase tracking-widest text-gold font-bold block">Email:</span>
-            <a href="mailto:greece@danamira-shipping.com" class="text-white hover:text-gold transition-colors font-sans text-sm font-normal truncate">
-              greece@danamira-shipping.com
-            </a>
+        <!-- Quick Contacts Grid (Premium Structured Cards with Gold Accents & Icons) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 pt-3 w-full" id="footer-quick-contacts">
+          
+          <!-- Card 1: Communication & Telephone -->
+          <div class="p-4 sm:p-5 bg-[#17171a]/95 border border-neutral-800/90 hover:border-gold/50 transition-all duration-300 flex flex-col gap-3 group text-left shadow-lg backdrop-blur-sm rounded-none">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-none bg-[#202025] border border-gold/30 flex items-center justify-center text-gold shrink-0 group-hover:border-gold group-hover:scale-105 transition-all">
+                <!-- Mail Icon -->
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                </svg>
+              </div>
+              <span class="text-[10px] font-mono font-bold tracking-[0.2em] text-gold uppercase">Direct Dispatch</span>
+            </div>
+
+            <div class="flex flex-col gap-2 pt-2 border-t border-white/5">
+              <a href="mailto:greece@danamira-shipping.com" class="text-white hover:text-gold transition-colors font-sans text-xs sm:text-sm font-medium truncate">
+                greece@danamira-shipping.com
+              </a>
+              <div class="flex flex-col gap-1 text-xs font-mono text-neutral-300">
+                <a href="tel:+302113456550" class="text-white hover:text-gold transition-colors font-medium whitespace-nowrap">
+                  +30 211 34 56 550
+                </a>
+                <a href="tel:+302113456555" class="text-white hover:text-gold transition-colors font-medium whitespace-nowrap">
+                  +30 211 34 56 555
+                </a>
+              </div>
+            </div>
           </div>
-          <div class="flex flex-col gap-1 text-left">
-            <span class="text-[10px] font-mono uppercase tracking-widest text-gold font-bold block">Office:</span>
-            <span class="text-white text-sm font-sans font-normal">
-              Zeppou 33, 166 75, Glyfada, Greece
-            </span>
+
+          <!-- Card 2: Branch Office Location -->
+          <div class="p-4 sm:p-5 bg-[#17171a]/95 border border-neutral-800/90 hover:border-gold/50 transition-all duration-300 flex flex-col gap-3 group text-left shadow-lg backdrop-blur-sm rounded-none">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-none bg-[#202025] border border-gold/30 flex items-center justify-center text-gold shrink-0 group-hover:border-gold group-hover:scale-105 transition-all">
+                <!-- Location Pin Icon -->
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                </svg>
+              </div>
+              <span class="text-[10px] font-mono font-bold tracking-[0.2em] text-gold uppercase">Greek Branch Office</span>
+            </div>
+
+            <div class="flex flex-col gap-1 pt-2 border-t border-white/5">
+              <span class="text-white font-sans text-xs sm:text-sm font-medium leading-snug">
+                Zeppou 33, 166 75, Glyfada, Greece
+              </span>
+              <span class="text-[11px] font-mono text-neutral-400">
+                Registered Law 89/1967 Station
+              </span>
+            </div>
           </div>
+
         </div>
       </div>
 

@@ -217,10 +217,22 @@ export async function syncHeaderFooterPages() {
     const pages = await res.json();
     if (!Array.isArray(pages) || pages.length === 0) return;
 
-    const staticSlugs = ['company.html', 'fleet.html', 'contacts.html', 'accountability.html', 'vessel.html', 'index.html', ''];
+    const staticSlugs = [
+      'company.html', 'company', 'about', 'about.html', 
+      'fleet.html', 'fleet', 'managed-fleet',
+      'contacts.html', 'contact', 'contacts', 
+      'accountability.html', 'accountability', 
+      'vessel.html', 'index.html', 'home',
+      'careers', 'careers.html', 'careers-crewing', 'crewing',
+      ''
+    ];
     const customPages = pages.filter(p => !staticSlugs.includes(p.slug.replace(/^\/+/, '')));
 
-    if (customPages.length === 0) return;
+    if (customPages.length === 0) {
+      const existingMore = document.getElementById('nav-more-dropdown-container');
+      if (existingMore) existingMore.remove();
+      return;
+    }
 
     // 1. Sync Desktop Header "More ▾" Dropdown
     const navLinks = document.getElementById('nav-links');

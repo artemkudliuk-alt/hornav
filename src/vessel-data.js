@@ -3,126 +3,120 @@ export const FLEET_DATABASE = {
   'vessel-molpadia': {
     id: 'vessel-molpadia',
     name: 'MV MOLPADIA',
-    type: 'General Cargo',
-    status: 'Available for Charter',
-    yearBuilt: 2014,
+    type: 'Geared Singledeck General Cargo / Heavy Load Carrier',
+    status: 'Available for TC',
+    yearBuilt: 2012,
     builder: 'Yangzijiang Shipbuilding Group',
     flag: 'Antigua & Barbuda',
     portOfRegistry: "St. John's",
-    callSign: 'V2FX5',
-    imoNumber: '9613616',
-    officialNumber: '12467',
-    classSociety: 'DNV (Det Norske Veritas)',
-    classNotation: '100 A5 E3 G NAV-O BWM SOLAS-II-2 Reg.19',
-    dwt: '6,408 MT',
-    gt: '4,591',
-    nt: '2,352',
-    loa: '108.20 m',
-    beam: '18.20 m',
-    draft: '6.85 m (Summer)',
-    depthMoulded: '9.00 m',
+    callSign: 'V2RA6',
+    imoNumber: '9633850',
+    officialNumber: '3247',
+    classSociety: 'BV (Bureau Veritas)',
+    classNotation: 'BV I +Hull +Mach General Cargo / Heavy Load Carrier',
+    dwt: '6,408 MT on 6.60 m SSW',
+    dwcc: '6,000 MT',
+    gt: '4,559',
+    nt: '2,497',
+    loa: '104.20 m (LBP 97.50 m)',
+    beam: '17.20 m',
+    draft: '6.60 m (SSW)',
+    depthMoulded: '8.50 m',
+    airDraft: 'Abt 27.45 m (in ballast) / Max Height 31.35 m',
     holdsCount: '2 Holds / 2 Hatches (2HO / 2HA)',
-    grainCapacity: '315,000 cu.ft (8,920 cu.m)',
-    baleCapacity: '305,000 cu.ft (8,637 cu.m)',
-    hatch1Dims: '25.60 m x 15.20 m',
-    hatch2Dims: '38.40 m x 15.20 m',
-    hatchType: 'Hydraulic Folding Steel Weather-tight',
-    tankTopStrength: '15.0 MT / sq.m',
-    deckGear: '2 x 30 MT Cranes',
-    craneDetails: 'Port-side mounted electro-hydraulic cranes. SWL 30 MT at 24.0 m outreach. Combinable up to 60 MT.',
-    maxSpeed: '13.5 knots',
-    ecoSpeed: '11.0 knots',
-    fuelConsumption: 'Eco: ~9.5 MT VLSFO/day at sea',
-    mainEngine: 'MAN B&W 6L27/38 (2,040 kW @ 800 RPM)',
-    bowThruster: 'Fitted (350 kW)',
+    grainCapacity: 'Abt 8,391 cbm (Hold 1: 4,155 cbm / Hold 2: 4,236 cbm)',
+    baleCapacity: 'Abt 8,391 cbm',
+    hatch1Dims: '26.60 m x 12.00 m',
+    hatch2Dims: '26.60 m x 12.00 m',
+    hatchType: 'Weather tight folding hatch covers (2.1 MT/m²)',
+    tankTopStrength: '15 MT/m²',
+    deckGear: '2 x 30 MT Electro-Hydraulic Twin Cranes',
+    craneDetails: '2 x 30 MT electro-hydraulic twin cranes, combinable to 60 MT. Max jib radius: 28 m.',
+    maxSpeed: '11.0 knots',
+    ecoSpeed: '9.5 knots',
+    fuelConsumption: 'Eco: abt 6.5 mt VLSFO + 1.0 mt MGO / 24 hrs',
+    mainEngine: 'Marine Diesel Engine',
+    bowThruster: 'Fitted (Yes)',
     coverImageUrl: '/fleet/molpadia/MV_MOLPADIA__PHOTO.jpg',
     pdfGaPlanUrl: '/fleet/molpadia/2_GA-PLAN.pdf',
-    sheetImageUrl: '/fleet/metanira/Vessel_Description__METANIRA.png',
+    pdfDescriptionUrl: '/fleet/molpadia/Vessel_Description__MOLPADIA.pdf',
+    sheetImageUrl: '/fleet/molpadia/Vessel_Description__MOLPADIA.png',
     
     // Structured flyer data sections
     specSections: {
       information: [
-        { label: 'Vessel Name', value: 'M/V MOLPADIA' },
-        { label: 'IMO No.', value: '9613616' },
-        { label: 'Vessel Type', value: 'General Cargo' },
-        { label: 'BLT (Year Built)', value: '2014' },
+        { label: 'Vessel Name', value: 'MV MOLPADIA' },
+        { label: 'IMO No.', value: '9633850' },
+        { label: 'Vessel Type', value: 'Geared Singledeck General Cargo / Heavy Load Carrier' },
+        { label: 'BLT (Year Built)', value: '2012' },
+        { label: 'Port of Registry', value: "St. John's" },
         { label: 'Flag', value: 'Antigua & Barbuda' },
-        { label: 'Class Society', value: 'DNV (Det Norske Veritas)' },
-        { label: 'Call Sign', value: 'V2FX5' },
-        { label: 'Official Number', value: '12467' }
+        { label: 'Class Society', value: 'Bureau Veritas (BV)' },
+        { label: 'Call Sign', value: 'V2RA6' },
+        { label: 'Official Number', value: '3247' }
       ],
       particulars: [
-        { label: 'DWT (on 6.60 m SSW)', value: '6,200.00 MT' },
-        { label: 'Summer DWT (on 6.85 m SSW)', value: '6,408.00 MT' },
-        { label: 'Summer TPC', value: '16.2 t' },
-        { label: 'Winter DWT', value: '6,220.00 MT' },
-        { label: 'Winter TPC', value: '16.2 t' },
-        { label: 'GT / NT', value: '4,591 / 2,352' },
-        { label: 'Length Overall (LOA)', value: '108.20 m' },
-        { label: 'Beam (Breadth)', value: '18.20 m' },
-        { label: 'Depth (Moulded)', value: '9.00 m' },
-        { label: 'Cargo Holds / Hatches', value: '2 Holds / 2 Hatches' },
-        { label: 'Hold No. 1 (L x B x H)', value: '41.2 x 14.0 x 17.5 - 7.85 m' },
-        { label: 'Hold No. 2 (L x B x H)', value: '36.8 x 14.0 x 17.5 - 7.85 m' },
-        { label: 'Grain / Bale Capacity', value: '315,000 cu.ft / 305,000 cu.ft' },
-        { label: 'CO2 Fitted', value: 'CO2 fitted in cargo holds' },
-        { label: 'Bulkhead', value: 'IMO bulkhead fitted' },
-        { label: 'Gear / Cranes', value: '2 x 30 MT Cranes (60 MT comb.)' },
-        { label: 'Heavy Cargo Strengthened', value: 'Yes (Heavy Cargo in Holds)' },
-        { label: 'Ice Class', value: '100 A5 E3 (Ice Strengthened)' }
+        { label: 'Summer DWT (on 6.60 m SSW)', value: '6,408 MT' },
+        { label: 'Winter DWT (on 6.462 m SSW)', value: '6,194 MT' },
+        { label: 'DWCC', value: '6,000 MT' },
+        { label: 'GT / NT', value: '4,559 / 2,497' },
+        { label: 'Summer TPC (full laden)', value: '15.50 MT/cm (TPC 49.16)' },
+        { label: 'Length Overall (LOA)', value: '104.20 m (LBP 97.50 m)' },
+        { label: 'Beam (Breadth)', value: '17.20 m' },
+        { label: 'Depth (Moulded)', value: '8.50 m' },
+        { label: 'Air Draft', value: 'Abt 27.45 m (in ballast)' },
+        { label: 'Maximum Height (from keel)', value: '31.35 m' },
+        { label: 'Grain / Bale Capacity (Total)', value: 'Abt 8,391 cbm' },
+        { label: 'Hold No. 1 Capacity', value: 'Abt 4,155 cbm' },
+        { label: 'Hold No. 2 Capacity', value: 'Abt 4,236 cbm' },
+        { label: 'Cargo Holds / Hatches', value: '2 Holds / 2 Hatches (2/2)' },
+        { label: 'Bulkheads', value: 'No' },
+        { label: 'Deck Strength', value: '2.5 MT / m²' },
+        { label: 'Tank Top Strength', value: '15 MT / m²' },
+        { label: 'Hatch Cover Strength', value: '2.1 MT / m²' }
       ],
       holdsHatches: [
-        { label: 'Hatch No. 1 (L x B)', value: '25.60 m x 15.20 m' },
-        { label: 'Hatch No. 2 (L x B)', value: '38.40 m x 15.20 m' },
-        { label: 'Hatch Cover Type', value: 'Watertight hydraulic folding hatch covers' }
+        { label: 'Hold No. 1 Dimensions', value: '36.40 m x 3.70 m (Fwd) / 14.80 m (Aft)' },
+        { label: 'Hold No. 2 Dimensions', value: '35.70 m x 14.80 m (Fwd) / 8.00 m (Aft)' },
+        { label: 'Hatch No. 1 Dimensions', value: '26.60 m x 12.00 m' },
+        { label: 'Hatch No. 2 Dimensions', value: '26.60 m x 12.00 m' },
+        { label: 'Hatch Covers Type', value: 'Weather tight folding hatch covers' },
+        { label: 'Hatch Cover Strength', value: '2.1 MT / m²' },
+        { label: 'Tank Top Strength', value: '15 MT / m²' },
+        { label: 'Deck Strength', value: '2.5 MT / m²' }
       ],
-      ballastStrength: [
-        { label: 'Ballast Waterline to Coaming Top', value: '5.6 m' },
-        { label: 'Tank Top Strength', value: '15.0 MT / m²' },
-        { label: 'Deck Gear Arrangement', value: '2 x 30 MT Cranes (Portside mounted)' }
+      cargoGear: [
+        { label: 'Cargo Gear (Cranes)', value: '2 x 30 MT electro-hydraulic twin cranes' },
+        { label: 'Combinable Capacity', value: 'Combinable to 60 MT' },
+        { label: 'Max Jib Radius', value: '28 m' }
       ],
       speedConsumption: [
-        { label: 'Speed & Consumption (Ballast)', value: 'Abt 10.0 kn on abt 4.5 mt LSMGO / 24h' },
-        { label: 'Speed & Consumption (Laden)', value: 'Abt 9.5 kn on abt 5.0 mt LSMGO / 24h' },
-        { label: 'Eco Speed (Ballast)', value: 'Abt 9.0 kn on abt 4.0 mt LSMGO / 24h' },
-        { label: 'Eco Speed (Laden)', value: 'Abt 8.5 kn on abt 4.5 mt LSMGO / 24h' },
-        { label: 'In Port (Idle)', value: 'Abt 0.85 mt LSMGO / 24h' },
-        { label: 'In Port (Working with Cranes)', value: 'Abt 1.50 mt LSMGO / 24h' }
+        { label: 'Normal Speed (Ballast)', value: 'Abt 9.5 kts on abt 6.5 mt VLSFO + 1.0 mt MGO / 24 hrs' },
+        { label: 'Normal Speed (Laden)', value: 'Abt 9.0 kts on abt 6.5 mt VLSFO + 1.0 mt MGO / 24 hrs' },
+        { label: 'Full Speed (Ballast)', value: 'Abt 11.0 kts on abt 9.5 mt VLSFO + 1.0 mt MGO / 24 hrs' },
+        { label: 'Full Speed (Laden)', value: 'Abt 11.0 kts on abt 10.0 mt VLSFO + 1.0 mt MGO / 24 hrs' },
+        { label: 'In Port (Idle)', value: 'Abt 1.3 mt MDO' },
+        { label: 'In Port (Working 2 Cranes)', value: 'Abt 1.7 mt MDO' },
+        { label: 'In ECA Zone', value: 'Abt 9.0 kts on abt 7.5 mt MDO (in port: as above)' }
       ],
-      tankCapacities: [
-        { label: 'Fuel Oil (MGO)', value: '285.00 m³' },
-        { label: 'Diesel Oil (MGO)', value: '52.00 m³' },
-        { label: 'Lube Oil', value: '9.80 m³' },
-        { label: 'Fresh Water', value: '120.00 m³' },
-        { label: 'Ballast Water', value: '2,850.00 m³' }
-      ],
-      mainEngine: [
-        { label: 'Main Engine Model', value: '1 x MAN B&W 6L27/38' },
-        { label: 'Engine Type', value: '6-Cylinder, 4-Stroke Marine Diesel' },
-        { label: 'MCR Rating', value: '2,040 kW @ 800 rpm' },
-        { label: 'Continuous Rating', value: '1,850 kW @ 750 rpm' },
-        { label: 'Builder', value: 'MAN Energy Solutions' },
-        { label: 'Propeller', value: '1 x CPP (Controllable Pitch Propeller)' },
-        { label: 'Bow Thruster', value: '1 x 350 kW' },
-        { label: 'Generator Sets', value: '3 x Yanmar 6EY18ALW 450 kW @ 720 rpm' },
-        { label: 'Emergency Generator', value: '1 x Yanmar 4TNE98 41 kW @ 1800 rpm' }
-      ],
-      permissibleLoads: [
-        { label: 'Permissible Load on Deck', value: '1.50 MT / m²' },
-        { label: 'Permissible Load on Hatch', value: '1.80 MT / m²' }
+      additionalInfo: [
+        { label: 'Grain Fitted', value: 'Yes' },
+        { label: 'Cement Holes', value: 'Yes' },
+        { label: 'Bow Thruster', value: 'Yes' },
+        { label: 'ITF Fitted', value: 'Yes' }
       ]
     },
 
     description: `
       <p class="text-sm sm:text-base text-neutral-300 font-light leading-relaxed">
-        <strong>MV MOLPADIA</strong> is a modern 6,408 DWT geared general cargo vessel constructed in 2014 under high-spec DNV classification. Designed for optimal fuel efficiency and versatile cargo flexibility, she features two large box-shaped holds, wide unobstructed hatch openings, and strengthened tank top plating rated at 15 MT/m².
+        <strong>MV MOLPADIA</strong> is a 6,408 DWT Geared Singledeck General Cargo / Heavy Load Carrier built in 2012 under high-spec Bureau Veritas (BV) classification. Designed for versatile cargo flexibility and heavy lifts, she features two large box-shaped holds (8,391 cbm total grain/bale capacity), weather tight folding hatch covers, and dual 30 MT electro-hydraulic twin cranes combinable up to 60 MT with a 28 m outreach radius.
       </p>
-      <h3 class="text-base font-serif text-gold mt-6 mb-2">Key Cargo Capabilities & Trade Lanes:</h3>
+      <h3 class="text-base font-serif text-gold mt-6 mb-2">Key Technical Highlights:</h3>
       <ul class="list-disc pl-5 space-y-1.5 text-xs text-neutral-300">
-        <li><strong>Dry Bulk:</strong> Grains, fertilizers, coal, minerals, and clinker. Fully compliant with IMSBC code.</li>
-        <li><strong>Project & Heavy Cargo:</strong> Equipped with dual 30 MT port-side electro-hydraulic cranes with up to 24 m outreach (combinable for heavy lifts up to 60 MT).</li>
-        <li><strong>Breakbulk & Steel:</strong> Box-shaped holds suitable for steel coils, pipes, timber packs, and bagged commodities.</li>
-        <li><strong>IMO Dangerous Cargo:</strong> Hold ventilation and fire safety systems certified for IMDG classes under SOLAS II-2 Reg. 19.</li>
+        <li><strong>Grain & Dry Bulk:</strong> 8,391 cbm capacity (Hold 1: 4,155 cbm, Hold 2: 4,236 cbm). Grain and Cement holes fitted.</li>
+        <li><strong>Heavy Lift & Project Cargo:</strong> 2 x 30 MT electro-hydraulic twin cranes (combinable to 60 MT, 28m jib). Tank top strength rated at 15 MT/m² and deck strength at 2.5 MT/m².</li>
+        <li><strong>Dimensions & Hatch Openings:</strong> Two 26.60m x 12.00m hatches with weather-tight folding covers (2.1 MT/m²).</li>
+        <li><strong>Certifications & Class:</strong> Bureau Veritas (BV) classed, Antigua & Barbuda flag, ITF fitted.</li>
       </ul>
     `,
     photos: [
@@ -147,133 +141,165 @@ export const FLEET_DATABASE = {
       { url: '/fleet/docx_media/MOLPADIA/1_MOLPADIA_PRESENTATION/image12.jpeg', title: 'Auxiliary Diesel Generators', category: 'engine' },
       { url: '/fleet/docx_media/MOLPADIA/1_MOLPADIA_PRESENTATION/image13.jpeg', title: 'Emergency Fire & Bilge Pump Station', category: 'engine' },
       { url: '/fleet/docx_media/MOLPADIA/1_MOLPADIA_PRESENTATION/image14.jpeg', title: 'Crew Mess Room & Galley', category: 'accom' },
-      { url: '/fleet/docx_media/MOLPADIA/1_MOLPADIA_PRESENTATION/image15.jpeg', title: 'Officer Day Cabin & Quarters', category: 'accom' }
+      { url: '/fleet/docx_media/MOLPADIA/1_MOLPADIA_PRESENTATION/image15.jpeg', title: 'Officer Day Cabin & Quarters', category: 'accom' },
+      
+      // Hold 1 & 2 Inspection Photos (August 2026)
+      { url: '/fleet/molpadia/holds/hold1_20260818_085937.jpg', title: 'Hold No.1 Clean Plating & Frames (Aug 2026)', category: 'holds' },
+      { url: '/fleet/molpadia/holds/hold1_20260818_085945.jpg', title: 'Hold No.1 Forward Bulkhead & Bilge Wells', category: 'holds' },
+      { url: '/fleet/molpadia/holds/hold1_20260818_085949.jpg', title: 'Hold No.1 Tank Top Surface & Coamings', category: 'holds' },
+      { url: '/fleet/molpadia/holds/hold1_20260818_090001.jpg', title: 'Hold No.1 Side Shell & Web Frames', category: 'holds' },
+      { url: '/fleet/molpadia/holds/hold1_20260818_090027.jpg', title: 'Hold No.1 Ladder & Safety Access', category: 'holds' },
+      { url: '/fleet/molpadia/holds/hold1_20260818_090030.jpg', title: 'Hold No.1 Aft Bulkhead Condition', category: 'holds' },
+      { url: '/fleet/molpadia/holds/hold1_20260818_090120.jpg', title: 'Hold No.1 Ventilation & Piping Ducts', category: 'holds' },
+      { url: '/fleet/molpadia/holds/hold1_20260818_090127.jpg', title: 'Hold No.1 Under-Deck Structure', category: 'holds' },
+      { url: '/fleet/molpadia/holds/hold1_20260818_090136.jpg', title: 'Hold No.1 Hatch Coaming Trackway', category: 'holds' },
+      { url: '/fleet/molpadia/holds/hold1_20260818_090713.jpg', title: 'Hold No.1 Inspection Overview', category: 'holds' },
+      { url: '/fleet/molpadia/holds/hold2_20260818_090718.jpg', title: 'Hold No.2 Cargo Space Cleanliness (Aug 2026)', category: 'holds' },
+      { url: '/fleet/molpadia/holds/hold2_20260818_090722.jpg', title: 'Hold No.2 Tank Top Plate & Bilges', category: 'holds' },
+      { url: '/fleet/molpadia/holds/hold2_20260818_090735.jpg', title: 'Hold No.2 Forward Transverse Bulkhead', category: 'holds' },
+      { url: '/fleet/molpadia/holds/hold2_20260818_090759.jpg', title: 'Hold No.2 Hopper Tanks & Double Bottom', category: 'holds' },
+      { url: '/fleet/molpadia/holds/hold2_20260818_090807.jpg', title: 'Hold No.2 Aft Bulkhead & Access Trunk', category: 'holds' },
+      { url: '/fleet/molpadia/holds/hold2_20260818_090847.jpg', title: 'Hold No.2 Side Framing & Longitudinal Brackets', category: 'holds' },
+      { url: '/fleet/molpadia/holds/hold2_20260818_090851.jpg', title: 'Hold No.2 Drainage Channel & Strum Box', category: 'holds' },
+      { url: '/fleet/molpadia/holds/hold2_20260818_090923.jpg', title: 'Hold No.2 Hatch Opening View', category: 'holds' },
+      { url: '/fleet/molpadia/holds/hold2_20260818_090935.jpg', title: 'Hold No.2 Upper Wing Tank Connection', category: 'holds' },
+      { url: '/fleet/molpadia/holds/hold2_20260818_091115.jpg', title: 'Hold No.2 High-Detail Frame Plating', category: 'holds' },
+      { url: '/fleet/molpadia/holds/hold2_20260818_091144.jpg', title: 'Hold No.2 Complete Clean Hold Survey', category: 'holds' }
     ]
   },
 
   'vessel-metanira': {
     id: 'vessel-metanira',
     name: 'MV METANIRA',
-    type: 'Bulk Carrier / General Cargo',
-    status: 'Available for Charter',
-    yearBuilt: 2012,
+    type: 'General Cargo',
+    status: '',
+    yearBuilt: 2011,
     builder: 'Taizhou Sanfu Ship Engineering Co., Ltd',
-    flag: 'Liberia',
-    portOfRegistry: 'Monrovia',
-    callSign: '5LEN7',
-    imoNumber: '9584724',
-    officialNumber: '15147',
-    classSociety: 'Bureau Veritas (BV)',
-    classNotation: 'I +Hull +Mach General Cargo Ship Heavy Cargo In Holds Non-Homogeneous Loading Unrestricted',
-    dwt: '7,200 MT',
-    gt: '5,087',
-    nt: '2,654',
-    loa: '114.50 m',
-    beam: '18.20 m',
-    draft: '7.10 m (Summer)',
-    depthMoulded: '9.40 m',
+    flag: 'Antigua & Barbuda',
+    portOfRegistry: "St. John's",
+    callSign: 'V2B2085',
+    imoNumber: '9620358',
+    officialNumber: '3247',
+    classSociety: 'ClassNK (NKK)',
+    classNotation: 'NK NS* (General Cargo Ship) Heavy Cargo in Holds Non-Homogeneous Loading',
+    dwt: '7,639.45 MT on 6.60 m SSW',
+    gt: '5,217',
+    nt: '2,943',
+    loa: '115.83 m',
+    beam: '17.60 m',
+    draft: '6.60 m (Summer)',
+    depthMoulded: '8.80 m',
+    airDraft: 'Distance waterline to hatch coaming: 6.9 m (in ballast)',
     holdsCount: '2 Holds / 2 Hatches (2HO / 2HA)',
-    grainCapacity: '352,000 cu.ft (9,967 cu.m)',
-    baleCapacity: '340,000 cu.ft (9,627 cu.m)',
-    hatch1Dims: '27.20 m x 15.20 m',
-    hatch2Dims: '40.80 m x 15.20 m',
-    hatchType: 'Hydraulic Folding Steel Weather-tight',
-    tankTopStrength: '16.5 MT / sq.m',
-    deckGear: '2 x 30 MT Cranes',
-    craneDetails: 'Port-side electro-hydraulic cranes (TTS NMF). SWL 30 MT at 24.0 m outreach, combinable up to 60 MT lift capacity.',
-    maxSpeed: '13.0 knots',
-    ecoSpeed: '10.5 knots',
-    fuelConsumption: 'Eco: ~9.2 MT VLSFO/day at sea',
-    mainEngine: 'Daihatsu 8DKM-28e (2,500 kW @ 750 RPM)',
-    bowThruster: 'Fitted (400 kW)',
+    grainCapacity: '9,816.30 cbm',
+    baleCapacity: '9,816.30 cbm',
+    hatch1Dims: '30.80 m x 12.60 m',
+    hatch2Dims: '30.80 m x 12.60 m',
+    hatchType: 'Watertight hydraulic folding panels',
+    tankTopStrength: '18.3 MT / m² (18.6 MT/m²)',
+    deckGear: 'Gearless',
+    craneDetails: 'Gearless vessel without deck cranes, optimized for maximum hold cubic capacity and fast shore terminal dispatch.',
+    maxSpeed: '10.0 knots',
+    ecoSpeed: '8.5 knots',
+    fuelConsumption: 'Eco: abt 4.0–4.1 MT LSMGO / 24 hrs',
+    mainEngine: 'MAN B&W 6S46MC-C (5,910 kW @ 120 RPM)',
+    bowThruster: '1 x 300 kW',
     coverImageUrl: '/fleet/metanira/PHOTO__MV_METANIRA.JPG',
     pdfGaPlanUrl: '/fleet/metanira/1_GA_PLAN.pdf',
+    pdfDescriptionUrl: '/fleet/metanira/Vessel_Description__METANIRA.pdf',
     sheetImageUrl: '/fleet/metanira/Vessel_Description__METANIRA.png',
     
     // Structured flyer data sections
     specSections: {
       information: [
-        { label: 'Vessel Name', value: 'M/V METANIRA' },
-        { label: 'IMO No.', value: '9584724' },
-        { label: 'Vessel Type', value: 'General Cargo / Bulk Carrier' },
-        { label: 'BLT (Year Built)', value: '2012' },
-        { label: 'Flag', value: 'Liberia' },
-        { label: 'Class Society', value: 'Bureau Veritas (BV)' },
-        { label: 'Call Sign', value: '5LEN7' },
-        { label: 'Official Number', value: '15147' }
+        { label: 'Vessel Name', value: 'MV METANIRA' },
+        { label: 'IMO No.', value: '9620358' },
+        { label: 'Vessel Type', value: 'General Cargo' },
+        { label: 'BLT (Year Built)', value: '2011' },
+        { label: 'Flag', value: 'Antigua & Barbuda' },
+        { label: 'Class Society', value: 'NKK (ClassNK)' },
+        { label: 'Call Sign', value: 'V2B2085' },
+        { label: 'Official Number', value: '3247' }
       ],
       particulars: [
-        { label: 'DWT (on 6.80 m SSW)', value: '7,020.45 MT' },
-        { label: 'Summer DWT (on 7.10 m SSW)', value: '7,200.00 MT' },
-        { label: 'Summer TPC', value: '17.5 t' },
-        { label: 'Winter DWT', value: '7,010.20 MT' },
-        { label: 'Winter TPC', value: '17.5 t' },
-        { label: 'GT / NT', value: '5,087 / 2,654' },
-        { label: 'Length Overall (LOA)', value: '114.50 m' },
-        { label: 'Beam (Breadth)', value: '18.20 m' },
-        { label: 'Depth (Moulded)', value: '9.40 m' },
-        { label: 'Cargo Holds / Hatches', value: '2 Holds / 2 Hatches' },
-        { label: 'Hold No. 1 (L x B x H)', value: '43.4 x 14.0 x 17.5 - 7.85 m' },
-        { label: 'Hold No. 2 (L x B x H)', value: '38.4 x 14.0 x 17.5 - 7.85 m' },
-        { label: 'Grain / Bale Capacity', value: '352,000 cu.ft / 340,000 cu.ft' },
+        { label: 'Summer DWT (on 6.60 m SSW)', value: '7,639.45 MT' },
+        { label: 'Summer TPC', value: '17.6 t' },
+        { label: 'Winter DWT', value: '7,398.20 MT' },
+        { label: 'Winter TPC', value: '17.6 t' },
+        { label: 'GT / NT', value: '5,217 / 2,943' },
+        { label: 'Length Overall (LOA)', value: '115.83 m' },
+        { label: 'Beam (Breadth)', value: '17.60 m' },
+        { label: 'Depth (Moulded)', value: '8.80 m' },
+        { label: 'Distance Waterline to Hatch Coaming', value: '6.9 m (in ballast)' },
+        { label: 'Cargo Holds / Hatches', value: '2 Holds / 2 Hatches (2/2)' },
+        { label: 'Grain / Bale Capacity (Total)', value: '9,816.30 cbm' },
+        { label: 'Hold No. 1 Dimensions', value: '40.6 × 14.9 × (7.5 + 1.8) m' },
+        { label: 'Hold No. 2 Dimensions', value: '36.4 × 14.9 × (7.5 + 1.8) m' },
         { label: 'CO2 Fitted', value: 'CO2 fitted in cargo holds' },
-        { label: 'Bulkhead', value: 'IMO bulkhead fitted' },
-        { label: 'Gear / Cranes', value: '2 x 30 MT Cranes (60 MT comb.)' },
-        { label: 'Heavy Cargo Strengthened', value: 'Yes (Heavy Cargo in Holds)' },
-        { label: 'Ice Class', value: 'Non-Ice Class / Unrestricted' }
+        { label: 'Bulkhead', value: 'A60 Bulkhead fitted' },
+        { label: 'Cargo Gear', value: 'Gearless' },
+        { label: 'Heavy Cargo Strengthened', value: 'Yes (Tank top strength 18.3–18.6 MT/m²)' }
       ],
       holdsHatches: [
-        { label: 'Hatch No. 1 (L x B)', value: '27.20 m x 15.20 m' },
-        { label: 'Hatch No. 2 (L x B)', value: '40.80 m x 15.20 m' },
-        { label: 'Hatch Cover Type', value: 'Watertight hydraulic folding hatch covers' }
+        { label: 'Hold No. 1 Dimensions', value: '40.6 × 14.9 × (7.5 + 1.8) m' },
+        { label: 'Hold No. 2 Dimensions', value: '36.4 × 14.9 × (7.5 + 1.8) m' },
+        { label: 'Hatch No. 1 Dimensions', value: '30.80 m x 12.60 m' },
+        { label: 'Hatch No. 2 Dimensions', value: '30.80 m x 12.60 m' },
+        { label: 'Hatch Cover Type', value: 'Watertight hydraulic folding panels' },
+        { label: 'Tank Top Strength', value: '18.3 MT / m² (18.6 MT/m²)' },
+        { label: 'Waterline to Coaming Top (in ballast)', value: '6.9 m' }
       ],
-      ballastStrength: [
-        { label: 'Ballast Waterline to Coaming Top', value: '5.9 m' },
-        { label: 'Tank Top Strength', value: '16.5 MT / m²' },
-        { label: 'Deck Gear Arrangement', value: '2 x 30 MT Cranes (TTS NMF)' }
+      cargoGear: [
+        { label: 'Cargo Gear Arrangement', value: 'Gearless (No deck cranes)' },
+        { label: 'Hold Suitability', value: 'Strengthened for heavy cargoes, grain, bulk & steel' }
       ],
       speedConsumption: [
-        { label: 'Speed & Consumption (Ballast)', value: 'Abt 10.0 kn on abt 4.5 mt LSMGO / 24h' },
-        { label: 'Speed & Consumption (Laden)', value: 'Abt 9.5 kn on abt 5.0 mt LSMGO / 24h' },
-        { label: 'Eco Speed (Ballast)', value: 'Abt 9.0 kn on abt 4.0 mt LSMGO / 24h' },
-        { label: 'Eco Speed (Laden)', value: 'Abt 8.5 kn on abt 4.5 mt LSMGO / 24h' },
-        { label: 'In Port (Idle)', value: 'Abt 0.85 mt LSMGO / 24h' },
-        { label: 'In Port (Working with Cranes)', value: 'Abt 1.50 mt LSMGO / 24h' }
+        { label: 'Full Speed Ballast (435 RPM)', value: 'Abt 10.0 knots / abt 4.3 MT LSMGO per day' },
+        { label: 'Full Speed Laden (435 RPM)', value: 'Abt 9.5 knots / abt 4.6 MT LSMGO per day' },
+        { label: 'Eco Speed Ballast (390–400 RPM)', value: 'Abt 8.5 knots / abt 4.0–4.1 MT LSMGO per day' },
+        { label: 'Eco Speed Laden (390–400 RPM)', value: 'Abt 8.0 knots / abt 4.3 MT LSMGO per day' },
+        { label: 'Optimal Operating RPM', value: '390–400 RPM (Max 435 RPM)' },
+        { label: 'In Port (Idle)', value: 'Abt 0.35 MT LSMGO / day (with 1 generator)' },
+        { label: 'In Port (Working / Ballasting)', value: 'Abt 0.50 MT LSMGO / day (with 2 generators)' },
+        { label: 'In SECA Zone', value: 'LSMGO applies' },
+        { label: 'VLSFO Note', value: 'No data on board (last used Jan 2025)' }
       ],
       tankCapacities: [
-        { label: 'Fuel Oil (MGO)', value: '301.50 m³' },
-        { label: 'Diesel Oil (MGO)', value: '58.40 m³' },
+        { label: 'Fuel Oil (HFO / LSMGO)', value: '301.50 m³' },
+        { label: 'Diesel Oil (MGO)', value: '53.40 m³' },
         { label: 'Lube Oil', value: '10.30 m³' },
-        { label: 'Fresh Water', value: '135.00 m³' },
-        { label: 'Ballast Water', value: '3,073.00 m³' }
+        { label: 'Fresh Water', value: '196.00 m³' },
+        { label: 'Ballast Water', value: '3,070.00 m³' },
+        { label: 'Total Capacity', value: '3,631.20 m³' }
       ],
       mainEngine: [
-        { label: 'Main Engine Model', value: '1 x Daihatsu 8DKM-28e' },
-        { label: 'Engine Type', value: '8-Cylinder, 4-Stroke Marine Diesel' },
-        { label: 'MCR Rating', value: '2,500 kW @ 750 rpm' },
-        { label: 'Continuous Rating', value: '2,250 kW @ 720 rpm' },
-        { label: 'Builder', value: 'Daihatsu Diesel Mfg. Co.' },
+        { label: 'Main Engine Model', value: '1 x MAN B&W 6S46MC-C' },
+        { label: 'Engine Type', value: '6-Cylinder, 4-Stroke Low Speed Diesel Engine' },
+        { label: 'MCR Rating', value: '6,570 kW @ 127 rpm' },
+        { label: 'Continuous Rating', value: '5,910 kW @ 120 rpm' },
+        { label: 'Builder', value: 'MAN Energy Solutions' },
         { label: 'Propeller', value: '1 x CPP (Controllable Pitch Propeller)' },
-        { label: 'Bow Thruster', value: '1 x 400 kW' },
+        { label: 'Bow Thruster', value: '1 x 300 kW' },
         { label: 'Generator Sets', value: '3 x Yanmar 6EY18ALW 450 kW @ 720 rpm' },
-        { label: 'Emergency Generator', value: '1 x Yanmar 4TNE98 41 kW @ 1800 rpm' }
+        { label: 'Emergency Generator', value: '1 x Yanmar 4TNV88 51 kW @ 1500 rpm' }
       ],
       permissibleLoads: [
-        { label: 'Permissible Load on Deck', value: '1.50 MT / m²' },
-        { label: 'Permissible Load on Hatch', value: '1.80 MT / m²' }
+        { label: 'Permissible Load on Tank Top', value: '18.3–18.6 MT / m²' },
+        { label: 'Permissible Load on Deck', value: '15.0 MT / m²' },
+        { label: 'Permissible Load on Hatch', value: '1.8 MT / m²' }
       ]
     },
 
     description: `
       <p class="text-sm sm:text-base text-neutral-300 font-light leading-relaxed">
-        <strong>MV METANIRA</strong> is a premium 7,200 DWT heavy-duty geared bulk carrier / general cargo vessel built under Bureau Veritas class. Featuring double-skin hull construction, high cubic capacity of 352,000 cu.ft, and dual 30 MT cranes, she provides reliable freight transport across European, Mediterranean, and transatlantic trade lanes.
+        <strong>MV METANIRA</strong> is a high-capacity 7,639.45 DWT General Cargo vessel constructed in 2011 under NKK (ClassNK) classification. Engineered for high volume efficiency, she boasts an impressive total grain/bale capacity of 9,816.30 cbm across two massive box-shaped holds, watertight hydraulic folding hatch panels (30.80m x 12.60m openings), reinforced 18.3–18.6 MT/m² tank top plating, and an economical fuel consumption profile.
       </p>
-      <h3 class="text-base font-serif text-gold mt-6 mb-2">Key Cargo Capabilities & Trade Lanes:</h3>
+      <h3 class="text-base font-serif text-gold mt-6 mb-2">Key Technical Highlights:</h3>
       <ul class="list-disc pl-5 space-y-1.5 text-xs text-neutral-300">
-        <li><strong>Agricultural Bulk & Grain:</strong> Grain-fitted with certified stability calculations for high-density grains, corn, wheat, barley, and sunflower seeds.</li>
-        <li><strong>Project & Heavy Lift:</strong> High deck and tank top load rating (16.5 t/m²), dual 30 MT cranes capable of handling heavy machinery, wind components, and oversize project items.</li>
-        <li><strong>Steel & Industrial Goods:</strong> Perfect for steel plates, hot-rolled coils (2x 30t coils with dunnage), beams, rebar, and packaged lumber.</li>
-        <li><strong>Port Flexibility:</strong> Shallow summer draft (7.10 m) and powerful 400 kW bow thruster enable berthing at restricted river and regional seaports without tug assistance.</li>
+        <li><strong>Dry Bulk & High-Cubic Cargo:</strong> 9,816.30 cbm grain capacity with CO₂ hold fire extinguishing and A60 bulkhead compliance.</li>
+        <li><strong>Heavy Cargo Reinforced:</strong> Strengthened tank top plating rated at 18.3 MT/m² (18.6 MT/m²), certified for heavy dense minerals, steel coils, and non-homogeneous loading.</li>
+        <li><strong>Propulsion & Manoeuvring:</strong> Powered by a MAN B&W 6S46MC-C (5,910 kW) main engine with CPP propeller and a dedicated 300 kW bow thruster.</li>
+        <li><strong>Low Fuel Consumption:</strong> Eco-speed profile consuming only abt 4.0–4.1 MT LSMGO per day at sea.</li>
       </ul>
     `,
     photos: [

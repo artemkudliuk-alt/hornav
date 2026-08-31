@@ -373,7 +373,7 @@ export function initPdfModal() {
 
   // Global delegated click handler for all buttons triggering PDFs
   document.addEventListener('click', (e) => {
-    const trigger = e.target.closest('.btn-open-pdf, .btn-ga-plan, #btn-view-medical-pdf, #btn-open-pdf-hero, #btn-tab-pdf-trigger, #btn-view-ga-plan-tab, [data-pdf-trigger]');
+    const trigger = e.target.closest('.btn-open-pdf, .btn-ga-plan, .btn-open-desc-pdf, #btn-open-desc-pdf, #btn-open-desc-pdf-desktop, #btn-view-medical-pdf, #btn-open-pdf-hero, #btn-open-pdf-hero-desktop, #btn-tab-pdf-trigger, #btn-view-ga-plan-tab, [data-pdf-trigger]');
     if (!trigger) return;
 
     const rawUrl = trigger.getAttribute('data-pdf') || 
@@ -390,12 +390,19 @@ export function initPdfModal() {
 
     let title = `${vesselName} — General Arrangement Plan (GA-Plan)`;
     let subtitle = 'Official Technical Blueprint • Danamira Managed Fleet';
+    let downloadName = `${vesselName.replace(/\s+/g, '_')}_GA_Plan.pdf`;
 
     if (trigger.id === 'btn-view-medical-pdf' || pdfUrl.includes('medical')) {
       title = 'Guidelines on the Medical Examinations of Seafarers';
       subtitle = 'Official ILO / IMO / WHO Joint International Standard • 70 Pages';
+      downloadName = 'Guidelines_on_the_medical_examinations_of_seafarers.pdf';
+    } else if (pdfUrl.toLowerCase().includes('description') || vesselName.toLowerCase().includes('description')) {
+      const cleanName = vesselName.replace(/\s*—\s*Description/gi, '').trim();
+      title = `${cleanName} — Vessel Description & Particulars`;
+      subtitle = 'Official Vessel Specification Sheet • Danamira Managed Fleet';
+      downloadName = `${cleanName.replace(/\s+/g, '_')}_Description.pdf`;
     }
 
-    openPdfModal(pdfUrl, title, subtitle, `${vesselName.replace(/\s+/g, '_')}_GA_Plan.pdf`);
+    openPdfModal(pdfUrl, title, subtitle, downloadName);
   });
 }
