@@ -4,8 +4,8 @@
 @source "../src/**/*.js";
 
 @theme {
-  --color-bg-primary: #222225;
-  --color-bg-secondary: #2a2a2f;
+  --color-bg-primary: #28282c;
+  --color-bg-secondary: #313136;
   --color-gold: #C89B3C;
   --color-gold-light: #DFB758;
   --color-gold-dark: #A67D28;
@@ -383,14 +383,14 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Cinematic Video Banner Gradient Overlays */
 .banner-left-gradient {
-  background: linear-gradient(to right, #222225 0%, rgba(34, 34, 37, 0.95) 25%, rgba(34, 34, 37, 0.4) 60%, transparent 100%);
+  background: linear-gradient(to right, #28282c 0%, rgba(40, 40, 44, 0.95) 25%, rgba(40, 40, 44, 0.4) 60%, transparent 100%);
 }
 
 .banner-left-gradient::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, #222225 0%, transparent 18%);
+  background: linear-gradient(to top, #28282c 0%, transparent 18%);
   pointer-events: none;
 }
 

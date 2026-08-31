@@ -116,7 +116,7 @@ async function initFleetCatalog() {
       <div class="bg-bg-secondary/70 border border-neutral-800/80 hover:border-gold/40 rounded-none p-4 sm:p-6 lg:p-7 flex flex-col gap-5 sm:gap-6 transition-all duration-500 hover:-translate-y-1 group relative shadow-xl text-left overflow-hidden" id="f-card-${v.id}">
         
         <!-- Image Container (Sharp Corners & Safe Badge Placement) -->
-        <a href="/vessel.html?id=${v.id}" class="block w-full h-64 sm:h-72 overflow-hidden rounded-none relative bg-[#222225] group/img" title="View Full Particulars of ${v.name}">
+        <a href="/vessel.html?id=${v.id}" class="block w-full h-64 sm:h-72 overflow-hidden rounded-none relative bg-[#28282c] group/img" title="View Full Particulars of ${v.name}">
           <!-- High-Contrast Status Badge (Strictly inside image container) -->
           ${v.status && v.status.trim() ? `
           <div class="absolute top-3 right-3 z-20 bg-neutral-950/95 text-white border-2 border-emerald-500 text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1.5 rounded-none shadow-2xl flex items-center gap-1.5 backdrop-blur-md">
