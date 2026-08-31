@@ -13,13 +13,16 @@ async function initFleetCatalog() {
       const apiVessels = await res.json();
       if (Array.isArray(apiVessels) && apiVessels.length > 0) {
         fleetList = apiVessels.map((av) => {
-          const local = FLEET_DATABASE[av.id];
-          const name = typeof av.name === 'object' ? (av.name.en || 'Unnamed') : av.name;
-          const isMetanira = av.id === '22222222-2222-2222-2222-222222222222' || (name && name.toUpperCase().includes('METANIRA'));
+          const name = typeof av.name === 'object' ? (av.name.en || 'Unnamed') : (av.name || '');
+          const isMetanira = av.id === '22222222-2222-2222-2222-222222222222' || av.id === 'vessel-metanira' || (name && name.toUpperCase().includes('METANIRA'));
+          const isMolpadia = av.id === '11111111-1111-1111-1111-111111111111' || av.id === 'vessel-molpadia' || (name && name.toUpperCase().includes('MOLPADIA'));
+          
+          const local = isMolpadia ? FLEET_DATABASE['vessel-molpadia'] : (isMetanira ? FLEET_DATABASE['vessel-metanira'] : (FLEET_DATABASE[av.id] || FLEET_DATABASE[`vessel-${av.id}`]));
           let status = isMetanira ? '' : (av.status === 'available' || av.status === 'Available for Charter' ? 'Available for TC' : (av.status || local?.status || 'Available for TC'));
+          
           return {
-            id: av.id,
-            name: name,
+            id: local?.id || av.id,
+            name: name || local?.name,
             type: av.type ? (av.type === 'bulk_carrier' ? 'General Cargo' : av.type) : (local?.type || 'General Cargo'),
             status: status,
             yearBuilt: av.yearBuilt || local?.yearBuilt || 'N/A',
@@ -29,8 +32,8 @@ async function initFleetCatalog() {
             holdsCount: av.holdsCount || local?.holdsCount || '2HO / 2HA',
             deckGear: av.deckEquipment ? (typeof av.deckEquipment === 'object' ? av.deckEquipment.en : av.deckEquipment) : (local?.deckGear || '2 x 30 MT Cranes'),
             coverImageUrl: av.coverImageUrl || local?.coverImageUrl || '/placeholder-ship.jpg',
-            pdfGaPlanUrl: local?.pdfGaPlanUrl || null,
-            pdfDescriptionUrl: local?.pdfDescriptionUrl || null,
+            pdfGaPlanUrl: isMolpadia ? '/fleet/molpadia/2_GA-PLAN.pdf' : (isMetanira ? '/fleet/metanira/1_GA_PLAN.pdf' : (local?.pdfGaPlanUrl || null)),
+            pdfDescriptionUrl: isMolpadia ? '/fleet/molpadia/Vessel_Description__MOLPADIA.pdf' : (isMetanira ? '/fleet/metanira/Vessel_Description__METANIRA.pdf' : (local?.pdfDescriptionUrl || null)),
             photos: av.photos || local?.photos || [],
           };
         });

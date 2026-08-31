@@ -3,8 +3,8 @@ import * as dotenv from "dotenv";
 dotenv.config({ path: ".env.production" });
 dotenv.config({ path: ".env.local" });
 
-const dbUrl = process.env.DATABASE_URL;
-console.log("Connecting to:", dbUrl ? dbUrl.replace(/:[^:@]+@/, ":***@") : "NO URL");
+const dbUrl = process.env.POSTGRES_URL || process.env.DATABASE_URL;
+console.log("Connecting to:", dbUrl ? "DB_URL_OK" : "NO URL");
 
 const sql = neon(dbUrl);
 
