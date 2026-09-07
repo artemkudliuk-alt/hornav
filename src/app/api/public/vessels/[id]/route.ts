@@ -7,6 +7,24 @@ import { ensureDatabaseInitialized } from "@/lib/db/init-db";
 
 export const dynamic = "force-dynamic";
 
+function matchesVesselId(v: any, id: string): boolean {
+  if (v.id === id || v.slug === id || v.imoNumber === id || v.imo_number === id) {
+    return true;
+  }
+  const nameEn = typeof v.name === "object" ? v.name?.en : v.name;
+  if (!nameEn) return false;
+  const lowerId = id.toLowerCase();
+  const normalizedId = lowerId.replace(/^vessel-/, "");
+  const fullSlug = nameEn.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  const shortSlug = fullSlug.replace(/^(mv|mt|ms|mvs)-/, "");
+  return (
+    nameEn.toLowerCase().includes(lowerId) ||
+    fullSlug === lowerId ||
+    fullSlug === normalizedId ||
+    shortSlug === normalizedId
+  );
+}
+
 export async function GET(
   req: Request,
   { params }: { params: Promise<{ id: string }> | { id: string } }
@@ -25,14 +43,7 @@ export async function GET(
     if (isDbConnected) {
       try {
         const allVessels = await db.select().from(vessels);
-        const dbVessel = allVessels.find(
-          (v: any) =>
-            v.id === id ||
-            v.slug === id ||
-            v.imoNumber === id ||
-            v.imo_number === id ||
-            (v.name && typeof v.name === "object" && (v.name.en?.toLowerCase().includes(id.toLowerCase()) || v.name.en?.toLowerCase().replace(/[^a-z0-9]/g, "-") === id))
-        );
+        const dbVessel = allVessels.find((v: any) => matchesVesselId(v, id));
 
         if (dbVessel) {
           vessel = dbVessel;
@@ -52,13 +63,7 @@ export async function GET(
     }
 
     if (!vessel) {
-      const mock = sampleVessels.find(
-        (v) =>
-          v.id === id ||
-          v.slug === id ||
-          v.imoNumber === id ||
-          (v.name && typeof v.name === "object" && (v.name.en?.toLowerCase().includes(id.toLowerCase()) || v.name.en?.toLowerCase().replace(/[^a-z0-9]/g, "-") === id))
-      );
+      const mock = sampleVessels.find((v) => matchesVesselId(v, id));
       if (mock) {
         vessel = mock;
         media = mock.media || [];
