@@ -19,7 +19,23 @@ export async function PATCH(
 
   try {
     const body = await req.json();
-    const { isCover } = body;
+    const { isCover, caption } = body;
+
+    if (typeof caption === "string") {
+      const [updated] = await db
+        .update(vesselMedia)
+        .set({ caption })
+        .where(
+          and(eq(vesselMedia.id, mediaId), eq(vesselMedia.vesselId, vesselId))
+        )
+        .returning();
+
+      if (!updated) {
+        return NextResponse.json({ error: "Media not found" }, { status: 404 });
+      }
+
+      return NextResponse.json(updated);
+    }
 
     if (isCover) {
       // 1. Reset all existing covers for this vessel

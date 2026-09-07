@@ -136,6 +136,7 @@ export const vesselMedia = pgTable("vessel_media", {
   blobKey: text("blob_key"),
   type: mediaTypeEnum("type").notNull(),
   filename: varchar("filename", { length: 512 }),
+  caption: text("caption"),
   sortOrder: integer("sort_order").notNull().default(0),
   isCover: boolean("is_cover").notNull().default(false),
   createdAt: timestamp("created_at", { withTimezone: true })

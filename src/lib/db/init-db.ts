@@ -181,6 +181,7 @@ export async function ensureDatabaseInitialized() {
     await sql`ALTER TABLE vessel_media ADD COLUMN IF NOT EXISTS is_cover BOOLEAN DEFAULT FALSE;`;
     await sql`ALTER TABLE vessel_media ADD COLUMN IF NOT EXISTS blob_key TEXT;`;
     await sql`ALTER TABLE vessel_media ADD COLUMN IF NOT EXISTS filename VARCHAR(512);`;
+    await sql`ALTER TABLE vessel_media ADD COLUMN IF NOT EXISTS caption TEXT;`;
     await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS source_page VARCHAR(512);`;
 
     // 3. Seed SuperAdmin if not exists

@@ -12,6 +12,7 @@ interface MediaItem {
   url: string;
   type: "photo" | "pdf";
   filename?: string | null;
+  caption?: string | null;
   sortOrder: number;
   isCover: boolean;
 }
@@ -134,6 +135,27 @@ export function MediaGallery({
     }
     if (onMediaChange) {
       onMediaChange(nextList);
+    }
+  }
+
+  function handleCaptionChange(mediaId: string, caption: string) {
+    const nextList = mediaList.map((item) =>
+      item.id === mediaId ? { ...item, caption } : item
+    );
+    setMediaList(nextList);
+    if (onMediaChange) onMediaChange(nextList);
+  }
+
+  async function handleCaptionSave(mediaId: string, caption: string) {
+    if (!vesselId || vesselId === "new-vessel") return;
+    try {
+      await fetch(`/api/vessels/${vesselId}/media/${mediaId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ caption }),
+      });
+    } catch (err) {
+      console.warn("Failed to save caption:", err);
     }
   }
 
@@ -278,8 +300,18 @@ export function MediaGallery({
                   </div>
                 </div>
 
-                <div className="p-2 text-[10px] text-neutral-400 truncate font-mono bg-[#18181b]">
-                  {photo.filename || "image.png"}
+                <div className="p-2 space-y-1.5 bg-[#18181b]">
+                  <div className="text-[10px] text-neutral-500 truncate font-mono">
+                    {photo.filename || "image.png"}
+                  </div>
+                  <input
+                    type="text"
+                    defaultValue={photo.caption || ""}
+                    placeholder="Add caption…"
+                    onChange={(e) => handleCaptionChange(photo.id, e.target.value)}
+                    onBlur={(e) => handleCaptionSave(photo.id, e.target.value)}
+                    className="w-full bg-[#0f0f11] border border-white/10 focus:border-[#c89b3c]/60 outline-none rounded-none px-2 py-1 text-[10px] text-white placeholder:text-neutral-600"
+                  />
                 </div>
               </Card>
             ))}

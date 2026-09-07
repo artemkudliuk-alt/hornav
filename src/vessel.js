@@ -651,9 +651,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             .filter((m) => m && (m.type === "photo" || typeof m === "string" || !m.type))
             .map((m, idx) => {
               const rawUrl = typeof m === "string" ? m : m.url || "";
+              const caption = typeof m === "object" ? (m.caption || m.filename) : null;
               return {
                 url: rawUrl,
-                title: (typeof m === "object" && m.filename) ? m.filename : `Photo #${idx + 1}`,
+                title: caption || `Photo #${idx + 1}`,
                 category: "inspection",
               };
             }),
