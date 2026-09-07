@@ -189,9 +189,7 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const port = window.location.port ? ":5188" : "";
-      const base = window.location.hostname === "localhost" ? `http://localhost${port}` : "https://danamira-shipping.com";
-      setLiveSiteUrl(`${base}/vessel.html?id=${targetVesselSlug}`);
+      setLiveSiteUrl(`${window.location.origin}/vessel.html?id=${targetVesselSlug}`);
     }
   }, [targetVesselSlug]);
 

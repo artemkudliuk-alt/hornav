@@ -147,9 +147,7 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const port = window.location.port ? ":5188" : "";
-      const base = window.location.hostname === "localhost" ? `http://localhost${port}` : "https://danamira-shipping.com";
-      setLivePageUrl(`${base}${targetPath}`);
+      setLivePageUrl(`${window.location.origin}${targetPath}`);
     }
   }, [targetPath]);
 
@@ -157,7 +155,7 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
   const descLength = (formData.metaDescription || "").length;
 
   function copySlugUrl() {
-    navigator.clipboard.writeText(`https://danamira-shipping.com${targetPath}`);
+    navigator.clipboard.writeText(`${window.location.origin}${targetPath}`);
     setCopiedSlug(true);
     setTimeout(() => setCopiedSlug(false), 2000);
   }
