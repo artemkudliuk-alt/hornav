@@ -320,22 +320,6 @@ export const FLEET_DATABASE = {
       { url: '/fleet/docx_media/METANIRA/1_METANIRA_PRESENTATION/image14.jpeg', title: 'Hold No.2 Open Panoramic Deck View', category: 'holds' },
       { url: '/fleet/docx_media/METANIRA/1_METANIRA_PRESENTATION/image15.jpeg', title: 'Hold No.2 Corrugated Bulkheads & Access Ladders', category: 'holds' },
       { url: '/fleet/docx_media/METANIRA/1_METANIRA_PRESENTATION/image24.jpeg', title: 'Heavy Cargo Tank Top Plating Clean Surface', category: 'holds' },
-      { url: '/fleet/metanira/holds/hold1_01.jpg', title: 'Hold 1', category: 'holds' },
-      { url: '/fleet/metanira/holds/hold1_02.jpg', title: 'Hold 1', category: 'holds' },
-      { url: '/fleet/metanira/holds/hold1_03.jpg', title: 'Hold 1', category: 'holds' },
-      { url: '/fleet/metanira/holds/hold1_04.jpg', title: 'Hold 1', category: 'holds' },
-      { url: '/fleet/metanira/holds/hold1_05.jpg', title: 'Hold 1', category: 'holds' },
-      { url: '/fleet/metanira/holds/hold1_06.jpg', title: 'Hold 1', category: 'holds' },
-      { url: '/fleet/metanira/holds/hold2_01.jpg', title: 'Hold 2', category: 'holds' },
-      { url: '/fleet/metanira/holds/hold2_02.jpg', title: 'Hold 2', category: 'holds' },
-      { url: '/fleet/metanira/holds/hold2_03.jpg', title: 'Hold 2', category: 'holds' },
-      { url: '/fleet/metanira/holds/hold2_04.jpg', title: 'Hold 2', category: 'holds' },
-      { url: '/fleet/metanira/holds/hold2_05.jpg', title: 'Hold 2', category: 'holds' },
-      { url: '/fleet/metanira/holds/hold2_06.jpg', title: 'Hold 2', category: 'holds' },
-      { url: '/fleet/metanira/holds/hold2_07.jpg', title: 'Hold 2', category: 'holds' },
-      { url: '/fleet/metanira/holds/hold2_08.jpg', title: 'Hold 2', category: 'holds' },
-      { url: '/fleet/metanira/holds/hold2_09.jpg', title: 'Hold 2', category: 'holds' },
-      { url: '/fleet/metanira/holds/hold2_10.jpg', title: 'Hold 2', category: 'holds' },
       { url: '/fleet/metanira/Vessel_Description__METANIRA.png', title: 'Technical Specification Blueprint & GA Sheet', category: 'deck' }
     ]
   }
