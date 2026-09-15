@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #141416; padding: 40px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .card {
+    background: rgba(43,43,43,0.5);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    text-align: center;
+    min-height: 13rem;
+  }
+  .logo-wrap {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo-wrap img, .logo-wrap svg {
+    max-height: 52px;
+    max-width: 180px;
+    object-contain: contain;
+    filter: brightness(0) invert(1);
+    transition: all 0.3s ease;
+  }
+  .card:hover .logo-wrap img, .card:hover .logo-wrap svg {
+    filter: drop-shadow(0 0 8px rgba(200,155,60,0.8)) invert(67%) sepia(38%) saturate(986%) hue-rotate(5deg) brightness(98%) contrast(92%);
+  }
+  p {
+    font-size: 12px;
+    color: #a3a3a3;
+    font-family: sans-serif;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo-wrap"><img src="/logos/logo_nee.png" alt="NEE" /></div>
+    <p>Hellenic Chamber of Shipping</p>
+  </div>
+  <div class="card">
+    <div class="logo-wrap"><img src="/logos/greece_emblem.svg" alt="Greece Law 89" /></div>
+    <p>Greek Maritime Law 89/1967</p>
+  </div>
+  <div class="card">
+    <div class="logo-wrap"><img src="/logos/logo_imo.png" alt="IMO" /></div>
+    <p>International Maritime Organization</p>
+  </div>
+  <div class="card">
+    <div class="logo-wrap"><img src="/logos/logo_imo.png" alt="SOLAS MARPOL STCW" /></div>
+    <p>SOLAS • MARPOL • STCW Conventions</p>
+  </div>
+  <div class="card">
+    <div class="logo-wrap"><img src="/logos/ilo_logo.svg" alt="ILO" /></div>
+    <p>International Labour Organization</p>
+  </div>
+  <div class="card">
+    <div class="logo-wrap"><img src="/logos/iacs_logo.svg" alt="IACS" /></div>
+    <p>IACS Classification Societies</p>
+  </div>
+  <div class="card">
+    <div class="logo-wrap">
+      <svg viewBox="0 0 110 32" style="height: 32px; width: auto;"><text x="55" y="25" font-family="'Clash Display', sans-serif" font-weight="900" font-size="24" letter-spacing="1.5" text-anchor="middle" fill="#ffffff">BIMCO</text></svg>
+    </div>
+    <p>Baltic and International Maritime Council</p>
+  </div>
+  <div class="card">
+    <div class="logo-wrap"><img src="/logos/logo_danamira.png" alt="Danamira" /></div>
+    <p>Quality & Healthcare Standards</p>
+  </div>
+</body>
+</html>

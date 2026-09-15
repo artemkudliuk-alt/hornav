@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 60" fill="none">
+  <!-- NEE Emblem (Laurel Wreath + Shield with Cross + Anchor) -->
+  <g transform="translate(10, 4) scale(0.95)">
+    <!-- Laurel Wreath -->
+    <path d="M26 4C14 4 4 14 4 26C4 38 14 48 26 48C38 48 48 38 48 26C48 14 38 4 26 4ZM26 45C15.5 45 7 36.5 7 26C7 15.5 15.5 7 26 7C36.5 7 45 15.5 45 26C45 36.5 36.5 45 26 45Z" fill="white" opacity="0.4"/>
+    <!-- Laurel Leaves details -->
+    <path d="M12 20C10 24 10 28 12 32C13 29 14 26 14 23C13 22 12 21 12 20ZM40 20C42 24 42 28 40 32C39 29 38 26 38 23C39 22 40 21 40 20ZM26 7C23 9 21 12 20 15C22 14 25 14 27 15C27 12 26 9 26 7ZM26 45C23 43 21 40 20 37C22 38 25 38 27 37C27 40 26 43 26 45Z" fill="white" opacity="0.8"/>
+    <!-- Anchor behind shield -->
+    <path d="M26 12V40M18 36C21 39 31 39 34 36M18 16H34" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <!-- Shield -->
+    <path d="M17 17H35V29C35 34 26 38 26 38C26 38 17 34 17 29V17Z" fill="white" opacity="0.2" stroke="white" stroke-width="1.5"/>
+    <!-- Greek Cross on Shield -->
+    <path d="M26 19V33M19 25H33" stroke="white" stroke-width="2.5" stroke-linecap="square"/>
+    <!-- Bottom Ribbon -->
+    <path d="M16 46C22 49 30 49 36 46L38 50C30 53 22 53 14 50L16 46Z" fill="white" opacity="0.7"/>
+  </g>
+
+  <!-- Typography: ΝΑΥΤΙΚΟ ΕΠΙΜΕΛΗΤΗΡΙΟ ΤΗΣ ΕΛΛΑΔΟΣ / HELLENIC CHAMBER OF SHIPPING -->
+  <text x="68" y="24" font-family="'Cinzel', 'Trajan Pro', 'Cinzel Decorative', 'Times New Roman', serif" font-size="13" font-weight="700" letter-spacing="1.8" fill="white">
+    ΝΑΥΤΙΚΟ ΕΠΙΜΕΛΗΤΗΡΙΟ ΤΗΣ ΕΛΛΑΔΟΣ
+  </text>
+  <text x="68" y="44" font-family="'Cinzel', 'Trajan Pro', 'Cinzel Decorative', 'Times New Roman', serif" font-size="11.5" font-weight="600" letter-spacing="2.2" fill="white" opacity="0.9">
+    HELLENIC CHAMBER OF SHIPPING
+  </text>
+</svg>
