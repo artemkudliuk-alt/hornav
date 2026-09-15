@@ -7,7 +7,9 @@ name: Сборка для хостинга
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    # migrate/self-hosted — чтобы собирать до слияния: ручной запуск из UI
+    # доступен только для workflow, лежащих в главной ветке.
+    branches: [main, migrate/self-hosted]
 
 permissions:
   contents: write
