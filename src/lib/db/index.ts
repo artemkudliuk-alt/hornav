@@ -1,25 +1,11 @@
-import { neon } from "@neondatabase/serverless";
-import { drizzle } from "drizzle-orm/neon-http";
+import { drizzle } from "drizzle-orm/node-postgres";
 import * as schema from "./schema";
+import { pool, isDbConnected } from "./pool";
 import { ensureDatabaseInitialized } from "./init-db";
 
-const dbUrl =
-  process.env.DATABASE_URL ||
-  process.env.POSTGRES_URL ||
-  process.env.STORAGE_DATABASE_URL ||
-  process.env.STORAGE_URL ||
-  process.env.NEON_DATABASE_URL ||
-  "";
+export { isDbConnected, pool };
 
-export const isDbConnected = Boolean(
-  dbUrl &&
-  !dbUrl.includes("user:password") &&
-  !dbUrl.includes("localhost/danamira") &&
-  (dbUrl.startsWith("postgresql://") || dbUrl.startsWith("postgres://"))
-);
-
-const sql = isDbConnected ? neon(dbUrl) : neon("postgresql://mock:mock@mock.neon.tech/mock?sslmode=require");
-export const db = drizzle(sql, { schema });
+export const db = drizzle(pool, { schema });
 
 if (isDbConnected) {
   ensureDatabaseInitialized().catch((e) => console.error("DB init error:", e));

@@ -113,7 +113,7 @@ export async function openPdfModal(url, title = 'Technical Document', subtitle =
     const pdfjs = await loadPdfJs();
     const loadingTask = pdfjs.getDocument({
       url: url,
-      cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
+      cMapUrl: '/libs/pdfjs/cmaps/',
       cMapPacked: true
     });
 

@@ -1,7 +1,5 @@
 ﻿import { NextResponse } from "next/server";
-import { uploadFileToBlob } from "@/lib/blob";
-import { writeFile, mkdir } from "fs/promises";
-import path from "path";
+import { saveUpload } from "@/lib/storage";
 
 export const runtime = "nodejs";
 
@@ -19,31 +17,7 @@ export async function POST(req: Request) {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
-    let fileUrl = "";
-
-    // 1. If Vercel Blob is configured (Production)
-    if (process.env.BLOB_READ_WRITE_TOKEN) {
-      try {
-        const res = await uploadFileToBlob(`uploads/${Date.now()}-${file.name}`, buffer, file.type);
-        fileUrl = res.url;
-      } catch (blobErr) {
-        console.warn("Blob upload failed, fallback to local disk:", blobErr);
-      }
-    }
-
-    // 2. Local disk fallback (/public/uploads)
-    if (!fileUrl) {
-      try {
-        const safeName = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, "_")}`;
-        const uploadsDir = path.join(process.cwd(), "public", "uploads");
-        await mkdir(uploadsDir, { recursive: true });
-        await writeFile(path.join(uploadsDir, safeName), buffer);
-        fileUrl = `/uploads/${safeName}`;
-      } catch (fsErr) {
-        console.warn("FS write failed:", fsErr);
-        fileUrl = `/uploads/${file.name}`;
-      }
-    }
+    const { url: fileUrl } = await saveUpload(buffer, file.name);
 
     return NextResponse.json(
       {

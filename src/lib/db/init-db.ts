@@ -1,4 +1,4 @@
-import { neon } from "@neondatabase/serverless";
+import { sqlTag } from "./pool";
 import bcrypt from "bcryptjs";
 import { sampleVessels, sampleBranches } from "./mock-data";
 
@@ -22,12 +22,12 @@ export async function ensureDatabaseInitialized() {
   if (isInitialized) return;
 
   try {
-    const sql = neon(dbUrl);
+    const sql = sqlTag;
 
     // 1. Create tables if not exist
     await sql`
       CREATE TABLE IF NOT EXISTS users (
-        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        id UUID PRIMARY KEY,
         email VARCHAR(255) UNIQUE NOT NULL,
         name VARCHAR(255) NOT NULL,
         password_hash TEXT NOT NULL,
@@ -40,7 +40,7 @@ export async function ensureDatabaseInitialized() {
 
     await sql`
       CREATE TABLE IF NOT EXISTS vessels (
-        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        id UUID PRIMARY KEY,
         imo_number VARCHAR(20) UNIQUE,
         name JSONB NOT NULL DEFAULT '{"en":"Vessel"}',
         type VARCHAR(64) NOT NULL DEFAULT 'bulk_carrier',
@@ -72,7 +72,7 @@ export async function ensureDatabaseInitialized() {
 
     await sql`
       CREATE TABLE IF NOT EXISTS vessel_media (
-        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        id UUID PRIMARY KEY,
         vessel_id UUID NOT NULL REFERENCES vessels(id) ON DELETE CASCADE,
         url TEXT NOT NULL,
         blob_key TEXT,
@@ -86,7 +86,7 @@ export async function ensureDatabaseInitialized() {
 
     await sql`
       CREATE TABLE IF NOT EXISTS leads (
-        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        id UUID PRIMARY KEY,
         status VARCHAR(32) NOT NULL DEFAULT 'new',
         client_name VARCHAR(255) NOT NULL,
         client_phone VARCHAR(64),
@@ -108,7 +108,7 @@ export async function ensureDatabaseInitialized() {
 
     await sql`
       CREATE TABLE IF NOT EXISTS pages (
-        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        id UUID PRIMARY KEY,
         slug VARCHAR(512) NOT NULL UNIQUE,
         status VARCHAR(32) NOT NULL DEFAULT 'published',
         title JSONB NOT NULL DEFAULT '{"en":"Page"}',
@@ -124,7 +124,7 @@ export async function ensureDatabaseInitialized() {
 
     await sql`
       CREATE TABLE IF NOT EXISTS branch_offices (
-        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        id UUID PRIMARY KEY,
         city VARCHAR(128) NOT NULL,
         country VARCHAR(128) NOT NULL,
         address VARCHAR(255) NOT NULL,
@@ -139,7 +139,7 @@ export async function ensureDatabaseInitialized() {
 
     await sql`
       CREATE TABLE IF NOT EXISTS system_settings (
-        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        id UUID PRIMARY KEY,
         company_name VARCHAR(255) DEFAULT 'DANAMIRA SHIPPING LTD',
         lead_notification_emails TEXT,
         email_sender_name VARCHAR(255),

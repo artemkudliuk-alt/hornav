@@ -1,0 +1,68 @@
+name: Сборка для хостинга
+
+# Собираем на Linux и кладём готовый результат в ветку deploy.
+# На сервере остаётся сделать git pull — при 1 МБ/с это важно:
+# git тянет только изменившееся, а не все 215 МБ каждый раз.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy-build
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Забрать исходники
+        uses: actions/checkout@v4
+
+      - name: Node 24 — как на хостинге
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Установить зависимости
+        run: npm ci
+
+      - name: Собрать
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"
+          # Пустышка: сборка не должна ходить в живую базу.
+          DATABASE_URL: ""
+
+      - name: Собрать раскладку для запуска
+        run: |
+          rm -rf deploy && mkdir deploy
+          cp -r .next/standalone/. deploy/
+          mkdir -p deploy/.next/static
+          cp -r .next/static/. deploy/.next/static/
+          rm -rf deploy/public
+          cp -r public deploy/public
+          # Загрузки живут вне сборки, в постоянной папке на сервере.
+          rm -rf deploy/public/uploads
+          echo "node server.js" > deploy/ЗАПУСК.txt
+          du -sh deploy
+
+      - name: Опубликовать в ветку deploy
+        run: |
+          cd deploy
+          git init -q
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          # .next и node_modules нужны в этой ветке, поэтому никаких ignore
+          git add -A
+          git commit -q -m "Сборка из ${GITHUB_SHA::7}"
+          git push -q --force \
+            "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" \
+            HEAD:deploy
+          echo "Готово. На сервере: git pull"

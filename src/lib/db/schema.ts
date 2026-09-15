@@ -1,3 +1,4 @@
+import { randomUUID } from "crypto";
 import {
   pgTable,
   uuid,
@@ -68,7 +69,7 @@ export interface I18nField {
 // ─── Users ───────────────────────────────────────────────────
 
 export const users = pgTable("users", {
-  id: uuid("id").primaryKey().defaultRandom(),
+  id: uuid("id").primaryKey().$defaultFn(() => randomUUID()),
   email: varchar("email", { length: 255 }).notNull().unique(),
   name: varchar("name", { length: 255 }).notNull(),
   passwordHash: text("password_hash").notNull(),
@@ -85,7 +86,7 @@ export const users = pgTable("users", {
 // ─── Vessels ─────────────────────────────────────────────────
 
 export const vessels = pgTable("vessels", {
-  id: uuid("id").primaryKey().defaultRandom(),
+  id: uuid("id").primaryKey().$defaultFn(() => randomUUID()),
   imoNumber: varchar("imo_number", { length: 20 }).unique(),
   name: jsonb("name").$type<I18nField>().notNull(),
   type: vesselTypeEnum("type").notNull(),
@@ -128,7 +129,7 @@ export const vessels = pgTable("vessels", {
 // ─── Vessel Media ────────────────────────────────────────────
 
 export const vesselMedia = pgTable("vessel_media", {
-  id: uuid("id").primaryKey().defaultRandom(),
+  id: uuid("id").primaryKey().$defaultFn(() => randomUUID()),
   vesselId: uuid("vessel_id")
     .notNull()
     .references(() => vessels.id, { onDelete: "cascade" }),
@@ -147,7 +148,7 @@ export const vesselMedia = pgTable("vessel_media", {
 // ─── Leads ───────────────────────────────────────────────────
 
 export const leads = pgTable("leads", {
-  id: uuid("id").primaryKey().defaultRandom(),
+  id: uuid("id").primaryKey().$defaultFn(() => randomUUID()),
   status: leadStatusEnum("status").notNull().default("new"),
 
   // Client data
@@ -185,7 +186,7 @@ export const leads = pgTable("leads", {
 // ─── Pages ───────────────────────────────────────────────────
 
 export const pages = pgTable("pages", {
-  id: uuid("id").primaryKey().defaultRandom(),
+  id: uuid("id").primaryKey().$defaultFn(() => randomUUID()),
   slug: varchar("slug", { length: 512 }).notNull().unique(),
   status: pageStatusEnum("status").notNull().default("draft"),
 
@@ -207,7 +208,7 @@ export const pages = pgTable("pages", {
 // ─── Company Contacts ────────────────────────────────────────
 
 export const companyContacts = pgTable("company_contacts", {
-  id: uuid("id").primaryKey().defaultRandom(),
+  id: uuid("id").primaryKey().$defaultFn(() => randomUUID()),
   hotlinePhone: varchar("hotline_phone", { length: 64 }),
   generalEmail: varchar("general_email", { length: 255 }),
   telegram: varchar("telegram", { length: 128 }),
@@ -220,7 +221,7 @@ export const companyContacts = pgTable("company_contacts", {
 // ─── Branch Offices ──────────────────────────────────────────
 
 export const branchOffices = pgTable("branch_offices", {
-  id: uuid("id").primaryKey().defaultRandom(),
+  id: uuid("id").primaryKey().$defaultFn(() => randomUUID()),
   name: varchar("name", { length: 255 }).notNull(),
   portCity: varchar("port_city", { length: 255 }).notNull(),
   country: varchar("country", { length: 128 }).notNull(),

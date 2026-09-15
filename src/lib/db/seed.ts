@@ -1,5 +1,5 @@
-import { neon } from "@neondatabase/serverless";
-import { drizzle } from "drizzle-orm/neon-http";
+import { Pool } from "pg";
+import { drizzle } from "drizzle-orm/node-postgres";
 import * as schema from "./schema";
 import bcrypt from "bcryptjs";
 
@@ -11,8 +11,11 @@ async function seed() {
   }
 
   console.log("🌱 Starting Danamira Shipping CMS database seeding...");
-  const sql = neon(dbUrl);
-  const db = drizzle(sql, { schema });
+  const pool = new Pool({
+    connectionString: dbUrl,
+    ssl: /@(localhost|127\.0\.0\.1)[:/]/.test(dbUrl) ? undefined : { rejectUnauthorized: false },
+  });
+  const db = drizzle(pool, { schema });
 
   // 1. Seed Admin & Manager users
   const adminPasswordHash = await bcrypt.hash("AdminPassword123!", 10);

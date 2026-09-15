@@ -16,6 +16,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="h-full antialiased dark">
+      <head>
+        {/* Шрифты лежат в public/fonts — ничего не тянется с Google и Fontshare. */}
+        <link rel="stylesheet" href="/fonts/fonts.css" />
+      </head>
       <body className="min-h-full flex flex-col bg-[#18181b] text-neutral-100 font-sans">
         {children}
       </body>

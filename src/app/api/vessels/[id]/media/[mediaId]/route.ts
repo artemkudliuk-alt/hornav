@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { vesselMedia, vessels } from "@/lib/db/schema";
-import { deleteFileFromBlob } from "@/lib/blob";
+import { deleteUpload } from "@/lib/storage";
 import { eq, and } from "drizzle-orm";
 
 // ─── PATCH: Set as Main Cover ─────────────────────────────────
@@ -100,13 +100,11 @@ export async function DELETE(
       return NextResponse.json({ error: "Media not found" }, { status: 404 });
     }
 
-    // Try deleting from blob if token exists
-    if (process.env.BLOB_READ_WRITE_TOKEN && deleted.url.startsWith("http")) {
-      try {
-        await deleteFileFromBlob(deleted.url);
-      } catch (e) {
-        console.warn("Could not delete from Vercel Blob:", e);
-      }
+    // Файл с диска. Старые абсолютные ссылки на Vercel игнорируются внутри deleteUpload.
+    try {
+      await deleteUpload(deleted.blobKey || deleted.url);
+    } catch (e) {
+      console.warn("Не удалось удалить файл загрузки:", e);
     }
 
     // If deleted media was cover, clear coverImageUrl on vessel
