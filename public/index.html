@@ -45,6 +45,11 @@
     .preloader-pulse {
       animation: pulse-soft 2s infinite ease-in-out;
     }
+    body.page-loaded #content-root,
+    body.page-loaded header {
+      opacity: 1 !important;
+      transform: none !important;
+    }
   </style>
 
   <div id="preloader" style="position: fixed; inset: 0; z-index: 9999; background: radial-gradient(circle at 50% 50%, #464650 0%, #36363d 50%, #2a2a30 100%); display: flex; align-items: center; justify-content: center; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, opacity;">
@@ -121,16 +126,33 @@
   <script>
     (function() {
       const preloader = document.getElementById('preloader');
-      const contentRoot = document.getElementById('content-root');
-      const headerEl = document.querySelector('header');
+
+      function revealPage() {
+        document.body.classList.add('page-loaded');
+        document.body.style.overflow = '';
+        const contentRoot = document.getElementById('content-root');
+        const headerEl = document.querySelector('header');
+        if (contentRoot) {
+          contentRoot.style.opacity = '1';
+          contentRoot.style.transform = 'none';
+          contentRoot.style.willChange = '';
+        }
+        if (headerEl) {
+          headerEl.style.opacity = '1';
+          headerEl.style.transform = 'none';
+          headerEl.style.willChange = '';
+        }
+        window.dispatchEvent(new CustomEvent('site-loaded'));
+      }
 
       // Instant bypass if already visited in this session
       if (sessionStorage.getItem('danamira_preloaded')) {
         if (preloader) preloader.remove();
-        document.body.classList.add('page-loaded');
-        if (contentRoot) { contentRoot.style.opacity = '1'; contentRoot.style.transform = 'none'; }
-        if (headerEl) { headerEl.style.opacity = '1'; headerEl.style.transform = 'none'; }
-        window.dispatchEvent(new CustomEvent('site-loaded'));
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', revealPage);
+        } else {
+          revealPage();
+        }
         return;
       }
 
@@ -203,36 +225,11 @@
               preloader.style.opacity = '0';
               preloader.style.pointerEvents = 'none';
               
-              // Trigger page content entrance
-              document.body.classList.add('page-loaded');
-              window.scrollTo(0, 0);
+              revealPage();
               
-              if (contentRoot) {
-                contentRoot.style.opacity = '1';
-                contentRoot.style.transform = 'scale(1) translate3d(0, 0, 0)';
-                contentRoot.addEventListener('transitionend', () => {
-                  contentRoot.style.transform = '';
-                  contentRoot.style.willChange = '';
-                }, { once: true });
-              }
-              
-              if (headerEl) {
-                headerEl.style.opacity = '1';
-                headerEl.style.transform = 'scale(1) translate3d(0, 0, 0)';
-                headerEl.addEventListener('transitionend', () => {
-                  headerEl.style.transform = '';
-                  headerEl.style.willChange = '';
-                }, { once: true });
-              }
-
-              // Dispatch loaded event to main.js to run scroll reveals
-              window.dispatchEvent(new CustomEvent('site-loaded'));
-
-              document.body.style.overflow = '';
-              
-              preloader.addEventListener('transitionend', () => {
-                preloader.remove();
-              }, { once: true });
+              setTimeout(() => {
+                if (preloader.parentNode) preloader.remove();
+              }, 400);
             }, 80);
           }
         };
