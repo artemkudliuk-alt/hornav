@@ -203,19 +203,21 @@ export async function ensureDatabaseInitialized() {
       `;
     }
 
-    // 4. Seed Vessel 1: MV MOLPADIA with all photos & PDF
-    const molpadia = sampleVessels[0];
-    if (molpadia) {
-      await sql`
-        INSERT INTO vessels (
-          id, name, type, status, imo_number, flag,
-          year_built, class_society, dwt, loa, beam, draft,
-          cubic_capacity, charter_rate_usd, sale_price_usd, price_on_request,
-          current_location, trading_area, description, deck_equipment, cover_image_url
-        ) VALUES (
-          ${MOLPADIA_ID}, ${JSON.stringify(molpadia.name)}, ${molpadia.type}, ${molpadia.status},
-          ${molpadia.imoNumber}, ${molpadia.flag}, ${molpadia.yearBuilt},
-          ${molpadia.classSociety}, ${molpadia.dwt}, ${molpadia.loa}, ${molpadia.beam}, ${molpadia.draft},
+    // 4. Seed sample vessels only if vessels table is empty
+    const existingVessels = await sql`SELECT id FROM vessels LIMIT 1`;
+    if (existingVessels.length === 0) {
+      const molpadia = sampleVessels[0];
+      if (molpadia) {
+        await sql`
+          INSERT INTO vessels (
+            id, name, type, status, imo_number, flag,
+            year_built, class_society, dwt, loa, beam, draft,
+            cubic_capacity, charter_rate_usd, sale_price_usd, price_on_request,
+            current_location, trading_area, description, deck_equipment, cover_image_url
+          ) VALUES (
+            ${MOLPADIA_ID}, ${JSON.stringify(molpadia.name)}, ${molpadia.type}, ${molpadia.status},
+            ${molpadia.imoNumber}, ${molpadia.flag}, ${molpadia.yearBuilt},
+            ${molpadia.classSociety}, ${Math.round(molpadia.dwt || 0)}, ${molpadia.loa}, ${molpadia.beam}, ${molpadia.draft},
           ${molpadia.cubicCapacity}, ${molpadia.charterRateUsd}, ${molpadia.salePriceUsd}, ${molpadia.priceOnRequest},
           ${molpadia.currentLocation}, ${molpadia.tradingArea},
           ${JSON.stringify(molpadia.description)}, ${JSON.stringify(molpadia.deckEquipment)},
@@ -254,57 +256,57 @@ export async function ensureDatabaseInitialized() {
           `;
         }
       }
-    }
 
-    // 5. Seed Vessel 2: MV METANIRA with all photos & PDF
-    const metanira = sampleVessels[1];
-    if (metanira) {
-      await sql`
-        INSERT INTO vessels (
-          id, name, type, status, imo_number, flag,
-          year_built, class_society, dwt, loa, beam, draft,
-          cubic_capacity, charter_rate_usd, sale_price_usd, price_on_request,
-          current_location, trading_area, description, deck_equipment, cover_image_url
-        ) VALUES (
-          ${METANIRA_ID}, ${JSON.stringify(metanira.name)}, ${metanira.type}, ${metanira.status},
-          ${metanira.imoNumber}, ${metanira.flag}, ${metanira.yearBuilt},
-          ${metanira.classSociety}, ${metanira.dwt}, ${metanira.loa}, ${metanira.beam}, ${metanira.draft},
-          ${metanira.cubicCapacity}, ${metanira.charterRateUsd}, ${metanira.salePriceUsd}, ${metanira.priceOnRequest},
-          ${metanira.currentLocation}, ${metanira.tradingArea},
-          ${JSON.stringify(metanira.description)}, ${JSON.stringify(metanira.deckEquipment)},
-          ${metanira.coverImageUrl}
-        ) ON CONFLICT (id) DO UPDATE SET
-          name = EXCLUDED.name,
-          cover_image_url = EXCLUDED.cover_image_url,
-          imo_number = EXCLUDED.imo_number,
-          flag = EXCLUDED.flag,
-          dwt = EXCLUDED.dwt,
-          loa = EXCLUDED.loa,
-          beam = EXCLUDED.beam,
-          draft = EXCLUDED.draft,
-          year_built = EXCLUDED.year_built,
-          class_society = EXCLUDED.class_society,
-          description = EXCLUDED.description,
-          deck_equipment = EXCLUDED.deck_equipment;
-      `;
+      // 5. Seed Vessel 2: MV METANIRA with all photos & PDF
+      const metanira = sampleVessels[1];
+      if (metanira) {
+        await sql`
+          INSERT INTO vessels (
+            id, name, type, status, imo_number, flag,
+            year_built, class_society, dwt, loa, beam, draft,
+            cubic_capacity, charter_rate_usd, sale_price_usd, price_on_request,
+            current_location, trading_area, description, deck_equipment, cover_image_url
+          ) VALUES (
+            ${METANIRA_ID}, ${JSON.stringify(metanira.name)}, ${metanira.type}, ${metanira.status},
+            ${metanira.imoNumber}, ${metanira.flag}, ${metanira.yearBuilt},
+            ${metanira.classSociety}, ${Math.round(metanira.dwt || 0)}, ${metanira.loa}, ${metanira.beam}, ${metanira.draft},
+            ${metanira.cubicCapacity}, ${metanira.charterRateUsd}, ${metanira.salePriceUsd}, ${metanira.priceOnRequest},
+            ${metanira.currentLocation}, ${metanira.tradingArea},
+            ${JSON.stringify(metanira.description)}, ${JSON.stringify(metanira.deckEquipment)},
+            ${metanira.coverImageUrl}
+          ) ON CONFLICT (id) DO UPDATE SET
+            name = EXCLUDED.name,
+            cover_image_url = EXCLUDED.cover_image_url,
+            imo_number = EXCLUDED.imo_number,
+            flag = EXCLUDED.flag,
+            dwt = EXCLUDED.dwt,
+            loa = EXCLUDED.loa,
+            beam = EXCLUDED.beam,
+            draft = EXCLUDED.draft,
+            year_built = EXCLUDED.year_built,
+            class_society = EXCLUDED.class_society,
+            description = EXCLUDED.description,
+            deck_equipment = EXCLUDED.deck_equipment;
+        `;
 
-      if (Array.isArray(metanira.media)) {
-        for (let i = 0; i < metanira.media.length; i++) {
-          const m = metanira.media[i];
-          const mediaUuid = `22222222-2222-2222-2222-${String(i + 1).padStart(12, '0')}`;
-          await sql`
-            INSERT INTO vessel_media (
-              id, vessel_id, url, type, filename, sort_order, is_cover
-            ) VALUES (
-              ${mediaUuid}, ${METANIRA_ID}, ${m.url}, ${m.type || 'photo'},
-              ${m.filename || 'photo.jpg'}, ${m.sortOrder ?? i}, ${Boolean(m.isCover)}
-            ) ON CONFLICT (id) DO UPDATE SET
-              url = EXCLUDED.url,
-              type = EXCLUDED.type,
-              filename = EXCLUDED.filename,
-              sort_order = EXCLUDED.sort_order,
-              is_cover = EXCLUDED.is_cover;
-          `;
+        if (Array.isArray(metanira.media)) {
+          for (let i = 0; i < metanira.media.length; i++) {
+            const m = metanira.media[i];
+            const mediaUuid = `22222222-2222-2222-2222-${String(i + 1).padStart(12, '0')}`;
+            await sql`
+              INSERT INTO vessel_media (
+                id, vessel_id, url, type, filename, sort_order, is_cover
+              ) VALUES (
+                ${mediaUuid}, ${METANIRA_ID}, ${m.url}, ${m.type || 'photo'},
+                ${m.filename || 'photo.jpg'}, ${m.sortOrder ?? i}, ${Boolean(m.isCover)}
+              ) ON CONFLICT (id) DO UPDATE SET
+                url = EXCLUDED.url,
+                type = EXCLUDED.type,
+                filename = EXCLUDED.filename,
+                sort_order = EXCLUDED.sort_order,
+                is_cover = EXCLUDED.is_cover;
+            `;
+          }
         }
       }
     }

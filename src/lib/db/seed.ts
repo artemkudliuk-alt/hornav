@@ -195,7 +195,7 @@ async function seed() {
       priceOnRequest: false,
       currentLocation: "Port of Motril, Spain",
       tradingArea: "Mediterranean, Black Sea, Continent, West Africa",
-      dwt: 7639.45,
+      dwt: 7639,
       teu: 440,
       cubicCapacity: "9816.30",
       yearBuilt: 2011,
