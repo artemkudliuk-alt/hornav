@@ -156,9 +156,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // Add scroll listener with passive: true for maximal performance
+  // Video Virtualization: pause off-screen videos to eliminate GPU/CPU throttling
+  const allMediaVideos = document.querySelectorAll('video');
+  if ('IntersectionObserver' in window) {
+    const videoPlaybackObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const video = entry.target;
+        if (entry.isIntersecting) {
+          if (video.paused) {
+            video.play().catch(() => {});
+          }
+        } else {
+          if (!video.paused) {
+            video.pause();
+          }
+        }
+      });
+    }, { rootMargin: '120px 0px 120px 0px', threshold: 0.02 });
+
+    allMediaVideos.forEach((v) => videoPlaybackObserver.observe(v));
+  }
+
+  // Smooth throttled scroll listener matching monitor v-sync (60/120fps)
+  let isTicking = false;
   window.addEventListener('scroll', () => {
-    requestAnimationFrame(handleParallax);
+    if (!isTicking) {
+      window.requestAnimationFrame(() => {
+        handleParallax();
+        isTicking = false;
+      });
+      isTicking = true;
+    }
   }, { passive: true });
 
   // Run on initial load to set correct offsets
