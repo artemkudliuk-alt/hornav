@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      background: #000;
+      margin: 0;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .card {
+      width: 440px;
+      height: 200px;
+      background: #0b0f19;
+      border: 2px solid #d4af37;
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      position: relative;
+    }
+    .badge {
+      position: absolute;
+      top: 12px;
+      left: 14px;
+      font-size: 11px;
+      font-weight: 800;
+      color: #d4af37;
+      background: rgba(212, 175, 55, 0.15);
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 1px;
+    }
+    .logo-container {
+      height: 75px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin-top: 10px;
+    }
+    .logo-container img {
+      max-height: 68px;
+      max-width: 82%;
+      object-fit: contain;
+    }
+    .title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 8px 0 2px 0;
+      letter-spacing: 0.5px;
+      text-align: center;
+    }
+    .sub {
+      font-size: 11px;
+      color: #d4af37;
+      margin: 0;
+      opacity: 0.9;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. BIMCO -->
+  <div class="card" id="card-bimco">
+    <span class="badge">#1 &bull; BIMCO</span>
+    <div class="logo-container">
+      <img src="/logos/bimco_official.svg" alt="BIMCO" style="height: 56px;" />
+    </div>
+    <div class="title">BIMCO</div>
+    <div class="sub">Baltic and International Maritime Council &bull; bimco.org</div>
+  </div>
+
+  <!-- 2. IACS -->
+  <div class="card" id="card-iacs">
+    <span class="badge">#2 &bull; IACS</span>
+    <div class="logo-container">
+      <img src="/logos/iacs_official.svg" alt="IACS" style="height: 48px;" />
+    </div>
+    <div class="title">IACS</div>
+    <div class="sub">Int. Assoc. of Classification Societies &bull; iacs.org.uk</div>
+  </div>
+
+  <!-- 3. IMO -->
+  <div class="card" id="card-imo">
+    <span class="badge">#3 &bull; IMO</span>
+    <div class="logo-container">
+      <img src="/logos/imo_horizontal_white.png" alt="IMO" style="height: 52px;" />
+    </div>
+    <div class="title">International Maritime Organization</div>
+    <div class="sub">UN Specialized Maritime Agency &bull; imo.org</div>
+  </div>
+
+  <!-- 4. SOLAS • MARPOL • STCW -->
+  <div class="card" id="card-conventions">
+    <span class="badge">#4 &bull; IMO Conventions</span>
+    <div class="logo-container">
+      <img src="/logos/imo_emblem_white.png" alt="SOLAS MARPOL STCW" style="height: 68px;" />
+    </div>
+    <div class="title">SOLAS &bull; MARPOL &bull; STCW</div>
+    <div class="sub">IMO International Statutory Conventions &bull; imo.org</div>
+  </div>
+
+  <!-- 5. ILO -->
+  <div class="card" id="card-ilo">
+    <span class="badge">#5 &bull; ILO / MLC 2006</span>
+    <div class="logo-container">
+      <img src="/logos/ilo_white.svg" alt="ILO" style="height: 52px;" />
+    </div>
+    <div class="title">International Labour Organization</div>
+    <div class="sub">Maritime Labour Convention (MLC 2006) &bull; ilo.org</div>
+  </div>
+
+  <!-- 6. NEE -->
+  <div class="card" id="card-nee">
+    <span class="badge">#6 &bull; NEE</span>
+    <div class="logo-container">
+      <img src="/logos/nee_official.svg" alt="Hellenic Chamber of Shipping" style="height: 48px;" />
+    </div>
+    <div class="title">Hellenic Chamber of Shipping (NEE)</div>
+    <div class="sub">Ναυτικό Επιμελητήριο Ελλάδος &bull; nee.gr</div>
+  </div>
+
+  <!-- 7. Law 89/1967 -->
+  <div class="card" id="card-law89">
+    <span class="badge">#7 &bull; Law 89/1967</span>
+    <div class="logo-container">
+      <img src="/Hellenic.png" alt="Hellenic Republic" style="height: 60px;" />
+    </div>
+    <div class="title">Law 89/1967 (Hellenic Republic)</div>
+    <div class="sub">Greek Maritime & Branch Office Framework &bull; publicrevenue.gr</div>
+  </div>
+
+</body>
+</html>
