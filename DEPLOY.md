@@ -46,3 +46,21 @@ ln -sfn ~/data/uploads <папка-приложения>/public/uploads
 PostgreSQL на хостинге версии 10, в ней нет `gen_random_uuid()`.
 Идентификаторы генерирует приложение (`randomUUID()` в `src/lib/db/schema.ts`),
 от базы эта функция больше не требуется. Расширение `pgcrypto` ставить не нужно.
+
+### Перенос данных из Neon
+
+```bash
+SOURCE_URL='postgres://user:pass@ep-....neon.tech/neondb?sslmode=require' \
+TARGET_URL='postgres://пользователь:пароль@localhost:5432/база' \
+node scripts/copy-db.mjs
+```
+
+### Перенос фото и файлов из Vercel Blob на диск
+
+```bash
+TARGET_URL='postgres://пользователь:пароль@localhost:5432/база' \
+UPLOADS_DIR='/home/<аккаунт>/data/uploads' \
+node scripts/copy-blob-to-disk.mjs
+```
+Флаг `--dry` позволяет сделать тестовый прогон без записи на диск и изменений в БД.
+
