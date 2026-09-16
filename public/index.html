@@ -25,10 +25,10 @@
   <!-- Premium Fonts: Clash Display (Display), Plus Jakarta Sans (Sans) & Space Mono (Mono) -->
   
   <link rel="stylesheet" href="/fonts/fonts.css">
-  <script type="module" crossorigin src="/assets/js/main-DXLZHTMh.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/js/mobile-menu-9qGqS957.js">
+  <script type="module" crossorigin src="/assets/js/main-C2cKeaM_.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/js/mobile-menu-H155EL86.js">
   <link rel="modulepreload" crossorigin href="/assets/js/pdf-viewer-3Pg4q58L.js">
-  <link rel="stylesheet" crossorigin href="/assets/css/mobile-menu-Cv_ouPQL.css">
+  <link rel="stylesheet" crossorigin href="/assets/css/mobile-menu-DzKvnJr8.css">
 </head>
 <body class="bg-[#25252a] text-[#FFFFFF] selection:bg-gold/30 selection:text-white antialiased overflow-x-hidden min-h-[100dvh]">
 
@@ -47,7 +47,7 @@
     }
   </style>
 
-  <div id="preloader" style="position: fixed; inset: 0; z-index: 9999; background: radial-gradient(circle at 50% 50%, #464650 0%, #36363d 50%, #2a2a30 100%); display: flex; align-items: center; justify-content: center; transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.6s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, opacity;">
+  <div id="preloader" style="position: fixed; inset: 0; z-index: 9999; background: radial-gradient(circle at 50% 50%, #464650 0%, #36363d 50%, #2a2a30 100%); display: flex; align-items: center; justify-content: center; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, opacity;">
     
     <!-- Technical Corner Captions (Space Mono) -->
     <!-- Top Left -->
@@ -121,6 +121,19 @@
   <script>
     (function() {
       const preloader = document.getElementById('preloader');
+      const contentRoot = document.getElementById('content-root');
+      const headerEl = document.querySelector('header');
+
+      // Instant bypass if already visited in this session
+      if (sessionStorage.getItem('danamira_preloaded')) {
+        if (preloader) preloader.remove();
+        document.body.classList.add('page-loaded');
+        if (contentRoot) { contentRoot.style.opacity = '1'; contentRoot.style.transform = 'none'; }
+        if (headerEl) { headerEl.style.opacity = '1'; headerEl.style.transform = 'none'; }
+        window.dispatchEvent(new CustomEvent('site-loaded'));
+        return;
+      }
+
       const preloaderLogo = document.getElementById('preloader-logo');
       const preloaderText = document.getElementById('preloader-text');
       const preloaderProgressRing = document.getElementById('preloader-progress-ring');
@@ -147,63 +160,25 @@
         });
 
         let progress = 0;
-        let loadComplete = false;
-        let videoReady = false;
-
-        // Detect active video element (desktop vs mobile breakpoint)
-        const isDesktop = window.innerWidth >= 1024;
-        const targetVideo = isDesktop 
-          ? document.getElementById('hero-video') 
-          : document.getElementById('hero-video-mobile');
-
-        // Check if video is already buffered/ready to play
-        if (targetVideo) {
-          if (targetVideo.readyState >= 3) {
-            videoReady = true;
-          } else {
-            const onVideoReady = () => {
-              videoReady = true;
-              targetVideo.removeEventListener('canplay', onVideoReady);
-              targetVideo.removeEventListener('loadeddata', onVideoReady);
-            };
-            targetVideo.addEventListener('canplay', onVideoReady);
-            targetVideo.addEventListener('loadeddata', onVideoReady);
-          }
-        } else {
-          videoReady = true;
-        }
-
-        // Fail-safe fallback: Force videoReady = true after 4.5 seconds
-        setTimeout(() => {
-          videoReady = true;
-        }, 4500);
 
         const getStatusText = (prog) => {
           if (prog < 25) return 'INITIALIZING';
           if (prog < 50) return 'FETCHING TELEMETRY';
           if (prog < 75) return 'SYNCING SATELLITE';
           if (prog < 95) return 'FEED ACTIVE';
-          if (prog < 100) return (loadComplete && videoReady) ? 'BUFFER READY' : 'BUFFERING STREAM';
           return 'SYSTEMS READY';
         };
 
         const updateProgress = () => {
           let increment = 0;
           if (progress < 30) {
-            increment = Math.random() * 8 + 4;
+            increment = Math.random() * 14 + 10;
           } else if (progress < 75) {
-            increment = Math.random() * 4 + 2;
-          } else if (progress < 90) {
-            increment = Math.random() * 1.5 + 0.5;
+            increment = Math.random() * 12 + 8;
           } else if (progress < 95) {
-            increment = Math.random() * 0.8 + 0.4;
+            increment = Math.random() * 10 + 6;
           } else {
-            if (loadComplete && videoReady) {
-              increment = Math.random() * 2 + 1;
-            } else {
-              // Exceedingly slow crawl to wait for buffer without complete freeze
-              increment = progress < 98 ? 0.05 : 0.001;
-            }
+            increment = Math.random() * 8 + 4;
           }
 
           progress = Math.min(progress + increment, 100);
@@ -219,20 +194,18 @@
           }
 
           if (progress < 100) {
-            setTimeout(updateProgress, Math.random() * 30 + 20);
+            setTimeout(updateProgress, 20);
           } else {
+            sessionStorage.setItem('danamira_preloaded', '1');
             setTimeout(() => {
-              // Preloader Exit: Scale up and fade out
-              preloader.style.transform = 'scale(1.05) translate3d(0, 0, 0)';
+              // Preloader Exit: Scale up and fade out fast
+              preloader.style.transform = 'scale(1.03) translate3d(0, 0, 0)';
               preloader.style.opacity = '0';
               preloader.style.pointerEvents = 'none';
               
               // Trigger page content entrance
               document.body.classList.add('page-loaded');
               window.scrollTo(0, 0);
-              
-              const contentRoot = document.getElementById('content-root');
-              const headerEl = document.querySelector('header');
               
               if (contentRoot) {
                 contentRoot.style.opacity = '1';
@@ -260,15 +233,11 @@
               preloader.addEventListener('transitionend', () => {
                 preloader.remove();
               }, { once: true });
-            }, 400);
+            }, 80);
           }
         };
 
         updateProgress();
-
-        window.addEventListener('load', () => {
-          loadComplete = true;
-        });
       }
     })();
   </script>
