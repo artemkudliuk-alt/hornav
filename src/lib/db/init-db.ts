@@ -256,8 +256,9 @@ export async function ensureDatabaseInitialized() {
           `;
         }
       }
+    }
 
-      // 5. Seed Vessel 2: MV METANIRA with all photos & PDF
+    // 5. Seed Vessel 2: MV METANIRA with all photos & PDF
       const metanira = sampleVessels[1];
       if (metanira) {
         await sql`
