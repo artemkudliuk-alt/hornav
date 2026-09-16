@@ -23,7 +23,8 @@
   <meta name="twitter:image" content="https://danamirashipping.com/fleet/molpadia/Photo-1.jpg">
   
   <!-- Premium Fonts: Clash Display (Display), Plus Jakarta Sans (Sans) & Space Mono (Mono) -->
-  
+  <!-- Preload Hero Video for instant playback -->
+  <link rel="preload" as="video" href="/Banner_screen.mp4" type="video/mp4">
   <link rel="stylesheet" href="/fonts/fonts.css">
   <script type="module" crossorigin src="/assets/js/main-C2cKeaM_.js"></script>
   <link rel="modulepreload" crossorigin href="/assets/js/mobile-menu-H155EL86.js">
@@ -126,6 +127,11 @@
   <script>
     (function() {
       const preloader = document.getElementById('preloader');
+      const preloaderLogo = document.getElementById('preloader-logo');
+      const preloaderText = document.getElementById('preloader-text');
+      const preloaderProgressRing = document.getElementById('preloader-progress-ring');
+      const preloaderSysStatus = document.getElementById('preloader-sys-status');
+      const circumference = 477.52; // 2 * Math.PI * 76
 
       function revealPage() {
         document.body.classList.add('page-loaded');
@@ -145,24 +151,6 @@
         window.dispatchEvent(new CustomEvent('site-loaded'));
       }
 
-      // Instant bypass if already visited in this session
-      if (sessionStorage.getItem('danamira_preloaded')) {
-        if (preloader) preloader.remove();
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', revealPage);
-        } else {
-          revealPage();
-        }
-        return;
-      }
-
-      const preloaderLogo = document.getElementById('preloader-logo');
-      const preloaderText = document.getElementById('preloader-text');
-      const preloaderProgressRing = document.getElementById('preloader-progress-ring');
-      const preloaderSysStatus = document.getElementById('preloader-sys-status');
-      
-      const circumference = 477.52; // 2 * Math.PI * 76
-
       if (preloader && preloaderProgressRing) {
         if ('scrollRestoration' in history) {
           history.scrollRestoration = 'manual';
@@ -181,56 +169,106 @@
           }
         });
 
+        // Video readiness check: wait for hero-video to buffer
+        let videoReady = false;
+        const checkVideo = () => {
+          const isDesktop = window.innerWidth >= 1024;
+          const vid = isDesktop 
+            ? document.getElementById('hero-video') 
+            : document.getElementById('hero-video-mobile');
+          if (vid) {
+            if (vid.readyState >= 2) {
+              videoReady = true;
+              vid.play().catch(() => {});
+            } else {
+              vid.addEventListener('canplay', () => {
+                videoReady = true;
+                vid.play().catch(() => {});
+              }, { once: true });
+              vid.addEventListener('loadeddata', () => {
+                videoReady = true;
+                vid.play().catch(() => {});
+              }, { once: true });
+            }
+          }
+        };
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', checkVideo);
+        } else {
+          checkVideo();
+        }
+
+        // Safety timeout: never hang more than 3.5 seconds even on poor network
+        setTimeout(() => {
+          videoReady = true;
+        }, 3500);
+
         let progress = 0;
 
         const getStatusText = (prog) => {
           if (prog < 25) return 'INITIALIZING';
           if (prog < 50) return 'FETCHING TELEMETRY';
           if (prog < 75) return 'SYNCING SATELLITE';
-          if (prog < 95) return 'FEED ACTIVE';
+          if (prog < 95) return videoReady ? 'BUFFER READY' : 'BUFFERING VIDEO';
           return 'SYSTEMS READY';
         };
 
         const updateProgress = () => {
+          if (!videoReady) {
+            checkVideo();
+          }
+
           let increment = 0;
           if (progress < 30) {
-            increment = Math.random() * 14 + 10;
-          } else if (progress < 75) {
-            increment = Math.random() * 12 + 8;
-          } else if (progress < 95) {
-            increment = Math.random() * 10 + 6;
+            increment = Math.random() * 6 + 4;
+          } else if (progress < 70) {
+            increment = Math.random() * 4 + 3;
+          } else if (progress < 88) {
+            increment = Math.random() * 2 + 1.5;
           } else {
-            increment = Math.random() * 8 + 4;
+            // Smoothly complete to 100% only once video buffer is ready
+            if (videoReady) {
+              increment = Math.random() * 4 + 3;
+            } else {
+              // Gentle waiting increment so progress bar does not completely freeze
+              increment = progress < 94 ? 0.25 : 0.05;
+            }
           }
 
           progress = Math.min(progress + increment, 100);
-          
-          // Update SVG progress ring
+
           const offset = circumference - (progress / 100) * circumference;
           preloaderProgressRing.style.strokeDashoffset = offset;
-          
-          // Update tech status text
+
           if (preloaderSysStatus) {
             const formattedPercent = Math.floor(progress).toString().padStart(3, '0') + '%';
             preloaderSysStatus.innerHTML = `STATUS // ${getStatusText(progress)}<br>VALUE // ${formattedPercent}`;
           }
 
           if (progress < 100) {
-            setTimeout(updateProgress, 20);
+            setTimeout(updateProgress, 30);
           } else {
-            sessionStorage.setItem('danamira_preloaded', '1');
             setTimeout(() => {
-              // Preloader Exit: Scale up and fade out fast
               preloader.style.transform = 'scale(1.03) translate3d(0, 0, 0)';
               preloader.style.opacity = '0';
               preloader.style.pointerEvents = 'none';
-              
+
               revealPage();
-              
+
+              // Ensure video is playing smoothly
+              const isDesktop = window.innerWidth >= 1024;
+              const vid = isDesktop 
+                ? document.getElementById('hero-video') 
+                : document.getElementById('hero-video-mobile');
+              if (vid && vid.paused) {
+                vid.play().catch(() => {});
+              }
+
               setTimeout(() => {
                 if (preloader.parentNode) preloader.remove();
               }, 400);
-            }, 80);
+            }, 100);
           }
         };
 
