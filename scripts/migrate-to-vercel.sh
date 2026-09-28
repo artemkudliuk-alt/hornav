@@ -16,7 +16,8 @@ WORK="$HOME/vercel-migrate"
 # Node на CloudLinux живёт в виртуальном окружении приложения
 if ! command -v node >/dev/null 2>&1; then
   ACT=$(ls -d "$HOME"/nodevenv/*/2*/bin/activate 2>/dev/null | head -1 || true)
-  [ -n "$ACT" ] && source "$ACT"
+  # activate от CloudLinux читает неустановленные переменные — на время снимаем -u
+  if [ -n "$ACT" ]; then set +u; source "$ACT"; set -u; fi
 fi
 command -v node >/dev/null 2>&1 || { echo "Не найден node. Проверьте Setup Node.js App."; exit 1; }
 echo "node $(node -v)"
