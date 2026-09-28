@@ -1,0 +1,3 @@
+module.exports=[27572,a=>{"use strict";var b=a.i(7997);a.s(["default",0,function({children:a}){return(0,b.jsxs)("html",{lang:"en",className:"h-full antialiased dark",children:[(0,b.jsx)("head",{children:(0,b.jsx)("link",{rel:"stylesheet",href:"/fonts/fonts.css"})}),(0,b.jsx)("body",{className:"min-h-full flex flex-col bg-[#18181b] text-neutral-100 font-sans",children:a})]})},"metadata",0,{title:"Danamira Shipping — Fleet Management CMS",description:"Vessel fleet operations, charter inquiry management, custom landing pages, and branch agency network.",icons:{icon:"/logo.png"}}])},50645,function(a){a.n(a.i(27572))}];
+
+//# sourceMappingURL=src_app_layout_tsx_0r5yz5t._.js.map
