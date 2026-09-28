@@ -22,14 +22,20 @@ SECRETS="$WORK/secrets.txt"
 LOG="$WORK/migrate.log"
 
 trim() { local s="$1"; s="${s//$'\r'/}"; s="${s#"${s%%[![:space:]]*}"}"; s="${s%"${s##*[![:space:]]}"}"; printf '%s' "$s"; }
+# Последнее слово строки. Прощает заглушку, оставленную перед значением:
+# "ВСТАВЬТЕ_СЮДА_... postgresql://..." -> "postgresql://...".
+# Ни URL, ни пароль, ни токен пробелов не содержат.
+lastword() { local s; s=$(trim "$1"); printf '%s' "${s##*[[:space:]]}"; }
 
 # ---------- 1. передний план: проверить файл и уйти в фон ----------
 if [ "${MIGRATE_BG:-}" != "1" ]; then
   mkdir -p "$WORK"
   [ -s "$SECRETS" ] || { echo "Нет файла $SECRETS"; exit 1; }
-  if grep -q "ВСТАВЬТЕ" "$SECRETS"; then
-    echo "В $SECRETS остались строки-заглушки. Замените все три и сохраните."; exit 1
-  fi
+  for n in 1 2 3; do
+    case "$(lastword "$(sed -n "${n}p" "$SECRETS")")" in
+      ""|ВСТАВЬТЕ*) echo "В строке $n файла $SECRETS нет значения. Вставьте и сохраните."; exit 1;;
+    esac
+  done
   MIGRATE_BG=1 nohup bash "$0" "$@" > "$LOG" 2>&1 < /dev/null &
   echo "Перенос запущен в фоне (pid $!). Журнал: $LOG"
   echo "Терминал можно закрыть — работа не прервётся."
@@ -62,9 +68,9 @@ fi
 curl -fsSL "$REPO_RAW/copy-db.mjs" -o copy-db.mjs
 curl -fsSL "$REPO_RAW/copy-disk-to-blob.mjs" -o copy-disk-to-blob.mjs
 
-NEON_URL=$(trim "$(sed -n 1p "$SECRETS")")
-DB_PASS=$(trim "$(sed -n 2p "$SECRETS")")
-BLOB_TOKEN=$(trim "$(sed -n 3p "$SECRETS")")
+NEON_URL=$(lastword "$(sed -n 1p "$SECRETS")")
+DB_PASS=$(lastword "$(sed -n 2p "$SECRETS")")
+BLOB_TOKEN=$(lastword "$(sed -n 3p "$SECRETS")")
 
 case "$NEON_URL" in postgres://*|postgresql://*) ;; *) echo "Строка 1 не похожа на DATABASE_URL"; exit 1;; esac
 [ -n "$DB_PASS" ] || { echo "Строка 2 (пароль cPanel) пустая"; exit 1; }
