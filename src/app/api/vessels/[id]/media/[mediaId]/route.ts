@@ -102,7 +102,9 @@ export async function DELETE(
 
     // Файл с диска. Старые абсолютные ссылки на Vercel игнорируются внутри deleteUpload.
     try {
-      await deleteUpload(deleted.blobKey || deleted.url);
+      // url первым: для Blob это полная ссылка, по которой del() находит файл;
+      // для диска это /uploads/... — deleteUpload сам снимет префикс.
+      await deleteUpload(deleted.url || deleted.blobKey || "");
     } catch (e) {
       console.warn("Не удалось удалить файл загрузки:", e);
     }

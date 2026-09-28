@@ -16,7 +16,14 @@
  */
 import pg from "pg";
 
-const { Pool } = pg;
+const { Pool, types } = pg;
+
+// Читаем даты и JSON сырым текстом и так же пишем обратно — Postgres сам приведёт тип.
+// Иначе pg разберёт timestamp в Date по часовому поясу процесса и может сдвинуть время,
+// а JSON-массив превратит в JS-массив, который при вставке станет массивом Postgres, а не jsonb.
+for (const oid of [1082 /* date */, 1114 /* timestamp */, 1184 /* timestamptz */, 114 /* json */, 3802 /* jsonb */]) {
+  types.setTypeParser(oid, (v) => v);
+}
 
 // Порядок важен: родительские таблицы идут раньше тех, что на них ссылаются.
 const TABLES = [
