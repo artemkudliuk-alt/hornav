@@ -15,6 +15,7 @@
  *   --dry       только посчитать строки, ничего не писать
  */
 import pg from "pg";
+import net from "net";
 
 const { Pool, types } = pg;
 
@@ -52,15 +53,53 @@ const need = (name) => {
 };
 
 const isLocal = (url) => /@(localhost|127\.0\.0\.1)[:/]/.test(url);
-const mkPool = (url) =>
+
+// sslmode из строки Neon pg трактует по-своему и шумит предупреждением —
+// TLS задаём явно, а параметр из адреса убираем.
+const stripSsl = (url) => { const u = new URL(url); u.searchParams.delete("sslmode"); u.searchParams.delete("channel_binding"); return u.toString(); };
+
+const mkPgPool = (url) =>
   new Pool({
-    connectionString: url,
+    connectionString: isLocal(url) ? url : stripSsl(url),
     ssl: isLocal(url) ? undefined : { rejectUnauthorized: false },
     max: 3,
   });
 
-const src = mkPool(need("SOURCE_URL"));
-const dst = mkPool(need("TARGET_URL"));
+function tcpReachable(host, port, ms = 6000) {
+  return new Promise((done) => {
+    const s = net.connect({ host, port });
+    const t = setTimeout(() => { s.destroy(); done(false); }, ms);
+    s.once("connect", () => { clearTimeout(t); s.end(); done(true); });
+    s.once("error", () => { clearTimeout(t); done(false); });
+  });
+}
+
+/**
+ * Шаред-хостинги часто закрывают исходящий 5432. Тогда к Neon идём
+ * через его WebSocket-драйвер по 443 — тот же порт, что у HTTPS.
+ */
+async function mkTargetPool(url) {
+  if (isLocal(url)) return { pool: mkPgPool(url), via: "pg, локально" };
+  const host = new URL(url).hostname;
+  if (await tcpReachable(host, 5432)) return { pool: mkPgPool(url), via: "pg, порт 5432" };
+  const { Pool: NeonPool } = await import("@neondatabase/serverless");
+  return { pool: new NeonPool({ connectionString: url }), via: "Neon WebSocket, порт 443 (5432 закрыт хостингом)" };
+}
+
+/** AggregateError от Node приходит с пустым message — раскрываем вложенные. */
+export function describe(err) {
+  const parts = [err?.message || err?.name || "ошибка без текста"];
+  if (err?.code) parts.push(`код ${err.code}`);
+  for (const e of err?.errors || []) parts.push(`${e.code || ""} ${e.address || ""}:${e.port || ""}`.trim());
+  return parts.join(" | ");
+}
+
+const src = mkPgPool(need("SOURCE_URL"));
+const { pool: dst, via: dstVia } = await mkTargetPool(need("TARGET_URL"));
+// Без слушателя драйверы роняют процесс событием 'error' от простаивающего соединения.
+for (const [name, pool] of [["источник", src], ["приёмник", dst]]) {
+  pool.on("error", (e) => console.error(`  [${name}: соединение закрылось] ${describe(e)}`));
+}
 
 const quote = (id) => '"' + String(id).replace(/"/g, '""') + '"';
 
@@ -138,15 +177,26 @@ async function copyTable(table) {
 
 (async () => {
   console.log(DRY ? "ПРОБНЫЙ ПРОГОН — ничего не пишем\n" : "Перенос данных\n");
+  console.log(`  приёмник подключается через: ${dstVia}`);
   let total = 0;
   try {
+    // Проверяем обе стороны по отдельности, чтобы ошибка сразу говорила, кто виноват.
+    for (const [name, pool] of [["источник (база cPanel)", src], ["приёмник (Neon)", dst]]) {
+      try {
+        await pool.query("SELECT 1");
+        console.log(`  ${name}: подключение есть`);
+      } catch (e) {
+        throw new Error(`${name}: ${describe(e)}`);
+      }
+    }
+    console.log("");
     for (const t of TABLES) {
       const { copied } = await copyTable(t);
       total += copied;
     }
     console.log(`\nИтого строк: ${total}`);
   } catch (err) {
-    console.error("\nОШИБКА:", err.message);
+    console.error("\nОШИБКА:", describe(err));
     process.exitCode = 1;
   } finally {
     await src.end().catch(() => {});

@@ -23,6 +23,7 @@ import pg from "pg";
 import { put } from "@vercel/blob";
 import { readFile, stat } from "fs/promises";
 import path from "path";
+import net from "net";
 
 const { Pool } = pg;
 const DRY = process.argv.includes("--dry");
@@ -41,11 +42,40 @@ const UPLOADS_DIR = path.resolve(need("UPLOADS_DIR"));
 if (!DRY) need("BLOB_READ_WRITE_TOKEN");
 
 const isLocal = (u) => /@(localhost|127\.0\.0\.1)[:/]/.test(u);
-const pool = new Pool({
-  connectionString: TARGET_URL,
-  ssl: isLocal(TARGET_URL) ? undefined : { rejectUnauthorized: false },
-  max: 3,
-});
+const stripSsl = (url) => { const u = new URL(url); u.searchParams.delete("sslmode"); u.searchParams.delete("channel_binding"); return u.toString(); };
+
+function tcpReachable(host, port, ms = 6000) {
+  return new Promise((done) => {
+    const s = net.connect({ host, port });
+    const t = setTimeout(() => { s.destroy(); done(false); }, ms);
+    s.once("connect", () => { clearTimeout(t); s.end(); done(true); });
+    s.once("error", () => { clearTimeout(t); done(false); });
+  });
+}
+
+// Хостинг может закрывать исходящий 5432 — тогда к Neon через WebSocket по 443.
+async function mkPool(url) {
+  if (isLocal(url)) return { pool: new Pool({ connectionString: url, max: 3 }), via: "pg, локально" };
+  if (await tcpReachable(new URL(url).hostname, 5432)) {
+    return {
+      pool: new Pool({ connectionString: stripSsl(url), ssl: { rejectUnauthorized: false }, max: 3 }),
+      via: "pg, порт 5432",
+    };
+  }
+  const { Pool: NeonPool } = await import("@neondatabase/serverless");
+  return { pool: new NeonPool({ connectionString: url }), via: "Neon WebSocket, порт 443" };
+}
+
+function describe(err) {
+  const parts = [err?.message || err?.name || "ошибка без текста"];
+  if (err?.code) parts.push(`код ${err.code}`);
+  for (const e of err?.errors || []) parts.push(`${e.code || ""} ${e.address || ""}:${e.port || ""}`.trim());
+  return parts.join(" | ");
+}
+
+const { pool, via } = await mkPool(TARGET_URL);
+// Без слушателя драйвер роняет процесс событием 'error' от простаивающего соединения.
+pool.on("error", (e) => console.error(`  [соединение закрылось] ${describe(e)}`));
 
 const MIME = {
   ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png", ".webp": "image/webp",
@@ -167,6 +197,7 @@ async function migratePages() {
 (async () => {
   console.log(DRY ? "ПРОБНЫЙ ПРОГОН — ничего не пишем" : "Перенос файлов в Vercel Blob");
   console.log(`папка: ${UPLOADS_DIR}`);
+  console.log(`база подключается через: ${via}`);
   try {
     await migrateMedia();
     await migrateCovers();
@@ -181,7 +212,7 @@ async function migratePages() {
     stats.failed.forEach((m) => console.log(`   - ${m}`));
     if (stats.failed.length) process.exitCode = 1;
   } catch (e) {
-    console.error("\nОШИБКА:", e.message);
+    console.error("\nОШИБКА:", describe(e));
     process.exitCode = 1;
   } finally {
     await pool.end().catch(() => {});

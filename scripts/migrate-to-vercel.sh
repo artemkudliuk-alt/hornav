@@ -43,7 +43,17 @@ if [ "${MIGRATE_BG:-}" != "1" ]; then
 fi
 
 # ---------- 2. фон ----------
-cleanup() { shred -u "$SECRETS" 2>/dev/null || rm -f "$SECRETS"; echo "[секреты удалены]"; }
+# Секреты стираем только после успеха. При сбое файл остаётся (права 600),
+# чтобы повторный запуск не требовал вписывать всё заново.
+chmod 600 "$SECRETS"
+DONE=0
+cleanup() {
+  if [ "$DONE" = "1" ]; then
+    shred -u "$SECRETS" 2>/dev/null || rm -f "$SECRETS"; echo "[секреты удалены]"
+  else
+    echo "[сбой — файл с секретами оставлен для повторного запуска: $SECRETS]"
+  fi
+}
 trap cleanup EXIT
 
 echo "=== старт $(date '+%F %T') ==="
@@ -61,9 +71,10 @@ echo "файлов в $UPLOADS_DIR: $(find "$UPLOADS_DIR" -type f | wc -l)"
 
 cd "$WORK"
 [ -f package.json ] || npm init -y >/dev/null
-if [ ! -d node_modules/pg ] || [ ! -d node_modules/@vercel/blob ]; then
-  echo "ставлю pg и @vercel/blob..."
-  npm install --prefix "$WORK" --no-audit --no-fund --no-save --loglevel=error pg @vercel/blob
+if [ ! -d node_modules/pg ] || [ ! -d node_modules/@vercel/blob ] || [ ! -d node_modules/@neondatabase/serverless ]; then
+  echo "ставлю pg, @vercel/blob, @neondatabase/serverless..."
+  npm install --prefix "$WORK" --no-audit --no-fund --no-save --loglevel=error \
+    pg @vercel/blob @neondatabase/serverless
 fi
 curl -fsSL "$REPO_RAW/copy-db.mjs" -o copy-db.mjs
 curl -fsSL "$REPO_RAW/copy-disk-to-blob.mjs" -o copy-disk-to-blob.mjs
@@ -91,4 +102,5 @@ echo; echo "========== 2. ФАЙЛЫ: диск cPanel -> Vercel Blob =========="
 TARGET_URL="$NEON_URL" UPLOADS_DIR="$UPLOADS_DIR" BLOB_READ_WRITE_TOKEN="$BLOB_TOKEN" \
   node copy-disk-to-blob.mjs
 
+DONE=1
 echo; echo "=== ГОТОВО $(date '+%F %T') ==="
