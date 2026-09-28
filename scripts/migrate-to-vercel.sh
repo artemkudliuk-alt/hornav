@@ -76,8 +76,11 @@ if [ ! -d node_modules/pg ] || [ ! -d node_modules/@vercel/blob ] || [ ! -d node
   npm install --prefix "$WORK" --no-audit --no-fund --no-save --loglevel=error \
     pg @vercel/blob @neondatabase/serverless
 fi
-curl -fsSL "$REPO_RAW/copy-db.mjs" -o copy-db.mjs
-curl -fsSL "$REPO_RAW/copy-disk-to-blob.mjs" -o copy-disk-to-blob.mjs
+# Параметр в конце обходит кэш raw.githubusercontent — иначе до 5 минут отдаётся старая версия.
+BUST=$(date +%s)
+curl -fsSL "$REPO_RAW/copy-db.mjs?$BUST" -o copy-db.mjs
+curl -fsSL "$REPO_RAW/copy-disk-to-blob.mjs?$BUST" -o copy-disk-to-blob.mjs
+grep -q "mkTargetPool" copy-db.mjs || { echo "Скачалась устаревшая версия copy-db.mjs"; exit 1; }
 
 NEON_URL=$(lastword "$(sed -n 1p "$SECRETS")")
 DB_PASS=$(lastword "$(sed -n 2p "$SECRETS")")
