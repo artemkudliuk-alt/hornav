@@ -1,19 +1,27 @@
 import { writeFile, mkdir, unlink } from "fs/promises";
 import path from "path";
+import { put, del } from "@vercel/blob";
 
 /**
- * Загрузки на диске вместо Vercel Blob.
+ * Хранилище загрузок в двух режимах — один код и для Vercel, и для cPanel.
  *
- * UPLOADS_DIR задаётся снаружи и должен указывать на папку ЗА пределами сборки,
+ * Задан BLOB_READ_WRITE_TOKEN → Vercel Blob. На Vercel иначе нельзя:
+ * файловая система там не переживает деплой.
+ *
+ * Токена нет → диск. UPLOADS_DIR должен указывать на папку ЗА пределами сборки,
  * иначе очередной деплой затрёт всё, что загрузили через админку.
- * На хостинге: UPLOADS_DIR=/home/<акк>/data/uploads, а public/uploads — симлинк туда.
+ * На cPanel: UPLOADS_DIR=/home/<акк>/data/uploads, а public/uploads — симлинк туда.
  */
+const USE_BLOB = Boolean(process.env.BLOB_READ_WRITE_TOKEN);
+
 const UPLOADS_DIR = process.env.UPLOADS_DIR
   ? path.resolve(process.env.UPLOADS_DIR)
   : path.join(process.cwd(), "public", "uploads");
 
-/** Публичный префикс, под которым папка отдаётся наружу. */
+/** Публичный префикс, под которым папка отдаётся наружу в дисковом режиме. */
 const PUBLIC_PREFIX = "/uploads";
+
+const BLOB_HOST = /\.public\.blob\.vercel-storage\.com\//i;
 
 function safeName(original: string): string {
   const cleaned = path
@@ -38,6 +46,12 @@ export async function saveUpload(
   const cleanSubdir = subdir.replace(/[^a-zA-Z0-9/_-]/g, "").replace(/^\/+|\/+$/g, "");
   const key = cleanSubdir ? `${cleanSubdir}/${safeName(originalName)}` : safeName(originalName);
 
+  if (USE_BLOB) {
+    // Ключ уже уникален (время + случайный хвост), свой суффикс Blob не нужен.
+    const blob = await put(key, data, { access: "public", addRandomSuffix: false });
+    return { url: blob.url, key: blob.pathname };
+  }
+
   const dest = resolveInside(key);
   if (!dest) throw new Error(`Недопустимый путь загрузки: ${key}`);
 
@@ -48,12 +62,17 @@ export async function saveUpload(
 }
 
 /**
- * Принимает и ключ, и путь вида /uploads/..., и старый абсолютный URL на Vercel Blob.
+ * Принимает ссылку на Blob, путь вида /uploads/... или голый ключ.
  * Чужие абсолютные ссылки молча пропускает — их файлов у нас нет.
+ * Удаление идемпотентно: отсутствие файла — не ошибка.
  */
 export async function deleteUpload(urlOrKey: string): Promise<void> {
   if (!urlOrKey) return;
-  if (/^https?:\/\//i.test(urlOrKey)) return;
+
+  if (/^https?:\/\//i.test(urlOrKey)) {
+    if (USE_BLOB && BLOB_HOST.test(urlOrKey)) await del(urlOrKey).catch(() => {});
+    return;
+  }
 
   const key = urlOrKey.replace(/^\/+/, "").replace(/^uploads\//, "");
   if (!key) return;
@@ -61,8 +80,7 @@ export async function deleteUpload(urlOrKey: string): Promise<void> {
   const target = resolveInside(key);
   if (!target) return;
 
-  // Файла может уже не быть — это не ошибка, удаление идемпотентно.
   await unlink(target).catch(() => {});
 }
 
-export { UPLOADS_DIR };
+export { UPLOADS_DIR, USE_BLOB };
