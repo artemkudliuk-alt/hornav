@@ -56,15 +56,28 @@ jobs:
           du -sh deploy
 
       - name: Опубликовать в ветку deploy
+        env:
+          REMOTE: https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
         run: |
           cd deploy
           git init -q
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
+          git remote add origin "$REMOTE"
+
+          # Продолжаем историю ветки deploy, а не начинаем новую каждый раз.
+          # Иначе на сервере две несвязанные истории и git pull падает с
+          # "Need to specify how to reconcile divergent branches".
+          if git fetch -q --depth 1 origin deploy 2>/dev/null; then
+            git reset -q --soft FETCH_HEAD
+          fi
+
           # .next и node_modules нужны в этой ветке, поэтому никаких ignore
           git add -A
+          if git diff --cached --quiet; then
+            echo "Изменений нет, публиковать нечего"
+            exit 0
+          fi
           git commit -q -m "Сборка из ${GITHUB_SHA::7}"
-          git push -q --force \
-            "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" \
-            HEAD:deploy
+          git push -q origin HEAD:deploy
           echo "Готово. На сервере: git pull"
