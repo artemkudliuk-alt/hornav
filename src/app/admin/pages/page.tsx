@@ -153,7 +153,7 @@ export default async function PagesListPage() {
                     </Button>
                   </a>
 
-                  <Link href={`/pages/${p.id}`} className="flex-1 md:flex-initial">
+                  <Link href={`/admin/pages/${p.id}`} className="flex-1 md:flex-initial">
                     <Button
                       size="sm"
                       className="w-full md:w-auto rounded-none text-xs bg-[#c89b3c] hover:bg-[#e5bf6c] text-[#141416] gap-1.5 h-8 font-semibold uppercase tracking-wider cursor-pointer shadow-sm"

@@ -13,7 +13,7 @@ import { Loader2, Lock, Mail, ShieldAlert } from "lucide-react";
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/overview";
+  const callbackUrl = searchParams.get("callbackUrl") || "/admin/overview";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -38,7 +38,7 @@ function LoginForm() {
         setIsLoading(false);
       } else {
         const targetUrl = !callbackUrl || callbackUrl === "/" || callbackUrl.includes("/api/auth/error") || callbackUrl.includes("/login")
-          ? "/overview"
+          ? "/admin/overview"
           : callbackUrl;
         window.location.href = targetUrl;
       }

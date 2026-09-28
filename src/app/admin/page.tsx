@@ -91,7 +91,7 @@ export default async function DashboardPage() {
       {/* 3 Core Metric KPI Cards (Clean 3-Column Grid) */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {/* Metric 1: Fleet */}
-        <Link href="/fleet" className="block group">
+        <Link href="/admin/fleet" className="block group">
           <Card className="rounded-none bg-[#202023]/70 border-white/5 hover:border-[#c89b3c]/40 transition-all p-5 h-full flex flex-col justify-between shadow-sm">
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold text-neutral-400 uppercase tracking-wider group-hover:text-white transition-colors">
@@ -112,7 +112,7 @@ export default async function DashboardPage() {
         </Link>
 
         {/* Metric 2: Leads */}
-        <Link href="/leads" className="block group">
+        <Link href="/admin/leads" className="block group">
           <Card className="rounded-none bg-[#202023]/70 border-white/5 hover:border-[#c89b3c]/40 transition-all p-5 h-full flex flex-col justify-between shadow-sm">
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold text-neutral-400 uppercase tracking-wider group-hover:text-white transition-colors">
@@ -133,7 +133,7 @@ export default async function DashboardPage() {
         </Link>
 
         {/* Metric 3: Branch Offices */}
-        <Link href="/contacts" className="block group">
+        <Link href="/admin/contacts" className="block group">
           <Card className="rounded-none bg-[#202023]/70 border-white/5 hover:border-[#c89b3c]/40 transition-all p-5 h-full flex flex-col justify-between shadow-sm">
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold text-neutral-400 uppercase tracking-wider group-hover:text-white transition-colors">
@@ -166,7 +166,7 @@ export default async function DashboardPage() {
                 Click any inquiry to inspect details or update status
               </CardDescription>
             </div>
-            <Link href="/leads">
+            <Link href="/admin/leads">
               <Button variant="ghost" size="sm" className="rounded-none text-xs text-[#c89b3c] hover:text-white gap-1 hover:bg-white/5">
                 View all <ArrowUpRight className="w-3.5 h-3.5" />
               </Button>
@@ -190,7 +190,7 @@ export default async function DashboardPage() {
                   Active vessels in management
                 </CardDescription>
               </div>
-              <Link href="/fleet">
+              <Link href="/admin/fleet">
                 <Button variant="ghost" size="sm" className="rounded-none text-xs text-[#c89b3c] hover:text-white gap-1 hover:bg-white/5">
                   Catalog <ArrowUpRight className="w-3.5 h-3.5" />
                 </Button>
@@ -208,7 +208,7 @@ export default async function DashboardPage() {
                   return (
                     <Link
                       key={v.id}
-                      href={`/fleet/${v.id}`}
+                      href={`/admin/fleet/${v.id}`}
                       className="block group"
                     >
                       <div className="p-3.5 rounded-none bg-[#18181b] border border-white/5 hover:border-[#c89b3c]/40 flex items-center justify-between transition-all group-hover:-translate-y-0.5">

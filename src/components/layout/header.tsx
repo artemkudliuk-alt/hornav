@@ -59,7 +59,7 @@ export function Header({ user }: HeaderProps) {
                 Add Vessel
               </Button>
             </Link>
-            <Link href="/leads">
+            <Link href="/admin/leads">
               <Button
                 size="sm"
                 variant="outline"

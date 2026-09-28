@@ -169,7 +169,7 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
       const saved = await res.json();
 
       if (!isEditing) {
-        router.push("/fleet");
+        router.push("/admin/fleet");
         router.refresh();
       } else {
         router.refresh();
@@ -201,7 +201,7 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
         method: "DELETE",
       });
       if (res.ok) {
-        router.push("/fleet");
+        router.push("/admin/fleet");
         router.refresh();
       } else {
         alert("Failed to delete vessel.");
@@ -228,7 +228,7 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
         {/* Top Action Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-3 border-b border-white/5">
           <div className="flex items-start sm:items-center gap-3 min-w-0">
-            <Link href="/fleet" className="shrink-0 mt-0.5 sm:mt-0">
+            <Link href="/admin/fleet" className="shrink-0 mt-0.5 sm:mt-0">
               <Button
                 type="button"
                 variant="ghost"

@@ -142,24 +142,17 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         return true;
       }
 
-      // 2. Protected admin routes
-      const isAdminRoute =
-        pathname.startsWith("/overview") ||
-        pathname.startsWith("/admin") ||
-        pathname.startsWith("/leads") ||
-        pathname.startsWith("/settings") ||
-        pathname.startsWith("/users") ||
-        pathname.startsWith("/pages") ||
-        pathname.startsWith("/fleet") ||
-        pathname.startsWith("/contacts") ||
-        pathname.startsWith("/api/");
+      // 2. Админка целиком живёт под /admin, поэтому проверка одна.
+      // Раньше здесь перечислялись голые "/fleet" и "/contacts" — те же адреса,
+      // что у страниц витрины, и веб-сервер отдавал fleet.html раньше приложения.
+      const isAdminRoute = pathname.startsWith("/admin") || pathname.startsWith("/api/");
 
       if (isAdminRoute && !isLoggedIn && !isLoginPage) {
         return false; // Redirects to /login
       }
 
       if (isLoggedIn && isLoginPage) {
-        return Response.redirect(new URL("/overview", nextUrl));
+        return Response.redirect(new URL("/admin/overview", nextUrl));
       }
 
       return true;

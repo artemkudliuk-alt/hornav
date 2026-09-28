@@ -326,7 +326,7 @@ export function FleetManager({ initialFleet }: FleetManagerProps) {
                     </span>
 
                     <div className="flex items-center gap-1.5">
-                      <Link href={`/fleet/${v.id}`}>
+                      <Link href={`/admin/fleet/${v.id}`}>
                         <Button
                           size="sm"
                           variant="secondary"

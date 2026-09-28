@@ -85,7 +85,7 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
     try {
       const res = await fetch(`/api/pages/${initialData.id}`, { method: "DELETE" });
       if (!res.ok) throw new Error("Failed to delete page");
-      router.push("/pages");
+      router.push("/admin/pages");
       router.refresh();
     } catch (err: any) {
       console.error(err);
@@ -129,7 +129,7 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
         throw new Error(data.error || "Failed to save page");
       }
 
-      router.push("/pages");
+      router.push("/admin/pages");
       router.refresh();
     } catch (err: any) {
       console.error(err);
@@ -165,7 +165,7 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
       {/* Top Action Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-3 border-b border-white/5">
         <div className="flex items-start sm:items-center gap-3 min-w-0">
-          <Link href="/pages" className="shrink-0 mt-0.5 sm:mt-0">
+          <Link href="/admin/pages" className="shrink-0 mt-0.5 sm:mt-0">
             <Button
               type="button"
               variant="ghost"
