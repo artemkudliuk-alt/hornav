@@ -13,22 +13,24 @@ DB_NAME="maxic191_hornav"
 UPLOADS_DIR="$HOME/data/uploads"
 WORK="$HOME/vercel-migrate"
 
-# Node на CloudLinux живёт в виртуальном окружении приложения
-if ! command -v node >/dev/null 2>&1; then
-  ACT=$(ls -d "$HOME"/nodevenv/*/2*/bin/activate 2>/dev/null | head -1 || true)
-  # activate от CloudLinux читает неустановленные переменные — на время снимаем -u
-  if [ -n "$ACT" ]; then set +u; source "$ACT"; set -u; fi
-fi
-command -v node >/dev/null 2>&1 || { echo "Не найден node. Проверьте Setup Node.js App."; exit 1; }
-echo "node $(node -v)"
+# Берём системный Node CloudLinux напрямую, НЕ через окружение приложения:
+# обёртка npm из nodevenv сама дописывает --prefix <окружение боевого приложения>
+# и ставит туда все зависимости сайта вместо двух нужных пакетов.
+NODE_DIR=$(ls -d /opt/alt/alt-nodejs2*/root/usr/bin 2>/dev/null | sort -V | tail -1 || true)
+[ -n "$NODE_DIR" ] || { echo "Не найден Node в /opt/alt. Проверьте Setup Node.js App."; exit 1; }
+export PATH="$NODE_DIR:/usr/bin:/bin"
+unset npm_config_prefix NODE_PATH
+echo "node $(node -v) из $NODE_DIR"
 
 [ -d "$UPLOADS_DIR" ] || { echo "Нет папки загрузок $UPLOADS_DIR"; exit 1; }
 echo "файлов в $UPLOADS_DIR: $(find "$UPLOADS_DIR" -type f | wc -l)"
 
 mkdir -p "$WORK" && cd "$WORK"
 [ -f package.json ] || npm init -y >/dev/null
-echo "ставлю pg и @vercel/blob..."
-npm install --silent --no-audit --no-fund pg @vercel/blob
+echo "ставлю pg и @vercel/blob в $WORK (около минуты)..."
+npm install --prefix "$WORK" --no-audit --no-fund --no-save pg @vercel/blob
+[ -d "$WORK/node_modules/pg" ] && [ -d "$WORK/node_modules/@vercel/blob" ] \
+  || { echo "Пакеты не встали в $WORK/node_modules"; exit 1; }
 curl -fsSL "$REPO_RAW/copy-db.mjs" -o copy-db.mjs
 curl -fsSL "$REPO_RAW/copy-disk-to-blob.mjs" -o copy-disk-to-blob.mjs
 
