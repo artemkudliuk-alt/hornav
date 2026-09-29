@@ -266,7 +266,7 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
             <Label className="text-xs text-neutral-300">Public Slug / URL</Label>
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center rounded-none bg-[#18181b] border border-white/10 overflow-hidden">
               <span className="px-2.5 py-1.5 sm:py-0 text-[11px] sm:text-xs text-neutral-400 font-mono bg-white/[0.02] border-b sm:border-b-0 sm:border-r border-white/5 select-none">
-                danamirashipping.com/
+                www.danamira-shipping.com/
               </span>
               <Input
                 placeholder="careers"
@@ -511,7 +511,7 @@ export function PageForm({ initialData, isEditing = false }: PageFormProps) {
             </Label>
             <div className="flex gap-2">
               <Input
-                placeholder="https://danamirashipping.com/assets/og-preview.jpg or /fleet/molpadia/Photo-1.jpg"
+                placeholder="https://www.danamira-shipping.com/assets/og-preview.jpg or /fleet/molpadia/Photo-1.jpg"
                 value={formData.ogImage}
                 onChange={(e) => setFormData({ ...formData, ogImage: e.target.value })}
                 className="rounded-none bg-[#18181b] border-white/10 text-xs text-white"

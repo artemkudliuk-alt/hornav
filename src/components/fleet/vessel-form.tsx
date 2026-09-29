@@ -1010,7 +1010,7 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
                 </Label>
                 <div className="flex items-center rounded-none bg-[#18181b] border border-white/10 overflow-hidden">
                   <span className="px-2.5 text-xs text-neutral-500 font-mono select-none">
-                    danamirashipping.com/vessel.html?slug=
+                    www.danamira-shipping.com/vessel.html?slug=
                   </span>
                   <Input
                     placeholder="metanira"
@@ -1023,7 +1023,7 @@ export function VesselForm({ initialData, isEditing = false }: VesselFormProps) 
                     variant="ghost"
                     size="sm"
                     onClick={() => {
-                      navigator.clipboard.writeText(`https://danamirashipping.com/vessel.html?slug=${formData.slug || "vessel"}`);
+                      navigator.clipboard.writeText(`https://www.danamira-shipping.com/vessel.html?slug=${formData.slug || "vessel"}`);
                       setCopiedSlug(true);
                       setTimeout(() => setCopiedSlug(false), 2000);
                     }}
