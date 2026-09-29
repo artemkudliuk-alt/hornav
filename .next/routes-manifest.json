@@ -14,7 +14,28 @@
       "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
     }
   ],
-  "headers": [],
+  "headers": [
+    {
+      "source": "/:file(.*\\.(?:mp4|MP4|webm|png|PNG|jpe?g|JPE?G|webp|avif|gif|svg|ico|woff2?|pdf|PDF))",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
+        }
+      ],
+      "regex": "^(?:/(.*\\.(?:mp4|MP4|webm|png|PNG|jpe?g|JPE?G|webp|avif|gif|svg|ico|woff2?|pdf|PDF)))(?:/)?$"
+    },
+    {
+      "source": "/assets/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ],
+      "regex": "^/assets(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))?(?:/)?$"
+    }
+  ],
   "onMatchHeaders": [],
   "rewrites": {
     "beforeFiles": [

@@ -23,8 +23,6 @@
   <meta name="twitter:image" content="https://danamirashipping.com/fleet/molpadia/Photo-1.jpg">
   
   <!-- Premium Fonts: Clash Display (Display), Plus Jakarta Sans (Sans) & Space Mono (Mono) -->
-  <!-- Preload Hero Video for instant playback -->
-  <link rel="preload" as="video" href="/Banner_screen.mp4" type="video/mp4">
   <link rel="stylesheet" href="/fonts/fonts.css">
   <script type="module" crossorigin src="/assets/js/main-B5PQcIiU.js"></script>
   <link rel="modulepreload" crossorigin href="/assets/js/mobile-menu-Crp7p2Rg.js">
@@ -199,10 +197,12 @@
           checkVideo();
         }
 
-        // Safety timeout: never hang more than 3.5 seconds even on poor network
+        // Не держим посетителя дольше 1.5 с: у видео есть постер (первый кадр),
+        // героический блок не будет пустым, а видео подхватит его, как догрузится.
+        // Раньше ждали до 3.5 с — на медленной сети это и выглядело как «подвисание».
         setTimeout(() => {
           videoReady = true;
-        }, 3500);
+        }, 1500);
 
         let progress = 0;
 
@@ -374,10 +374,12 @@
       
       <!-- Fullscreen Background Video & Gradient Overlays (Desktop Only) -->
       <div class="absolute inset-y-0 left-0 right-0 z-0 select-none pointer-events-none overflow-hidden hidden lg:block" id="hero-bg-media">
-        <video class="absolute top-0 h-full opacity-60 will-change-transform" 
+        <video class="absolute top-0 h-full opacity-60 will-change-transform"
                style="width: 177.78vh; left: calc(65% - 88.89vh); object-fit: fill;"
-               src="/Banner_screen.mp4" 
-               autoplay 
+               data-src="/Banner_screen.mp4"
+               poster="/Banner_poster.webp"
+               preload="none"
+               autoplay
                muted 
                loop 
                playsinline 
@@ -395,10 +397,12 @@
 
       <!-- Fullscreen Background Video & Gradient Overlays (Mobile Only) -->
       <div class="absolute inset-x-0 top-32 h-[35dvh] z-0 select-none pointer-events-none overflow-hidden lg:hidden mobile-hero-video-wrap" id="hero-bg-media-mobile">
-        <video class="absolute inset-0 w-full h-full object-cover" 
+        <video class="absolute inset-0 w-full h-full object-cover"
                style="opacity: 0.65; object-position: 80% center;"
-               src="/Banner_screen.mp4" 
-               autoplay 
+               data-src="/Banner_screen.mp4"
+               poster="/Banner_poster.webp"
+               preload="none"
+               autoplay
                muted 
                loop 
                playsinline 
@@ -409,6 +413,25 @@
         <!-- Gold line at the bottom of the video -->
         <div class="absolute bottom-0 left-0 right-0 h-[1px] bg-gold/35 z-20" id="hero-video-bottom-gold-line"></div>
       </div>
+
+      <script>
+        // Грузим только то героическое видео, которое видно: у скрытого через CSS
+        // родителя браузер всё равно скачивает файл, и выходило два одинаковых.
+        // Брейкпоинт совпадает с классами lg: (1024px). Стоит сразу после обоих
+        // <video>, а не в прелоадере — чтобы работать и когда прелоадера нет.
+        (function () {
+          var mq = window.matchMedia('(min-width: 1024px)');
+          function arm() {
+            var v = document.getElementById(mq.matches ? 'hero-video' : 'hero-video-mobile');
+            if (!v || v.getAttribute('src') || !v.dataset.src) return;
+            v.src = v.dataset.src;
+            var p = v.play();
+            if (p && p.catch) p.catch(function () {});
+          }
+          arm();
+          if (mq.addEventListener) mq.addEventListener('change', arm); else mq.addListener(arm);
+        })();
+      </script>
 
       <!-- Mobile-only badge, centered in the gap -->
       <div class="lg:hidden" id="hero-badge-mobile">
